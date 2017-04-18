@@ -19,11 +19,15 @@
 * [React-Router](7-router.md)
 * [Testing](8-testing.md)
 * [ES2015/ES6/ES7](9-ecma.md)
+* [Flux/Redux](10-redux.md)
+* [Server-Side / Universal React](11-ssr.md)
 
 ## Examples
 
 * [Basic App](examples/basic-app/README.md)
 * [Router App](examples/router-app/README.md)
+* [Redux App](examples/redux-app/README.md)
+* [Server-Side / Universal App](examples/ssr-app/README.md)
 
 ## Recipes
 
@@ -37,16 +41,24 @@
 
 * babel ^6.24.0
 * webpack ^2.2.1
-* react ^15.4.2
+* react ^15.4.4
+* react-dom ^15.4.4
 * react-router ^3.0.2
+* express ^4.15.2
 
 ## Resources
 
 * [Introduction to GraphQL](https://github.com/MikeBild/introduction-graphql)
 * [Introduction to NodeJS](https://github.com/MikeBild/introduction-nodejs)
+* [Awesome React](https://github.com/enaqx/awesome-react)
+* [Awesome Redux](https://github.com/xgrommx/awesome-redux)
+* [Awesome GraphQL](https://github.com/chentsulin/awesome-graphql)
 
 ## Tools
 
+* [React DevTools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
+* [Redux DevTools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd)
+* [Create React App](https://github.com/facebookincubator/create-react-app)
 * [React Storybook](https://getstorybook.io/)
 
 ## Issue Reporting

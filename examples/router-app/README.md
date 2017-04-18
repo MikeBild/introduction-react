@@ -1,4 +1,4 @@
-# Example React-Router App
+# React-Router App
 
 ```bash
 npm install

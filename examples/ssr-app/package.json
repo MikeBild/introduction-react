@@ -1,0 +1,30 @@
+{
+  "private": true,
+  "name": "ssr-app",
+  "version": "1.0.0",
+  "description": "Server-Side React Example",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "npm run webpack && node ./server",
+    "webpack": "webpack",
+    "dev": "concurrently \"webpack --watch\" \"nodemon ./server\""
+  },
+  "author": "Mike Bild <mike.bild@googlemail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-register": "^6.24.1",
+    "express": "^4.15.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^3.4.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^2.4.1"
+  }
+}

@@ -1,4 +1,4 @@
-# Basics of React-Apps
+# Basic App
 
 ```bash
 npm install
