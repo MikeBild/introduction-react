@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'cheap-module-source-map',
-  entry: './src/app.js',
+  entry: ['babel-polyfill', './src/app.js'],
   output: {
-    path:  __dirname + '/build',
+    path: '/build',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -13,14 +13,11 @@ module.exports = {
     historyApiFallback: true,
   },
   module: {
-    loaders: [{
-      test: /\.css/,
-      loader: 'style-loader!css-loader',
-    }, {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    loaders: [
+      {test: /\.css/, loader: 'style-loader!css-loader'},
+      {test: /\.less/, loader: 'style-loader!css-loader!less-loader'},
+      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({

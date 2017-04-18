@@ -4,7 +4,7 @@
 
 * Basic knowledge of JavaScript
 * Linux / OSX / Windows Operating System
-* NodeJS v6.10.0 LTS / NPM 3.x
+* NodeJS v6.10.x LTS / NPM 3.x
 * Editor Sublime / Atom / VS Code
 * Chrome and Developer Tools
 
@@ -15,27 +15,26 @@
 * [JSX Expressions](3-jsx.md)
 * [React-Components](4-react-components.md)
 * [Event- and Data-Binding](5-event-bindings.md)
-* [Server Access](6-server-access.md)
-* [React-Router](7-router.md)
-* [Testing](8-testing.md)
-* [ES2015/ES6/ES7](9-ecma.md)
-* [Flux/Redux](10-redux.md)
-* [Server-Side / Universal React](11-ssr.md)
+* [Children, Context, Provider & Higher-Order-Components](6-extended.md)
+* [CSS](7-css.md)
+* [Server Access](8-server-access.md)
+* [React-Router](9-router.md)
+* [Testing](10-testing.md)
+* [Flux/Redux](11-redux.md)
+* [Server-Side / Universal React](12-ssr.md)
+* [Development Tools WebPack, Babel, ES-Lint](13-dev-tools.md)
+* [RxJS](14-rxjs.md)
+* [Recompose](15-recompose.md)
+* [GraphQL](16-graphql.md)
+* [ES2015/ES6/ES7](17-ecma.md)
 
 ## Examples
 
 * [Basic App](examples/basic-app/README.md)
+* [Advanced App](examples/advanced-app/README.md)
 * [Router App](examples/router-app/README.md)
 * [Redux App](examples/redux-app/README.md)
 * [Server-Side / Universal App](examples/ssr-app/README.md)
-
-## Recipes
-
-* coming soon!
-
-## Deployment
-
-* coming soon!
 
 ## Versions
 
