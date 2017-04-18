@@ -138,7 +138,7 @@ class MyComponent extends React.Component {
 
 ## Life-Cycle
 
-![Component Lifecylce](component-lifecycle.png)
+![Component Lifecylce](component-lifecycle.jpg)
 
 ### Inital Lifecycle (unmounted component)
 

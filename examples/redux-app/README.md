@@ -14,7 +14,7 @@ npm run dev
 npm test
 ```
 
-## Step by Step
+## Dependencies
 
 ```bash
 npm install react-redux redux --save

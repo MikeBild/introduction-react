@@ -1,13 +1,13 @@
+const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'source-map',
   entry: ['babel-polyfill', './src/app.js'],
   output: {
-    path: '/build',
+    path: path.resolve('./build'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
@@ -20,6 +20,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),

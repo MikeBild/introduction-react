@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: '/build',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
@@ -15,8 +15,8 @@ module.exports = {
   module: {
     loaders: [
       {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
       {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/},
     ],
   },
   plugins: [

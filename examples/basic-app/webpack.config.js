@@ -2,10 +2,10 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   entry: ['babel-polyfill', './src/app.js'],
   output: {
-    path: '/build',
+    path: __dirname + '/build',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -32,5 +32,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
-  ],  
+  ],
 }

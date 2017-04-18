@@ -1,6 +1,6 @@
 # Flux/Redux
 
-![Flux Architecture](flux-architecture.png)
+![Flux Architecture](redux-architecture.png)
 
 ## Code Structure
 

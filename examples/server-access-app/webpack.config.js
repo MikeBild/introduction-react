@@ -3,9 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
-  entry: ['babel-polyfill', './src/app.js'],
+  entry: './src/app.js',
   output: {
-    path: '/build',
+    path:  __dirname + '/build',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -14,8 +14,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
+      {test: /\.css/, loader: 'style-loader!css-loader'},
       {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
     ],
   },
