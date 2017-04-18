@@ -1,7 +1,5 @@
 # JSX Expressions
 
-![React Data-Flow](react-dataflow.png)
-
 ## Events
 
 ```javascript

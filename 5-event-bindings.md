@@ -7,9 +7,11 @@ const MyComponentSimpleHandler = props => <button onClick={e => alert('Alert!')}
 const MyComponent = props => <input type="text" onBlur={e => alert(e.target.value)} />
 ```
 
-> [More examples](/examples/basic-app/src/components/EventHandler.js)
+* [Event-Handler Example](/examples/basic-app/src/components/EventHandler.js)
 
 ## Data-Flow
+
+![React Data-Flow](react-dataflow.png)
 
 * One-way from parent to child components
 * Structure applications in pages as parents and components as childs
