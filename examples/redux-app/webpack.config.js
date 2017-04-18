@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   entry: './src/app.js',
   output: {
     path:  __dirname + '/build',
@@ -13,14 +13,10 @@ module.exports = {
     historyApiFallback: true,
   },
   module: {
-    loaders: [{
-      test: /\.css/,
-      loader: 'style-loader!css-loader',
-    }, {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    loaders: [
+      {test: /\.css/, loader: 'style-loader!css-loader'},
+      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
