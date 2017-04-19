@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "questionnaire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo 'TBD'",
+    "build": "webpack -p --progress",
+    "dev": "webpack-dev-server -d --progress --hot --inline --no-info --port 9090",
+    "start": "npm run build && npm test && static-server ./build"
+  },
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "author": "Mike Bild <mike.bild@gmail.com>"
+}
