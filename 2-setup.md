@@ -58,8 +58,8 @@ module.exports = {
 
 ## JSX Basics
 
-* Every JSX snippet will transform to JavaScript via Babel/Webpack
-* React uses a __Virtual-DOM__ to re(renderer) fast
+* Every JSX snippet will transform to JavaScript via Babel
+* React uses a __Virtual-DOM__ to re(renderer)
 * React renders the complete virtual DOM on every state change
 * React compares changes between virtual and real DOM and applying only the results
 * React evaluates and execute inline JavaScript expressions `{...}` to bind state, events, styles, etc.
