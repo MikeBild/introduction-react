@@ -3,6 +3,7 @@ import QuestionnaireButton from '../components/QuestionnaireButton'
 import QuestionnaireForm from '../components/QuestionnaireForm'
 
 export default class Questionnaire extends React.Component {
+
   state = {
     foo: 'zszszs'
   }

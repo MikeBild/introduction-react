@@ -23,6 +23,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         VERSION: JSON.stringify(require('./package.json').version),
+        QUESTIONNAIRE_URL: JSON.stringify('http://example.com'),
       },
     }),
     new HtmlWebpackPlugin({
