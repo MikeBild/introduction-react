@@ -1,13 +1,20 @@
 import React from 'react'
 
-const Layout = ({title, description, children}, context) => (
-  <div>
-    <h1>{title}</h1>
-    <p>{description}</p>
+const Layout = ({title = 'Foo', description = 'Bar', children}, context) => {
+  return (
     <div>
-      {children}
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <div>
+        {children}
+      </div>
     </div>
-  </div>
-)
+  )
+}
+
+Layout.propTypes = {
+  title: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired,
+}
 
 export default Layout

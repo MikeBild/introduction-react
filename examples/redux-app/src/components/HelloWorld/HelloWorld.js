@@ -16,7 +16,7 @@ export const HelloWorld = props => (
 // map state from store from reducer to props
 function mapStateToProps(state) {
   return {
-    greeting: state.greeting
+    greeting: state.greeting,
   }
 }
 

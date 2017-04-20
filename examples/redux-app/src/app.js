@@ -4,6 +4,7 @@ import {Provider} from 'react-redux'
 import {createStore, combineReducers} from 'redux'
 
 import HelloWorld from './components/HelloWorld/HelloWorld'
+import HelloWorldAsClass from './components/HelloWorld/HelloWorldAsClass'
 import {greetingReducer} from './components/HelloWorld/HelloWorldActionReducer'
 
 const store = createStore(combineReducers({
@@ -12,7 +13,10 @@ const store = createStore(combineReducers({
 
 ReactDOM.render(
   <Provider store={store}>
-    <HelloWorld />
+    <div>
+      <HelloWorld />
+      <HelloWorldAsClass />
+    </div>
   </Provider>,
   document.getElementById('root')
 )

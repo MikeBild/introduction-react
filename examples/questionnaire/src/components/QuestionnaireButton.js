@@ -2,6 +2,14 @@ import React, {Component, PropTypes} from 'react'
 import './QuestionnaireButton.css'
 
 export default class QuestionnaireButton extends Component {
+
+  constructor({title}, context){
+    super(props, context)
+    this.state = {
+      text: props.text,
+    }
+  }
+
   static propTypes = {
     text: PropTypes.string,
     enabled: PropTypes.bool,
