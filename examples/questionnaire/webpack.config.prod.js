@@ -2,7 +2,7 @@ const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['babel-polyfill', './src/app.js'],
+  entry: ['babel-polyfill', 'whatwg-fetch', './src/app.js'],
   output: {
     path:  __dirname + '/build',
     publicPath: '/',
