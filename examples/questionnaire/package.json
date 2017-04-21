@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo 'TBD'",
-    "build": "webpack -p --progress",
+    "build": "NODE_ENV=production webpack -p --progress --config webpack.config.prod.js",
     "dev": "webpack-dev-server -d --progress --hot --inline --no-info --port 9090",
     "start": "npm run build && npm test && static-server ./build"
   },
