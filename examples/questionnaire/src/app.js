@@ -13,7 +13,7 @@ const store = createStore(combineReducers({
   questionnaireData: questionnaireInitReducer,
 }), applyMiddleware(thunk))
 
-store.dispatch(loadQuestions('dkdkdkdk'))
+// store.dispatch(loadQuestions('dkdkdkdk'))
 
 ReactDOM.render(
   <Provider store={store}>

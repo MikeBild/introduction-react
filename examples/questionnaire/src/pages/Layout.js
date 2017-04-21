@@ -2,7 +2,7 @@ import React from 'react'
 import {Questionnaire} from './Questionnaire'
 import {connect} from 'react-redux'
 
-const Layout = ({title = 'Foo', description = 'Bar', children}, context) => {
+const Layout = ({title, description, children}, context) => {
   return (
     <div>
       <h1>{title}</h1>
@@ -28,8 +28,8 @@ Layout.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    title: state.questionnaireData.title,
-    description: state.questionnaireData.description,
+    title: state.questionnaireData.title || '',
+    description: state.questionnaireData.description || '',
   }
 }
 
