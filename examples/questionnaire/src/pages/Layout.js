@@ -5,8 +5,8 @@ import {connect} from 'react-redux'
 const Layout = ({title = 'Foo', description = 'Bar', children}, context) => {
   return (
     <div>
-      <h1>{(context.store.questionnaireData || {}).title || title}</h1>
-      <p>{(context.store.questionnaireData || {}).description || description}</p>
+      <h1>{title}</h1>
+      <p>{description}</p>
       <div>
         {children}
       </div>
@@ -28,8 +28,8 @@ Layout.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    title: state.title,
-    description: state.description,
+    title: state.questionnaireData.title,
+    description: state.questionnaireData.description,
   }
 }
 

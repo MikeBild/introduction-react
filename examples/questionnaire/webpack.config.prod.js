@@ -5,7 +5,7 @@ module.exports = {
   entry: ['babel-polyfill', 'whatwg-fetch', './src/app.js'],
   output: {
     path:  __dirname + '/build',
-    publicPath: '/',
+    publicPath: './',
     filename: 'bundle.js'
   },
   module: {
@@ -17,7 +17,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify('production'),
         VERSION: JSON.stringify(require('./package.json').version),
         QUESTIONNAIRE_URL: JSON.stringify('http://example.com'),
       },

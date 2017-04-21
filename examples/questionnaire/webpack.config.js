@@ -21,7 +21,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify('development'),
         VERSION: JSON.stringify(require('./package.json').version),
         QUESTIONNAIRE_URL: JSON.stringify('http://example.com'),
       },
