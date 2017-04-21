@@ -1,6 +1,16 @@
 # Testing React-Application
 
+## Goods and Bads
+
+![Test Pyramid](test-pyramid.png)
+
+## Classifications
+
+![Test Classifications](test-classifications.png)
+
 ## Setup
+
+* [Enzyme](http://airbnb.io/enzyme/index.html)
 
 ```bash
 npm install mocha react-addons-test-utils jsdom enzyme --save-dev
@@ -44,8 +54,15 @@ describe('A test group', () => {
 
 ## Testing React
 
-* [Mocha + Enzyme Basic App](examples/basic-app/test/simple.spec.js)
-* [Jest](https://facebook.github.io/jest/docs/tutorial-react.html)
+* [Mocha + Enzyme React Basic App](examples/basic-app/test/simple.spec.js)
+
+## Testing React + Redux
+
+```bash
+npm install enzyme-redux redux-test-utils --save-dev
+```
+
+* [Mocha + Enzyme Redux App](examples/redux-app/test/redux.spec.js)
 
 ## Examples
 
