@@ -5,10 +5,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo 'TBD'",
     "build": "webpack -p --progress --config webpack.config.prod.js",
-    "dev": "webpack-dev-server -d --progress --hot --inline --no-info --port 9090",
-    "start": "npm run build && npm test && static-server ./build"
+    "dev": "webpack-dev-server -d --progress --hot --inline --port 9090",
+    "start": "npm run build && npm test && static-server ./build",
+    "test": "mocha test --compilers js:babel-core/register --recursive",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "react": "^15.5.4",

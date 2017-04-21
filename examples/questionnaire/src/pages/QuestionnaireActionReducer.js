@@ -32,3 +32,12 @@ export const questionnaireInitReducer = (state = {}, action) => {
       return state
   }
 }
+
+export const questionnaireIncrementReducer = (state = 0, action) => {
+  switch(action.type) {
+    case 'INCREMENT':
+      return state+1
+    default:
+      return state
+  }
+}
