@@ -4,11 +4,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "echo 'TBD'",
+  "scripts": {    
     "build": "webpack -p --progress",
     "dev": "webpack-dev-server -d --progress --hot --inline --no-info --port 9090",
-    "start": "npm run build && npm test && static-server ./build"
+    "start": "npm run build && npm test && static-server ./build",
+    "test": "mocha test --compilers js:babel-core/register --recursive",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "react": "^15.5.4",
