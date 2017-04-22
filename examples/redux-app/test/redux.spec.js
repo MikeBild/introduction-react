@@ -17,7 +17,7 @@ describe('A Redux-React-Component test', () => {
       const component = shallowWithStore(<ConnectedComponent />, createMockStore(store))
 
       // Assert
-      assert.equal(component.props().greeting, store.greeting)
+      assert.equal(component.props().greeting, 'Foo')
       assert.equal(component.dive().find('p').text(), `Hello, Foo`)
   })
 

@@ -122,7 +122,7 @@ console.log(newObj)
 
 ```javascript
 var myArray = ['shoulders', 'knees']
-var myNewArray = ['head', ...parts, 'and', 'toes']
+var myNewArray = ['head', ...myArray, 'and', 'toes']
 console.log(myNewArray)
 ```
 
