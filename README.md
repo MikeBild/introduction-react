@@ -23,10 +23,10 @@
 * [Flux/Redux](11-redux.md)
 * [Server-Side / Universal React](12-ssr.md)
 * [Development Tools WebPack, Babel, ES-Lint](13-dev-tools.md)
-* [RxJS](14-rxjs.md)
-* [Recompose](15-recompose.md)
+* [Recompose](14-recompose.md)
+* [ES2015/ES6/ES7](15-ecma.md)
 * [GraphQL](16-graphql.md)
-* [ES2015/ES6/ES7](17-ecma.md)
+* [RxJS](17-rxjs.md)
 
 ## Examples
 
