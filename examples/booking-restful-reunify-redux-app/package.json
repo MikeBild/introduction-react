@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "version": "0.0.1",
+  "name": "booking-restful-redux-app",
+  "description": "My booking RESTful redux app demo.",
+  "engines": {
+    "node": "^6"
+  },
+  "dependencies": {
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "reunify": "latest"
+  },
+  "scripts": {
+    "export": "NODE_ENV=production reunify export",
+    "export:dev": "NODE_ENV=production reunify export -d",
+    "export:package": "NODE_ENV=production reunify export -p",
+    "export:package:dev": "NODE_ENV=production reunify export -p -d",
+    "dev": "PORT=8080 NODE_ENV=development reunify serve",
+    "start": "PORT=80 NODE_ENV=production reunify serve --silent"
+  }
+}
