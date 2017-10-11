@@ -27,6 +27,7 @@
 * [ES2015/ES6/ES7](15-ecma.md)
 * [GraphQL](16-graphql.md)
 * [RxJS](17-rxjs.md)
+* [More React Pattern](18-more-pattern.md)
 
 ## Examples
 
