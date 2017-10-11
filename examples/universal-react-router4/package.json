@@ -1,0 +1,36 @@
+{
+  "private": true,
+  "name": "universal-react-router4",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build":
+      "webpack -p --config webpack.config.server.js && webpack -p --config webpack.config.client.js",
+    "start": "node dist/server.js",
+    "dev:server": "webpack --config webpack.config.server.js --watch",
+    "dev:client": "webpack --config webpack.config.client.js --watch",
+    "dev:start": "nodemon dist/server.js --watch dist/server.js"
+  },
+  "dependencies": {
+    "express": "^4.14.1",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router": "^4.0.0-beta.6",
+    "react-router-dom": "^4.0.0-beta.6",
+    "source-map-support": "^0.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-loader": "^6.4.1",
+    "babel-preset-latest": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^3.6.0",
+    "webpack-node-externals": "^1.5.4"
+  }
+}
