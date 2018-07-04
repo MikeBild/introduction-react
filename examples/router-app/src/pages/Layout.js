@@ -1,11 +1,11 @@
-import React from 'react'
-
-const Layout = ({children}) => (
+import React from "react";
+import { withRouter } from "react-router-dom";
+const Layout = ({ children }) => (
   <div>
     <header>header ...</header>
     <content>{children}</content>
     <footer>footer ...</footer>
   </div>
-)
+);
 
-export default Layout
+export default withRouter(Layout);

@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   background-color: #333333;
   color: white;
-  font-family: 'Tahoma', 'Verdana', sans-serif;
+  font-family: "Tahoma", "Verdana", sans-serif;
 }
 
 a {
@@ -11,5 +12,5 @@ a {
 }
 
 .app {
-  padding: 40px; 
+  padding: 40px;
 }
