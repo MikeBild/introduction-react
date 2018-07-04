@@ -1,6 +1,12 @@
-import React from "react";
+import React, { Fragment as F } from "react";
 import Heading from "../components/Heading";
+import Loading from "../components/Loading";
 
 export default () => {
-  return <Heading title="Welcome Mike">whats going on?</Heading>;
+  return (
+    <F>
+      <Heading title="Welcome Mike">whats going on?</Heading>
+      <Loading />
+    </F>
+  );
 };

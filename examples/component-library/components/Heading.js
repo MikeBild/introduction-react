@@ -6,7 +6,7 @@ import Headline from "./Headline";
 export default ({ title = "Welcome ...", children }) => {
   return (
     <Fragment>
-      <Headline>{title}</Headline>
+      <Headline color="blue">{title}</Headline>
       <hr />
       <h2 style={{ color: "red" }} className="heading-subhead">
         {children}
