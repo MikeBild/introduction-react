@@ -1,6 +1,6 @@
 import React, { Fragment as F } from "react";
 
-class Loading extends React.Component {
+class Loading extends React.PureComponent {
   state = {
     show: true
   };
