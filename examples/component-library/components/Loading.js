@@ -5,15 +5,17 @@ class Loading extends React.Component {
     show: true
   };
 
+  toogleState(show = !this.state.show) {
+    this.setState({ show });
+  }
+
   render() {
     return (
       <F>
         {this.state.show && <div>Loading...</div>}
-        <button onClick={() => this.setState({ show: true })}>Show</button>{" "}
-        <button onClick={() => this.setState({ show: false })}>Hide</button>{" "}
-        <button onClick={() => this.setState({ show: !this.state.show })}>
-          Toggle
-        </button>
+        <button onClick={() => this.toogleState(true)}>Show</button>{" "}
+        <button onClick={() => this.toogleState(false)}>Hide</button>{" "}
+        <button onClick={() => this.toogleState()}>Toggle</button>
       </F>
     );
   }
