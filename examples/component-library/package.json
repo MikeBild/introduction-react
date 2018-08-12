@@ -5,11 +5,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "reunify ./pages"
+    "dev": "reunify ./pages -o",
+    "export": "reunify export ./pages"
   },
   "devDependencies": {
     "css-loader": "^0.28.11",
-    "reunify": "^6.1.1",
-    "style-loader": "^0.21.0"
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "isomorphic-style-loader": "^4.0.0",
+    "reunify": "^6.1.1"
   }
 }
