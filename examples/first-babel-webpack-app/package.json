@@ -3,7 +3,9 @@
   "name": "first-babel-webpack-app",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "dev": "webpack-dev-server -d --hot --port 9090"
+  },
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
