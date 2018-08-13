@@ -5,7 +5,8 @@
   "description": "",
   "scripts": {
     "dev": "webpack-dev-server -d --progress --hot --port 9090",
-    "build": "webpack -p --progress"
+    "build": "webpack -p --progress",
+    "serve": "static-server ./dist"
   },
   "license": "ISC",
   "devDependencies": {
@@ -16,6 +17,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "static-server": "^2.2.1",
     "webpack": "^4.16.5",
     "webpack-dev-server": "^3.1.5"
   },
