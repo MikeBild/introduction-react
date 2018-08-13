@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "first-babel-webpack-app",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^4.16.5",
+    "webpack-dev-server": "^3.1.5"
+  }
+}
