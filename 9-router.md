@@ -5,12 +5,11 @@
 * Bookmark-Support for Single-Page-Apps
 * [Router-Example](/examples/router-app/README.md)
 
-> New APU in react-router >= 4.0.0!
 
 ## Setup
 
 ```bash
-npm install react-router@^3.0.2 --save
+npm install react-router-dom --save-dev
 ```
 
 ## Router and Route
@@ -19,11 +18,14 @@ npm install react-router@^3.0.2 --save
 * Map URL to React-Component via `Route`
 
 ```javascript
-<Router history={browserHistory}>
-  <Route path="/" component={Home} />
-  <Route path="/about" component={About} />
-  <Route path="/resources" component={Resource} resources={['A', 'B', 'C']}/>
-  <Route path="/resources/:id" component={Resource} />
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+<Router>
+  <Switch>
+    <Route exact path="/" component={Home} />
+    <Route exact path="/about" component={About} />
+    <Route exact path="/resources" component={Resource} resources={['A', 'B', 'C']}/>
+    <Route exact path="/resources/:id?" component={Resource} />
+  </Switch>
 </Router>
 ```
 
@@ -43,15 +45,10 @@ const MyPage = props => (
 )
 ```
 
-## History
-
-* Use `browserHistory` for HTML5 History API
-* Use `hashHistory` for Deep-Links with `#` Hash-Tags
-
 ## Index-, Redirect- and Wildcard-Route
 
 ```javascript
-<Router history={browserHistory}>
+<Router>
   <Route path="/" component={Layout}>
     <IndexRoute component={Home} />
     <Redirect from="start" to="home" />
