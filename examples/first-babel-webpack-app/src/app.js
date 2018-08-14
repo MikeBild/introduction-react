@@ -1,4 +1,42 @@
-import React from "react";
+import React, { Component } from "react";
 import { render } from "react-dom";
 
-render(<h1>Hello World!</h1>, document.getElementById("root"));
+function HelloWorldHead({ color = "red", onFoo = () => ({}) }) {
+  return (
+    <h1 onClick={e => onFoo("clicked")} style={{ color }}>
+      Hello World!
+    </h1>
+  );
+}
+
+class PersonalData extends Component {
+  constructor({ activated = true }) {
+    super();
+    this.state = {
+      activated
+    };
+  }
+
+  render() {
+    return (
+      <div>
+        <span>Name</span>
+        <input type="text" />
+        <button
+          disabled={!this.state.activated}
+          onClick={() => this.setState({ activated: false })}
+        >
+          Ansenden
+        </button>
+      </div>
+    );
+  }
+}
+
+render(
+  <div>
+    <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
+    <PersonalData />
+  </div>,
+  document.getElementById("root")
+);
