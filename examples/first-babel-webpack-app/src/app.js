@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import PersonalData from "./components/molecules/PersonalData";
+import { PersonalData, ArticleList } from "./components/molecules";
 
 function HelloWorldHead({ color = "red", onFoo = () => ({}) }) {
   return (
