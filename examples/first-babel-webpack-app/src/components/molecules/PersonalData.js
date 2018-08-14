@@ -28,12 +28,7 @@ export default class PersonalData extends Component {
     return (
       <div>
         <form onSubmit={evt => this.onSubmit(evt)}>
-          <input
-            type="text"
-            required
-            ref={elm => (this.nameInput = elm)}
-            onBlur={evt => this.setState({ name: evt.target.value })}
-          />
+          <input type="text" required ref={elm => (this.nameInput = elm)} />
           <input
             type="submit"
             disabled={!this.state.activated}
