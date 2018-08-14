@@ -33,7 +33,7 @@ export default function ArticleList({ articles = [] }) {
 
   return (
     <ul>
-      {articles.length > 0 ? (
+      {articles && articles.length > 0 ? (
         articles.map(article => ArticleListItem({ article }))
       ) : (
         <Leer />
