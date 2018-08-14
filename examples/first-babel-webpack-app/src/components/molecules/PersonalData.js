@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import "./PersonalData.css";
 
 export default class PersonalData extends Component {
   constructor({ activated = true }) {
@@ -21,7 +22,7 @@ export default class PersonalData extends Component {
       name: this.nameInput.value
     };
     console.log(body);
-    //validate -> fetch(...url, {body}) -> error || success -> activateButton
+    //validate -> loading -> fetch(...url, {body}) -> error || success -> activateButton
   }
 
   render() {
@@ -33,6 +34,7 @@ export default class PersonalData extends Component {
             type="submit"
             disabled={!this.state.activated}
             value="Absenden"
+            className="personaldata-send-button"
           />
         </form>
       </div>

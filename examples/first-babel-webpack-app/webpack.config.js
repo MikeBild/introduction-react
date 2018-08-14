@@ -30,6 +30,11 @@ module.exports = {
             presets: ["env", "react", "stage-0"]
           }
         }
+      },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ["style-loader", "css-loader"]
       }
     ]
   }
