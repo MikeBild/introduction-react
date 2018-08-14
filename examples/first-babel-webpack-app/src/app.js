@@ -14,6 +14,7 @@ render(
   <div>
     <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
     <PersonalData />
+    <ArticleList />
   </div>,
   document.getElementById("root")
 );

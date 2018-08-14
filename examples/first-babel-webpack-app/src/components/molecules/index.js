@@ -1,3 +1,3 @@
 import PersonalData from "./PersonalData";
-
-export { PersonalData };
+import ArticleList from "./ArticleList";
+export { PersonalData, ArticleList };
