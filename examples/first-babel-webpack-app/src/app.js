@@ -19,3 +19,9 @@ render(
   </Layout>,
   document.getElementById("root")
 );
+
+function compose() {
+  return () => {};
+}
+
+compose();
