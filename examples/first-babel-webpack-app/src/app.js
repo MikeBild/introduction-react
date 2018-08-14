@@ -17,6 +17,10 @@ class PersonalData extends Component {
     };
   }
 
+  deactivateButton() {
+    this.setState({ activated: false });
+  }
+
   render() {
     return (
       <div>
@@ -24,7 +28,7 @@ class PersonalData extends Component {
         <input type="text" />
         <button
           disabled={!this.state.activated}
-          onClick={() => this.setState({ activated: false })}
+          onClick={() => this.deactivateButton()}
         >
           Ansenden
         </button>
