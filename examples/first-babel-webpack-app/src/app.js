@@ -2,6 +2,8 @@ import React from "react";
 import { render } from "react-dom";
 import { PersonalData, ArticleList } from "./components/molecules";
 import { Layout } from "./components/templates/Layout";
+import SubNav from "./components/templates/SubNav";
+
 const articles = [
   {
     id: 1,
@@ -24,7 +26,7 @@ function HelloWorldHead({ color = "red", onFoo = () => ({}) }) {
 }
 
 render(
-  <Layout>
+  <Layout SubNav={SubNav}>
     <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
     <PersonalData />
     <ArticleList articles={articles} isLoading={true} />
