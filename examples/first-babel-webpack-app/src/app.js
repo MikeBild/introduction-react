@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import { PersonalData, ArticleList } from "./components/molecules";
 import { Layout } from "./components/templates/Layout";
 import SubNav from "./components/templates/SubNav";
+import Catch from "./components/enhancements/Catch";
 
 const articles = [
   {
@@ -29,7 +30,9 @@ render(
   <Layout SubNav={SubNav}>
     <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
     <PersonalData />
-    <ArticleList articles={articles} isLoading={true} />
+    <Catch>
+      <ArticleList articles={articles} isLoading={true} />
+    </Catch>
   </Layout>,
   document.getElementById("root")
 );
