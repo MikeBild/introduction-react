@@ -22,6 +22,7 @@
     "css-loader": "^1.0.0",
     "mocha": "^5.2.0",
     "node-fetch": "^2.2.0",
+    "prop-types": "^15.6.2",
     "static-server": "^2.2.1",
     "style-loader": "^0.22.1",
     "styled-components": "^3.4.2",

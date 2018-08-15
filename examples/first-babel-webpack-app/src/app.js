@@ -2,6 +2,18 @@ import React from "react";
 import { render } from "react-dom";
 import { PersonalData, ArticleList } from "./components/molecules";
 import { Layout } from "./components/templates/Layout";
+const articles = [
+  {
+    id: 1,
+    title: "foo title",
+    price: 0.0
+  },
+  {
+    id: 2,
+    title: "bar title",
+    price: 1.0
+  }
+];
 
 function HelloWorldHead({ color = "red", onFoo = () => ({}) }) {
   return (
@@ -15,7 +27,7 @@ render(
   <Layout>
     <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
     <PersonalData />
-    <ArticleList />
+    <ArticleList articles={articles} isLoading={true} />
   </Layout>,
   document.getElementById("root")
 );
