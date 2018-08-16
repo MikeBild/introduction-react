@@ -7,12 +7,13 @@ const Header = styled.header`
   padding: 10px;
 `;
 
-export function Layout({ children, SubNav }) {
+export function Layout({ children, SubNav, Cart }) {
   return (
     <div>
       <Header bgColor="gray">
         Header
         {SubNav && <SubNav />}
+        {Cart && <Cart />}
       </Header>
       <content>{children}</content>
       <Footer />

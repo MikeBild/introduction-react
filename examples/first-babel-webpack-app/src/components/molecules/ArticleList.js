@@ -1,19 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import withLoading from "../enhancements/withLoading";
-
-function ArticleListItem({ article: { id, title = "empty", price = 0.0 } }) {
-  return (
-    <li key={id}>
-      <div>
-        <img src="" />
-        <h1>{title}</h1>
-        <div>{price}€</div>
-        <button>Kaufen</button>
-      </div>
-    </li>
-  );
-}
+import withLoader from "../enhancements/withLoader";
+import ArticleListItem from "./ArticleListItem";
 
 function Leer() {
   return <span>Leer</span>;
@@ -23,7 +12,9 @@ function ArticleList({ articles = [] }) {
   return (
     <ul>
       {articles && articles.length > 0 ? (
-        articles.map(article => ArticleListItem({ article }))
+        articles.map(article => (
+          <ArticleListItem key={article.id} article={article} />
+        ))
       ) : (
         <Leer />
       )}
@@ -35,4 +26,4 @@ ArticleList.propTypes = {
   articles: PropTypes.array
 };
 
-export default withLoading(ArticleList);
+export default withLoader(withLoading(ArticleList));

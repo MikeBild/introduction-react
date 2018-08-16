@@ -4,6 +4,9 @@ import { PersonalData, ArticleList } from "./components/molecules";
 import { Layout } from "./components/templates/Layout";
 import SubNav from "./components/templates/SubNav";
 import Catch from "./components/enhancements/Catch";
+import Cart, { cartReducer } from "./components/organisms/Cart";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
 
 const articles = [
   {
@@ -25,14 +28,21 @@ function HelloWorldHead({ color = "red", onFoo = () => ({}) }) {
     </h1>
   );
 }
+const store = createStore(
+  combineReducers({
+    cart: cartReducer
+  })
+);
 
 render(
-  <Layout SubNav={SubNav}>
-    <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
-    <PersonalData />
-    <Catch>
-      <ArticleList articles={articles} isLoading={true} />
-    </Catch>
-  </Layout>,
+  <Provider store={store}>
+    <Layout SubNav={SubNav} Cart={Cart}>
+      <HelloWorldHead color="blue" onFoo={msg => console.log(msg)} />
+      <PersonalData />
+      <Catch>
+        <ArticleList articles={articles} />
+      </Catch>
+    </Layout>
+  </Provider>,
   document.getElementById("root")
 );

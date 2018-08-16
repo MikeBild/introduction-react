@@ -5,14 +5,18 @@ function withLoader(WrappedComponent) {
     constructor(props) {
       super(props);
       this.state = {
-        data: null
+        data: null,
+        isLoading: false
       };
     }
 
     componentDidMount() {
+      this.setState({ isLoading: true });
+
       this.timeoutRef = setTimeout(() => {
         this.setState({
-          data: [{}, {}]
+          data: [{}, {}],
+          isLoading: false
         });
       }, 5000);
     }
@@ -22,7 +26,11 @@ function withLoader(WrappedComponent) {
     }
 
     render() {
-      const props = { ...this.props, data: this.state.data };
+      const props = {
+        ...this.props,
+        data: this.state.data,
+        isLoading: this.state.isLoading
+      };
       return <WrappedComponent {...props} />;
     }
   };
