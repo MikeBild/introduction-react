@@ -2,18 +2,18 @@
 
 ## WebPack
 
-* Bundles JavaScript to one file
-* Extentions via modules and plugins
-* Multiple config files for multiple environments
-* Add scripts to `package.json`
-  * `"dev": "webpack-dev-server -d --progress --hot --inline --no-info --port 9090"`
-  * `"build": "NODE_ENV=production webpack -p --progress --config webpack.config.prod.js"`
+- Bundles JavaScript to one file
+- Extentions via modules and plugins
+- Multiple config files for multiple environments
+- Add scripts to `package.json`
+  - `"dev": "webpack-dev-server -d --progress --hot --inline --no-info --port 9090"`
+  - `"build": "NODE_ENV=production webpack -p --progress --config webpack.config.prod.js"`
 
 ### `.webpack.config.js`
 
 ```javascript
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -28,8 +28,8 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
     ],
   },
   plugins: [
@@ -43,22 +43,18 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
-}
+};
 ```
 
 ## Babel
 
-* Transpiles ES2015 / ES6 / ES7 / JSX to JavaScript
+- Transpiles ES2015 / ES6 / ES7 / JSX to JavaScript
 
 ### `.babelrc`
 
 ```json
 {
-  "presets": [
-    "es2015",
-    "stage-0",
-    "react"
-  ]
+  "presets": ["es2015", "stage-0", "react"]
 }
 ```
 
@@ -73,28 +69,15 @@ npm install eslint eslint-loader babel-eslint eslint-plugin-import eslint-plugin
 ```json
 {
   "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react"
-  ],
+  "extends": ["standard", "standard-react"],
   "env": {
     "browser": true
   },
   "rules": {
-    "semi": [
-      2,
-      "never"
-    ],
-    "comma-dangle": [
-      2,
-      "always-multiline"
-    ],
+    "semi": [2, "never"],
+    "comma-dangle": [2, "always-multiline"],
     "space-infix-ops": 0,
-    "max-len": [
-      2,
-      300,
-      2
-    ],
+    "max-len": [2, 300, 2],
     "react/jsx-boolean-value": 0,
     "react/jsx-no-bind": [
       1,
@@ -102,10 +85,7 @@ npm install eslint eslint-loader babel-eslint eslint-plugin-import eslint-plugin
         "allowArrowFunctions": true
       }
     ],
-    "jsx-quotes": [
-      2,
-      "prefer-double"
-    ]
+    "jsx-quotes": [2, "prefer-double"]
   }
 }
 ```
@@ -123,4 +103,4 @@ module: {
 
 ## Example
 
-* [Dev-Tools App](examples/dev-tools-app/README.md)
+- [Dev-Tools App](examples/dev-tools-app/README.md)

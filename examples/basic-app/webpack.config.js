@@ -1,5 +1,5 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -7,20 +7,23 @@ module.exports = {
   output: {
     path: __dirname + '/build',
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
   },
   module: {
-    loaders: [{
-      test: /\.css/,
-      loader: 'style-loader!css-loader',
-    }, {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    loaders: [
+      {
+        test: /\.css/,
+        loader: 'style-loader!css-loader',
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -33,4 +36,4 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
-}
+};

@@ -1,5 +1,5 @@
-const webpack = require('webpack')
-const isProd = process.env.NODE_ENV === 'production'
+const webpack = require('webpack');
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   devtool: !isProd ? 'source-map' : false,
@@ -7,16 +7,18 @@ module.exports = {
   output: {
     path: `${__dirname}/dist`,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    loaders: [
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
-}
+};

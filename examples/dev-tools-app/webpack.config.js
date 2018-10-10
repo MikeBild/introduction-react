@@ -1,5 +1,5 @@
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
@@ -14,9 +14,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
-      {test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/},
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.js$/, loader: 'eslint-loader', exclude: /node_modules/ },
     ],
   },
   plugins: [
@@ -30,4 +30,4 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
-}
+};

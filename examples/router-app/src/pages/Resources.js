@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Resources = props => (
   <div>
@@ -8,7 +8,7 @@ const Resources = props => (
       {props.resources &&
         props.resources.map(resource => (
           <li key={resource}>
-            {" "}
+            {' '}
             <Link to={`/resources/${resource}`}>Link to {resource}</Link>
           </li>
         ))}

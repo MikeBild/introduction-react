@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "build":
-      "webpack -p --config webpack.config.server.js && webpack -p --config webpack.config.client.js",
+    "build": "webpack -p --config webpack.config.server.js && webpack -p --config webpack.config.client.js",
     "start": "node dist/server.js",
     "dev:server": "webpack --config webpack.config.server.js --watch",
     "dev:client": "webpack --config webpack.config.client.js --watch",

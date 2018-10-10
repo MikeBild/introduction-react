@@ -38,8 +38,8 @@
 ## Block-Scope
 
 ```javascript
-let a = "foo";
-const b = "bar";
+let a = 'foo';
+const b = 'bar';
 ```
 
 ## Template Strings
@@ -53,9 +53,9 @@ const output = `The value is: ${foo}`;
 
 ```javascript
 const { foo, bar } = {
-  foo: "foo",
-  bar: "bar",
-  foobar: "foobar"
+  foo: 'foo',
+  bar: 'bar',
+  foobar: 'foobar',
 };
 console.log(foo, bar);
 ```
@@ -76,18 +76,18 @@ class Foo extends Bar {
   }
 }
 
-const foo1 = new Foo("foo 1");
-const foo2 = new Foo("foo 2");
+const foo1 = new Foo('foo 1');
+const foo2 = new Foo('foo 2');
 ```
 
 ## Statics
 
 ```javascript
 class Foo extends Bar {
-  static do = () => console.log("done");
+  static do = () => console.log('done');
   constructor() {
     super();
-    console.log("Foo extends Bar");
+    console.log('Foo extends Bar');
   }
 }
 
@@ -102,14 +102,14 @@ function getSomething(foo, bar, value) {
     foo,
     bar,
     value,
-    ["foo" + make]: true,
+    ['foo' + make]: true,
     depreciate() {
       this.value -= 2500;
-    }
+    },
   };
 }
 
-const something = getSomething("Foo", "Bar", 40000);
+const something = getSomething('Foo', 'Bar', 40000);
 
 console.log(something);
 something.depreciate();
@@ -135,7 +135,7 @@ const fn = value => `Hello World ${value}`;
 ## Default Parameter
 
 ```javascript
-function myFunc(a = "A", b = { bar: "bar" }) {}
+function myFunc(a = 'A', b = { bar: 'bar' }) {}
 ```
 
 ## Rest Parameters
@@ -149,10 +149,10 @@ function(a, b, ...theArgs) {
 ## Spread Operator for Objects
 
 ```javascript
-const myObj = { foo: "foo" };
+const myObj = { foo: 'foo' };
 const newObj = {
   ...myObj,
-  foo: "bar"
+  foo: 'bar',
 };
 console.log(newObj);
 ```
@@ -160,8 +160,8 @@ console.log(newObj);
 ## Spread Operator for Arrays
 
 ```javascript
-const myArray = ["shoulders", "knees"];
-const myNewArray = ["head", ...myArray, "and", "toes"];
+const myArray = ['shoulders', 'knees'];
+const myNewArray = ['head', ...myArray, 'and', 'toes'];
 console.log(myNewArray);
 ```
 
@@ -170,7 +170,7 @@ console.log(myNewArray);
 ```javascript
 Promise.resolve({});
 
-Promise.reject(new Error("error..."));
+Promise.reject(new Error('error...'));
 
 new Promise((resolve, reject) => {
   resolve();

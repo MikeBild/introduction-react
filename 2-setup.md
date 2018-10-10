@@ -33,30 +33,30 @@ npm install static-server
 - [WebPack Configuration](https://webpack.js.org/configuration/)
 
 ```javascript
-const webpack = require("webpack");
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const debug = true;
 
 module.exports = {
-  target: "web",
+  target: 'web',
   // devtool: "source-map",
   // mode: "development",
-  entry: "./src/app.js",
+  entry: './src/app.js',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    publicPath: __dirname + "dist",
-    filename: "bundle.js"
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: __dirname + 'dist',
+    filename: 'bundle.js',
   },
   devServer: {
     historyApiFallback: true,
     hot: true,
     inline: true,
     noInfo: true,
-    contentBase: path.join(__dirname, "dist"),
+    contentBase: path.join(__dirname, 'dist'),
     watchContentBase: true,
-    compress: true
+    compress: true,
   },
   module: {
     rules: [
@@ -64,14 +64,14 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["env", "react", "stage-0"]
-          }
-        }
-      }
-    ]
-  }
+            presets: ['env', 'react', 'stage-0'],
+          },
+        },
+      },
+    ],
+  },
 };
 ```
 

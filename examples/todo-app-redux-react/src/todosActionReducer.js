@@ -1,19 +1,19 @@
-const ADD_TODO = 'ADD_TODO'
+const ADD_TODO = 'ADD_TODO';
 
 // Action creators
 export function createAddTodo(payload) {
   return {
     type: ADD_TODO,
-    payload
-  }
+    payload,
+  };
 }
 
 // Todos Reducer
-export const todosReducer = ((state = [], action) => {
-  switch(action.type) {
+export const todosReducer = (state = [], action) => {
+  switch (action.type) {
     case ADD_TODO:
-      return state.concat([action.payload])
+      return state.concat([action.payload]);
     default:
-      return state
+      return state;
   }
-})
+};

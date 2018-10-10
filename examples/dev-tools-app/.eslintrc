@@ -1,27 +1,14 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react"
-  ],
+  "extends": ["standard", "standard-react"],
   "env": {
     "browser": true
   },
   "rules": {
-    "semi": [
-      2,
-      "never"
-    ],
-    "comma-dangle": [
-      2,
-      "always-multiline"
-    ],
+    "semi": [2, "never"],
+    "comma-dangle": [2, "always-multiline"],
     "space-infix-ops": 0,
-    "max-len": [
-      2,
-      300,
-      2
-    ],
+    "max-len": [2, 300, 2],
     "react/jsx-boolean-value": 0,
     "react/jsx-no-bind": [
       1,
@@ -29,9 +16,6 @@
         "allowArrowFunctions": true
       }
     ],
-    "jsx-quotes": [
-      2,
-      "prefer-double"
-    ]
+    "jsx-quotes": [2, "prefer-double"]
   }
 }

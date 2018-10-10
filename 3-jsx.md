@@ -10,9 +10,9 @@ render () {
 
 ## Styles
 
-* Object based bindings
-* CamelCase properties
-* `style={{...}}` or `className={'css-class-name'}`
+- Object based bindings
+- CamelCase properties
+- `style={{...}}` or `className={'css-class-name'}`
 
 ```javascript
 render () {
@@ -25,22 +25,22 @@ render () {
 
 ## State
 
-* `this.setState` state changes rerenders the UI
+- `this.setState` state changes rerenders the UI
 
 ```javascript
 // set (async)
-this.setState({content: 'Hello World'})
-this.setState(state => ({content: 'Hello World'}))
+this.setState({ content: 'Hello World' });
+this.setState(state => ({ content: 'Hello World' }));
 
 // get
-const foo = this.state.content
+const foo = this.state.content;
 ```
 
 ## Props
 
-* represents the properties of component
-* set by the consumer of the component
-* read only
+- represents the properties of component
+- set by the consumer of the component
+- read only
 
 ```javascript
 <MyComponent value="Hello World!" />
@@ -48,8 +48,8 @@ const foo = this.state.content
 
 ## Lists
 
-* `array.map` in expression
-* `key` attribute to track changes
+- `array.map` in expression
+- `key` attribute to track changes
 
 ```javascript
 render () {
@@ -88,9 +88,9 @@ render () {
 
 ## Render DOM-Elements
 
-* Inject virtual DOM Element (React) into real DOM
-* Used for initial React-Component injection
-* Used for component migrations from VanillaJS, jQuery, etc.
+- Inject virtual DOM Element (React) into real DOM
+- Used for initial React-Component injection
+- Used for component migrations from VanillaJS, jQuery, etc.
 
 ```javascript
 import React from 'react'

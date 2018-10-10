@@ -1,6 +1,6 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: ['babel-polyfill', './src/app.js'],
@@ -14,9 +14,9 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.css$/, loader: 'style-loader!css-loader'},
-      {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
-      {test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
     ],
   },
   plugins: [
@@ -31,4 +31,4 @@ module.exports = {
       template: 'src/index.html',
     }),
   ],
-}
+};

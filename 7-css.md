@@ -7,7 +7,7 @@ npm install style-loader css-loader --save-dev
 ```
 
 ```javascript
-import "./style.css";
+import './style.css';
 ```
 
 ## Using LESS
@@ -17,7 +17,7 @@ npm install less-loader less --save-dev
 ```
 
 ```javascript
-import "./style.less";
+import './style.less';
 ```
 
 ## WebPack CSS extract
@@ -29,7 +29,7 @@ npm install --save-dev mini-css-extract-plugin
 ```
 
 ```javascript
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   plugins: [new MiniCssExtractPlugin()],
   module: {
@@ -40,14 +40,14 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: "../"
-            }
+              publicPath: '../',
+            },
           },
-          "css-loader"
-        ]
-      }
-    ]
-  }
+          'css-loader',
+        ],
+      },
+    ],
+  },
 };
 ```
 
