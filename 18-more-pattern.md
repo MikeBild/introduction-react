@@ -53,7 +53,7 @@ withLoading(<Page />);
 ```javascript
 export default class Catch extends React.Component {
   state = {
-    err: null
+    err: null,
   };
 
   componentDidCatch(err) {

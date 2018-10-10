@@ -6,37 +6,47 @@
   "theme_color": "aliceblue",
   "background_color": "gray",
   "description": "My booking RESTful redux app demo.",
-  "icons": [{
-    "src": "homescreen.png",
-    "sizes": "48x48",
-    "type": "image/png"
-  }, {
-    "src": "homescreen.png",
-    "sizes": "72x72",
-    "type": "image/png"
-  }, {
-    "src": "homescreen.png",
-    "sizes": "96x96",
-    "type": "image/png"
-  }, {
-    "src": "homescreen.png",
-    "sizes": "144x144",
-    "type": "image/png"
-  }, {
-    "src": "homescreen.png",
-    "sizes": "168x168",
-    "type": "image/png"
-  }, {
-    "src": "homescreen.png",
-    "sizes": "192x192",
-    "type": "image/png"
-  }, {
-    "src": "homescreen.png",
-    "sizes": "512x512",
-    "type": "image/png"
-  }],
-  "related_applications": [{
-    "platform": "web",
-    "id": "booking-restful-redux-app"
-  }]
+  "icons": [
+    {
+      "src": "homescreen.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "homescreen.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "homescreen.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "homescreen.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "homescreen.png",
+      "sizes": "168x168",
+      "type": "image/png"
+    },
+    {
+      "src": "homescreen.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "homescreen.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "web",
+      "id": "booking-restful-redux-app"
+    }
+  ]
 }

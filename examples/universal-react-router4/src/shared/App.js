@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { NavBar, NavItem } from "./Nav";
-import Main from "./Main";
-import Gist from "./Gist";
-import Home from "./Home";
-import { Link, Route } from "react-router-dom";
+import React, { Component } from 'react';
+import { NavBar, NavItem } from './Nav';
+import Main from './Main';
+import Gist from './Gist';
+import Home from './Home';
+import { Link, Route } from 'react-router-dom';
 
 const style = {
-  display: "flex",
-  alignItems: "stretch"
+  display: 'flex',
+  alignItems: 'stretch',
 };
 
 export default ({ gists }) => (
@@ -17,7 +17,7 @@ export default ({ gists }) => (
         gists.map(gist => (
           <NavItem key={gist.id}>
             <Link to={`/g/${gist.id}`}>
-              {gist.description || "[no description]"}
+              {gist.description || '[no description]'}
             </Link>
           </NavItem>
         ))

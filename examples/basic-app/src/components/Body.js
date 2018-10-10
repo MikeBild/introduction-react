@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
 class Body extends React.Component {
-  render () {
-    return <h1>... Body</h1>
+  render() {
+    return <h1>... Body</h1>;
   }
 }
 
-export default Body
+export default Body;

@@ -1,16 +1,14 @@
-
-
-import React from 'react'
-import {render} from 'react-dom'
-import TodoList from './components/TodoList'
-import {Provider} from 'react-redux'
-import {createStore, combineReducers} from 'redux'
-import {todosReducer} from './todosActionReducer'
+import React from 'react';
+import { render } from 'react-dom';
+import TodoList from './components/TodoList';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+import { todosReducer } from './todosActionReducer';
 
 const store = createStore(
-  combineReducers({todos: todosReducer}),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-)
+  combineReducers({ todos: todosReducer }),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+);
 
 const App = props => (
   <Provider store={store}>
@@ -19,7 +17,6 @@ const App = props => (
       <TodoList todos={[]} />
     </div>
   </Provider>
-)
+);
 
-render(<App />, document.getElementById('root'))
-
+render(<App />, document.getElementById('root'));

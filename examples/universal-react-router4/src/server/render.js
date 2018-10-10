@@ -1,5 +1,5 @@
-import { renderToString } from "react-dom/server";
-import React from "react";
+import { renderToString } from 'react-dom/server';
+import React from 'react';
 
 export default (html, gists) => `<!DOCTYPE html>
 <html lang="en">
@@ -17,11 +17,13 @@ export default (html, gists) => `<!DOCTYPE html>
     </head>
     <body>
         <div id="app">${renderToString(html)}</div>
-        ${gists
-          ? `
+        ${
+          gists
+            ? `
             <script>window.__gists__ = ${JSON.stringify(gists)};</script>
             <script src="/static/client.js"></script>
         `
-          : ""}
+            : ''
+        }
     </body>
 </html>`;

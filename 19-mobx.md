@@ -15,7 +15,7 @@ npm install mobx mobx-react --save-dev
 ### Model (Stream)
 
 ```javascript
-import { observable } from "mobx";
+import { observable } from 'mobx';
 
 const list = observable([]);
 <View list={list} />;
@@ -32,7 +32,7 @@ setTimeout(() => {
 ### View (Subscribe)
 
 ```javascript
-import { observer } from "mobx-react";
+import { observer } from 'mobx-react';
 export function View() {}
 export default observer(View);
 ```

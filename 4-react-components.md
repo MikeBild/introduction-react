@@ -1,57 +1,57 @@
 # React-Components
 
-* Key-Concept in React
-* Encapsulates UI-Elements
+- Key-Concept in React
+- Encapsulates UI-Elements
 
 ## Function vs. Class Implementation
 
-* Stateful __class-based components__ are available React > 0.13 (previously React.createClass)
-* Stateless __functional components__ are available React > 0.14
+- Stateful **class-based components** are available React > 0.13 (previously React.createClass)
+- Stateless **functional components** are available React > 0.14
 
 > Use upper case names for components
 
 ### Functional Component
 
-* easy to use
-* prefered for implementation
-* return `null` doesn't render DOM-Element
-* stateless
-  * no `this.state`
-  * no lifecycle
-  * no `this.refs`
+- easy to use
+- prefered for implementation
+- return `null` doesn't render DOM-Element
+- stateless
+  - no `this.state`
+  - no lifecycle
+  - no `this.refs`
 
 ```javascript
-import React from 'react'
+import React from 'react';
 
-export const Header = props => <h1>Hello World Header</h1>
-export function Footer () {
-  return <div>Hello World Footer</div>
+export const Header = props => <h1>Hello World Header</h1>;
+export function Footer() {
+  return <div>Hello World Footer</div>;
 }
 ```
 
 ### Class Component
 
-* supports full features of React
-* stateful
+- supports full features of React
+- stateful
 
 ```javascript
-import React from 'react'
+import React from 'react';
 
 class Body extends React.Component {
-  render () {
-    return <h1>Hello World Body</h1>
+  render() {
+    return <h1>Hello World Body</h1>;
   }
 }
 
-export default Body
+export default Body;
 ```
 
 ### Use Components
 
 ```javascript
-import React from 'react'
-import Body from './components/Body'
-import { Header, Footer } from './components/Layout'
+import React from 'react';
+import Body from './components/Body';
+import { Header, Footer } from './components/Layout';
 
 export default props => (
   <div>
@@ -59,12 +59,12 @@ export default props => (
     <Body />
     <Footer />
   </div>
-)
+);
 ```
 
 ## Passing `props` down
 
-* passing down to children via object-spread-operator
+- passing down to children via object-spread-operator
 
 ```javascript
 <div title={props.title} content={props.content}></div>
@@ -77,61 +77,61 @@ export default props => (
 class MyComponent extends React.Component {
   static defaultProps = {
     content: 'Hello World',
-  }
+  };
 
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
   }
 }
 ```
 
 ## PropTypes
 
-* `PropTypes` to verify the "correctness" of `props` at __runtime__
-* Verify optional, mandatory, type of component properties
+- `PropTypes` to verify the "correctness" of `props` at **runtime**
+- Verify optional, mandatory, type of component properties
 
 ```javascript
-import React from 'react'
+import React from 'react';
 
 MyComponent.propTypes = {
   label: React.PropTypes.string.isRequired,
-}
+};
 ```
 
 ## State
 
-* Key-Concept to rerender component (side-effect)
-* Asynchron execution to "sometimes in the future"
-* (currentState, object) -> newState - `setState` merges (like Object.assign)
+- Key-Concept to rerender component (side-effect)
+- Asynchron execution to "sometimes in the future"
+- (currentState, object) -> newState - `setState` merges (like Object.assign)
 
 ```javascript
 // set state with callback
 this.setState((currentState, currentProps) => ({
   counter: currentState + 1,
-}))
+}));
 
 //set state with object
 this.setState({
   content: 'Hello World',
-})
+});
 ```
 
-* Inital state via constructor
-* Initial state via ES7 property initializer
+- Inital state via constructor
+- Initial state via ES7 property initializer
 
 ```javascript
 class MyComponent extends React.Component {
   // via property initializer
   state = {
-    content: this.props.content || 'Hello World',
-  }
+    content: this.props.content || 'Hello World',
+  };
 
   // via constructor
   constructor(props) {
     super(props);
     this.state = {
-      content: props.content || 'Hello World',
-    }
+      content: props.content || 'Hello World',
+    };
   }
 }
 ```
@@ -158,22 +158,22 @@ class MyComponent extends React.Component {
 
 ## Accessing DOM-Elements with `refs`
 
-* accessing native DOM-Elements
+- accessing native DOM-Elements
 
 ```javascript
 class MyComponent extends Recact.Component {
-  componentDidMount () {
+  componentDidMount() {
     // via `refs` reference (outdated)
-    this.refs.nameInputField.focus()
+    this.refs.nameInputField.focus();
   }
 
-  render () {
+  render() {
     return (
       <div>
         <input type="text" ref="nameInputField" />
         <input type="text" ref={node => node.focus()} />
       </div>
-    )
+    );
   }
 }
 ```
@@ -181,17 +181,13 @@ class MyComponent extends Recact.Component {
 ## Working with Component-Hierarchies
 
 ```javascript
-import React from 'react'
+import React from 'react';
 
-export default function Layout({children}) {
-  return (
-    <div className="root-body">
-      {children}
-    </div>
-  )
+export default function Layout({ children }) {
+  return <div className="root-body">{children}</div>;
 }
 
 Layout.propTypes = {
   children: React.PropTypes.element.isRequired,
-}
+};
 ```

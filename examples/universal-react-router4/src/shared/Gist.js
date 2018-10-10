@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 export default ({ gist }) => (
   <div>
-    <h1>{gist.description || "[no description]"}</h1>
+    <h1>{gist.description || '[no description]'}</h1>
     <p>
       <a href={gist.html_url}>On GitHub</a>
     </p>

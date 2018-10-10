@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const style = {
-  padding: "24px"
+  padding: '24px',
 };
 
 export default () => (
