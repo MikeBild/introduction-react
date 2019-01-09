@@ -1,0 +1,15 @@
+{
+  "private": true,
+  "name": "@introduction-react/list",
+  "version": "1.0.0",
+  "description": "A list component",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/react": "^16.7.18",
+    "react": "^16.7.0",
+    "typescript": "^3.2.2"
+  }
+}

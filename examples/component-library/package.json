@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "component-library",
+  "version": "1.0.0",
+  "scripts": {
+    "bootstrap": "lerna clean && lerna bootstrap",
+    "build": "lerna run build",
+    "dev": "lerna run dev --stream"
+  },
+  "devDependencies": {
+    "lerna": "^3.5.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
