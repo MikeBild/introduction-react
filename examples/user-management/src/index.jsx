@@ -17,11 +17,17 @@ const App = () => {
           path="/user/add"
           component={() => (
             <UserAdd
-              onAdd={newUser => users.push({ ...newUser, id: Date.now() })}
+              onAdd={newUser =>
+                users.push({ ...newUser, id: Date.now().toString() })
+              }
             />
           )}
         />
-        <Route exact path="/user/:id?" component={User} />
+        <Route
+          exact
+          path="/user/:id?"
+          component={props => <User {...props} users={users} />}
+        />
         <Route exact path="/about" component={About} />
       </Switch>
     </Router>

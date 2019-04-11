@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { createRef } from 'react';
 import { Layout } from '../templates/Layout';
 
 export const UserAdd = ({ onAdd = () => {} }) => {
+  const nameInput = createRef();
   return (
     <Layout title="User Add">
-      <input type="text" id="name" />
+      <input type="text" ref={nameInput} />
       <button
         onClick={() => {
-          console.log('anlegen');
+          const name = nameInput.current.value;
+
           onAdd({
-            name: 'Max Mustermann',
+            name,
           });
         }}>
         Anlegen

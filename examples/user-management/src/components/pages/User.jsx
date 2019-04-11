@@ -1,11 +1,11 @@
 import React from 'react';
 import { Layout } from '../templates/Layout';
-import users from '../../users.json';
 
 export const User = ({
   match: {
     params: { id: currentUserId = 'anonymous' },
   },
+  users,
 }) => {
   const { name = 'anonymous', id = 'anonymous' } =
     users.find(({ id }) => id === currentUserId) || {};
