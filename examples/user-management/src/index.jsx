@@ -5,7 +5,7 @@ import { Layout } from './components/templates/layout';
 const App = () => {
   return (
     <Layout title="Hello World!">
-      <div>Content</div>
+      <p>Content</p>
     </Layout>
   );
 };

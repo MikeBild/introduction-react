@@ -1,12 +1,12 @@
 import React from 'react';
 
-export const Layout = ({ title = 'Change please!' }) => {
+export const Layout = ({ title = 'Change please!', children }) => {
   return (
     <>
       <header>
         <h1>{title}</h1>
       </header>
-      <main />
+      <main>{children}</main>
       <footer />
     </>
   );
