@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../templates/Layout';
-import users from '../../users.json';
+import { UserTableRow } from '../organisms/UserTableRow';
 
-export const Home = () => {
+export const Home = ({ users }) => {
   return (
     <Layout title="Home">
+      <Link to="/user/add">Add</Link>
       <table>
         <thead>
           <tr>
@@ -16,18 +17,8 @@ export const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map(({ id, sex, name, birthdate }) => (
-            <tr key={id}>
-              <td>{name}</td>
-              <td>{sex}</td>
-              <td>{birthdate}</td>
-              <td>
-                <>
-                  <Link to={`/user/${id}`}>Change</Link>
-                  <button>Delete</button>
-                </>
-              </td>
-            </tr>
+          {users.map(user => (
+            <UserTableRow user={user} key={user.id} />
           ))}
         </tbody>
       </table>
