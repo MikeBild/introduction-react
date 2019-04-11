@@ -1,7 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default ({ name = 'World' }) => (
+const Header = ({ name = 'World' }) => (
   <header>
     <h1>Hello {name}</h1>
   </header>
 );
+
+Header.propTypes = {
+  name: PropTypes.string,
+};
+
+export default Header;
