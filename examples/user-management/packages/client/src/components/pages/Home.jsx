@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Layout } from '../templates/Layout';
 import { UserTableRow } from '../organisms/UserTableRow';
+import { UserAddPrimaryButton } from 'component-library/atomics/UserAddPrimaryButton';
 
 export const Home = ({ users }) => {
   return (
     <Layout title="Home">
-      <Link to="/user/add">Add</Link>
+      <UserAddPrimaryButton>
+        <strong>Add nwo</strong>
+      </UserAddPrimaryButton>
       <table>
         <thead>
           <tr>

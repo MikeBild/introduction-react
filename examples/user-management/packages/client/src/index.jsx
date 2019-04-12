@@ -19,7 +19,7 @@ const App = () => {
         console.error(error);
       }
     })();
-  });
+  }, []);
 
   return (
     <Router>
@@ -30,12 +30,16 @@ const App = () => {
           path="/user/add"
           component={() => (
             <UserAdd
-              onAdd={newUser =>
-                users.push({
-                  ...newUser,
-                  id: Date.now().toString(),
-                })
-              }
+              onAdd={newUser => {
+                console.log('ddjd');
+                // setUsers([
+                //   ...users,
+                //   {
+                //     ...newUser,
+                //     id: Date.now().toString(),
+                //   },
+                // ]);
+              }}
             />
           )}
         />
