@@ -2,11 +2,19 @@
   "name": "component-library",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
+    "build": "parcel build ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-router-dom": "^5.0.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.3"
+  }
 }
