@@ -1,5 +1,3 @@
-import { PrimaryButton } from './atomics/PrimaryButton';
-import { UserAddPrimaryButton } from './atomics/UserAddPrimaryButton';
-import { SearchInput } from './atomics/SearchInput';
-
-export { PrimaryButton, UserAddPrimaryButton, SearchInput };
+export { PrimaryButton } from './atomics/PrimaryButton';
+export { UserAddPrimaryButton } from './atomics/UserAddPrimaryButton';
+export { SearchInput } from './atomics/SearchInput';
