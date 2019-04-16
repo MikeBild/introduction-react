@@ -1,0 +1,16 @@
+[
+  {
+    "id": "32984923",
+    "name": "Peter",
+    "sex": "male",
+    "birthdate": "2003-04-11T13:46:45.984Z",
+    "email": "peter@example.com"
+  },
+  {
+    "id": "18293",
+    "name": "Petra",
+    "sex": "female",
+    "birthdate": "2001-04-11T13:46:45.984Z",
+    "email": "petra@example.com"
+  }
+]
