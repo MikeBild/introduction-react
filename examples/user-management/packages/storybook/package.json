@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "name": "storybook",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "start-storybook -p 9001 -c .storybook",
+    "build": "build-storybook -c .storybook -o dist",
+    "start": "http-server dist"
+  },
+  "dependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "component-library": "^1.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@storybook/addon-knobs": "^5.0.8",
+    "@storybook/react": "^5.0.8",
+    "babel-loader": "^8.0.5"
+  }
+}

@@ -11,14 +11,15 @@ const App = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       try {
         const users = await delayFetchUsers();
         setUsers(users);
       } catch (error) {
         console.error(error);
       }
-    })();
+    };
+    fetchData();
   }, []);
 
   return (

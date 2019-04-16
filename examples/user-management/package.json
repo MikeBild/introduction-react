@@ -3,12 +3,15 @@
   "name": "user-management",
   "version": "1.0.0",
   "scripts": {
-    "dev": "lerna run dev --stream --parallel"
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap",
+    "dev": "lerna run dev --stream --parallel",
+    "build": "lerna run build --stream --parallel"
+  },
+  "devDependencies": {
+    "lerna": "^3.13.2"
   },
   "workspaces": [
     "packages/*"
-  ],
-  "devDependencies": {
-    "lerna": "^3.13.2"
-  }
+  ]
 }

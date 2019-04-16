@@ -1,4 +1,4 @@
 node_modules
-dist/*
-.cache/*
+dist
+.cache
 cdk.context.json
