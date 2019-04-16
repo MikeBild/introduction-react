@@ -31,7 +31,7 @@ module.exports = class UserManagementApp extends Stack {
       this,
       'UserManagementAppDeployment',
       {
-        source: Source.asset(join(__dirname, '../dist')),
+        source: Source.asset(join(__dirname, '../client/dist')),
         destinationBucket: webSiteBucket,
         retainOnDelete: false,
       }
