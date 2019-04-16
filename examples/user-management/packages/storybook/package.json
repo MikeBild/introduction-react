@@ -10,7 +10,7 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "component-library": "^1.0.0"
+    "@introduction-react/component-library": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
