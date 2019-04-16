@@ -1,12 +1,13 @@
 {
   "private": true,
-  "name": "user-management",
+  "name": "@introduction-react/user-management",
   "version": "1.0.0",
   "scripts": {
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
     "dev": "lerna run dev --stream --parallel",
-    "build": "lerna run build --stream --parallel"
+    "build": "lerna run build --stream --parallel",
+    "deploy": "lerna run deploy --stream"
   },
   "devDependencies": {
     "lerna": "^3.13.2"

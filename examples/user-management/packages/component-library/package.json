@@ -1,19 +1,15 @@
 {
-  "name": "component-library",
+  "name": "@introduction-react/component-library",
   "version": "1.0.0",
-  "description": "",
+  "description": "Introduction to React Component Library",
   "main": "./dist/index.js",
   "scripts": {
     "dev": "babel ./src --watch --out-dir ./dist --source-maps --copy-files",
     "build": "rimraf ./dist && babel ./src --out-dir ./dist --source-maps --copy-files"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.0"
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.3",
