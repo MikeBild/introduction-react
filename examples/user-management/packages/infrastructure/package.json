@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@introduction-react/infrastructure",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy": "cdk deploy --require-approval never --app infrastructure/deploy.js"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-cloudfront": "^0.28.0",
+    "@aws-cdk/aws-route53": "^0.28.0",
+    "@aws-cdk/aws-s3": "^0.28.0",
+    "@aws-cdk/aws-s3-deployment": "^0.28.0",
+    "@aws-cdk/cdk": "^0.28.0",
+    "aws-cdk": "^0.28.0"
+  }
+}

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "storybook",
+  "name": "@introduction-react/storybook",
   "version": "1.0.0",
   "scripts": {
     "dev": "start-storybook -p 9001 -c .storybook",
