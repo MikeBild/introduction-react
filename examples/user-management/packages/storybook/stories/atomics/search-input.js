@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, text, object } from '@storybook/addon-knobs';
-import { SearchInput } from 'component-library';
+import { SearchInput } from '@introduction-react/component-library';
 
 storiesOf('React-Component-Library/Atomics', module)
   .addDecorator(withKnobs)

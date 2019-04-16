@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from '../templates/Layout';
-import { PrimaryButton } from 'component-library';
+import { PrimaryButton } from '@introduction-react/component-library';
 
 export const About = () => {
   return (

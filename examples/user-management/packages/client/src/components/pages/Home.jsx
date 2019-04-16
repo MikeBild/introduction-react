@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout } from '../templates/Layout';
 import { UserTableRow } from '../organisms/UserTableRow';
-import { UserAddPrimaryButton } from 'component-library';
+import { UserAddPrimaryButton } from '@introduction-react/component-library';
 
 export const Home = ({ users }) => {
   return (
