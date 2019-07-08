@@ -6,6 +6,5 @@ import 'bootstrap-css-only/css/bootstrap.min.css'
 import 'mdbreact/dist/css/mdb.css'
 
 import { ProjectePage } from './components/pages/projekte'
-import { MDBContainer } from 'mdbreact'
 
-render(<MDBContainer fluid><ProjectePage /></MDBContainer>, document.getElementById('root'))
+render(<ProjectePage />, document.getElementById('root'))
