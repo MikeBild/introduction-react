@@ -1,0 +1,18 @@
+{
+  "name": "anpro-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "parcel": "^1.12.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.8.6"
+  }
+}
