@@ -1,6 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-import { ProjectePage } from './components/pages/projekte'
+import '@fortawesome/fontawesome-free/css/all.min.css'
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbreact/dist/css/mdb.css'
 
-render(<ProjectePage />, document.getElementById('root'))
+import { ProjectePage } from './components/pages/projekte'
+import { MDBContainer } from 'mdbreact'
+
+render(<MDBContainer fluid><ProjectePage /></MDBContainer>, document.getElementById('root'))
