@@ -5,16 +5,23 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest ./src",
+    "test:watch": "jest ./src --watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "mdbreact": "^4.18.0",
-    "parcel": "^1.12.3",
     "react": "^16.0.0",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "parcel": "^1.12.3"
   }
 }
