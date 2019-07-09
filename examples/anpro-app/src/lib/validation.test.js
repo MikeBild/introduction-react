@@ -1,4 +1,4 @@
-const { areValidChars } = require('./validation')
+import { areValidChars } from './validation'
 
 describe('Input Validation Rules', () => {
   it('input "abc" are valid chars should to be true', () => {

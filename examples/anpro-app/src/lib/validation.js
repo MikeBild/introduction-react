@@ -1,3 +1,3 @@
-module.exports.areValidChars = function (input) {
+export function areValidChars(input) {
   return /^[a-z]+\b/.test(input)
 }

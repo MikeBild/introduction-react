@@ -18,6 +18,9 @@
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.5.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
     "parcel": "^1.12.3"
   }
