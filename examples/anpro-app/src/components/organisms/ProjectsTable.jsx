@@ -1,7 +1,11 @@
 import React from 'react'
 
-export function ProjectsTable () {
+export function ProjectsTable ({projects = [], message = ''}) {
+  console.log({projects, message})
   return (
-    <div style={{border: '1px solid black', height: 'calc(100vh - 80px)'}}></div>
+    <>
+      <div>{message}</div>
+      <div style={{border: '1px solid black', height: 'calc(100vh - 80px)'}}></div>
+    </>
   )
 }

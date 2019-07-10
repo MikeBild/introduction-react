@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "Projekt 1",
+        "city": "Leipzip",
+        "classifier": 1,
+        "date": "2019-07-10T13:52:27.049Z"
+    },
+    {
+        "id": 2,
+        "title": "Projekt 2",
+        "city": "Berlin",
+        "classifier": 2,
+        "date": "2019-07-10T13:52:27.049Z"
+    }
+]
