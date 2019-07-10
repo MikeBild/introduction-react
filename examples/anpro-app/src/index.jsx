@@ -1,3 +1,5 @@
+import '@babel/polyfill'
+
 import React from 'react'
 import { render } from 'react-dom'
 
@@ -8,4 +10,4 @@ import 'mdbreact/dist/css/mdb.css'
 import { ProjectePage } from './pages/projekte'
 import { ProjectPage } from './pages/projekt'
 
-render(<ProjectPage />, document.getElementById('root'))
+render(<ProjectePage />, document.getElementById('root'))
