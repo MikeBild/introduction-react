@@ -12,23 +12,28 @@ export class ProjectePage extends PureComponent {
     super(props)
     this.state = {
       projects: [],
-      message: ''
+      message: '',
+      isProjectsLoading: false
     }
   }
 
   async componentDidMount() {
+    await this.refreshProjects()
+  }
+
+  async refreshProjects() {
+    this.setState({isProjectsLoading: true})
     await delay(2000)
     try {
       const projects = await fetchProjects('')
       this.setState({
-        projects
+        projects,
+        isProjectsLoading: false
       })
     } catch(error) {
-      this.setState({  message: error.message})
-      const projects = await fetchProjects('demo')
       this.setState({
-        projects,
-        message: ''
+        message: error.message,
+        isProjectsLoading: false
       })
     }
   }
@@ -39,7 +44,14 @@ export class ProjectePage extends PureComponent {
         renderTitle={() => <PageTitle titleText="Projekte" />}
         renderSubtitle={() => <SearchInput onSearch={searchText => fetchProjects(searchText)} />}
       >
-        <MDBCol md="8"><ProjectsTable projects={this.state.projects} message={this.state.message}/></MDBCol>
+        <MDBCol md="8">
+          <ProjectsTable
+            isLoading={this.state.isProjectsLoading}
+            projects={this.state.projects}
+            message={this.state.message}
+            onRefresh={() => this.refreshProjects()}
+          />
+        </MDBCol>
         <MDBCol md="4"><FacetteSearch /></MDBCol>
       </MasterDetailLayout>
     )
@@ -47,25 +59,9 @@ export class ProjectePage extends PureComponent {
 }
 
 async function fetchProjects(searchText) {
-  console.log('Refetch', {searchText})
-
-  if(searchText === '') {
-    throw new Error('status code 400')
-  }
-
-  return [{
-    id: 1,
-    title: 'Projekt 1',
-    city: 'Leipzip',
-    classifier: 1,
-    date: new Date()
-  }, {
-    id: 2,
-    title: 'Projekt 2',
-    city: 'Berlin',
-    classifier: 2,
-    date: new Date()
-  }]
+  const response = await fetch('http://localhost:8080/projects')
+  const projects = await response.json()
+  return projects
 }
 
 function delay(timeInMs) {
