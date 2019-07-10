@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-
+import { PrimaryActionButton } from './PrimaryActionButton'
 export class SearchInput extends PureComponent {
   constructor(props) {
     super(props)
@@ -13,7 +13,10 @@ export class SearchInput extends PureComponent {
     return (
       <>
         <input type="search" onChange={e => this.setState({searchText: e.currentTarget.value})} />
-        <button onClick={() => this.props.onSearch(this.state.searchText)}>Suche mit {this.state.searchText}</button>
+        <PrimaryActionButton
+          actionText={`Suche mit ${this.state.searchText}`}
+          onAction={() => this.props.onSearch(this.state.searchText)}
+        />
       </>
     )
   }
