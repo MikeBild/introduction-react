@@ -19,7 +19,6 @@ import { AuthProvider, authContext } from './lib/AuthContext'
 import { BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import { AngebotPage } from './pages/angebot'
 
-
 const client = new ApolloClient({
   link: new HttpLink({uri: 'http://localhost:8080/graphql'}),
   cache: new InMemoryCache()
