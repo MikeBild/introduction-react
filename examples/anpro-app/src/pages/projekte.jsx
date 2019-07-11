@@ -8,11 +8,46 @@ import { FacetteSearch } from '../components/organisms/FacetteSearch'
 import { ProjectsTable } from '../components/organisms/ProjectsTable'
 import { AuthConsumer } from '../lib/AuthContext';
 
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+
+const FETCH_PROJECTS_ALL = gql`
+  query ProjectsAll {
+    projects {
+      id
+      title
+      classifier
+      city
+      date
+      offers {
+        id
+        date
+        project {
+          id
+          title
+        }
+        customer {
+          id
+          name
+          offer {
+            id
+            date
+          }
+        }
+      }
+    }
+  }
+`;
+
 export function ProjectePage() {
   const [projects, setProjects] = useState([])
   const [message, setMessage] = useState('')
   const [isProjectsLoading, setIsProjectsLoading] = useState(false)
   const {user: { token }} = useContext(AuthConsumer)
+
+  const { loading, data } = useQuery(FETCH_PROJECTS_ALL);
+
+  console.log({loading, data})
 
   useEffect(() => {
     refreshProjects()
