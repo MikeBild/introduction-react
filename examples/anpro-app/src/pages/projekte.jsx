@@ -1,5 +1,6 @@
 import React, { PureComponent, useState, useEffect } from 'react'
 import { MDBRow, MDBCol } from 'mdbreact'
+
 import { MasterDetailLayout } from '../components/templates/Master-Detail-Layout'
 import { PageTitle } from '../components/atomics/PageTitle'
 import { SearchInput } from '../components/atomics/SearchInput'
@@ -31,6 +32,7 @@ export function ProjectePage() {
   }
 
   return (
+
     <MasterDetailLayout
       renderTitle={() => <PageTitle titleText="Projekte" />}
       renderSubtitle={() => <SearchInput onSearch={searchText => fetchProjects(searchText)} />}
