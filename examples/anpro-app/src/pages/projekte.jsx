@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, useState, useEffect } from 'react'
 import { MDBRow, MDBCol } from 'mdbreact'
 import { MasterDetailLayout } from '../components/templates/Master-Detail-Layout'
 import { PageTitle } from '../components/atomics/PageTitle'
@@ -6,59 +6,50 @@ import { SearchInput } from '../components/atomics/SearchInput'
 import { FacetteSearch } from '../components/organisms/FacetteSearch'
 import { ProjectsTable } from '../components/organisms/ProjectsTable'
 
-export class ProjectePage extends PureComponent {
+export function ProjectePage() {
+  const [projects, setProjects] = useState([])
+  const [message, setMessage] = useState('')
+  const [isProjectsLoading, setIsProjectsLoading] = useState(false)
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      projects: [],
-      message: '',
-      isProjectsLoading: false
-    }
-  }
+  useEffect(() => {
+    refreshProjects()
+  }, [])
 
-  async componentDidMount() {
-    await this.refreshProjects()
-  }
+  const refreshProjects = async () => {
+    setIsProjectsLoading(true)
 
-  async refreshProjects() {
-    this.setState({isProjectsLoading: true})
     await delay(2000)
     try {
-      const projects = await fetchProjects('')
-      this.setState({
-        projects,
-        isProjectsLoading: false
-      })
+      const newProjects = await fetchProjects('')
+      setProjects(newProjects)
+      setIsProjectsLoading(false)
+      setMessage('')
     } catch(error) {
-      this.setState({
-        message: error.message,
-        isProjectsLoading: false
-      })
+      setIsProjectsLoading(false)
+      setMessage(error.message)
     }
   }
 
-  render() {
-    return (
-      <MasterDetailLayout
-        renderTitle={() => <PageTitle titleText="Projekte" />}
-        renderSubtitle={() => <SearchInput onSearch={searchText => fetchProjects(searchText)} />}
-      >
-        <MDBCol md="8">
-          <ProjectsTable
-            isLoading={this.state.isProjectsLoading}
-            projects={this.state.projects}
-            message={this.state.message}
-            onRefresh={() => this.refreshProjects()}
-          />
-        </MDBCol>
-        <MDBCol md="4"><FacetteSearch /></MDBCol>
-      </MasterDetailLayout>
-    )
-  }
+  return (
+    <MasterDetailLayout
+      renderTitle={() => <PageTitle titleText="Projekte" />}
+      renderSubtitle={() => <SearchInput onSearch={searchText => fetchProjects(searchText)} />}
+    >
+      <MDBCol md="8">
+        <ProjectsTable
+          isLoading={isProjectsLoading}
+          projects={projects}
+          message={message}
+          onRefresh={() => refreshProjects()}
+        />
+      </MDBCol>
+      <MDBCol md="4"><FacetteSearch /></MDBCol>
+    </MasterDetailLayout>
+  )
 }
 
 async function fetchProjects(searchText) {
+  console.log({searchText})
   const response = await fetch('http://localhost:8080/projects')
   const projects = await response.json()
   return projects

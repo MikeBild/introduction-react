@@ -1,16 +1,15 @@
-import React, { createRef } from 'react'
+import React, { useRef } from 'react'
 import { PrimaryActionButton } from './PrimaryActionButton'
 
-export function SearchInput(props) {
-  const searchInput = createRef()
-  const searchInputText = searchInput.current && searchInput.current.value
+export function SearchInput({ onSearch }) {
+  const searchInputRef = useRef({ current: { value: '' } })
 
   return (
     <>
-      <input type="search" ref={searchInput} />
+      <input type="search" ref={searchInputRef} />
       <PrimaryActionButton
         actionText="Suche"
-        onAction={() => props.onSearch(searchInputText)}
+        onAction={() => onSearch(searchInputRef.current.value)}
       />
     </>
   )
