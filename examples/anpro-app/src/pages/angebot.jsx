@@ -8,36 +8,56 @@ export const AngebotPage = withRouter(AngebotPageComponent)
 
 function AngebotPageComponent(props) {
 
-    const Angebotsnummer = props.match.params.angebotsnummer
-    const [Angebot, setAngebot] = useState(null);
-
-    console.log(Angebotsnummer)
+    const angebotsnummer = props.match.params.angebotsnummer
+    const [angebot, setAngebot] = useState({
+        customer: {}
+    });
 
     useEffect(() => {
-        setAngebot(getAngebot(Angebotsnummer))
+        refetchOffers()
     }, [])
+
+    async function refetchOffers() {
+        const angebot = await getAngebot(angebotsnummer)
+        const customer = await fetchCustomerById(angebot.customerId)
+        angebot.customer = customer
+        setAngebot(angebot)
+    }
 
     return (
         <>
         <MasterDetailLayout
-            renderTitle={() => <PageTitle titleText={`Angebot ${Angebotsnummer}`} />}
+            renderTitle={() => <PageTitle titleText={`Angebot ${angebotsnummer}`} />}
             renderSubtitle={() => {return null}}
         >
-            <MDBCol md="8"></MDBCol>
-            <MDBCol md="4"></MDBCol>
+            <MDBCol md="12">
+                <div>
+                    <label>Angebot Nr.: {angebot.id}</label>
+                    <div>Kunde: {angebot.customer.name}</div>
+                    <div>Projekt: {angebot.projectId}</div>
+                </div>
+            </MDBCol>
         </MasterDetailLayout>
         </>
     )
 }
 
 async function getAngebot(angebotsnummer) {
-    const reponse = await fetch(`https://portal.ridigruppe.de/ws/TestServer/rest/api/angebotsnr/${angebotsnummer}`, {
+    const response = await fetch(`http://localhost:8080/offers/${angebotsnummer}`, {
         headers: {
             'x-my-super-token': 'abc',
-            'Content-Type' : 'application/json',
-            'method' : 'GET'
         }
     })
     const angebot = await response.json()
     return angebot
+}
+
+async function fetchCustomerById(id) {
+    const response = await fetch(`http://localhost:8080/customers/${id}`, {
+        headers: {
+            'x-my-super-token': 'abc',
+        }
+    })
+    const customer = await response.json()
+    return customer
 }

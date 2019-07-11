@@ -114,6 +114,13 @@ app.get('/customers', (req, res) => {
   res.send(mockCustomers)
 })
 
+app.get('/customers/:id', (req, res) => {
+  const customer = mockCustomers.find(x => x.id == req.params.id)
+  if (!customer) return res.sendStatus(404)
+
+  res.send(customer)
+})
+
 
 app.post('/validate', (req, res) => {
   if (req.body.username && req.body.username !== 'mike') {

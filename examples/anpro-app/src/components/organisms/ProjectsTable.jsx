@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { PrimaryActionButton } from '../atomics/PrimaryActionButton'
 
 export function ProjectsTable ({
@@ -23,6 +24,7 @@ export function ProjectsTable ({
               <th>Ort</th>
               <th>Klassifizierung</th>
               <th>Datum</th>
+              <th>Schnell Angebot Link</th>
             </tr>
           </thead>
           <tbody>
@@ -38,6 +40,7 @@ export function ProjectsTable ({
                     <td>{city}</td>
                     <td>{classifier}</td>
                     <td>{date}</td>
+                    <td><Link to="/angebot/2">Angebot Nr: 2</Link></td>
                   </tr>
                 )
               })
