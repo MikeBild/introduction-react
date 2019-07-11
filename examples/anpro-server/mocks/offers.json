@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "customerId": 1,
+        "projectId": 1,
+        "date": "2019-07-10T13:52:27.049Z"
+    },
+    {
+        "id": 2,
+        "customerId": 2,
+        "projectId": 1,
+        "date": "2019-07-10T14:52:27.049Z"
+    },
+    {
+        "id": 3,
+        "customerId": 2,
+        "projectId": 2,
+        "date": "2019-07-10T15:52:27.049Z"
+    }
+]
