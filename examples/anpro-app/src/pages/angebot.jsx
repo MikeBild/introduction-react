@@ -4,10 +4,30 @@ import { MDBRow, MDBCol } from 'mdbreact'
 import { MasterDetailLayout } from '../components/templates/Master-Detail-Layout'
 import { PageTitle } from '../components/atomics/PageTitle'
 
+import gql from 'graphql-tag';
+import { useQuery } from '@apollo/react-hooks';
+
+const FETCH_OFFER_BY_ID = gql`
+    query AngebotByID {
+        offer(id: "2") {
+            id
+            date
+            customer {
+            name
+            }
+            project {
+            title
+            city
+            }
+        }
+    }
+`;
+
 export const AngebotPage = withRouter(AngebotPageComponent)
 
 function AngebotPageComponent(props) {
-
+    const { loading, data } = useQuery(FETCH_OFFER_BY_ID);
+    console.log({loading, data})
     const angebotsnummer = props.match.params.angebotsnummer
     const [angebot, setAngebot] = useState({
         customer: {}
