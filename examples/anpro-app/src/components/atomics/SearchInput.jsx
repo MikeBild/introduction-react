@@ -1,23 +1,17 @@
-import React, { PureComponent } from 'react'
+import React, { createRef } from 'react'
 import { PrimaryActionButton } from './PrimaryActionButton'
-export class SearchInput extends PureComponent {
-  constructor(props) {
-    super(props)
 
-    this.state = {
-      searchText: ''
-    }
-  }
+export function SearchInput(props) {
+  const searchInput = createRef()
+  const searchInputText = searchInput.current && searchInput.current.value
 
-  render() {
-    return (
-      <>
-        <input type="search" onChange={e => this.setState({searchText: e.currentTarget.value})} />
-        <PrimaryActionButton
-          actionText={`Suche mit ${this.state.searchText}`}
-          onAction={() => this.props.onSearch(this.state.searchText)}
-        />
-      </>
-    )
-  }
+  return (
+    <>
+      <input type="search" ref={searchInput} />
+      <PrimaryActionButton
+        actionText="Suche"
+        onAction={() => props.onSearch(searchInputText)}
+      />
+    </>
+  )
 }
