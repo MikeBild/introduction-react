@@ -31,7 +31,7 @@ function AngebotPageComponent(props) {
 }
 
 async function getAngebot(angebotsnummer) {
-    const reponse = await fetch(`https://portal.ridigruppe.de/ws/TestServer/rest/api/angebotsnr/${angebotsnummer}`, {
+    const reponse = await fetch(`http://localhost:8080/offers/${angebotsnummer}`, {
         headers: {
             'x-my-super-token': 'abc',
             'Content-Type' : 'application/json',
