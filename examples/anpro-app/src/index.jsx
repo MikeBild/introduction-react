@@ -17,6 +17,9 @@ import { LoginPage } from './pages/login'
 import { ProjectePage } from './pages/projekte'
 import { ProjectPage } from './pages/projekt'
 import { AuthProvider, authContext } from './lib/AuthContext'
+import { BrowserRouter, Switch, Route, Link} from 'react-router-dom'
+import { AngebotPage } from './pages/angebot'
+
 
 const client = new ApolloClient({
   link: new HttpLink({uri: 'http://localhost:8080/graphql'}),
@@ -32,6 +35,7 @@ render(<AuthProvider value={authContext}>
           return <ProjectePage />
         }} />
         <Route path="/login" exact component={LoginPage} />
+        <Route path="/angebot/:angebotsnummer" exact component={AngebotPage} />
         <Route path="*" render={() => <div>404 - <Link to="/">Dashboard</Link></div>} />
       </Switch>
     </BrowserRouter>
