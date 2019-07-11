@@ -92,6 +92,13 @@ app.get('/projects', (req, res) => {
   res.send(latestDateProject)
 })
 
+app.get('/projects/:id', (req, res) => {
+  const project = mockProjects.find(x => x.id == req.params.id)
+  if (!project) return res.sendStatus(404)
+
+  res.send(project)
+})
+
 app.get('/offers/:id', (req, res) => {
   const offer = mockOffers.find(x => x.id == req.params.id)
   if (!offer) return res.sendStatus(404)
