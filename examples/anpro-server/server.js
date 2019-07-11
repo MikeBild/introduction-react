@@ -92,6 +92,13 @@ app.get('/projects', (req, res) => {
   res.send(latestDateProject)
 })
 
+app.get('/offers/:id', (req, res) => {
+  const offer = mockOffers.find(x => x.id == req.params.id)
+  if (!offer) return res.sendStatus(404)
+
+  res.send(offer)
+})
+
 app.get('/offers', (req, res) => {
   res.send(mockOffers)
 })
@@ -99,6 +106,7 @@ app.get('/offers', (req, res) => {
 app.get('/customers', (req, res) => {
   res.send(mockCustomers)
 })
+
 
 app.post('/validate', (req, res) => {
   if (req.body.username && req.body.username !== 'mike') {
