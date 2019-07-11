@@ -1,7 +1,11 @@
-import React, { createRef } from 'react'
+import React, { createRef, useState } from 'react'
 import { AuthConsumer } from '../lib/AuthContext'
+import { withRouter } from 'react-router-dom'
 
-export function LoginPage() {
+export const LoginPage = withRouter(LoginPageComponent)
+
+function LoginPageComponent({ history }) {
+  const [message, setMessage] = useState('')
   const usernameRef = createRef('')
   const passwordRef = createRef('')
 
@@ -14,9 +18,18 @@ export function LoginPage() {
             <input type="text" placeholder="Benutzername" ref={usernameRef} />
             <input type="password" placeholder="Kennwort" ref={passwordRef} />
             <button onClick={async () => {
-              const user = await fetchLoginValidate({username: usernameRef.current.value, password: passwordRef.current.value})
-              setUser(user)
+              try {
+                const user = await fetchLoginValidate({username: usernameRef.current.value, password: passwordRef.current.value})
+                setUser(user)
+                if(!user.token) {
+                  setMessage('Nicht angemeldet!')
+                }
+                history.push('/')
+              } catch(error) {
+                setMessage('Nicht angemeldet!')
+              }
             }}>Login</button>
+            <div style={{color: 'red'}}>{message}</div>
           </>
         )
       }
@@ -33,3 +46,4 @@ async function fetchLoginValidate({username, password}) {
   })
   return await response.json()
 }
+

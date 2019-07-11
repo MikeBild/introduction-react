@@ -1,4 +1,4 @@
-import React, { PureComponent, useState, useEffect } from 'react'
+import React, { PureComponent, useState, useEffect, useContext } from 'react'
 import { MDBRow, MDBCol } from 'mdbreact'
 
 import { MasterDetailLayout } from '../components/templates/Master-Detail-Layout'
@@ -6,11 +6,13 @@ import { PageTitle } from '../components/atomics/PageTitle'
 import { SearchInput } from '../components/atomics/SearchInput'
 import { FacetteSearch } from '../components/organisms/FacetteSearch'
 import { ProjectsTable } from '../components/organisms/ProjectsTable'
+import { AuthConsumer } from '../lib/AuthContext';
 
 export function ProjectePage() {
   const [projects, setProjects] = useState([])
   const [message, setMessage] = useState('')
   const [isProjectsLoading, setIsProjectsLoading] = useState(false)
+  const {user: { token }} = useContext(AuthConsumer)
 
   useEffect(() => {
     refreshProjects()
@@ -21,7 +23,7 @@ export function ProjectePage() {
 
     await delay(2000)
     try {
-      const newProjects = await fetchProjects('')
+      const newProjects = await fetchProjects('', token)
       setProjects(newProjects)
       setIsProjectsLoading(false)
       setMessage('')
@@ -32,7 +34,6 @@ export function ProjectePage() {
   }
 
   return (
-
     <MasterDetailLayout
       renderTitle={() => <PageTitle titleText="Projekte" />}
       renderSubtitle={() => <SearchInput onSearch={searchText => fetchProjects(searchText)} />}
@@ -50,9 +51,12 @@ export function ProjectePage() {
   )
 }
 
-async function fetchProjects(searchText) {
-  console.log({searchText})
-  const response = await fetch('http://localhost:8080/projects')
+async function fetchProjects(searchText, userToken) {
+  const response = await fetch('http://localhost:8080/projects', {
+    headers: {
+      'x-my-super-token': userToken
+    }
+  })
   const projects = await response.json()
   return projects
 }
