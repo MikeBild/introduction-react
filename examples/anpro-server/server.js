@@ -92,6 +92,14 @@ app.get('/projects', (req, res) => {
   res.send(latestDateProject)
 })
 
+app.get('/offers', (req, res) => {
+  res.send(mockOffers)
+})
+
+app.get('/customers', (req, res) => {
+  res.send(mockCustomers)
+})
+
 app.post('/validate', (req, res) => {
   if (req.body.username && req.body.username !== 'mike') {
     return res.sendStatus(403);
