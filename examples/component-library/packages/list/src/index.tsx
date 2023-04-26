@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from "react";
 
 export interface Row {
   id: string;
@@ -10,7 +10,12 @@ interface TProps {
   renderRow: (item: Row) => JSX.Element;
 }
 
-export const List: React.StatelessComponent<TProps> = ({ rows, renderRow }) => {
+export const List: React.FunctionComponent<TProps> = ({
+  rows = [],
+  renderRow = (itm: any) => {
+    return <tr />;
+  },
+}) => {
   return (
     <table>
       <tbody>{rows.map(renderRow)}</tbody>

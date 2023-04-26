@@ -1,11 +1,13 @@
-import * as React from 'react';
-import { Fragment } from 'react';
+import React from "react";
+import { ReactNode, Fragment } from "react";
 
 interface TProps {
   headline?: string;
 }
 
-export const Form: React.StatelessComponent<TProps> = (props) => {
+export const Form: React.FunctionComponent<
+  TProps & { children?: ReactNode }
+> = (props) => {
   return (
     <Fragment>
       <h1>{props.headline}</h1>
