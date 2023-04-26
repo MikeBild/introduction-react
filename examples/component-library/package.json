@@ -8,9 +8,6 @@
     "dev": "lerna run dev --stream"
   },
   "devDependencies": {
-    "lerna": "^3.5.1"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+    "lerna": "^6.6.1"
+  }
 }
