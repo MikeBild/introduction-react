@@ -4,7 +4,7 @@
 
 - Basic knowledge of JavaScript
 - Linux / OSX / Windows Operating System
-- NodeJS v8.11.x LTS / NPM 6.1.x
+- NodeJS v18.16.x LTS / NPM 9.5.x / Yarn 1.22.x
 - Editor Sublime / Atom / VS Code
 - Chrome and Developer Tools
 
@@ -38,15 +38,6 @@
 - [Router App](examples/router-app/README.md)
 - [Redux App](examples/redux-app/README.md)
 - [Server-Side / Universal App](examples/ssr-app/README.md)
-
-## Versions
-
-- babel 6.26.x
-- webpack 4.14.x
-- react 16.4.x
-- react-dom 16.4.x
-- react-router 4.3.x
-- express 4.16.x
 
 ## Resources
 
