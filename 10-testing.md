@@ -10,42 +10,59 @@
 
 ## Setup
 
-- [Enzyme](http://airbnb.io/enzyme/index.html)
+- [Vitest](https://vitest.dev)
+- [Vitest API](https://vitest.dev/api/)
+- [React testing library](https://testing-library.com)
 
 ```bash
-npm install mocha react-addons-test-utils jsdom enzyme --save-dev
+npm install -D vitest jsdom @vitejs/plugin-react @testing-library/react @testing-library/jest-dom
 ```
 
-## ECMAScript additionals
-
-```bash
-npm install babel-cli babel-core babel-loader babel-preset-env babel-preset-react babel-preset-stage-0 babel-plugin-transform-async-to-generator --save-dev
-```
 
 ## `package.json`
 
 ```json
 "scripts": {
-  "test": "mocha",
-  "testES6": "mocha test --require babel-core/register --recursive",
-  "test:watch": "npm test -- --watch",
+  "test": "vitest",
 }
 ```
 
-## `.babelrc`
+## `vite.config.ts`
 
-```json
-{
-  "presets": ["env", "stage-0", "react"],
-  "plugins": ["transform-async-to-generator"]
-}
+```
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: 'src/tests/setup.js',
+  },
+});
+```
+
+## `tests/setup.js`
+```
+import { expect, afterEach } from 'vitest';
+import { cleanup } from '@testing-library/react';
+import matchers from '@testing-library/jest-dom/matchers';
+
+// extends Vitest's expect method with methods from react-testing-library
+expect.extend(matchers);
+
+// runs a cleanup after each test case (e.g. clearing jsdom)
+afterEach(() => {
+  cleanup();
+});
 ```
 
 ## Running tests
 
 ```bash
 npm test
-npm run test:watch
 ```
 
 ## Implementing tests
@@ -54,30 +71,29 @@ npm run test:watch
 - Consider the [Test-Pyramid](https://martinfowler.com/bliki/TestPyramid.html)
 
 ```javascript
-import assert from 'assert';
-describe('A test group', () => {
-  it('A test', () => {
-    // Arrange
-    const sut = new SUT();
-    // Act
-    const actual = sut.doSomething();
-    // Assert
-    assert.ok(expected, actual);
+import { describe, expect, it } from "vitest";
+import { render, screen } from "@testing-library/react";
+import Header from "../components/Header";
+
+describe("App", () => {
+  it("renders headline", () => {
+    render(<Header />);
+
+    screen.debug();
   });
 });
+
+describe("Example", () => {
+  it("1 should be 1", () => {
+    expect(1).toEqual(1);
+  });
+});
+
 ```
 
 ## Testing React
 
-- [Mocha + Enzyme React Basic App](examples/basic-app/test/simple.spec.js)
-
-## Testing React + Redux
-
-```bash
-npm install enzyme-redux redux-test-utils --save-dev
-```
-
-- [Mocha + Enzyme Redux App](examples/redux-app/test/redux.spec.js)
+- [Mocha + Enzyme React Basic App](examples/basic-app/test/Body.spec.js)
 
 ## Examples
 
