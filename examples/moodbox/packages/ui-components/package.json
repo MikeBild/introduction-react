@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
-  "scripts": {    
+  "scripts": {
+    "dev": "tsc --watch",
     "build": "tsc"
   },
   "keywords": [],
@@ -11,6 +12,7 @@
   "license": "ISC",
   "devDependencies": {
     "typescript": "^5.0.4",
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "tsc-watch": "^6.0.0"
   }
 }
