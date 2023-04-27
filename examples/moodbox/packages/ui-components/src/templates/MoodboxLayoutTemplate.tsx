@@ -10,13 +10,7 @@ export function MoodboxLayoutTemplate(
   return (
     <div>
       {props.renderHeader && <header>{props.renderHeader()}</header>}
-      <main
-        style={{
-          minHeight: "10em",
-          display: "table-cell",
-          verticalAlign: "middle",
-        }}
-      >
+      <main style={{ display: "flex", justifyContent: "center" }}>
         {props.children}
       </main>
       {props.renderFooter && <footer>{props.renderFooter()}</footer>}
