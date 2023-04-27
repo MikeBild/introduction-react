@@ -1,36 +1,29 @@
-/*
-
-interface MoodReportTableDataProps {
-  [colName: string]: string | number | Date;
-  //isLoading: boolean;
+export interface MoodReportTableProps {
+  data: TableData[];
 }
 
-interface MoodReportTableHeaderProps {
-  [headerName: string]: string;
+export interface TableData {
+  day: Date;
+  team: string;
 }
 
-export interface MoodReportTableAll {
-  rows: MoodReportTableDataProps;
-  header: MoodReportTableHeaderProps;
-}
-
-export function MoodReportTable(props: MoodReportTableAll) {
-  const tableHeader = Object.keys(props.header).map((key) => (
-    <th key={key}>
-      <td>{props.header[key]}</td>
-    </th>
+export function MoodReportTable(props: MoodReportTableProps) {
+  console.log(props);
+  
+  const tableHeader = Object.keys(props.data[0]).map((key) => (
+    <th key={key}>{key}</th>
   ));
 
-  const tableRows = Object.keys(props.rows).map((key) => (
+  const tableRows = Object.keys(props.data).map((key, index) => (
     <tr key={key}>
-      <td>{props.rows[key].toString()}</td>
+      <td>{props.data[index].toString()}</td>
     </tr>
   ));
+
   return (
     <table>
-      {tableHeader}
+      <tr>{tableHeader}</tr>
       {tableRows}
     </table>
   );
 }
-*/
