@@ -10,6 +10,10 @@
 
 > Use upper case names for components
 
+### Lifecycle
+
+![Lifecycle](lifecycle.jpeg)
+
 ### Functional Component
 
 - easy to use
