@@ -8,6 +8,7 @@
     "dev": "tsc --watch",
     "build": "tsc",
     "test": "vitest --run",
+    "test:watch": "vitest",
     "format:check": "prettier --check src",
     "format:write": "prettier --write src"
   },
