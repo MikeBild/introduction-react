@@ -1,7 +1,7 @@
 import { Header } from "@moodbox/ui-components";
 
 export default {
-  title: "Moodbox/Header",
+  title: "Moodbox/Atoms/Header",
   component: Header,
   tags: ["autodocs"],
   parameters: {
