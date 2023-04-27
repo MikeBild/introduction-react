@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "test": "lerna run test",
-    "dev": "lerna run dev --parallel",
-    "build": "lerna run build"
+    "test": "lerna run test --parallel --stream",
+    "dev": "lerna run dev --parallel --stream",
+    "build": "lerna run build --stream"
   },
   "keywords": [],
   "author": "",
