@@ -1,4 +1,5 @@
-import { MoodboxLayoutTemplate } from "@moodbox/ui-components";
+import { useContext } from "react";
+import { MoodboxLayoutTemplate, PageContext } from "@moodbox/ui-components";
 
 export default {
   title: "Moodbox/Templates/Layout",
@@ -19,7 +20,15 @@ export const Default = {
         </ul>
       )}
     >
-      <h1>Content</h1>
+      <Demo />
     </MoodboxLayoutTemplate>
   ),
 };
+
+function Demo() {
+  const pageContext = useContext(PageContext);
+  console.log(pageContext);
+  return <>
+  <button onClick={() => pageContext.setPage('DemoPage')}>Click here</button>
+  <h1>{pageContext.page}</h1></>;
+}
