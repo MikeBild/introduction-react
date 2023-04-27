@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Header } from "@moodbox/ui-components";
 import "./App.css";
 
 function App() {
@@ -7,7 +6,6 @@ function App() {
 
   return (
     <>
-      <Header />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
