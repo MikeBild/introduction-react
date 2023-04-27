@@ -10,27 +10,25 @@
     "synchronousWatchDirectory": true,
     // Finally, two additional settings for reducing the amount of possible
     // files to track  work from these directories
-    "excludeDirectories": ["**/node_modules", "_build"],    
+    "excludeDirectories": ["**/node_modules", "_build"]
   },
   "compilerOptions": {
+    "outDir": "dist",
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
-    // "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // "noEmit": true,
     "jsx": "react-jsx",
 
     /* Linting */
-    // "strict": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],  
+  "include": ["src"]
 }

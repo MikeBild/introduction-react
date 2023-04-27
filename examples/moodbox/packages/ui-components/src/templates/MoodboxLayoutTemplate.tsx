@@ -1,4 +1,3 @@
 export function MoodboxLayoutTemplate() {
-    return null;
-  }
-  
+  return null;
+}
