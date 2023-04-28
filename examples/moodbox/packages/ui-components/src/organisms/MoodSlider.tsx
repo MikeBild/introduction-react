@@ -53,7 +53,7 @@ export function MoodSlider(props: MoodSliderProps) {
     <>
     <h3>Mood: {moodRangePercentage}</h3>
     <div>
-        <StyledSlider type="range" min={1} max={100} value={moodRangePercentage} step={1} list="moodSection" onChange={(e) => moodChange(e)}></StyledSlider>
+        <StyledSlider type="range" min={1} max={100} value={moodRangePercentage} step={1} list="moodSection" onChange={moodChange}></StyledSlider>
 
         <datalist id="moodSection">
           <option value="50" label="Bad"></option>
