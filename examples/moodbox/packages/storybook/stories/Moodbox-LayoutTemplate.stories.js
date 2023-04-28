@@ -27,8 +27,13 @@ export const Default = {
 
 function Demo() {
   const pageContext = useContext(PageContext);
-  console.log(pageContext);
-  return <>
-  <button onClick={() => pageContext.setPage('DemoPage')}>Click here</button>
-  <h1>{pageContext.page}</h1></>;
+
+  return (
+    <>
+      <button onClick={() => pageContext.setPage("DemoPage")}>
+        Click here
+      </button>
+      <h1>{pageContext.page}</h1>
+    </>
+  );
 }

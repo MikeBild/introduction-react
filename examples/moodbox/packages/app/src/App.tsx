@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { LoginPage, MoodPage, ReportPage } from "@moodbox/ui-components/dist";
+import {
+  LoginPage,
+  MoodPage,
+  ReportPage,
+  MoodboxLayoutTemplate,
+} from "@moodbox/ui-components";
 import "./App.css";
 
 function App() {
@@ -9,7 +14,7 @@ function App() {
   const [moodValue, setMoodValue] = useState(0);
 
   return (
-    <>
+    <MoodboxLayoutTemplate>
       <h1 data-testid="headline">Moodbox</h1>
       {currentPage === "LoginPage" && (
         <LoginPage
@@ -46,7 +51,7 @@ function App() {
           }}
         />
       )}
-    </>
+    </MoodboxLayoutTemplate>
   );
 }
 
