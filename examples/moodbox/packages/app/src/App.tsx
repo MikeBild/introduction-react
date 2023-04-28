@@ -12,6 +12,13 @@ function App() {
   const [team, setTeam] = useState("");
   const [name, setName] = useState("");
   const [moodValue, setMoodValue] = useState(0);
+  const [moodReport, setMoodReport] = useState({});
+
+  async function loadReport() {
+    const response = await fetch("http://localhost:8080/report");
+    const data = await response.json();
+    setMoodReport(data);
+  }
 
   return (
     <MoodboxLayoutTemplate>
@@ -28,8 +35,19 @@ function App() {
       {currentPage === "MoodPage" && (
         <>
           <MoodPage
-            onMoodConfirmed={(moodValue) => {
+            onMoodConfirmed={async (moodValue) => {
+              await fetch("http://localhost:8080/moods", {
+                method: "post",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify({
+                  name: `${name}-${team}`,
+                  value: moodValue,
+                }),
+              });
               setMoodValue(moodValue);
+              await loadReport();
               setCurrentPage("ReportPage");
             }}
           />
@@ -44,8 +62,8 @@ function App() {
       )}
       {currentPage === "ReportPage" && (
         <ReportPage
-          dataPoints={[moodValue]}
-          labels={[team]}
+          dataPoints={Object.values(moodReport)}
+          labels={Object.keys(moodReport)}
           onDone={() => {
             setCurrentPage("MoodPage");
           }}
