@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { InputField } from "./InputField";
 
 describe("InputField", () => {
@@ -26,20 +26,23 @@ describe("InputField", () => {
     //arrange
     render(<InputField initialValue="TestValue" />);
     //act
-    const sut = screen.getByTestId("input-field").querySelector('input');
+    const sut = screen.getByTestId("input-field").querySelector("input");
     //assert
-    expect(sut).toHaveValue('TestValue');
+    expect(sut).toHaveValue("TestValue");
   });
 
   it("renders with name", () => {
     //arrange
     render(<InputField name="TestName" />);
     //act
-    const label = screen.getByTestId("input-field").querySelector('label');
-    const inputField = screen.getByTestId("input-field").querySelector('input');
+    const label = screen.getByTestId("input-field").querySelector("label");
+    const inputField = screen.getByTestId("input-field").querySelector("input");
     //assert
-    expect(label).toHaveAttribute('for', expect.stringMatching('TestName'))
-    expect(inputField).toHaveAttribute('name', expect.stringMatching('TestName'))
+    expect(label).toHaveAttribute("for", expect.stringMatching("TestName"));
+    expect(inputField).toHaveAttribute(
+      "name",
+      expect.stringMatching("TestName")
+    );
   });
 
   /*
