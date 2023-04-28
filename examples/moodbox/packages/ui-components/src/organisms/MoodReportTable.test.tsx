@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
+import { describe, it } from "vitest";
 import { MoodReportTable, MoodReportTableProps } from "./MoodReportTable";
 
 describe("MoodReportTable", () => {
@@ -17,8 +17,5 @@ describe("MoodReportTable", () => {
       ],
     };
     render(<MoodReportTable data={items.data} />);
-
-    screen.debug();
-    expect(1).toEqual(1);
   });
 });

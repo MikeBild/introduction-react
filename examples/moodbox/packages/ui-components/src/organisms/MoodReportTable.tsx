@@ -8,8 +8,6 @@ export interface TableData {
 }
 
 export function MoodReportTable(props: MoodReportTableProps) {
-  console.log(props);
-  
   const tableHeader = Object.keys(props.data[0]).map((key) => (
     <th key={key}>{key}</th>
   ));
@@ -22,8 +20,8 @@ export function MoodReportTable(props: MoodReportTableProps) {
 
   return (
     <table>
-      <tr>{tableHeader}</tr>
-      {tableRows}
+      <thead><tr>{tableHeader}</tr></thead>
+      <tbody>{tableRows}</tbody>
     </table>
   );
 }
