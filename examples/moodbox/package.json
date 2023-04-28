@@ -16,5 +16,9 @@
   ],
   "devDependencies": {
     "lerna": "^6.0.3"
+  },
+  "dependencies": {
+    "chart.js": "^4.2.1",
+    "react-chartjs-2": "^5.2.0"
   }
 }
