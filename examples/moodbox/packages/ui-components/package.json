@@ -1,0 +1,32 @@
+{
+  "name": "@moodbox/ui-components",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "format:check": "prettier --check src",
+    "format:write": "prettier --write src",
+    "e2e": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@types/styled-components": "^5.1.26",
+    "@vitejs/plugin-react": "^4.0.0",
+    "jsdom": "^21.1.1",
+    "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "styled-components": "^5.3.10",
+    "tsc-watch": "^6.0.0",
+    "typescript": "^5.0.4",
+    "vitest": "^0.30.1"
+  }
+}
