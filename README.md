@@ -30,6 +30,7 @@
 - [More React Pattern](18-more-pattern.md)
 - [MobX](19-mobx.md)
 - [GraphQL Apollo](20-graphql-apollo.md)
+- [NextJS](21-nextjs.md)
 
 ## Examples
 
@@ -38,6 +39,7 @@
 - [Router App](examples/router-app/README.md)
 - [Redux App](examples/redux-app/README.md)
 - [Server-Side / Universal App](examples/ssr-app/README.md)
+- [NextJS](examples/nextjs/README.md)
 
 ## Resources
 
