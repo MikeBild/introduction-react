@@ -1,0 +1,25 @@
+{
+  "name": "nextjs-spa-app",
+  "version": "0.0.0",
+  "description": "A basic NextJS based React SPA application.",
+  "author": "Mike Bild <mike.bild@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "http-server dist",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.13.0",
+    "@types/react": "18.3.3",
+    "http-server": "^14.1.1",
+    "typescript": "5.4.5"
+  }
+}
