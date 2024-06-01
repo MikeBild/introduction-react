@@ -10,14 +10,26 @@
 
 ## Setup
 
+- [Jest](https://jestjs.io/)
+- [Playwright E2E Testing](https://playwright.dev/)
 - [Vitest](https://vitest.dev)
 - [Vitest API](https://vitest.dev/api/)
 - [React testing library](https://testing-library.com)
 
+
+## Jest
+
+TBD
+
+## Playwright
+
+TBD
+
+## Vitest
+
 ```bash
 npm install -D vitest jsdom @vitejs/plugin-react @testing-library/react @testing-library/jest-dom
 ```
-
 
 ## `package.json`
 

@@ -1,3 +1,0 @@
-# NextJS SPA
-
-TBD
