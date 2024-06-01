@@ -30,7 +30,7 @@
 - [More React Pattern](18-more-pattern.md)
 - [MobX](19-mobx.md)
 - [GraphQL Apollo](20-graphql-apollo.md)
-- [NextJS](21-nextjs.md)
+- [React Hooks](21-hooks.md)
 
 ## Examples
 
