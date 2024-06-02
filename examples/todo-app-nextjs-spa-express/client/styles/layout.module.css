@@ -1,0 +1,11 @@
+.layout {
+  text-align: center;
+}
+
+.mainmenu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+}
