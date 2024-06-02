@@ -1,0 +1,22 @@
+body {
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  height: 100vh;
+}
+
+h1 {
+  font-weight: lighter;
+}
+
+li {
+  list-style-type: none;
+}
+
+.button {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}

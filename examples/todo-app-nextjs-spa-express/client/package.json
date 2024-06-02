@@ -1,0 +1,26 @@
+{
+  "name": "todo-app-nextjs-spa-express-server",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "ts-mocha -p tsconfig.test.json -r mocha.cjs tests/**/*.spec.tsx --timeout 5000 -w --watch-files '**/*.tsx'"
+  },
+  "dependencies": {
+    "next": "^14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^15.0.7",    
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.13.0",
+    "@types/react": "18.3.3",
+    "global-jsdom": "^24.0.0",
+    "ignore-styles": "^5.0.1",
+    "ts-mocha": "^10.0.0",
+    "typescript": "5.4.5"
+  }
+}

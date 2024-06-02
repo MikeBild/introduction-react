@@ -18,7 +18,7 @@ router.get("/:username", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/:username", async (req: Request, res: Response) => {
+router.patch("/:username", async (req: Request, res: Response) => {
   const { username } = req.params;
   const { description, state } = req.body;
   try {

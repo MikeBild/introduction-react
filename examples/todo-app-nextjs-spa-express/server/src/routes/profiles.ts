@@ -11,8 +11,7 @@ router.get("/:username", async (req: Request, res: Response) => {
     const myProfileJson = (
       await promises.readFile(`${resolve()}/data/${username}.json`)
     ).toString();
-
-    res.send(JSON.parse(myProfileJson).profile);
+    res.send(JSON.parse(myProfileJson).profile || {});
   } catch {
     return res.status(500);
   }

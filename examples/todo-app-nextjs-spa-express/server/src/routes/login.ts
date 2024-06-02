@@ -1,13 +1,21 @@
 import express, { Request, Response } from "express";
 import { promises } from "fs";
 import { resolve } from "path";
+import { delay } from "../lib/utils";
 
 const router = express.Router();
 export default router;
 
 router.post("/", async (req: Request, res: Response) => {
+  await delay(5000);
+  
   const { username, password } = req.body;
   let myFileContent;
+
+  if (password !== "password") {
+    return res.status(400).send({ errorMessage: "Wrong password!" });
+  }
+
   try {
     const myFile = (
       await promises.readFile(`${resolve()}/data/${username}.json`)
@@ -26,6 +34,6 @@ router.post("/", async (req: Request, res: Response) => {
       4
     )
   );
-
-  res.send({ token: username });
+  
+  res.send({ username, token: username });
 });

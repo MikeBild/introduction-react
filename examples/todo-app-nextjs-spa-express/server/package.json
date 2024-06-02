@@ -1,7 +1,6 @@
 {
   "name": "todo-app-nextjs-spa-express-server",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/src/index.js",
@@ -13,9 +12,11 @@
   "description": "ToDo App using Express Server.",
   "dependencies": {
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "express": "^4.19.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.13.0",
