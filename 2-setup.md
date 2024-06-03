@@ -15,7 +15,7 @@
 ### Setup
 
 - [Babel](2.1-setup-babel-webpack.md)
-- [ESBuild](2.2-setup-esbuild.md)
+- [Parcel](2.2-setup-parcel.md)
 - [NextJS](2.3-setup-nextjs.md)
 
 ## JSX Basics
