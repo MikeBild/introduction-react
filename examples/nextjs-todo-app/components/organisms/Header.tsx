@@ -1,8 +1,8 @@
 export function Header({ children, title = "Todo App" }) {
   return (
     <header style={{ display: "flex" }}>
-      <h1 data-testId="header-title">{title}</h1>
-      <span data-testId="header-children">{children}</span>
+      <h1 data-testid="Header-title">{title}</h1>
+      <span data-testid="Header-children">{children}</span>
     </header>
   );
 }

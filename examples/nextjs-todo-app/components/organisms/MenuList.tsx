@@ -5,7 +5,7 @@ export interface MenuListProps {
 }
 export function MenuList(props: MenuListProps) {
   return (
-    <ul>
+    <ul data-testid="MenuList-ul">
       {props.items.map((item, idx) => (
         <li key={idx}>
           <MenuItem item={item} />

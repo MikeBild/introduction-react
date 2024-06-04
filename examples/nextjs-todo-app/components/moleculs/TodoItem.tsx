@@ -9,9 +9,17 @@ export interface TodoItemProps {
 export function TodoItem({ item: { desc, state } }: TodoItemProps) {
   return (
     <div>
-      <input type="checkbox" defaultChecked={state === "open"} />
-      <input type="text" defaultValue={desc} />
-      <button>Remove</button>
+      <input
+        data-testid="TodoItem-input-checkbox"
+        type="checkbox"
+        defaultChecked={state === "open"}        
+      />
+      <input
+        data-testid="TodoItem-input-text"
+        type="text"
+        defaultValue={desc}
+      />
+      <button data-testid="TodoItem-button-remove">Remove</button>
     </div>
   );
 }

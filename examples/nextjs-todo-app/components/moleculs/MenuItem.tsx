@@ -7,6 +7,10 @@ export interface MenuItemProps {
   };
 }
 
-export function MenuItem({ item: { url, text } }: MenuItemProps) {  
-  return <Link href={url}>{text}</Link>;
+export function MenuItem({ item: { url, text } }: MenuItemProps) {
+  return (
+    <Link data-testid="MenuItem-Link" href={url}>
+      {text}
+    </Link>
+  );
 }
