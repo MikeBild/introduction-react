@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { TodoAdd } from "../components/moleculs/TodoAdd";
 import { Header } from "../components/organisms/Header";
 import { TodoList } from "../components/organisms/TodoList";
 import { MenuList } from "../components/organisms/MenuList";
-import { useState } from "react";
+import { Layout } from "../components/templates/Layout";
 
 export default function Index() {
   const menuItems = [
@@ -12,7 +13,7 @@ export default function Index() {
   const [todoItems, setTodoItems] = useState([]);
 
   return (
-    <>
+    <Layout>
       <Header>
         <h1>Home</h1>
         <MenuList items={menuItems} />
@@ -23,6 +24,6 @@ export default function Index() {
         }}
       />
       <TodoList items={todoItems} />
-    </>
+    </Layout>
   );
 }

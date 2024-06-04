@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Header } from "../components/organisms/Header";
 import { MenuList } from "../components/organisms/MenuList";
+import { Layout } from "../components/templates/Layout";
 
 export default function About() {
   const [data, setData] = useState({ a: 1, b: 0 });
@@ -11,7 +12,7 @@ export default function About() {
 
   useEffect(() => {
     const [p, tr] = delay(500);
-    
+
     p.then(() => {
       setData({ ...data, b: 2 });
     });
@@ -22,14 +23,14 @@ export default function About() {
   }, [data]);
 
   return (
-    <>
+    <Layout>
       <Header>
         <h1>About</h1>
         <MenuList items={menuItems} />
       </Header>
       <hr />
       <div>{JSON.stringify(data, null, 4)}</div>
-    </>
+    </Layout>
   );
 }
 

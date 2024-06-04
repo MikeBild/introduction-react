@@ -4,13 +4,15 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "test": "ts-mocha -p tsconfig.test.json -r mocha.cjs tests/**/*.spec.tsx --timeout 5000 -w --watch-files '**/*.tsx'"
+    "test": "ts-mocha -p tsconfig.test.json -r mocha.cjs tests/**/*.spec.tsx --timeout 5000 -w --watch-files '**/*.tsx'",
+    "e2e": "playwright test"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.44.1",
     "@testing-library/react": "^16.0.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "20.14.1",
