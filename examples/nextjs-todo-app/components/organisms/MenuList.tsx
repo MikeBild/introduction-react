@@ -5,12 +5,12 @@ export interface MenuListProps {
 }
 export function MenuList(props: MenuListProps) {
   return (
-    <>
-      <ul>
-        {props.items.map((item) => {
-          return <MenuItem item={item} />;
-        })}
-      </ul>
-    </>
+    <ul>
+      {props.items.map((item, idx) => (
+        <li key={idx}>
+          <MenuItem item={item} />
+        </li>
+      ))}
+    </ul>
   );
 }

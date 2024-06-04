@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export interface MenuItemProps {
   item: {
     url: string;
@@ -5,6 +7,6 @@ export interface MenuItemProps {
   };
 }
 
-export function MenuItem(props: MenuItemProps) {
-  return <></>;
+export function MenuItem({ item: { url, text } }: MenuItemProps) {  
+  return <Link href={url}>{text}</Link>;
 }
