@@ -6,7 +6,7 @@ export interface TodoItemProps {
   };
 }
 
-export function TodoItem({ item: { desc, state } }: TodoItemProps) {
+export function TodoItem({ item: { desc, state } }: TodoItemProps) {  
   return (
     <div>
       <input

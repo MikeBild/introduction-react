@@ -5,7 +5,7 @@
     "dev": "next",
     "build": "next build",
     "test": "ts-mocha -p tsconfig.test.json -r mocha.cjs tests/**/*.spec.tsx --timeout 5000 -w --watch-files '**/*.tsx'",
-    "e2e": "playwright test"
+    "e2e": "playwright test --ui"
   },
   "dependencies": {
     "react": "^18.3.1",

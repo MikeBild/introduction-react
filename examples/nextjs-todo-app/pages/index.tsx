@@ -4,6 +4,7 @@ import { Header } from "../components/organisms/Header";
 import { TodoList } from "../components/organisms/TodoList";
 import { MenuList } from "../components/organisms/MenuList";
 import { Layout } from "../components/templates/Layout";
+import { useUserContext } from "../lib/userProvider";
 
 export default function Index() {
   const menuItems = [
@@ -11,6 +12,7 @@ export default function Index() {
     { url: "/", text: "Home" },
   ];
   const [todoItems, setTodoItems] = useState([]);
+  const [currentUser] = useUserContext();
 
   return (
     <Layout>
