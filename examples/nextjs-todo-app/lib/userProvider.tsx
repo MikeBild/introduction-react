@@ -5,8 +5,8 @@ const Context = createContext<[{ username: string; token: string }, Function]>([
   () => null,
 ]);
 
-export function UserProvider({ children }) {
-  const [user, setUser] = useState({ username: "", token: "" });
+export function UserProvider({ children, username = "" }) {
+  const [user, setUser] = useState({ username, token: "" });
   return (
     <Context.Provider value={[user, setUser]}>{children}</Context.Provider>
   );
