@@ -3,7 +3,6 @@ import { TodoAdd } from "../components/moleculs/TodoAdd";
 import { TodoList } from "../components/organisms/TodoList";
 import { Layout } from "../components/templates/Layout";
 import { useUserContext } from "../lib/userProvider";
-import { useFetch } from "../lib/useFetch";
 import { useJsonFetch } from "../lib/useJsonFetch";
 
 export default function Index() {
@@ -18,7 +17,11 @@ export default function Index() {
   useEffect(() => {
     if (!currentUser.username) return;
 
-    fetchData(`todos/${currentUser.username}`)
+    loadTodos();
+  }, []);
+
+  async function loadTodos() {
+    return fetchData(`todos/${currentUser.username}`)
       .then((data) => {
         return Object.keys(data).map((x) => ({
           id: x,
@@ -27,14 +30,22 @@ export default function Index() {
         }));
       })
       .then((data) => setTodoItems(data));
-  }, []);
+  }
 
   return (
     <Layout>
       <h1>Home</h1>
       <TodoAdd
-        onTodoAdd={(desc) => {
+        onTodoAdd={async (desc) => {
           setTodoItems([...todoItems, { desc }]);
+
+          await fetch(`http://localhost:8080/todos/${currentUser.username}`, {
+            method: "PATCH",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ description: desc, state: "open" }),
+          });
+
+          await loadTodos();
         }}
       />
       <TodoList items={todoItems} />
