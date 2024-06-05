@@ -6,10 +6,6 @@ import { useUserContext } from "../lib/userProvider";
 import { useJsonFetch } from "../lib/useJsonFetch";
 
 export default function Index() {
-  const menuItems = [
-    { url: "/about", text: "About" },
-    { url: "/", text: "Home" },
-  ];
   const [todoItems, setTodoItems] = useState([]);
   const [currentUser] = useUserContext();
   const { error, loading, fetchData } = useJsonFetch(`http://localhost:8080`);

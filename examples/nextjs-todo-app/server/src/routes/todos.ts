@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import { promises } from "fs";
 import { resolve } from "path";
+import { delay } from "../lib/utils";
 
 const router = express.Router();
 export default router;
@@ -19,6 +20,8 @@ router.get("/:username", async (req: Request, res: Response) => {
 });
 
 router.patch("/:username", async (req: Request, res: Response) => {
+  await delay(5000);
+  
   const { username } = req.params;
   const { description, state } = req.body;
   try {
