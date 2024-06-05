@@ -1,26 +1,17 @@
-import { useEffect, useState } from "react";
 import { Header } from "../components/organisms/Header";
 import { MenuList } from "../components/organisms/MenuList";
 import { Layout } from "../components/templates/Layout";
+import { useDelay } from "../lib/useDelay";
+import { useFetch } from "../lib/useFetch";
 
 export default function About() {
-  const [data, setData] = useState({ a: 1, b: 0 });
+  const data = useDelay(5000);
+  const tData = useFetch();
+
   const menuItems = [
     { url: "/about", text: "About" },
     { url: "/", text: "Home" },
   ];
-
-  useEffect(() => {
-    const [p, tr] = delay(500);
-
-    p.then(() => {
-      setData({ ...data, b: 2 });
-    });
-
-    return () => {
-      clearTimeout(tr);
-    };
-  }, [data]);
 
   return (
     <Layout>
@@ -30,18 +21,7 @@ export default function About() {
       </Header>
       <hr />
       <div>{JSON.stringify(data, null, 4)}</div>
+      <div>{JSON.stringify(tData, null, 4)}</div>
     </Layout>
   );
-}
-
-function delay(ms: number): [Promise<void>, NodeJS.Timeout] {
-  let timeoutRef = null;
-  return [
-    new Promise((resolve) => {
-      timeoutRef = setTimeout(() => {
-        resolve();
-      }, ms);
-    }),
-    timeoutRef,
-  ];
 }
