@@ -7,7 +7,7 @@ export default function Login() {
   const router = useRouter();
   const [usernameInput, setUsernameInput] = useState("");
   const [passwordInput, setPasswordInput] = useState("");
-  const [userContext, setUser] = useUserContext();
+  const [_, setUser] = useUserContext();
 
   async function login(username: string, password: string) {
     const response = await fetch("http://localhost:8080/login", {
