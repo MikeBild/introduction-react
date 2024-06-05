@@ -8,17 +8,10 @@ export default function About() {
   const data = useDelay(5000);
   const tData = useFetch();
 
-  const menuItems = [
-    { url: "/about", text: "About" },
-    { url: "/", text: "Home" },
-  ];
 
   return (
     <Layout>
-      <Header>
-        <h1>About</h1>
-        <MenuList items={menuItems} />
-      </Header>
+      <h1>About</h1>
       <hr />
       <div>{JSON.stringify(data, null, 4)}</div>
       <div>{JSON.stringify(tData, null, 4)}</div>

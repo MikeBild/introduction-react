@@ -16,10 +16,7 @@ export default function Index() {
 
   return (
     <Layout>
-      <Header>
-        <h1>Home</h1>
-        <MenuList items={menuItems} />
-      </Header>
+      <h1>Home</h1>
       <TodoAdd
         onTodoAdd={(desc) => {
           setTodoItems([...todoItems, { desc }]);
