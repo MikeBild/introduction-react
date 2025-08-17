@@ -17,6 +17,7 @@
 - [Babel](2.1-setup-babel-webpack.md)
 - [Parcel](2.2-setup-parcel.md)
 - [NextJS](2.3-setup-nextjs.md)
+- [Vite](2.4-setup-vite.md)
 
 ## JSX Basics
 
