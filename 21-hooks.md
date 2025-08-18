@@ -5,8 +5,6 @@
 - keep components pure (same inputs, same output)
 - pure functions takes a bit of practice
 
-
-
 ## State as snapshot
 
 ## State Hooks
@@ -27,7 +25,6 @@
 
 ## Custom Hooks
 
-- experimental API
 - reusing logic
 
 
