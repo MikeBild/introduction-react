@@ -31,6 +31,7 @@
 - [MobX](19-mobx.md)
 - [GraphQL Apollo](20-graphql-apollo.md)
 - [React Hooks](21-hooks.md)
+- [TypeScript](react-typescript.md)
 
 ## Examples
 
