@@ -64,7 +64,7 @@ useEffect(() => {
   inputRef.current?.focus();
 }, []);
 ```
-👉 Access tp DOM-Elements
+👉 Access to DOM-Elements
 
 ---
 
