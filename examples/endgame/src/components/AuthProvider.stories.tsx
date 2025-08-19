@@ -18,7 +18,7 @@ export const Default: Story = {
       </AuthProvider>
     );
   },
-  render: () => {
+  render: (args: any) => {
     const auth = useAuthContext();
 
     return (
@@ -26,7 +26,7 @@ export const Default: Story = {
         <code>{JSON.stringify({ auth }, null, 4)}</code>
         <button
           onClick={() => {
-            auth?.login("mike");
+            auth?.login(args.username);
           }}
         >
           Login
@@ -41,5 +41,7 @@ export const Default: Story = {
       </>
     );
   },
-  args: {},
+  args: {
+    username: "anonymous",
+  },
 };
