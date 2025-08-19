@@ -5,5 +5,5 @@ export interface Todo {
 }
 
 export interface TodoList {
-  todos: Todo[];
+  todos?: Todo[];
 }

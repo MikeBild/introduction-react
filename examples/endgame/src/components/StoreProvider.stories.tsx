@@ -1,24 +1,28 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-
 import { StoreProvider, useStore } from "./StoreProvider";
-import React from "react";
 
-const meta = {
-  component: () => React.createElement("div"),
-} satisfies Meta<typeof HTMLElement>;
+const meta = {} satisfies Meta;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: (args: any) => {
-    const store = useStore(args.todos);
+  decorators: (Story, { args }: any) => {
+    return (
+      <StoreProvider todoList={args.todos}>
+        <Story />
+      </StoreProvider>
+    );
+  },
+  render: () => {
+    const store = useStore();
 
     return (
-      <StoreProvider>
-        <code>{JSON.stringify({ store }, null, 4)}</code>
-      </StoreProvider>
+      <>
+        <code>{JSON.stringify(store?.todoList, null, 4)}</code>
+        <button onClick={() => store?.addTodo({ text: "bla" })}>Add</button>
+      </>
     );
   },
   args: {
