@@ -14,7 +14,7 @@ export default function ToDoList({
   onItemDoneToggle: onItemCheckedToggle,
 }: ToDoListProps) {
   if (todoList.todos.length == 0) {
-    return <p>Hurray! There are no more to do's.</p>;
+    return <p style={{color: "black"}}>Hurray! There are no more to do's.</p>;
   }
   return (
     <ul>
