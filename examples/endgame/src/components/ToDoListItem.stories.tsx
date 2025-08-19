@@ -12,7 +12,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    item: {},
+    itemKey: "1",
+    item: {text: "dkdkdkd", done: false, isImportant: true},
     onRemove: () => {},
     onCheckedToggle: () => {}
   }
