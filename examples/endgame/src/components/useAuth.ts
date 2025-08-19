@@ -16,8 +16,7 @@ export function useAuth() {
       const userToken = await delay(username === "mike" ? "token:mike" : "");
       setUserToken(userToken);
       setIsAuthenticated(Boolean(userToken));
-      setUserName(username);
-      return userToken;
+      setUserName(username);      
     },
     [userToken, userName]
   );
