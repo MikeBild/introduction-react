@@ -11,30 +11,41 @@ export function useAuth() {
     return () => {};
   });
 
-  const login = useCallback(async (username: string) => {
-    setUserName(userName);
-    await delay();
-    
-    username === "mike"
-      ? setUserToken("token:mike")
-      : setUserToken("token:default");
-    setIsAuthenticated(Boolean(userToken));
+  const login = useCallback(
+    async (username: string) => {
+      const userToken = await delay(username === "mike" ? "token:mike" : "");
+      setUserToken(userToken);
+      setIsAuthenticated(Boolean(userToken));
+      setUserName(username);
+      return userToken;
+    },
+    [userToken, userName]
+  );
 
+  const logout = useCallback(async () => {
+    const userToken = await delay("");
+    setUserToken(userToken);
+    setIsAuthenticated(Boolean(userToken));
+    setUserName("");
     return userToken;
-  }, []);
+  }, [userToken, userName]);
 
   return useMemo(
     () => ({
+      userName,
       isAuthenticated,
       userToken,
       login,
+      logout,
     }),
-    [userName, isAuthenticated, userToken, login]
+    [userName, isAuthenticated, userToken, login, logout]
   );
 }
 
-async function delay() {
+async function delay(userToken: string): Promise<string> {
   return new Promise((resolve) => {
-    setTimeout(resolve, 1000);
+    setTimeout(() => {
+      resolve(userToken);
+    }, 1000);
   });
 }
