@@ -26,27 +26,17 @@ export default function App() {
                 store?.addTodo({ ...newTodo, isImportant: newTodo.important });
                 setAddTodoVisible(false);
               }}
-              onCancel={() => {
-                setAddTodoVisible(false);
-              }}
+              onCancel={() => setAddTodoVisible(false)}
             />
           )}
 
           {!addTodoVisible && (
             <>
-              <button
-                onClick={() => {
-                  setAddTodoVisible(true);
-                }}
-              >
-                Add Todo
-              </button>
+              <button onClick={() => setAddTodoVisible(true)}>Add Todo</button>
               <ToDoList
                 todoList={{ todos: store?.todoList.todos }}
                 onItemDoneToggle={() => {}}
-                onItemRemoved={(todo) => {
-                  store?.removeTodo(todo);
-                }}
+                onItemRemoved={(todo) => store?.removeTodo(todo)}
               />
             </>
           )}
