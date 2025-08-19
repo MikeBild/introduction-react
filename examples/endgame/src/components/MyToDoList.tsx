@@ -6,7 +6,7 @@ interface ToDoListProps {
     todoList: TodoList;
 }
 
-export function ToDoList({todoList = {todos: []}}: ToDoListProps){
+export default function ToDoList({todoList = {todos: []}}: ToDoListProps){
     if (todoList.todos.length == 0){
         return <p>Hurray! There are no more to do's.</p>
     }

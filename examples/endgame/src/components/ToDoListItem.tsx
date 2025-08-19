@@ -7,7 +7,7 @@ interface ToDoListItemProps{
     onCheckedToggle: (todoList: Todo) => void;
 }
 
-export function ToDoListItem({item, onRemove, onCheckedToggle: onDoneToggle}: ToDoListItemProps){
+export default function ToDoListItem({item, onRemove, onCheckedToggle: onDoneToggle}: ToDoListItemProps){
     return (
         <li>
             <input type="checkbox" checked={item.done} onChange={ () => onDoneToggle(item)} />
