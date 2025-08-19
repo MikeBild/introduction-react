@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import LoginSignupScreen from './LoginSignupScreen';
+import LoginSignupScreen from './SignupScreen';
 
 const meta = {
   component: LoginSignupScreen,

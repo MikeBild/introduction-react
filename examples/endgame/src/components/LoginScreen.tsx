@@ -1,17 +1,13 @@
 import { useState } from "react";
 
 interface LoginSignupScreenProps {
-  onLoginSubmit?: () => void;
-  onRegisterSubmit?: () => void;
+  onLoginSubmit?: (username: string) => string | void;
 }
 
 export default function LoginSignupScreen({
-  onLoginSubmit = () => null,
-  onRegisterSubmit = () => null,
+  onLoginSubmit = () => undefined,
 }: LoginSignupScreenProps) {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [address, setAddress] = useState("");
   const [isLoginScreen, setIsLoginScreen] = useState(true);
 
   return (
@@ -44,46 +40,13 @@ export default function LoginSignupScreen({
           width: "100%",
         }}
       />
-      {!isLoginScreen && (
-        //   <input
-        //     type="password"
-        //     placeholder="Password"
-        //     value={password}
-        //     onChange={e => setPassword(e.target.value)}
-        //     style={{
-        //       margin: "8px 0",
-        //       padding: "10px",
-        //       border: "1.5px solid #81c784",
-        //       borderRadius: "8px",
-        //       outline: "none",
-        //       width: "100%",
-        //     }}
-        //   />
-        <input
-          type="text"
-          placeholder="Address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          style={{
-            margin: "8px 0",
-            padding: "10px",
-            border: "1.5px solid #81c784",
-            borderRadius: "8px",
-            outline: "none",
-            width: "100%",
-          }}
-        />
-      )}
+
       <button
+        type="submit"
         onClick={(e) => {
           e.preventDefault();
-          if (isLoginScreen) {
-            onLoginSubmit();
-          } else {
-            onRegisterSubmit();
-          }
+          onLoginSubmit(username);
         }}
-        type="submit"
         style={{
           background: "linear-gradient(90deg, #43a047 0%, #66bb6a 100%)",
           color: "#fff",
@@ -95,8 +58,39 @@ export default function LoginSignupScreen({
           fontWeight: "bold",
           fontSize: "16px",
           boxShadow: "0 2px 8px rgba(67, 160, 71, 0.12)",
+          position: "relative",
+          overflow: "hidden",
+          transition: "transform 0.1s ease-in-out",
         }}
+        className="explosion-btn"
       >
+        <style>{`
+          .explosion-btn:active {
+        transform: scale(0.95);
+          }
+          .explosion-btn:active::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        animation: explode 0.5s ease-out;
+          }
+          @keyframes explode {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0;
+        }
+          }
+        `}</style>
         Submit
       </button>
       <button
@@ -114,7 +108,7 @@ export default function LoginSignupScreen({
           fontSize: "15px",
         }}
       >
-        {isLoginScreen ? "I don't have an account" : "I have an account"}
+        I don't have an account
       </button>
     </form>
   );
