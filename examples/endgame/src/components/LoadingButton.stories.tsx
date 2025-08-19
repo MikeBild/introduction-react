@@ -1,6 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
-import { LoadingButton } from './LoadingButton';
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import LoadingButton from "./LoadingButton";
 
 const meta = {
   component: LoadingButton,
@@ -12,12 +11,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    color: "black"
-  }
+    color: "black",
+  },
 };
 
 export const Blue: Story = {
   args: {
-    color: "Blue"
-  }
+    color: "Blue",
+  },
 };
