@@ -1,7 +1,12 @@
 import "./Layout.css"
 
-export default function Layout({ children, loggedInUser }:
-  { children?: React.ReactNode, loggedInUser?: string }) {
+interface LayoutProps {
+  children?: React.ReactNode;
+  loggedInUser: string | null;
+  setLoggedInUser: (user: string | null) => void;
+}
+
+export default function Layout({ children, loggedInUser, setLoggedInUser }: LayoutProps) {
   if (!loggedInUser) {
     return (
       <div className="login-container">
@@ -18,7 +23,7 @@ export default function Layout({ children, loggedInUser }:
           <div className="header-title">ENDGAME</div>
           <div className="user-info-section">
             <p>Welcome, {loggedInUser}!</p>
-            <button>Logout</button>
+            <button onClick={() => setLoggedInUser(null)}>Logout</button>
           </div>
         </div>
       </header>
