@@ -1,18 +1,18 @@
-import type { ToDoListItemEntry } from "../model/ToDoListItemEntry"
+import type { Todo } from "./TodoList";
 
 
 interface ToDoListItemProps{
-    item: ToDoListItemEntry;
-    onRemove: (id: string) => void;
-    onCheckedToggle: (id: string) => void;
+    item: Todo;
+    onRemove: (item: Todo) => void;
+    onCheckedToggle: (todoList: Todo) => void;
 }
 
-export function ToDoListItem({item, onRemove, onCheckedToggle}: ToDoListItemProps){
+export function ToDoListItem({item, onRemove, onCheckedToggle: onDoneToggle}: ToDoListItemProps){
     return (
         <li>
-            <input type="checkbox" checked={item.isChecked} onChange={ () => onCheckedToggle(item.id)} />
+            <input type="checkbox" checked={item.done} onChange={ () => onDoneToggle(item)} />
             {item.text}
-            <button onClick={ () => onRemove(item.id) }>Remove</button>
+            <button onClick={ () => onRemove(item) }>Remove</button>
         </li>
     )
 }

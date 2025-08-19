@@ -12,6 +12,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    item: {"id": "iuoierowei", "isChecked": true, "text": "Item1"}
+    item: {},
+    onRemove: () => {},
+    onCheckedToggle: () => {}
   }
 };
