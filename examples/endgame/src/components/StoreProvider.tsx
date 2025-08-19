@@ -1,17 +1,8 @@
 import { createContext, type ReactNode, useContext } from "react";
+import type { Todo, TodoList } from "./TodoList";
 
 interface StoreProviderProps {
   children: ReactNode;
-}
-
-export interface Todo {
-  text?: string;
-  done?: boolean;
-  isImportant?: boolean;
-}
-
-export interface TodoList {
-  todos: Todo[];
 }
 
 export interface Store {
