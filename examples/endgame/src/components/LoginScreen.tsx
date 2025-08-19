@@ -47,7 +47,7 @@ export default function LoginSignupScreen({
           e.preventDefault();
           if (username !== "") {
             onLoginSubmit(username);
-            alert("Welcome to Endgame!\nThou have been authenticated.\nThou may now procced.")
+            // alert("Welcome to Endgame!\nThou have been authenticated.\nThou may now procced.")
           } else {
             alert("Please enter a username.");
           }

@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from "@storybook/react-vite";
 
-import LoginSignupScreen from './SignupScreen';
+import LoginSignupScreen from "./SignupScreen";
 
 const meta = {
   component: LoginSignupScreen,
@@ -11,5 +11,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {}
+  args: {
+    onRegisterSubmit: (username) => alert(username),
+  },
 };
