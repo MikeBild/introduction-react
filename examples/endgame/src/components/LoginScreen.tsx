@@ -45,7 +45,12 @@ export default function LoginSignupScreen({
         type="submit"
         onClick={(e) => {
           e.preventDefault();
-          onLoginSubmit(username);
+          if (username !== "") {
+            onLoginSubmit(username);
+            alert("Welcome to Endgame!\nThou have been authenticated.\nThou may now procced.")
+          } else {
+            alert("Please enter a username.");
+          }
         }}
         style={{
           background: "linear-gradient(90deg, #43a047 0%, #66bb6a 100%)",

@@ -55,9 +55,14 @@ export default function LoginSignupScreen({
           }}
         />
       <button
-        onSubmit={(e) => {
+        onClick={(e) => {
           e.preventDefault();
-          onRegisterSubmit(username);
+          if (username !== "") {
+            onRegisterSubmit(username);
+            alert("Welcome to Endgame!\nThou have been authenticated.\nThou may now procced.")
+          } else {
+            alert("Please enter a username.");
+          }
         }}
         type="submit"
         style={{
