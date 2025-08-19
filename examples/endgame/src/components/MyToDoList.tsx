@@ -1,4 +1,4 @@
-import { ToDoListItem} from "./ToDoListItem";
+import ToDoListItem from "./ToDoListItem";
 import type { TodoList } from "./TodoList";
 import "./MyToDoList.css";
 

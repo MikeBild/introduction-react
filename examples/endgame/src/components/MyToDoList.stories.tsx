@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
-import { ToDoList } from './MyToDoList';
+import ToDoList from './MyToDoList';
 
 const meta = {
   component: ToDoList,
