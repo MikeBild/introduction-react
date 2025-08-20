@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 interface TodoInputProps {
   onSave: (todo: { text: string; important: boolean }) => void;
@@ -6,22 +6,22 @@ interface TodoInputProps {
 }
 
 export default function TodoInput({ onSave, onCancel }: TodoInputProps) {
-  const [text, setText] = useState("");
   const [important, setImportant] = useState(false);
+  const todoInputRef = useRef<HTMLInputElement>(null);
 
   function handleSave(e: React.FormEvent) {
+    const text = todoInputRef.current?.value || "";
     e.preventDefault();
     if (!text.trim()) {
       alert("Please enter a todo.");
       return;
     }
     onSave({ text, important });
-    setText("");
+
     setImportant(false);
   }
 
   function handleCancel() {
-    setText("");
     setImportant(false);
     onCancel();
   }
@@ -43,9 +43,8 @@ export default function TodoInput({ onSave, onCancel }: TodoInputProps) {
     >
       <input
         type="text"
-        placeholder="Enter your todo..."
-        value={text}
-        onChange={e => setText(e.target.value)}
+        placeholder="Enter your todo..."        
+        ref={todoInputRef}
         style={{
           padding: "10px",
           border: "1.5px solid #81c784",
@@ -54,11 +53,18 @@ export default function TodoInput({ onSave, onCancel }: TodoInputProps) {
           width: "100%",
         }}
       />
-      <label style={{ display: "flex", alignItems: "center", gap: "8px", color: "#2e7d32" }}>
+      <label
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          color: "#2e7d32",
+        }}
+      >
         <input
           type="checkbox"
           checked={important}
-          onChange={e => setImportant(e.target.checked)}
+          onChange={(e) => setImportant(e.target.checked)}
         />
         Mark as important
       </label>
