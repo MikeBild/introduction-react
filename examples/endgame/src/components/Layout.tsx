@@ -4,12 +4,13 @@ interface LayoutProps {
   children?: React.ReactNode;
   loggedInUser: string | null;
   setLoggedInUser: (user: string | null) => void;
+  testId?: string;
 }
 
-export default function Layout({ children, loggedInUser, setLoggedInUser }: LayoutProps) {
+export default function Layout({ children, loggedInUser, setLoggedInUser, testId }: LayoutProps) {
   if (!loggedInUser) {
     return (
-      <div className="login-container">
+      <div className="login-container" data-testid={`${testId}-login`}>
         <div className="login-box">
           {children}
         </div>
@@ -17,7 +18,7 @@ export default function Layout({ children, loggedInUser, setLoggedInUser }: Layo
     )
   }
   return (
-    <div className="layout-container">
+    <div className="layout-container" data-testid={`${testId}-app`}>
       <header>
         <div className="header-content">
           <div className="header-title">ENDGAME</div>
