@@ -2,19 +2,19 @@ import type { Todo } from "./TodoList";
 
 interface ToDoListItemProps {
   item: Todo;
-  itemKey: string;
+  key: string;
   onRemove: (item: Todo) => void;
   onCheckedToggle: (todoList: Todo) => void;
 }
 
 export default function ToDoListItem({
   item,
-  itemKey,
+  key,
   onRemove,
   onCheckedToggle: onDoneToggle,
 }: ToDoListItemProps) {
   return (
-    <li key={itemKey}>
+    <li key={key}>
       <input
         type="checkbox"
         checked={item.done}
