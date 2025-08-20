@@ -1,37 +1,38 @@
-import { render, screen, cleanup } from "@testing-library/react";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import "@testing-library/jest-dom/vitest";
+import { render, screen } from "@testing-library/react";
+import { describe, it, expect, vi } from "vitest";
 import LoadingButton from "./LoadingButton";
 import userEvent from "@testing-library/user-event";
 
 describe("LoadingButton", () => {
   describe("Story default", () => {
-    afterEach(() => {
-      cleanup();
-    });
-
     it("should render a button with `Loading` content", () => {
-      render(<LoadingButton>Loading</LoadingButton>);
-      expect(screen.getByTestId("loading-button")).toHaveTextContent("Loading");
+      render(<LoadingButton testId="1">Loading</LoadingButton>);
+      expect(screen.getByTestId("1")).toHaveTextContent("Loading");
     });
 
     it("displays Text, if not loading", () => {
-      render(<LoadingButton>Send</LoadingButton>);
-      expect(screen.getByTestId("loading-button")).toHaveTextContent("Send");
-      expect(screen.getByTestId("loading-button")).not.toBeDisabled();
+      render(<LoadingButton testId="2">Send</LoadingButton>);
+      expect(screen.getByTestId("2")).toHaveTextContent("Send");
+      expect(screen.getByTestId("2")).not.toBeDisabled();
     });
 
     it("displays 'Loading...' and is disabled, if loading=true", () => {
-      render(<LoadingButton loading>Send</LoadingButton>);
-      expect(screen.getByTestId("loading-button")).toHaveTextContent("loading");
-      expect(screen.getByTestId("loading-button")).toBeDisabled();
+      render(
+        <LoadingButton testId="3" loading>
+          Send
+        </LoadingButton>
+      );
+      expect(screen.getByTestId("3")).toHaveTextContent("loading");
+      expect(screen.getByTestId("3")).toBeDisabled();
     });
 
     it("invokes onClick, if not loading", async () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
-      render(<LoadingButton onBtnClick={handleClick}>Send</LoadingButton>);
+      render(<LoadingButton testId="4" onBtnClick={handleClick}>Send</LoadingButton>);
 
-      await user.click(screen.getByTestId("loading-button"));
+      await user.click(screen.getByTestId("4"));
 
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
@@ -40,12 +41,12 @@ describe("LoadingButton", () => {
       const user = userEvent.setup();
       const handleClick = vi.fn();
       render(
-        <LoadingButton loading onBtnClick={handleClick}>
+        <LoadingButton testId="5" loading onBtnClick={handleClick}>
           Send
         </LoadingButton>
       );
 
-      await user.click(screen.getByTestId("loading-button"));
+      await user.click(screen.getByTestId("5"));
       expect(handleClick).not.toHaveBeenCalled();
     });
   });

@@ -5,6 +5,7 @@ interface LoadingButtonProps {
   loading?: boolean;
   children?: ReactNode;
   onBtnClick?: () => void;
+  testId?: string;
 }
 
 export default function LoadingButton({
@@ -12,12 +13,13 @@ export default function LoadingButton({
   loading = false,
   children = <></>,
   onBtnClick = () => {},
+  testId,
 }: LoadingButtonProps) {
   return (
     <button
       disabled={loading}
       onClick={onBtnClick}
-      data-testid="loading-button"
+      data-testid={testId}
       style={{ backgroundColor: color }}
     >
       {loading ? "loading" : children}
