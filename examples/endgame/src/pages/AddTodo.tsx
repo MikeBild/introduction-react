@@ -1,5 +1,5 @@
 import { Navigate, useNavigate } from "react-router";
-import { useStore } from "../components/StoreProvider";
+import { useStore } from "../components/ApiProvider";
 import TodoInput from "../components/TodoInput";
 import { useAuthContext } from "../components/AuthProvider";
 
@@ -12,8 +12,8 @@ export default function AddTodo() {
 
   return (
     <TodoInput
-      onSave={(newTodo) => {
-        store?.addTodo({ ...newTodo, isImportant: newTodo.important });
+      onSave={async (newTodo) => {
+        await store?.addTodo({ ...newTodo, isImportant: newTodo.important });
         navigateTo("/");
       }}
       onCancel={() => navigateTo("/")}

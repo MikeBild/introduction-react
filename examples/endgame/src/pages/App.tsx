@@ -2,8 +2,9 @@ import "./App.css";
 import Layout from "../components/Layout";
 import { useAuthContext } from "../components/AuthProvider";
 import ToDoList from "../components/MyToDoList";
-import { useStore } from "../components/StoreProvider";
+import { useStore } from "../components/ApiProvider";
 import { Navigate, useNavigate } from "react-router";
+import { useEffect } from "react";
 
 export default function App() {
   const auth = useAuthContext();
@@ -11,6 +12,10 @@ export default function App() {
   const navigateTo = useNavigate();
 
   if (!auth?.isAuthenticated) return <Navigate to="/login" />;
+
+  useEffect(() => {
+    store?.readTodos();
+  }, []);
 
   return (
     <Layout
@@ -21,7 +26,7 @@ export default function App() {
       <ToDoList
         todoList={{ todos: store?.todoList.todos }}
         onItemDoneToggle={() => {}}
-        onItemRemoved={(todo) => store?.removeTodo(todo)}
+        onItemRemoved={async (todo) => await store?.removeTodo(todo)}
       />
     </Layout>
   );

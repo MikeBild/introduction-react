@@ -19,7 +19,7 @@ export function StoreProvider({ children, todoList = [] }: StoreProviderProps) {
   const value = {
     todoList: { todos },
     addTodo: (todo: Todo) => {
-      setTodos([...value.todoList.todos, todo]);
+      setTodos([...todos, todo]);
     },
     removeTodo: (todo: Todo) => {
       setTodos(value.todoList.todos.filter((x) => x.text !== todo.text));
