@@ -9,7 +9,7 @@ interface StoreProviderProps {
 export interface Store {
   todoList: TodoList;
   isLoading: boolean;
-  error: string;
+  error: string | undefined;
   readTodos: () => Promise<Todo[]>;
   addTodo: (todo: Todo) => Promise<Todo>;
   removeTodo: (todo: Todo) => Promise<void>;
@@ -19,41 +19,78 @@ const StoreProviderContext = createContext<Store | undefined>(undefined);
 
 export function StoreProvider({ children, todoList = [] }: StoreProviderProps) {
   const [todos, setTodos] = useState<Todo[]>(todoList);
-  const [error, setError] = useState<string | null>();
+  const [error, setError] = useState<string | undefined>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const value = {
     todoList: { todos },
-    isLoading: false,
+    isLoading,
     error,
     readTodos: async () => {
-      setError(null);
+      setError(undefined);
+      setIsLoading(true);
       try {
         const response = await fetch("https://todo-api.mikebild.dev/todos");
         const data = await response.json();
-        setTodos(data.map((x: any) => ({ text: x.title, done: x.completed })));
+        setTodos(
+          data.map((x: any) => ({ id: x.id, text: x.title, done: x.completed }))
+        );
         return data;
       } catch (error: any) {
         setError(error.message);
         return [];
+      } finally {
+        setIsLoading(false);
       }
     },
     addTodo: async (todo: Todo) => {
-      const response = await fetch("https://todo-api.mikebild.dev/todos", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          title: todo.text,
-          completed: todo.done,
-          important: todo.isImportant,
-        }),
-      });
-      const data = await response.json();
-      setTodos([...value.todoList.todos, todo]);
-      return data;
+      setError(undefined);
+      setIsLoading(true);
+      try {
+        const response = await fetch("https://todo-api.mikebild.dev/todos", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            id: todo.id,
+            title: todo.text,
+            completed: todo.done,
+            important: todo.isImportant,
+          }),
+        });
+        if (response.status !== 201) throw new Error(`Can not add Todo`);
+
+        setTodos([...value.todoList.todos, todo]);
+
+        const data = await response.json();
+        return data;
+      } catch (error: any) {
+        setError(error.message);
+        return {};
+      } finally {
+        setIsLoading(false);
+      }
     },
     removeTodo: async (todo: Todo) => {
-      setTodos(value.todoList.todos.filter((x) => x.text !== todo.text));
+      if (!todo.id) throw new Error(`ID in Todo not found`);
+
+      setError(undefined);
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `https://todo-api.mikebild.dev/todos/${todo.id}`,
+          {
+            method: "DELETE",
+          }
+        );
+        await response.json();
+        setTodos(value.todoList.todos.filter((x) => x.id !== todo.id));
+      } catch (error: any) {
+        setError(error.message);
+        return;
+      } finally {
+        setIsLoading(false);
+      }
     },
   };
 

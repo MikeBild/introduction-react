@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import { useAuthContext } from "../components/AuthProvider";
 import ToDoList from "../components/MyToDoList";
 import { useStore } from "../components/ApiProvider";
-import { Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useEffect } from "react";
 
 export default function App() {
@@ -16,6 +16,15 @@ export default function App() {
   useEffect(() => {
     store?.readTodos();
   }, []);
+
+  if (store?.isLoading) return <h1>Fetching from API ...</h1>;
+  if (store?.error)
+    return (
+      <>
+        <h1 style={{ color: "red" }}>{store?.error}</h1>
+        <Link to="/">Home</Link>
+      </>
+    );
 
   return (
     <Layout

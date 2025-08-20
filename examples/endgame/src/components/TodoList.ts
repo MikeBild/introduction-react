@@ -1,4 +1,5 @@
 export interface Todo {
+  id: string;
   text?: string;
   done?: boolean;
   isImportant?: boolean;
