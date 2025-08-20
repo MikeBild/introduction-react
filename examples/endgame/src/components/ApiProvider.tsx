@@ -9,6 +9,7 @@ interface StoreProviderProps {
 export interface Store {
   todoList: TodoList;
   isLoading: boolean;
+  error: string;
   readTodos: () => Promise<Todo[]>;
   addTodo: (todo: Todo) => Promise<Todo>;
   removeTodo: (todo: Todo) => Promise<void>;
@@ -18,14 +19,22 @@ const StoreProviderContext = createContext<Store | undefined>(undefined);
 
 export function StoreProvider({ children, todoList = [] }: StoreProviderProps) {
   const [todos, setTodos] = useState<Todo[]>(todoList);
+  const [error, setError] = useState<string | null>();
   const value = {
     todoList: { todos },
     isLoading: false,
+    error,
     readTodos: async () => {
-      const response = await fetch("https://todo-api.mikebild.dev/todos");
-      const data = await response.json();
-      setTodos(data.map((x: any) => ({ text: x.title, done: x.completed })));
-      return data;
+      setError(null);
+      try {
+        const response = await fetch("https://todo-api.mikebild.dev/todos");
+        const data = await response.json();
+        setTodos(data.map((x: any) => ({ text: x.title, done: x.completed })));
+        return data;
+      } catch (error: any) {
+        setError(error.message);
+        return [];
+      }
     },
     addTodo: async (todo: Todo) => {
       const response = await fetch("https://todo-api.mikebild.dev/todos", {
