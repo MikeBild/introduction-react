@@ -18,10 +18,12 @@ describe("MyToDoList", () => {
       render(<ToDoList todoList={{
         todos: [
           {
+            id: "1",
             text: "Item1",
             done: true
           },
           {
+            id: "2",
             text: "Item2",
             done: false
           }
