@@ -24,7 +24,7 @@ export default function LoginSignupScreen({
       }}
     >
       <h2 style={{ color: "#2e7d32", marginBottom: "16px" }}>
-        {isLoginScreen ? "Login" : "Register"}
+        Login
       </h2>
       <input
         type="text"
