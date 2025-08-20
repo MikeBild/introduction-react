@@ -10,7 +10,7 @@ export interface Store {
   todoList: TodoList;
   isLoading: boolean;
   error: string | undefined;
-  readTodos: () => Promise<Todo[]>;
+  readTodos: (ac?: AbortController) => Promise<Todo[]>;
   addTodo: (todo: Todo) => Promise<Todo>;
   removeTodo: (todo: Todo) => Promise<void>;
 }
@@ -25,11 +25,13 @@ export function StoreProvider({ children, todoList = [] }: StoreProviderProps) {
     todoList: { todos },
     isLoading,
     error,
-    readTodos: async () => {
+    readTodos: async (ac?: AbortController) => {
       setError(undefined);
       setIsLoading(true);
       try {
-        const response = await fetch("https://todo-api.mikebild.dev/todos");
+        const response = await fetch("https://todo-api.mikebild.dev/todos", {
+          signal: ac?.signal,
+        });
         const data = await response.json();
         setTodos(
           data.map((x: any) => ({ id: x.id, text: x.title, done: x.completed }))
@@ -37,10 +39,11 @@ export function StoreProvider({ children, todoList = [] }: StoreProviderProps) {
         return data;
       } catch (error: any) {
         setError(error.message);
-        return [];
       } finally {
         setIsLoading(false);
       }
+
+      return [];
     },
     addTodo: async (todo: Todo) => {
       setError(undefined);

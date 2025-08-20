@@ -14,7 +14,11 @@ export default function App() {
   if (!auth?.isAuthenticated) return <Navigate to="/login" />;
 
   useEffect(() => {
-    store?.readTodos();
+    const ac = new AbortController();
+    store?.readTodos(ac);
+    return () => {
+      ac.abort("... unmount");
+    };
   }, []);
 
   if (store?.isLoading) return <h1>Fetching from API ...</h1>;

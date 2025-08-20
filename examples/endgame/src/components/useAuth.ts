@@ -8,7 +8,9 @@ export function useAuth() {
   useEffect(() => {
     // read existing user token from cookie
 
-    return () => {};
+    return () => {
+      // cleanup resources!!!
+    };
   });
 
   const login = useCallback(
