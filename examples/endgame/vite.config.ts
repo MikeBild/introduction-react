@@ -20,7 +20,7 @@ export default defineConfig({
         extends: true,
         plugins: [react()],
         test: {
-          setupFiles: "/setupTests.ts",
+          setupFiles: "./setupTests.ts",
           environment: "jsdom",
           css: true,
           include: ["src/**/*.{test,spec}.{ts,tsx}"],
