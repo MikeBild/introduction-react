@@ -20,6 +20,7 @@ export function StoreProvider({ children, todoList = [] }: StoreProviderProps) {
   const [todos, setTodos] = useState<Todo[]>(todoList);
   const value = {
     todoList: { todos },
+    isLoading: false,
     readTodos: async () => {
       const response = await fetch("https://todo-api.mikebild.dev/todos");
       const data = await response.json();
