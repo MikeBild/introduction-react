@@ -13,12 +13,12 @@ export default function ToDoList({
   onItemRemoved,
   onItemDoneToggle: onItemCheckedToggle,
 }: ToDoListProps) {
-  if (todoList.todos.length == 0) {
-    return <p style={{color: "black"}}>Hurray! There are no more to do's.</p>;
+  if (todoList.todos?.length == 0) {
+    return <p style={{ color: "black" }}>Hurray! There are no more to do's.</p>;
   }
   return (
     <ul>
-      {todoList.todos.map((item, i) => (
+      {todoList.todos?.map((item, i) => (
         <ToDoListItem
           key={i.toString()}
           onRemove={(item) => {
