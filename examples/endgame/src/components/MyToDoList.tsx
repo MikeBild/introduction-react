@@ -19,8 +19,7 @@ export default function ToDoList({
   return (
     <ul>
       {todoList.todos?.map((item, i) => (
-        <ToDoListItem
-          key={i.toString()}
+        <ToDoListItem          
           onRemove={(item) => {
             onItemRemoved(item);
           }}
@@ -28,7 +27,9 @@ export default function ToDoList({
             onItemCheckedToggle(item);
           }}
           item={item}
-        ></ToDoListItem>
+          key={i}
+          itemKey={i}
+        />
       ))}
     </ul>
   );
