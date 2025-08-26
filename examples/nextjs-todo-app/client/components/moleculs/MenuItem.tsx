@@ -1,0 +1,16 @@
+import Link from "next/link";
+
+export interface MenuItemProps {
+  item: {
+    url: string;
+    text: string;
+  };
+}
+
+export function MenuItem({ item: { url, text } }: MenuItemProps) {
+  return (
+    <Link data-testid="MenuItem-Link" href={url}>
+      {text}
+    </Link>
+  );
+}
