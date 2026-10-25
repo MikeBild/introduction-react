@@ -42,6 +42,17 @@
 - [Server-Side / Universal App](examples/ssr-app/README.md)
 - [NextJS](examples/nextjs/README.md)
 
+## Exercises
+
+TypeScript starters with Vite and Vitest. Each README describes the exercise.
+
+- [Reducer State Machine](examples/reducer-state-machine/README.md)
+- [Forms Validation](examples/forms-validation/README.md)
+- [Actions Optimistic](examples/actions-optimistic/README.md)
+- [Accessible Components](examples/accessible-components/README.md)
+- [Feature Architecture](examples/feature-architecture/README.md)
+- [Production Build](examples/production-build/README.md)
+
 ## Resources
 
 - [Introduction to GraphQL](https://github.com/MikeBild/introduction-graphql)
