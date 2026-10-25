@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, type SubmitEvent } from 'react';
 import { isServerFieldError, type RegisterUser } from './registerUser';
 import { SignupSchema, toFieldErrors, type FieldErrors } from './signupSchema';
 
@@ -11,7 +11,7 @@ export const SignupForm = ({
   const [serverError, setServerError] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState(false);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const parseResult = SignupSchema.safeParse(
       Object.fromEntries(new FormData(event.currentTarget))
