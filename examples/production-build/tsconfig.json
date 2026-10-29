@@ -5,8 +5,9 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "jsx": "react-jsx",
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "strict": true,
+    "erasableSyntaxOnly": true,
     "noEmit": true,
     "isolatedModules": true,
     "skipLibCheck": true,
@@ -14,5 +15,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "solution", "vite.config.ts"]
+  "include": ["src", "solution", "server.ts", "vite.config.ts"]
 }
