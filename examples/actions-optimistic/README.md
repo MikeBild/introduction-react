@@ -1,6 +1,8 @@
 # Actions Optimistic
 
-A todo list using a React 19 form action with `useActionState` – ready for `useOptimistic`.
+Eine Todo-Liste mit einer Form Action aus React 19 und `useActionState` – bereit für `useOptimistic`.
+
+Lektion: **Optimistic UI braucht einen Rückweg** (`react-actions-optimistic`)
 
 ```bash
 npm install
@@ -8,11 +10,13 @@ npm run dev
 npm test
 ```
 
-## Exercise
+## Übung
 
-1. Move the submit button into `SubmitButton.tsx` and read the pending state there with `useFormStatus` from `react-dom`.
-2. Show a new todo immediately with `useOptimistic` in `src/TodoList.tsx`, greyed out while it is saving.
-3. Add a todo containing "fail": the optimistic entry disappears and the error is shown.
-4. Remove `.skip` from the tests in `src/TodoList.test.tsx`.
+1. Verschieb den Submit-Button in `SubmitButton.tsx` und lies dort den Pending State mit `useFormStatus` aus `react-dom`.
+2. Zeig ein neues Todo in `src/TodoList.tsx` sofort mit `useOptimistic` an, ausgegraut, solange es gespeichert wird.
+3. Leg ein Todo mit „fail“ im Text an: Der optimistische Eintrag verschwindet und die Fehlermeldung erscheint.
+4. Entferne `.skip` in `src/TodoList.test.tsx`.
 
-A possible solution lives in `solution/`.
+## Lösung
+
+Eine mögliche Lösung liegt in `solution/`.
