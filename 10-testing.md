@@ -6,19 +6,19 @@ Teste, was Nutzer sehen und tun. Ein Test sucht Elemente per Role und Label, kli
 
 - [Vitest](https://vitest.dev) als Test Runner, konfiguriert in `vite.config.ts`
 - [Testing Library](https://testing-library.com/docs/react-testing-library/intro) mit `jest-dom`-Matchern
-- [MSW](https://mswjs.io) für die API: Er fängt `fetch` auf Netzwerkebene ab
+- `vi.spyOn(globalThis, 'fetch')` für die API: Jeder Test legt fest, was der Server antwortet
 
 ```tsx
-import { http, HttpResponse } from 'msw/http';
+const mockFetchResponse = (status: number, body: unknown) =>
+  vi.spyOn(globalThis, 'fetch').mockImplementation(() =>
+    Promise.resolve(Response.json(body, { status }))
+  );
 
 it('zeigt einen Server Error am Feld', async () => {
-  server.use(
-    http.post('/api/signup', () =>
-      HttpResponse.json({ field: 'email', message: 'E-Mail ist schon registriert' }, { status: 409 })
-    )
-  );
+  mockFetchResponse(409, { field: 'email', message: 'E-Mail ist schon registriert' });
   render(<SignupForm />);
   await userEvent.type(screen.getByLabelText('E-Mail'), 'taken@example.com');
+  await userEvent.type(screen.getByLabelText('Passwort'), 'geheim123');
   await userEvent.click(screen.getByRole('button', { name: 'Registrieren' }));
   expect(await screen.findByText('E-Mail ist schon registriert')).toBeInTheDocument();
 });
@@ -28,7 +28,10 @@ it('zeigt einen Server Error am Feld', async () => {
 
 - Nimm zuerst `getByRole`, dann `getByLabelText`, erst zuletzt `getByTestId`.
 - Warte auf asynchrone Änderungen mit `findBy…`, nicht mit festen Timeouts.
-- Starte MSW mit `server.listen({ onUnhandledFrame: 'error' })`, damit kein Request unbemerkt durchrutscht. In MSW 3 heißt die Option so, `http` und `HttpResponse` kommen aus `msw/http`.
+- Setz Mocks nach jedem Test mit `vi.restoreAllMocks()` zurück, zum Beispiel in `test-setup.ts`.
+- Prüf auch, dass ein Request **nicht** passiert, etwa bei einem Validation Error: `expect(fetchSpy).not.toHaveBeenCalled()`.
+
+Wenn viele Tests dieselbe API brauchen oder du auch im Browser gegen eine Fake-API entwickeln willst, lohnt sich [MSW](https://mswjs.io). Für eine Form reicht der `fetch`-Spy.
 
 ## Übung
 
