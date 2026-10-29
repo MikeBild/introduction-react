@@ -5,9 +5,9 @@ import { loadProductPage, serializeProductPageData } from './productPage';
 
 it('rendert Produkt, Preis und Bewertungen auf dem Server', async () => {
   const html = renderToString(<App data={await loadProductPage()} />);
-  expect(html).toContain('<h1>Handmühle</h1>');
-  expect(html).toContain('49,00');
-  expect(html).toContain('Mahlt sehr gleichmäßig.');
+  expect(html).toContain('<h1>Drehmomentschlüssel</h1>');
+  expect(html).toContain('89,90');
+  expect(html).toContain('Löst sauber und hörbar aus.');
   expect(html).toContain('Im Warenkorb: <!-- -->0');
 });
 

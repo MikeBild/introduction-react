@@ -1,6 +1,6 @@
 import { Badge } from '../../src/components/Badge';
 import { Button } from '../../src/components/Button';
-import type { Customer } from '../../src/data/customers';
+import { countOrders, type Customer } from '../../src/data/customers';
 import { Card } from './Card';
 
 type CustomerOverviewProps = {
@@ -19,10 +19,8 @@ export const CustomerOverview = ({
         key={customer.id}
         header={
           <h3>
-            {customer.avatarUrl && (
-              <img className="avatar" src={customer.avatarUrl} alt="" />
-            )}{' '}
-            {customer.name} {customer.isPremium && <Badge>Premium</Badge>}
+            {customer.name}{' '}
+            <Badge>{countOrders(customer.id)} Bestellungen</Badge>
           </h3>
         }
         actions={
@@ -32,7 +30,7 @@ export const CustomerOverview = ({
           </>
         }
       >
-        <p>{customer.company}</p>
+        <p>{customer.email}</p>
       </Card>
     ))}
   </section>

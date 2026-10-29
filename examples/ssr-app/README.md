@@ -1,8 +1,8 @@
 # SSR App
 
-Eine Produktseite mit Server-Side Rendering: Der Server rendert per `renderToPipeableStream` fertiges HTML und streamt es an den Browser. Die Seite sieht sofort vollständig aus – aber der Button „In den Warenkorb“ reagiert nicht.
+Die Produktseite des Werkstatt-Shops mit Server-Side Rendering: Der Server rendert per `renderToPipeableStream` fertiges HTML und streamt es an den Browser. Die Seite sieht sofort vollständig aus – aber der Button „In den Warenkorb“ reagiert nicht.
 
-Lektion: **Wann lohnen sich Server Components?** (`react-server-components`)
+Zusatzkapitel: **Wann lohnen sich Server Components?** (`react-server-components`)
 
 ```bash
 npm install
@@ -21,7 +21,7 @@ Node 26 führt `server.ts` direkt aus (Type Stripping), du brauchst dafür keine
 | `server.ts`               | Server    | Express-5-Server, lädt Daten, streamt HTML in `index.html` |
 | `src/entry-server.tsx`    | Server    | `render()` mit `renderToPipeableStream`                    |
 | `src/productPage.ts`      | Server    | `loadProductPage()`, Typen und Type Guard der Daten        |
-| `src/App.tsx`             | beide     | Produktseite mit Beschreibung, Preis und Bewertungen       |
+| `src/App.tsx`             | beide     | Produktseite mit Beschreibung, Preis, Bestand, Bewertungen |
 | `src/AddToCartButton.tsx` | beide     | der einzige interaktive Teil (`useState`)                  |
 | `src/entry-client.tsx`    | Browser   | Client Entry, von `index.html` geladen                     |
 

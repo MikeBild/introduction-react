@@ -1,4 +1,9 @@
-import { customers, formatPrice, type Customer } from '../src/data';
+import {
+  customers,
+  formatCents,
+  revenueCents,
+  type Customer,
+} from '../src/data';
 import { DataTable, type Column } from './DataTable';
 
 const customerColumns: readonly Column<Customer>[] = [
@@ -7,7 +12,7 @@ const customerColumns: readonly Column<Customer>[] = [
   {
     id: 'revenue',
     header: 'Umsatz',
-    render: (customer) => formatPrice(customer.revenueInCents),
+    render: (customer) => formatCents(revenueCents(customer.id)),
   },
 ];
 

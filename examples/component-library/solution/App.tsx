@@ -4,7 +4,7 @@ import { CustomerOverview } from './react-composition/CustomerOverview';
 
 export const App = () => (
   <main>
-    <h1>Component Library</h1>
+    <h1>Werkstatt-Shop · Component Library</h1>
     <CustomerOverview
       customers={customers}
       onEdit={(customer) => alert(`${customer.name} bearbeiten`)}

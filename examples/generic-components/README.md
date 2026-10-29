@@ -1,6 +1,6 @@
 # Generic Components
 
-Eine Kundenliste als Tabelle, fest verdrahtet auf den Typ `Customer`. Für Produkte bräuchtest du eine Kopie. Du baust stattdessen eine generische `DataTable<T>`, die den Typ des Aufrufers bewahrt.
+Die Kundenliste des Werkstatt-Shops als Tabelle, fest verdrahtet auf den Typ `Customer`. Für Produkte bräuchtest du eine Kopie. Du baust stattdessen eine generische `DataTable<T>`, die den Typ des Aufrufers bewahrt.
 
 Lektion: **Generics bewahren den Typ des Aufrufers** (`react-generic-components`)
 

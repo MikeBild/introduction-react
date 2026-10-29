@@ -17,7 +17,8 @@ export const Secondary: Story = { args: { variant: 'secondary' } };
 export const NextToOtherAtoms: Story = {
   render: (args) => (
     <p>
-      <Button {...args} /> <Badge>Neu</Badge> <Price amountInCents={4900} />
+      <Button {...args} /> <Badge>Ausverkauft</Badge>{' '}
+      <Price amountInCents={4900} />
     </p>
   ),
 };

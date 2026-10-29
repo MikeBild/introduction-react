@@ -1,11 +1,29 @@
-export type Product = { id: string; name: string; priceInCents: number };
+import { productId, type ProductId } from '../../shared/ids';
+
+export type Product = {
+  id: ProductId;
+  name: string;
+  priceCents: number;
+  stock: number;
+};
 
 const products: readonly Product[] = [
-  { id: 'p1', name: 'Coffee beans', priceInCents: 1290 },
-  { id: 'p2', name: 'Grinder', priceInCents: 4900 },
+  {
+    id: productId('p1'),
+    name: 'Drehmomentschlüssel',
+    priceCents: 8990,
+    stock: 4,
+  },
+  { id: productId('p3'), name: 'Werkstattwagen', priceCents: 24900, stock: 2 },
+  {
+    id: productId('p4'),
+    name: 'Schraubendreher-Set',
+    priceCents: 1990,
+    stock: 12,
+  },
 ];
 
 export const listProducts = () => products;
 
-export const findProductById = (productId: string) =>
-  products.find((product) => product.id === productId);
+export const findProductById = (id: ProductId) =>
+  products.find((product) => product.id === id);

@@ -2,25 +2,23 @@ import { useState } from 'react';
 import { CustomerCard } from './components/CustomerCard';
 import { ProductTile } from './components/ProductTile';
 import { SearchField } from './components/SearchField';
-import { customers } from './data/customers';
+import { countOrders, customers } from './data/customers';
 import { searchProducts } from './data/products';
 
 export const App = () => {
   const [searchText, setSearchText] = useState('');
   return (
     <main>
-      <h1>Component Library</h1>
+      <h1>Werkstatt-Shop · Component Library</h1>
 
       <h2>Kundenübersicht</h2>
       {customers.map((customer) => (
         <CustomerCard
           key={customer.id}
           title={customer.name}
-          subtitle={customer.company}
-          showAvatar
-          avatarUrl={customer.avatarUrl}
-          showBadge={customer.isPremium}
-          badgeText="Premium"
+          subtitle={customer.email}
+          showBadge={countOrders(customer.id) > 0}
+          badgeText={`${countOrders(customer.id)} Bestellungen`}
           showActions
           onEdit={() => alert(`${customer.name} bearbeiten`)}
         />

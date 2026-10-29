@@ -9,10 +9,10 @@ it('zeigt die Kundenliste als Tabelle', () => {
   expect(
     screen.getAllByRole('columnheader').map((header) => header.textContent)
   ).toEqual(['Name', 'E-Mail', 'Umsatz']);
-  expect(screen.getAllByRole('row')).toHaveLength(4);
+  expect(screen.getAllByRole('row')).toHaveLength(3);
   expect(
-    within(screen.getByRole('row', { name: /Ada Lovelace/ })).getByText(
-      '1.290,00 €'
+    within(screen.getByRole('row', { name: /Ada Schmidt/ })).getByText(
+      '109,80 €'
     )
   ).toBeInTheDocument();
 });
@@ -21,21 +21,21 @@ it('funktioniert mit jedem Zeilentyp', () => {
   render(
     <DataTable
       rows={products}
-      getRowKey={(product) => product.sku}
+      getRowKey={(product) => product.id}
       columns={[
-        { field: 'title', header: 'Produkt' },
+        { field: 'name', header: 'Produkt' },
         {
           id: 'stock',
           header: 'Lager',
-          render: (product) => (product.isInStock ? 'ja' : 'nein'),
+          render: (product) => (product.stock > 0 ? 'ja' : 'nein'),
         },
       ]}
     />
   );
-  expect(screen.getByRole('row', { name: /Kaffeebohnen/ })).toHaveTextContent(
-    'Kaffeebohnenja'
-  );
-  expect(screen.getByRole('row', { name: /Handmühle/ })).toHaveTextContent(
-    'Handmühlenein'
-  );
+  expect(
+    screen.getByRole('row', { name: /Drehmomentschlüssel/ })
+  ).toHaveTextContent('Drehmomentschlüsselja');
+  expect(
+    screen.getByRole('row', { name: /Steckschlüsselsatz/ })
+  ).toHaveTextContent('Steckschlüsselsatznein');
 });

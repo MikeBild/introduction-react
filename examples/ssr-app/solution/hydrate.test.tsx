@@ -21,7 +21,7 @@ it('übernimmt das Server-HTML ohne Mismatch und macht den Button klickbar', asy
 
   const root = await act(async () => hydrate(container, data));
   await userEvent.click(
-    screen.getByRole('button', { name: 'Handmühle in den Warenkorb' })
+    screen.getByRole('button', { name: 'Drehmomentschlüssel in den Warenkorb' })
   );
 
   expect(screen.getByText('Im Warenkorb: 1')).toBeInTheDocument();

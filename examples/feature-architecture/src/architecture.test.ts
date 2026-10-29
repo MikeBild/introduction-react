@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-// Every source file of src/ as raw text, e.g. './features/cart/useCart.ts'.
+// Jede Quelldatei als Rohtext, z. B. './features/cart/useCart.ts'.
 const sourceFiles = import.meta.glob<string>(
   ['./**/*.{ts,tsx}', '!./**/*.test.{ts,tsx}'],
   { query: '?raw', import: 'default', eager: true }
@@ -8,7 +8,7 @@ const sourceFiles = import.meta.glob<string>(
 
 type ImportEdge = { importer: string; target: string };
 
-// Paths without extension, relative to src/, e.g. 'features/catalog/products'.
+// Pfade ohne Endung, relativ zum Ordner, z. B. 'features/catalog/products'.
 const toModulePath = (filePath: string) =>
   filePath.replace(/^\.\//, '').replace(/\.tsx?$/, '');
 
@@ -25,8 +25,8 @@ const importEdges: readonly ImportEdge[] = Object.entries(sourceFiles).flatMap(
 const featureOf = (modulePath: string) =>
   modulePath.match(/^features\/([^/]+)/)?.[1];
 
-describe('architecture', () => {
-  it('ui and shared never import from features', () => {
+describe('Architektur', () => {
+  it('ui und shared importieren nie aus features', () => {
     expect(
       importEdges.filter(
         ({ importer, target }) =>
@@ -35,8 +35,8 @@ describe('architecture', () => {
     ).toEqual([]);
   });
 
-  // Exercise step 1: remove .skip
-  it.skip('features import other features only via their index.ts', () => {
+  // Übung Schritt 1: .skip entfernen
+  it.skip('Features importieren andere Features nur über deren index.ts', () => {
     expect(
       importEdges.filter(({ importer, target }) => {
         const targetFeature = featureOf(target);
@@ -50,6 +50,6 @@ describe('architecture', () => {
     ).toEqual([]);
   });
 
-  // Exercise step 3
-  it.todo('features never import from the app layer (App.tsx)');
+  // Übung Schritt 3
+  it.todo('Features importieren nie aus der App-Schicht (App.tsx)');
 });
