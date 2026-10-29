@@ -1,6 +1,6 @@
 # Data Fetching
 
-Eine Produktliste, die ihre Daten noch per `useEffect` und `fetch` lädt – mit eigenem Loading-Flag, eigenem Error-Flag und manuellem Nachladen nach dem POST. Du ersetzt das durch TanStack Query und prüfst die Antwort des Servers mit einem zod-Schema.
+Eine Produktliste, die ihre Daten per `useEffect` und `fetch` lädt – mit drei `useState`, ohne Blick auf `response.ok` und ohne Prüfung der Daten. Du ersetzt das durch `fetch`, `use()` und `Suspense` aus React 19 und einen kleinen eigenen Hook. Ohne zusätzliche Library.
 
 Lektion: **Server State ist ein Cache** (`react-data-fetching`).
 
@@ -10,19 +10,21 @@ npm run dev
 npm test
 ```
 
-Die API unter `/api/products` gibt es nicht wirklich. [MSW](https://mswjs.io) beantwortet die Requests: im Browser über den Service Worker aus `msw/vite`, in Vitest über `setupServer` aus `msw/node`. Beide nutzen dieselben Handler aus `src/mocks/handlers.ts`.
+Im Dev-Modus liefert Vite die Daten als statische Datei aus `public/api/products.json`. In den Tests ersetzt `mockFetchResponses(...)` aus `src/test-utils.ts` das echte `fetch`.
 
 ## Übung
 
-1. `@tanstack/react-query` und `zod` sind schon installiert, du musst nichts nachinstallieren.
-2. Leg in `src/productApi.ts` ein `ProductSchema` mit zod an und schreib `fetchProducts` und `createProduct`. Wirf bei `!response.ok` einen Error und parse jede Antwort mit dem Schema. Den Typ `Product` leitest du per `z.infer` ab.
-3. Ersetze in `src/ProductList.tsx` `useEffect`, die drei `useState` und das manuelle Nachladen durch `useQuery` und `useMutation`. Nach dem Speichern rufst du `invalidateQueries` mit demselben Query Key auf.
-4. Zeig „Die Produktdaten sind ungültig.“ bei einem `ZodError` und „Die Produkte konnten nicht geladen werden.“ bei einem Server Error.
-5. Pack `App` in einen `QueryClientProvider` und ergänze den Provider auch in `src/test-utils.tsx` – mit `retry: false`, sonst warten die Error-Tests auf drei Retries.
-6. Entferne `.skip` in `src/ProductList.test.tsx`. Die beiden ersten Tests müssen grün bleiben.
+1. Schreib in `src/fetchJson.ts` eine Funktion `fetchJson<T>(url, isValid)`. Sie gibt ein Ergebnis zurück statt zu werfen: `{ ok: true, data }` oder `{ ok: false, error }` mit `error` als `'http'`, `'invalid'` oder `'network'`.
+2. Prüf die Antwort mit einem selbst geschriebenen Type Guard `isProductList(value: unknown): value is Product[]`. Kein Cast, kein `as Product[]`.
+3. Schreib einen Hook `useFetchJson(url, isValid)`. Er erzeugt das Promise einmal mit `useState(() => fetchJson(...))` und bietet `reload()` an, das ein neues Promise setzt – am besten in `startTransition`.
+4. Ruf den Hook in `App` auf, also **außerhalb** von `Suspense`. Gib das Promise an `ProductList` weiter und lies es dort mit `use()`. Würde `ProductList` das Promise selbst erzeugen, bekäme es bei jedem Versuch ein neues und lüde endlos.
+5. Zeig „Die Produkte konnten nicht geladen werden.“ bei `http` und `network`, „Die Produktdaten sind ungültig.“ bei `invalid` – jeweils mit einem Button „Erneut versuchen“.
+6. Entferne `.skip` in `src/App.test.tsx`. Der erste Test muss grün bleiben.
+
+Für mehrere Seiten, Caching über Routes hinweg und Mutations lohnt sich später eine Library wie TanStack Query. Für eine Liste reicht dieser Hook.
 
 ## Lösung
 
-In `solution/` liegen `productApi.ts`, `ProductList.tsx`, `App.tsx` mit `QueryClientProvider` und die Tests, darunter ein zusätzlicher Test für einen Fehler beim Speichern.
+In `solution/` liegen `fetchJson.ts`, `products.ts` mit dem Type Guard, `useFetchJson.ts`, `ProductList.tsx`, `App.tsx` mit „Neu laden“-Button und die Tests. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
 
-Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+Hinweis: Die Lektion beschreibt diese Übung noch mit TanStack Query und zod. Das Repo nutzt bewusst nur `fetch`, `use()` und `Suspense`.
