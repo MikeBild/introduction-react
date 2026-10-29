@@ -4,7 +4,10 @@ import type { ReportError } from './errorReporting';
 
 export const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => (
   <div role="alert">
-    <p>Etwas ist schiefgelaufen.</p>
+    <p>
+      Dieser Bereich konnte nicht angezeigt werden. Versuch es noch einmal oder
+      lade die Seite neu.
+    </p>
     <button type="button" onClick={resetErrorBoundary}>
       Erneut versuchen
     </button>

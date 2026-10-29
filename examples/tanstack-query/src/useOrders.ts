@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchOrders } from './api';
+import { errorText } from './errorText';
 import type { Order } from './shop';
 import type { LoadState } from './useProducts';
 
@@ -15,7 +16,7 @@ export const useOrders = (version: number): LoadState<Order[]> => {
       .then((data) => setResult({ version, status: 'success', data }))
       .catch((error: unknown) => {
         if (!controller.signal.aborted)
-          setResult({ version, status: 'error', message: String(error) });
+          setResult({ version, status: 'error', message: errorText(error) });
       });
     return () => controller.abort();
   }, [version]);

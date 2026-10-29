@@ -6,6 +6,7 @@ import { formatCents, type Product } from './shop';
 // – HTTP-Fehler wie 500 bleiben unbemerkt.
 // – Die Antwort wird ungeprüft als Product[] benutzt.
 // – Drei Booleans und Arrays statt eines Status.
+// – Fehler erscheinen roh als String(error), ohne nächsten Schritt.
 export const ProductSearch = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<Product[]>([]);

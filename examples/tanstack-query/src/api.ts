@@ -1,3 +1,4 @@
+import { HttpError } from './errorText';
 import type { PlaceOrderInput } from './placeOrderInput';
 import type { Order, Product } from './shop';
 
@@ -19,7 +20,7 @@ const isOrder = (value: unknown): value is Order =>
 
 const readJson = async (response: Response): Promise<unknown> => {
   // fetch wirft nur bei Netzwerkfehlern, nicht bei 404 oder 500.
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  if (!response.ok) throw new HttpError(response.status);
   return response.json();
 };
 
@@ -28,14 +29,14 @@ export const fetchProducts = async (search: string, signal?: AbortSignal) => {
     await fetch(`/api/products?q=${encodeURIComponent(search)}`, { signal })
   );
   if (!Array.isArray(data) || !data.every(isProduct))
-    throw new Error('Unerwartete Antwort');
+    throw new Error('Unerwartete Antwort vom Server');
   return data;
 };
 
 export const fetchOrders = async (signal?: AbortSignal) => {
   const data = await readJson(await fetch('/api/orders', { signal }));
   if (!Array.isArray(data) || !data.every(isOrder))
-    throw new Error('Unerwartete Antwort');
+    throw new Error('Unerwartete Antwort vom Server');
   return data;
 };
 
@@ -47,6 +48,6 @@ export const placeOrder = async (input: PlaceOrderInput) => {
       body: JSON.stringify(input),
     })
   );
-  if (!isOrder(data)) throw new Error('Unerwartete Antwort');
+  if (!isOrder(data)) throw new Error('Unerwartete Antwort vom Server');
   return data;
 };

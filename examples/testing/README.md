@@ -21,7 +21,7 @@ Ersetze die drei `it.todo` in `src/CheckoutForm.test.tsx` durch echte Tests. Gli
 
 1. **Erfolgsfall:** Antworte mit `mockFetchResponse(201, { id: 'o1004' })`. Wähl einen Kunden, klick „Bestellen“ und erwarte „Bestellung o1004 ist eingegangen“. Prüf auch, was im Request-Body steht.
 2. **Validation Error:** Setz eine Menge auf `0`. Prüf mit `toHaveAccessibleDescription`, dass die Meldung am Feld hängt, und stell mit `expect(fetchMock).not.toHaveBeenCalled()` sicher, dass kein Request rausgeht.
-3. **Server Error:** Antworte mit Status 500. Erwarte „HTTP 500“ in der Rolle `alert`.
+3. **Server Error:** Antworte mit Status 500. Erwarte „Die Bestellung ist fehlgeschlagen. Der Server hat gerade ein Problem.“ in der Rolle `alert`.
 
 Regeln dabei:
 

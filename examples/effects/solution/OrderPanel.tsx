@@ -45,7 +45,7 @@ export const OrderPanel = ({
     return () => clearInterval(intervalId);
   }, []);
 
-  // 4: Eine Nutzeraktion gehört in den Event Handler, nicht in einen Effect.
+  // 4: Eine Aktion der Nutzenden gehört in den Event Handler, nicht in einen Effect.
   return (
     <section>
       <h2>Bestellungen von {customer.name}</h2>

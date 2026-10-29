@@ -1,5 +1,6 @@
 import { useActionState } from 'react';
 import type { AddItemToDraft } from './cartApi';
+import { errorText } from './errorText';
 import {
   formatCents,
   orderId,
@@ -40,7 +41,10 @@ export const Cart = ({
     } catch (error) {
       return {
         ...previousState,
-        error: error instanceof Error ? error.message : String(error),
+        error: errorText(
+          error,
+          'Wähl eine kleinere Menge und versuch es noch einmal.'
+        ),
       };
     }
   };

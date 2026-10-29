@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import { checkoutReducer, initialCheckoutState } from './checkoutReducer';
+import { errorText } from './errorText';
 import type { OrderId } from './shop';
 
 export type PlaceOrder = () => Promise<OrderId>;
@@ -15,7 +16,7 @@ export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
     try {
       dispatch({ type: 'succeeded', orderId: await placeOrder() });
     } catch (error) {
-      dispatch({ type: 'failed', message: String(error) });
+      dispatch({ type: 'failed', message: errorText(error) });
     }
   };
 

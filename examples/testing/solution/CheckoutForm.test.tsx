@@ -59,7 +59,9 @@ it('meldet einen Server Error mit Status 500', async () => {
   await user.selectOptions(screen.getByLabelText('Kunde'), 'Ada Schmidt');
   await user.click(screen.getByRole('button', { name: 'Bestellen' }));
 
-  expect(await screen.findByRole('alert')).toHaveTextContent('HTTP 500');
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Die Bestellung ist fehlgeschlagen. Der Server hat gerade ein Problem.'
+  );
   expect(screen.getByRole('button', { name: 'Bestellen' })).toBeEnabled();
 });
 

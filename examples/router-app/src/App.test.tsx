@@ -53,7 +53,9 @@ it.skip('öffnet eine Bestellung per Deep Link', async () => {
 
 it.skip('zeigt für eine unbekannte Bestellung 404', async () => {
   openAt('/orders/o9999');
-  expect(await screen.findByRole('alert')).toHaveTextContent('404 Not Found');
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Das haben wir nicht gefunden.'
+  );
   expect(
     screen.getByRole('link', { name: 'Zur Bestellübersicht' })
   ).toBeInTheDocument();

@@ -1,5 +1,6 @@
 import { Suspense, use } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
+import { errorText } from '../src/errorText';
 import type { OrderCache } from '../src/orderCache';
 import type { OrderId } from '../src/orders';
 import { OrderView } from '../src/OrderSummary';
@@ -17,11 +18,12 @@ const ShipmentStatus = ({ orderId, orderCache }: OrderSectionProps) => {
 };
 
 // error ist unknown: Geworfen werden kann alles, nicht nur Error-Objekte.
+// errorText macht daraus einen lesbaren Satz mit nächstem Schritt.
 const OrderErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
   <div role="alert">
     <p>
-      Die Bestellung konnte nicht geladen werden:{' '}
-      {error instanceof Error ? error.message : 'Unbekannter Fehler'}
+      Die Bestellung konnte nicht geladen werden.{' '}
+      {errorText(error, 'Versuch es mit „Erneut laden“ noch einmal.')}
     </p>
     <button type="button" onClick={resetErrorBoundary}>
       Erneut laden

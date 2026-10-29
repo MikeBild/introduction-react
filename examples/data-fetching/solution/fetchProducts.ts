@@ -1,3 +1,4 @@
+import { HttpError } from '../src/errorText';
 import type { Product } from '../src/shop';
 
 const isProduct = (value: unknown): value is Product =>
@@ -14,9 +15,9 @@ export const fetchProducts = async (search: string, signal?: AbortSignal) => {
     { signal }
   );
   // fetch wirft nur bei Netzwerkfehlern, nicht bei 404 oder 500.
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  if (!response.ok) throw new HttpError(response.status);
   const data: unknown = await response.json();
   if (!Array.isArray(data) || !data.every(isProduct))
-    throw new Error('Unerwartete Antwort');
+    throw new Error('Unerwartete Antwort vom Server');
   return data;
 };

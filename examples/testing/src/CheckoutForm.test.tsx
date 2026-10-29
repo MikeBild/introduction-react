@@ -3,7 +3,7 @@ import { expect, it } from 'vitest';
 import { initialCart } from './cart';
 import { CheckoutForm } from './CheckoutForm';
 
-// Beispiel: Finde Elemente so, wie Nutzer sie finden – über Rolle und Label.
+// Beispiel: Finde Elemente so, wie Nutzende sie finden – über Rolle und Label.
 it('zeigt Kunde, Mengen und den Button', () => {
   render(<CheckoutForm cart={initialCart} />);
   expect(screen.getByLabelText('Kunde')).toBeInTheDocument();

@@ -17,7 +17,7 @@ npm test
 1. Zähl im Network-Tab die Requests: beim Start, beim Tippen von „hammer“ und beim Löschen des Suchtexts. Welche sind doppelt?
 2. Leg in `App` einen `QueryClientProvider` um den Inhalt und erzeug den `QueryClient` einmal mit `useState`. Setz `staleTime` bewusst, der Default ist 0.
 3. Bündel Key und Ladefunktion mit `queryOptions`: `productsQuery(search)` mit dem queryKey `['products', search]` und `ordersQuery` mit `['orders']`. Gib das `signal` aus der `queryFn` an `fetchProducts` weiter.
-4. Ersetze `useProducts` und `useOrders` durch `useQuery`. Die Ladefunktionen in `src/api.ts` bleiben, wie sie sind.
+4. Ersetze `useProducts` und `useOrders` durch `useQuery`. Die Ladefunktionen in `src/api.ts` bleiben, wie sie sind. Fehler zeigst du mit `errorText(query.error)` aus `src/errorText.ts` an – ein lesbarer Satz mit nächstem Schritt statt `String(error)`.
 5. Schreib einen Hook `usePlaceOrder` mit `useMutation`, der in `onSuccess` die Query `['orders']` invalidiert. Lösch die Version und den Bestell-State aus `App`.
 6. Entferne `.skip` in `src/App.test.tsx`. Für Tests bekommt jeder Test einen frischen `QueryClient` mit `retry: false`.
 

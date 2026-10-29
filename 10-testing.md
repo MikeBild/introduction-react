@@ -1,6 +1,6 @@
 # Testing
 
-Teste, was Nutzer sehen und tun. Ein Test sucht Elemente per Role und Label, klickt und tippt mit `user-event` und prüft, was danach auf dem Bildschirm steht. Interna wie State oder Hooks prüft er nicht.
+Teste, was Nutzende sehen und tun. Ein Test sucht Elemente per Role und Label, klickt und tippt mit `user-event` und prüft, was danach auf dem Bildschirm steht. Interna wie State oder Hooks prüft er nicht.
 
 ## Werkzeuge
 

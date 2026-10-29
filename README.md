@@ -6,7 +6,7 @@
 
 - Components, State, Effects und Forms mit TypeScript strict bauen
 - Daten laden, Fehler abfangen, routen und mit einem Schema validieren
-- Apps zugänglich, getestet und performant in Production bringen
+- Apps zugänglich, getestet und performant in die Produktion bringen
 
 ## Voraussetzungen
 
@@ -47,7 +47,7 @@ Die README im Beispiel beschreibt die Übung Schritt für Schritt. Tests, die du
 
 ### Kern (3 Tage)
 
-Die Reihenfolge folgt der Agenda und geht von einfach nach schwer. Die Stufe zeigt den Schwierigkeitsgrad: 1 Grundlagen, 2 Fortgeschritten, 3 Production-Themen.
+Die Reihenfolge folgt der Agenda und geht von einfach nach schwer. Die Stufe zeigt den Schwierigkeitsgrad: 1 Grundlagen, 2 Fortgeschritten, 3 Themen für die Produktion.
 
 | Tag | Stufe | Lektion | ID | Übung |
 |---|---|---|---|---|

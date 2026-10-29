@@ -72,5 +72,7 @@ it('zeigt HTTP-Fehler der Query', async () => {
   );
   renderApp();
   expect(await screen.findAllByRole('alert')).not.toHaveLength(0);
-  expect(screen.getAllByRole('alert')[0]).toHaveTextContent('HTTP 500');
+  expect(screen.getAllByRole('alert')[0]).toHaveTextContent(
+    'Der Server hat gerade ein Problem.'
+  );
 });

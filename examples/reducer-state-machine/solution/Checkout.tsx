@@ -1,5 +1,6 @@
 import { useReducer } from 'react';
 import type { PlaceOrder } from '../src/Checkout';
+import { errorText } from '../src/errorText';
 import { checkoutReducer, initialCheckoutState } from './checkoutReducer';
 
 export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
@@ -13,7 +14,7 @@ export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
     try {
       dispatch({ type: 'succeeded', orderId: await placeOrder() });
     } catch (error) {
-      dispatch({ type: 'failed', message: String(error) });
+      dispatch({ type: 'failed', message: errorText(error) });
     }
   };
 

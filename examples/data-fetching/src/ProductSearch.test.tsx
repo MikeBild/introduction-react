@@ -40,5 +40,7 @@ it.skip('zeigt HTTP-Fehler als Meldung', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 500, { message: 'Interner Fehler' });
-  expect(screen.getByRole('alert')).toHaveTextContent('HTTP 500');
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    'Der Server hat gerade ein Problem. Versuch es in einem Moment noch einmal.'
+  );
 });

@@ -24,9 +24,20 @@ export const OrderOverview = ({ state }: { state: OrdersState }) => {
     case 'loading':
       return <p role="status">Bestellungen werden geladen …</p>;
     case 'error':
-      return <p role="alert">Bestellungen nicht verfügbar: {state.message}</p>;
+      return (
+        <p role="alert">
+          Bestellungen nicht verfügbar ({state.message}). Lade die Seite neu und
+          versuch es noch einmal.
+        </p>
+      );
     case 'success':
-      if (state.orders.length === 0) return <p>Noch keine Bestellungen</p>;
+      if (state.orders.length === 0)
+        return (
+          <p>
+            Noch keine Bestellungen. Sobald jemand bestellt, erscheint die
+            Bestellung hier.
+          </p>
+        );
       return (
         <ul>
           {state.orders.map((order) => (
