@@ -1,0 +1,147 @@
+/* Layout Component Styles */
+
+/* Login Container - Centered login box */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 2rem;
+}
+
+.login-box {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 450px;
+  width: 100%;
+  transform: translateY(0);
+  transition: all 0.3s ease;
+}
+
+.login-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+/* Global layout structure - Full width */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: white;
+}
+
+/* Header styles - With user info in top right */
+header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 1.5rem 3rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 100%;
+}
+
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Main content area - Full width laptop layout */
+main {
+  min-height: calc(100vh - 160px);
+  padding: 3rem 4rem;
+  width: 100%;
+  margin: 0;
+  background-color: white;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/* Footer styles - Enhanced for laptop */
+footer {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 1rem;
+  border-top: 4px solid #667eea;
+  font-weight: 500;
+}
+
+/* Additional utility classes - Full width layout */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.user-info-section {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* User info paragraph in header */
+.user-info-section p {
+  margin: 0;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Logout button in header */
+.user-info-section button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-info-section button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
+}
+
+.user-info-section button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation for smooth transitions */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Focus styles for accessibility - Enhanced for laptop */
+button:focus {
+  outline: 3px solid #667eea;
+  outline-offset: 3px;
+}
