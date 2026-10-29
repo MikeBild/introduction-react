@@ -122,4 +122,4 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ## Examples
 
-- [Example Redux App](examples/redux-app/README.md)
+- [Example Redux App](../examples/redux-app/README.md)

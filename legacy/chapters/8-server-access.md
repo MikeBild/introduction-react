@@ -28,4 +28,4 @@ fetch('http://localhost:8080/posts')
 
 ## Example
 
-- [Server-Access App](examples/server-access-app/README.md)
+- [Server-Access App](../examples/server-access-app/README.md)
