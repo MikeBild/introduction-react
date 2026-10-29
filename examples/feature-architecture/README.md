@@ -1,6 +1,8 @@
 # Feature Architecture
 
-A small shop structured by features (`features/`, `ui/`, `shared/`) with boundaries checked by a test.
+Ein kleiner Shop, nach Features geordnet (`features/`, `ui/`, `shared/`). Ein Test prüft die Boundaries.
+
+Lektion: **Nach Features ordnen, Boundaries prüfen** (`react-architecture`)
 
 ```bash
 npm install
@@ -8,9 +10,13 @@ npm run dev
 npm test
 ```
 
-## Exercise
+## Übung
 
-1. Remove `.skip` in `src/architecture.test.ts` and read the reported violation.
-2. Fix it: `cart` may use `catalog` only through `features/catalog/index.ts`, its public API.
-3. Turn the `it.todo` into a rule: features never import from the app layer (`App.tsx`).
-4. Record the decision as a short ADR (context, decision, consequences) in `docs/adr-001-feature-folders.md`.
+1. Entferne `.skip` in `src/architecture.test.ts` und lies den gemeldeten Verstoß.
+2. Behebe ihn: `cart` darf `catalog` nur über `features/catalog/index.ts` nutzen, die Public API des Features.
+3. Mach aus dem `it.todo` eine eigene Regel: Features importieren nie aus der App-Schicht (`App.tsx`).
+4. Halte die Entscheidung als kurzes ADR (Kontext, Entscheidung, Konsequenzen) in `docs/adr-001-feature-folders.md` fest.
+
+## Lösung
+
+`solution/` enthält den korrigierten Code mit allen drei Regeln im Architecture Test und das ADR unter `solution/docs/adr-001-feature-folders.md`.
