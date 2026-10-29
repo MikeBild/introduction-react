@@ -16,20 +16,20 @@ Node 26 führt `server.ts` direkt aus (Type Stripping), du brauchst dafür keine
 
 ## Aufbau
 
-| Datei                     | Läuft auf | Aufgabe                                               |
-| ------------------------- | --------- | ----------------------------------------------------- |
-| `server.ts`               | Server    | HTTP-Server, lädt Daten, streamt HTML in `index.html` |
-| `src/entry-server.tsx`    | Server    | `render()` mit `renderToPipeableStream`               |
-| `src/productPage.ts`      | Server    | `loadProductPage()` und das zod-Schema der Daten      |
-| `src/App.tsx`             | beide     | Produktseite mit Beschreibung, Preis und Bewertungen  |
-| `src/AddToCartButton.tsx` | beide     | der einzige interaktive Teil (`useState`)             |
-| `src/entry-client.tsx`    | Browser   | Client Entry, von `index.html` geladen                |
+| Datei                     | Läuft auf | Aufgabe                                                    |
+| ------------------------- | --------- | ---------------------------------------------------------- |
+| `server.ts`               | Server    | Express-5-Server, lädt Daten, streamt HTML in `index.html` |
+| `src/entry-server.tsx`    | Server    | `render()` mit `renderToPipeableStream`                    |
+| `src/productPage.ts`      | Server    | `loadProductPage()`, Typen und Type Guard der Daten        |
+| `src/App.tsx`             | beide     | Produktseite mit Beschreibung, Preis und Bewertungen       |
+| `src/AddToCartButton.tsx` | beide     | der einzige interaktive Teil (`useState`)                  |
+| `src/entry-client.tsx`    | Browser   | Client Entry, von `index.html` geladen                     |
 
 ## Übung
 
 1. Starte `npm run dev` und öffne die Seite. Schalte JavaScript in den DevTools aus und lade neu: Was zeigt der Server schon, was fehlt?
 2. Schalte JavaScript wieder ein und klick den Button. Der Zähler bleibt bei 0. Finde heraus, warum: Das Script läuft (`data-client-loaded` am `<html>`-Element), aber kein React-Code übernimmt das Server-HTML.
-3. Ergänze die Hydration in `src/entry-client.tsx`: Lies die Initial Data aus `<script id="initial-data">`, prüfe sie mit `ProductPageDataSchema` und ruf `hydrateRoot` mit denselben Daten auf wie der Server. Achte auf die Console: Ein Hydration Mismatch erscheint dort als Error.
+3. Ergänze die Hydration in `src/entry-client.tsx`: Lies die Initial Data aus `<script id="initial-data">`, prüfe sie mit `isProductPageData` und ruf `hydrateRoot` mit denselben Daten auf wie der Server. Achte auf die Console: Ein Hydration Mismatch erscheint dort als Error.
 4. Skizziere, welche Teile der Seite heute Server Components wären und wo die `'use client'`-Grenze läge. Wie viel JavaScript bräuchte der Browser dann noch?
 
 ## Befund im Startpunkt

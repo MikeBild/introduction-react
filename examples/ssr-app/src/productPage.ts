@@ -1,23 +1,29 @@
-import { z } from 'zod';
+export type Product = {
+  id: string;
+  name: string;
+  description: string;
+  priceInCents: number;
+};
 
-export const ProductPageDataSchema = z.object({
-  product: z.object({
-    id: z.string(),
-    name: z.string(),
-    description: z.string(),
-    priceInCents: z.number().int(),
-  }),
-  reviews: z.array(
-    z.object({
-      id: z.string(),
-      author: z.string(),
-      rating: z.number().int().min(1).max(5),
-      text: z.string(),
-    })
-  ),
-});
+export type Review = {
+  id: string;
+  author: string;
+  rating: number;
+  text: string;
+};
 
-export type ProductPageData = z.infer<typeof ProductPageDataSchema>;
+export type ProductPageData = { product: Product; reviews: Review[] };
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null;
+
+// Prüft die Initial Data im Client, bevor React sie hydriert.
+export const isProductPageData = (value: unknown): value is ProductPageData =>
+  isRecord(value) &&
+  isRecord(value.product) &&
+  typeof value.product.name === 'string' &&
+  typeof value.product.priceInCents === 'number' &&
+  Array.isArray(value.reviews);
 
 // Läuft nur auf dem Server – hier könnte eine Datenbank oder ein internes API stehen.
 export const loadProductPage = async (): Promise<ProductPageData> => ({
