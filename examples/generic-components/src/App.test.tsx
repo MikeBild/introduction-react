@@ -8,10 +8,10 @@ it('zeigt die Kundenliste als Tabelle', () => {
   expect(
     screen.getAllByRole('columnheader').map((header) => header.textContent)
   ).toEqual(['Name', 'E-Mail', 'Umsatz']);
-  expect(screen.getAllByRole('row')).toHaveLength(4);
+  expect(screen.getAllByRole('row')).toHaveLength(3);
   expect(
-    within(screen.getByRole('row', { name: /Ada Lovelace/ })).getByText(
-      '1.290,00 €'
+    within(screen.getByRole('row', { name: /Ada Schmidt/ })).getByText(
+      '109,80 €'
     )
   ).toBeInTheDocument();
 });

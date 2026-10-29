@@ -1,18 +1,19 @@
-import { formatPrice } from '../../shared/formatPrice';
+import type { ProductId } from '../../shared/ids';
+import { formatCents } from '../../shared/money';
 import { Card } from '../../ui/Card';
 import { findProductById } from '../catalog/products';
 
 export const CartSummary = ({
   productIds,
 }: {
-  productIds: readonly string[];
+  productIds: readonly ProductId[];
 }) => {
-  const totalInCents = productIds
-    .map((productId) => findProductById(productId)?.priceInCents ?? 0)
-    .reduce((sum, priceInCents) => sum + priceInCents, 0);
+  const totalCents = productIds
+    .map((id) => findProductById(id)?.priceCents ?? 0)
+    .reduce((sum, priceCents) => sum + priceCents, 0);
   return (
-    <Card header="Cart">
-      {productIds.length} items, total {formatPrice(totalInCents)}
+    <Card header="Warenkorb">
+      {productIds.length} Positionen, Summe {formatCents(totalCents)}
     </Card>
   );
 };

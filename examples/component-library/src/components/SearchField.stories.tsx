@@ -12,4 +12,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {};
-export const WithValue: Story = { args: { value: 'Kaffee' } };
+export const WithValue: Story = { args: { value: 'Schlüssel' } };

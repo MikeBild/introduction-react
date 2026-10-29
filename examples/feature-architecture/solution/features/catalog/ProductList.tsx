@@ -1,11 +1,12 @@
-import { formatPrice } from '../../shared/formatPrice';
+import type { ProductId } from '../../shared/ids';
+import { formatCents } from '../../shared/money';
 import { Card } from '../../ui/Card';
 import { listProducts } from './products';
 
 export const ProductList = ({
   onAddToCart,
 }: {
-  onAddToCart: (productId: string) => void;
+  onAddToCart: (id: ProductId) => void;
 }) =>
   listProducts().map((product) => (
     <Card
@@ -13,10 +14,10 @@ export const ProductList = ({
       header={product.name}
       actions={
         <button type="button" onClick={() => onAddToCart(product.id)}>
-          Add {product.name} to cart
+          {product.name} in den Warenkorb
         </button>
       }
     >
-      {formatPrice(product.priceInCents)}
+      {formatCents(product.priceCents)} · {product.stock} auf Lager
     </Card>
   ));

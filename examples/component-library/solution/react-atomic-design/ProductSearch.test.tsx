@@ -27,7 +27,7 @@ it('zeigt einen Hinweis bei leerer Trefferliste', () => {
 it('filtert und zählt die Treffer auf der Page', async () => {
   render(<ProductSearchPage />);
   expect(screen.getByText('4 Treffer')).toBeVisible();
-  await userEvent.type(screen.getByLabelText('Produkt suchen'), 'kaffee');
+  await userEvent.type(screen.getByLabelText('Produkt suchen'), 'schlüssel');
   expect(screen.getByText('2 Treffer')).toBeVisible();
   expect(screen.getAllByRole('listitem')).toHaveLength(2);
 });

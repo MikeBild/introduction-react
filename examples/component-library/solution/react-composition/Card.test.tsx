@@ -26,7 +26,7 @@ it('zeigt jeden Kunden als Card und meldet Bearbeiten', async () => {
   const onEdit = vi.fn();
   render(<CustomerOverview customers={customers} onEdit={onEdit} />);
   const cards = screen.getAllByRole('article');
-  expect(cards).toHaveLength(3);
+  expect(cards).toHaveLength(2);
   await userEvent.click(
     within(cards[1]).getByRole('button', { name: 'Bearbeiten' })
   );

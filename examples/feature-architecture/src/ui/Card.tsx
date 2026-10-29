@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-// Design system: no domain data, no API calls.
+// Design System: keine Fachdaten, keine API-Aufrufe.
 type CardProps = {
   header?: ReactNode;
   actions?: ReactNode;

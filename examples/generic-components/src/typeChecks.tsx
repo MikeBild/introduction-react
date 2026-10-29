@@ -8,13 +8,13 @@
 // export const typeChecks = () => [
 //   <DataTable
 //     rows={products}
-//     getRowKey={(product) => product.sku}
+//     getRowKey={(product) => product.id}
 //     columns={[
-//       { field: 'title', header: 'Produkt' },
+//       { field: 'name', header: 'Produkt' },
 //       {
 //         id: 'stock',
 //         header: 'Lager',
-//         render: (product) => (product.isInStock ? 'ja' : 'nein'),
+//         render: (product) => (product.stock > 0 ? 'ja' : 'nein'),
 //       },
 //     ]}
 //   />,

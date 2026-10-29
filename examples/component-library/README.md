@@ -1,6 +1,6 @@
 # Component Library
 
-Eine kleine Component Library mit [Storybook](https://storybook.js.org). Alle Components liegen heute flach in `src/components/`, und die `CustomerCard` sammelt für jede neue Anforderung ein weiteres Flag. Du baust sie auf Slots um und ordnest die Library nach Atomic Design.
+Die Component Library des Werkstatt-Shops mit [Storybook](https://storybook.js.org). Alle Components liegen heute flach in `src/components/`, und die `CustomerCard` sammelt für jede neue Anforderung ein weiteres Flag. Du baust sie auf Slots um und ordnest die Library nach Atomic Design.
 
 Lektionen: **Inhalte hineingeben statt Flags sammeln** (`react-composition`) und **Atomic Design gibt dem Team ein Vokabular** (`react-atomic-design`).
 
@@ -15,7 +15,7 @@ npm test
 
 1. Schau dir die Stories zu `CustomerCard` in Storybook an. Jede Variante braucht eine andere Kombination aus Flags.
 2. Bau eine `Card` mit drei Slots: `header`, `children` und `actions`. Die Card rendert ein `article`, den Header in `<header>` und die Actions in `<footer>`. Fehlen die Actions, fällt der Footer weg.
-3. Bau damit eine Kundenübersicht: Name und Premium-Badge in den Header, die Firma als Children, „Bearbeiten“ und einen `mailto:`-Link als Actions.
+3. Bau damit eine Kundenübersicht: Name und Badge mit der Zahl der Bestellungen in den Header, die E-Mail als Children, „Bearbeiten“ und einen `mailto:`-Link als Actions.
 4. Schreib Stories für die Card, ohne ein einziges Flag. Entferne das erste `.skip` in `src/App.test.tsx`.
 
 ## Übung 2 – Atomic Design (`react-atomic-design`)

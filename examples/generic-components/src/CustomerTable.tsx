@@ -1,4 +1,4 @@
-import { formatPrice, type Customer } from './data';
+import { formatCents, revenueCents, type Customer } from './data';
 
 // Übung: Diese Tabelle kennt nur Customer. Für Produkte bräuchtest du
 // eine Kopie. Bau stattdessen eine generische DataTable<T> in src/DataTable.tsx.
@@ -20,7 +20,7 @@ export const CustomerTable = ({
         <tr key={customer.id}>
           <td>{customer.name}</td>
           <td>{customer.email}</td>
-          <td>{formatPrice(customer.revenueInCents)}</td>
+          <td>{formatCents(revenueCents(customer.id))}</td>
         </tr>
       ))}
     </tbody>

@@ -3,10 +3,10 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-it('adds a product to the cart', async () => {
+it('legt ein Produkt in den Warenkorb', async () => {
   render(<App />);
   await userEvent.click(
-    screen.getByRole('button', { name: 'Add Grinder to cart' })
+    screen.getByRole('button', { name: 'Werkstattwagen in den Warenkorb' })
   );
-  expect(screen.getByText(/1 items, total €49.00/)).toBeInTheDocument();
+  expect(screen.getByText(/1 Positionen, Summe 249,00\s€/)).toBeInTheDocument();
 });

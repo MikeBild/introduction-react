@@ -4,9 +4,9 @@ import type { ReportError } from './errorReporting';
 
 export const ErrorFallback = ({ resetErrorBoundary }: FallbackProps) => (
   <div role="alert">
-    <p>Something went wrong.</p>
+    <p>Etwas ist schiefgelaufen.</p>
     <button type="button" onClick={resetErrorBoundary}>
-      Try again
+      Erneut versuchen
     </button>
   </div>
 );
@@ -16,7 +16,7 @@ type AppErrorBoundaryProps = {
   children: ReactNode;
 };
 
-// Exercise: report render errors via the onError prop of ErrorBoundary.
+// Übung: Melde Render Errors über die onError-Prop von ErrorBoundary.
 export const AppErrorBoundary = ({ children }: AppErrorBoundaryProps) => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>
 );

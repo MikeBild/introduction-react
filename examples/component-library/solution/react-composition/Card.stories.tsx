@@ -6,7 +6,7 @@ import { Card } from './Card';
 const meta = {
   title: 'Composition/Card',
   component: Card,
-  args: { header: <h3>Ada Lovelace</h3> },
+  args: { header: <h3>Ada Schmidt</h3> },
 } satisfies Meta<typeof Card>;
 
 export default meta;
@@ -20,7 +20,7 @@ export const WithActions: Story = {
   args: {
     header: (
       <h3>
-        Ada Lovelace <Badge>Premium</Badge>
+        Ada Schmidt <Badge>2 Bestellungen</Badge>
       </h3>
     ),
     children: <p>Analytical Engines GmbH</p>,

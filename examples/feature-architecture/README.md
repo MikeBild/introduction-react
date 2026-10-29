@@ -1,6 +1,6 @@
 # Feature Architecture
 
-Ein kleiner Shop, nach Features geordnet (`features/`, `ui/`, `shared/`). Ein Test prüft die Boundaries.
+Der Werkstatt-Shop, nach Features geordnet (`features/`, `ui/`, `shared/`). Ein Test prüft die Boundaries.
 
 Lektion: **Nach Features ordnen, Boundaries prüfen** (`react-architecture`)
 

@@ -5,14 +5,14 @@ import { App } from './App';
 
 it('zeigt jeden Kunden als article mit Überschrift', () => {
   render(<App />);
-  expect(screen.getAllByRole('article')).toHaveLength(3);
+  expect(screen.getAllByRole('article')).toHaveLength(2);
   expect(
-    screen.getByRole('heading', { name: /Ada Lovelace/ })
+    screen.getByRole('heading', { name: /Ada Schmidt/ })
   ).toBeInTheDocument();
 });
 
 it('zeigt im Template der Produktsuche die Anzahl der Treffer', async () => {
   render(<App />);
-  await userEvent.type(screen.getByLabelText('Produkt suchen'), 'kaffee');
+  await userEvent.type(screen.getByLabelText('Produkt suchen'), 'schlüssel');
   expect(screen.getByText('2 Treffer')).toBeInTheDocument();
 });

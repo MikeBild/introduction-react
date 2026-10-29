@@ -13,4 +13,4 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {};
-export const IsNew: Story = { args: { product: products[1] } };
+export const SoldOut: Story = { args: { product: products[1] } };
