@@ -26,5 +26,3 @@ Für mehrere Seiten, Caching über Routes hinweg und Mutations lohnt sich späte
 ## Lösung
 
 In `solution/` liegen `fetchJson.ts`, `products.ts` mit dem Type Guard, `useFetchJson.ts`, `ProductList.tsx`, `App.tsx` mit „Neu laden“-Button und die Tests. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
-
-Hinweis: Die Lektion beschreibt diese Übung noch mit TanStack Query und zod. Das Repo nutzt bewusst nur `fetch`, `use()` und `Suspense`.

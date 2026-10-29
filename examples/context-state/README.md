@@ -18,7 +18,7 @@ npm test
 4. Nutze die React-19-Schreibweise `<CartContext value={…}>` statt `<CartContext.Provider>`.
 5. Entferne `.skip` in `src/cart.test.tsx`.
 
-Zum Nachdenken: Der Warenkorb ändert sich selten und wird an mehreren Stellen gebraucht – ein guter Fall für Context. Der Suchtext eines einzelnen Formulars wäre es nicht. Server-Daten gehören in einen Cache wie TanStack Query (siehe `examples/data-fetching`).
+Zum Nachdenken: Der Warenkorb ändert sich selten und wird an mehreren Stellen gebraucht – ein guter Fall für Context. Der Suchtext eines einzelnen Formulars wäre es nicht. Server-Daten lädst du dort, wo sie gebraucht werden (siehe `examples/data-fetching`).
 
 ## Lösung
 

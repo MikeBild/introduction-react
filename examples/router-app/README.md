@@ -22,5 +22,3 @@ npm test
 ## Lösung
 
 `solution/App.tsx` mit den Routes, `solution/pages/` und `solution/resourceId.ts`. `solution/App.test.tsx` testet über einen `MemoryRouter` mit `initialEntries`. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
-
-Hinweis für Trainer: Die Lektion beschreibt bisher TanStack Router. Dieses Beispiel nutzt bewusst React Router, um mit weniger Paketen auszukommen.
