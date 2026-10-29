@@ -1,9 +1,5 @@
 import type { Product } from './products';
-
-const euroFormat = new Intl.NumberFormat('de-DE', {
-  style: 'currency',
-  currency: 'EUR',
-});
+import { formatCents } from './shop';
 
 export const ProductTable = ({
   products,
@@ -14,16 +10,16 @@ export const ProductTable = ({
     <thead>
       <tr>
         <th>Name</th>
-        <th>Kategorie</th>
         <th>Preis</th>
+        <th>Bestand</th>
       </tr>
     </thead>
     <tbody>
       {products.map((product) => (
         <tr key={product.id}>
           <td>{product.name}</td>
-          <td>{product.category}</td>
-          <td>{euroFormat.format(product.priceInCents / 100)}</td>
+          <td>{formatCents(product.priceCents)}</td>
+          <td>{product.stock}</td>
         </tr>
       ))}
     </tbody>

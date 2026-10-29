@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { OrderOverview } from './OrderOverview';
-import { sampleOrders, type OrdersState } from './orders';
+import { type OrdersState } from './orders';
+import { customerId, orderId, orders, productId } from './shop';
 
 const demoStates: Record<string, OrdersState> = {
   Loading: { status: 'loading' },
   Error: { status: 'error', message: 'Der Server antwortet nicht.' },
   Empty: { status: 'success', orders: [] },
-  Daten: { status: 'success', orders: sampleOrders },
+  Daten: { status: 'success', orders },
 };
 
 export const App = () => {
@@ -18,10 +19,13 @@ export const App = () => {
             status: 'success',
             orders: [
               {
-                id: crypto.randomUUID(),
-                number: 1000 + currentState.orders.length + 1,
-                customerName: 'Neue Kundin',
-                totalInCents: 990,
+                id: orderId(`o${1001 + currentState.orders.length}`),
+                customerId: customerId('c2'),
+                items: [
+                  { productId: productId('p4'), quantity: 1, priceCents: 1990 },
+                ],
+                status: 'draft',
+                createdAt: new Date().toISOString(),
               },
               ...currentState.orders,
             ],

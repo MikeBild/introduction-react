@@ -4,12 +4,16 @@ export const App = () => (
   <main>
     <h1>Warenkorb</h1>
     <CartItemCard
-      name="Kaffeebohnen"
-      priceInCents={1290}
+      name="Drehmomentschlüssel"
+      priceCents={8990}
       quantity={2}
       variant="highlighted"
-      note="Frisch geröstet"
+      note="Mit Kalibrierschein"
     />
-    <CartItemCard name="Kaffeefilter" priceInCents={390} variant="compact" />
+    <CartItemCard
+      name="Schraubendreher-Set"
+      priceCents={1990}
+      variant="compact"
+    />
   </main>
 );

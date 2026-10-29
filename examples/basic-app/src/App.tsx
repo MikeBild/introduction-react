@@ -1,10 +1,10 @@
-import { products } from './products';
+import { products } from './shop';
 
 // Übung react-components: Diese eine Component macht alles.
 // Zerlege sie in drei Function Components mit typisierten Props.
 export const App = () => (
   <main>
-    <h1>Produkte</h1>
+    <h1>Werkstatt-Shop</h1>
     <ul>
       {products.map((product) => (
         <li key={product.id}>
@@ -13,9 +13,9 @@ export const App = () => (
             {new Intl.NumberFormat('de-DE', {
               style: 'currency',
               currency: 'EUR',
-            }).format(product.priceInCents / 100)}
+            }).format(product.priceCents / 100)}
           </span>
-          {!product.isInStock && <strong> ausverkauft</strong>}
+          {product.stock === 0 && <strong> Ausverkauft</strong>}
         </li>
       ))}
     </ul>

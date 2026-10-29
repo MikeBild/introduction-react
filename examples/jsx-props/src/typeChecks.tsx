@@ -4,16 +4,16 @@ import { CartItemCard } from './CartItemCard';
 // Danach muss `npm run typecheck` ohne Fehler laufen – erst dann stimmt der Vertrag.
 // Diese Funktion wird nie ausgeführt, nur der Type Checker liest sie.
 export const typeChecks = () => [
-  // <CartItemCard name="Tasse" priceInCents={900} />,
-  // <CartItemCard name="Tasse" priceInCents={900} variant="compact" />,
-  // <CartItemCard name="Tasse" priceInCents={900} quantity={3} note="Geschenk" />,
+  // <CartItemCard name="Hammer" priceCents={1290} />,
+  // <CartItemCard name="Hammer" priceCents={1290} variant="compact" />,
+  // <CartItemCard name="Hammer" priceCents={1290} quantity={3} note="Für die Werkbank" />,
   // // @ts-expect-error – "compakt" ist keine Variante
-  // <CartItemCard name="Tasse" priceInCents={900} variant="compakt" />,
+  // <CartItemCard name="Hammer" priceCents={1290} variant="compakt" />,
   // // @ts-expect-error – der Preis fehlt
-  // <CartItemCard name="Tasse" />,
+  // <CartItemCard name="Hammer" />,
   <CartItemCard
-    name="Tasse"
-    priceInCents={900}
+    name="Hammer"
+    priceCents={1290}
     quantity={1}
     variant="default"
     note=""

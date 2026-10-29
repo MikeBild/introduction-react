@@ -1,6 +1,6 @@
 # Context State
 
-Ein Shop mit Warenkorb im Context. Der Context hat ein Default-Objekt mit leeren Funktionen. Vergisst jemand den Provider, passiert beim Klick einfach nichts – ohne Fehlermeldung.
+Der Werkstatt-Shop hält seinen Warenkorb (`OrderItem[]`) im Context. Der Context hat ein Default-Objekt mit leeren Funktionen. Vergisst jemand den Provider, passiert beim Klick einfach nichts – ohne Fehlermeldung.
 
 Lektion: **Context ist kein Store für alles** (`react-context-state`)
 

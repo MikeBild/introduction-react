@@ -2,12 +2,12 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { OrderOverview } from './OrderOverview';
-import { sampleOrders, type Order } from './orders';
+import { orderId, orders as sampleOrders, type Order } from './shop';
 
 it('zeigt alle Bestellungen', () => {
   render(<OrderOverview state={{ status: 'success', orders: sampleOrders }} />);
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
-  expect(screen.getByText(/Grace Hopper, 12,90 €/)).toBeInTheDocument();
+  expect(screen.getByText(/Tom Weber, Versandt, 288,80 €/)).toBeInTheDocument();
 });
 
 // Übung: .skip Schritt für Schritt entfernen
@@ -33,13 +33,12 @@ it.skip('behält den Haken bei der richtigen Bestellung, wenn oben eine neue daz
   const { rerender } = render(
     <OrderOverview state={{ status: 'success', orders: sampleOrders }} />
   );
-  await userEvent.click(screen.getByLabelText('Bestellung 1001 geprüft'));
+  await userEvent.click(screen.getByLabelText('Bestellung o1001 geprüft'));
 
   const newOrder: Order = {
-    id: 'o-1004',
-    number: 1004,
-    customerName: 'Margaret Hamilton',
-    totalInCents: 990,
+    ...sampleOrders[0],
+    id: orderId('o1004'),
+    status: 'draft',
   };
   rerender(
     <OrderOverview
@@ -47,6 +46,6 @@ it.skip('behält den Haken bei der richtigen Bestellung, wenn oben eine neue daz
     />
   );
 
-  expect(screen.getByLabelText('Bestellung 1001 geprüft')).toBeChecked();
-  expect(screen.getByLabelText('Bestellung 1004 geprüft')).not.toBeChecked();
+  expect(screen.getByLabelText('Bestellung o1001 geprüft')).toBeChecked();
+  expect(screen.getByLabelText('Bestellung o1004 geprüft')).not.toBeChecked();
 });

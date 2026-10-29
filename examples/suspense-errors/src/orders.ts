@@ -1,37 +1,26 @@
-export type Order = {
-  id: string;
-  customer: string;
-  totalInCents: number;
-  items: readonly { name: string; quantity: number }[];
-};
+import { orders, type Order, type OrderId } from './shop';
 
-export type Shipment = { orderId: string; status: string };
+export type { Order, OrderId } from './shop';
+
+export type Shipment = { orderId: OrderId; status: string };
 
 export type OrderApi = {
-  fetchOrder: (orderId: string) => Promise<Order>;
-  fetchShipment: (orderId: string) => Promise<Shipment>;
+  fetchOrder: (orderId: OrderId) => Promise<Order>;
+  fetchShipment: (orderId: OrderId) => Promise<Shipment>;
 };
 
 const wait = (milliseconds: number) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
 
-// Fake-Backend: o-2 kennt der Server nicht, die Sendungsverfolgung ist langsam
-// und fällt beim ersten Aufruf aus.
+// Fake-Backend: o9999 kennt der Server nicht, die Sendungsverfolgung ist
+// langsam und fällt beim ersten Aufruf aus.
 let shipmentCalls = 0;
 export const fakeOrderApi: OrderApi = {
   fetchOrder: async (orderId) => {
     await wait(500);
-    if (orderId !== 'o-1')
-      throw new Error(`Bestellung ${orderId} nicht gefunden`);
-    return {
-      id: 'o-1',
-      customer: 'Ada Lovelace',
-      totalInCents: 6190,
-      items: [
-        { name: 'Kaffeebohnen', quantity: 1 },
-        { name: 'Handmühle', quantity: 1 },
-      ],
-    };
+    const order = orders.find((candidate) => candidate.id === orderId);
+    if (!order) throw new Error(`Bestellung ${orderId} nicht gefunden`);
+    return order;
   },
   fetchShipment: async (orderId) => {
     await wait(1500);

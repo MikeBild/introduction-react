@@ -1,10 +1,10 @@
-import { formatPrice } from '../src/formatPrice';
+import { formatCents } from '../src/shop';
 
 export type CartItemVariant = 'default' | 'compact' | 'highlighted';
 
 export type CartItemCardProps = {
   name: string;
-  priceInCents: number;
+  priceCents: number;
   quantity?: number;
   variant?: CartItemVariant;
   note?: string;
@@ -12,7 +12,7 @@ export type CartItemCardProps = {
 
 export const CartItemCard = ({
   name,
-  priceInCents,
+  priceCents,
   quantity = 1,
   variant = 'default',
   note,
@@ -23,8 +23,8 @@ export const CartItemCard = ({
       {name}
     </h2>
     <p>
-      {quantity} × {formatPrice(priceInCents)} ={' '}
-      {formatPrice(quantity * priceInCents)}
+      {quantity} × {formatCents(priceCents)} ={' '}
+      {formatCents(quantity * priceCents)}
     </p>
     {variant !== 'compact' && note && <p>{note}</p>}
   </article>

@@ -1,12 +1,9 @@
 import { vi } from 'vitest';
-import type { Order, OrderApi } from './orders';
+import type { OrderApi } from './orders';
+import { orders } from './shop';
 
-export const testOrder: Order = {
-  id: 'o-1',
-  customer: 'Ada Lovelace',
-  totalInCents: 6190,
-  items: [{ name: 'Kaffeebohnen', quantity: 2 }],
-};
+// Bestellung o1001: 1 × Drehmomentschlüssel, Status „placed“.
+export const testOrder = orders[0];
 
 // Eine steuerbare API für Tests: Standardmäßig klappt alles.
 export const createTestApi = () => ({

@@ -5,40 +5,42 @@ import { CartItemCard } from './CartItemCard';
 it('zeigt Menge, Einzelpreis und Summe', () => {
   render(
     <CartItemCard
-      name="Kaffeebohnen"
-      priceInCents={1290}
+      name="Drehmomentschlüssel"
+      priceCents={8990}
       quantity={2}
-      note="Frisch geröstet"
+      note="Mit Kalibrierschein"
     />
   );
-  expect(screen.getByText('2 × 12,90 € = 25,80 €')).toBeInTheDocument();
-  expect(screen.getByText('Frisch geröstet')).toBeInTheDocument();
+  expect(screen.getByText('2 × 89,90 € = 179,80 €')).toBeInTheDocument();
+  expect(screen.getByText('Mit Kalibrierschein')).toBeInTheDocument();
 });
 
 it('nimmt ohne Angabe die Menge 1', () => {
-  render(<CartItemCard name="Tasse" priceInCents={900} />);
-  expect(screen.getByText('1 × 9,00 € = 9,00 €')).toBeInTheDocument();
+  render(<CartItemCard name="Hammer" priceCents={1290} />);
+  expect(screen.getByText('1 × 12,90 € = 12,90 €')).toBeInTheDocument();
 });
 
 it('blendet die Notiz in der kompakten Variante aus', () => {
   render(
     <CartItemCard
-      name="Kaffeebohnen"
-      priceInCents={1290}
+      name="Drehmomentschlüssel"
+      priceCents={8990}
       variant="compact"
-      note="Frisch geröstet"
+      note="Mit Kalibrierschein"
     />
   );
-  expect(screen.queryByText('Frisch geröstet')).not.toBeInTheDocument();
+  expect(screen.queryByText('Mit Kalibrierschein')).not.toBeInTheDocument();
 });
 
 it('markiert die hervorgehobene Variante', () => {
   render(
     <CartItemCard
-      name="Kaffeebohnen"
-      priceInCents={1290}
+      name="Drehmomentschlüssel"
+      priceCents={8990}
       variant="highlighted"
     />
   );
-  expect(screen.getByRole('heading')).toHaveTextContent('★ Kaffeebohnen');
+  expect(screen.getByRole('heading')).toHaveTextContent(
+    '★ Drehmomentschlüssel'
+  );
 });

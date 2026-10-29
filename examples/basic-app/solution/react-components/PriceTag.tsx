@@ -1,12 +1,7 @@
-type PriceTagProps = { amountInCents: number; currency?: 'EUR' | 'USD' };
+import { formatCents } from '../../src/shop';
 
-export const PriceTag = ({
-  amountInCents,
-  currency = 'EUR',
-}: PriceTagProps) => (
-  <span>
-    {new Intl.NumberFormat('de-DE', { style: 'currency', currency }).format(
-      amountInCents / 100
-    )}
-  </span>
+type PriceTagProps = { cents: number };
+
+export const PriceTag = ({ cents }: PriceTagProps) => (
+  <span>{formatCents(cents)}</span>
 );

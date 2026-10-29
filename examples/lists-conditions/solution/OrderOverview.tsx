@@ -1,13 +1,20 @@
-import { formatPrice, type Order, type OrdersState } from '../src/orders';
+import {
+  customerName,
+  statusLabels,
+  type Order,
+  type OrdersState,
+} from '../src/orders';
+import { formatCents, orderTotalCents } from '../src/shop';
 
-const OrderItem = ({ order }: { order: Order }) => (
+const OrderRow = ({ order }: { order: Order }) => (
   <li>
     <label>
-      <input type="checkbox" /> Bestellung {order.number} geprüft
+      <input type="checkbox" /> Bestellung {order.id} geprüft
     </label>
     <span>
       {' '}
-      – {order.customerName}, {formatPrice(order.totalInCents)}
+      – {customerName(order.customerId)}, {statusLabels[order.status]},{' '}
+      {formatCents(orderTotalCents(order.items))}
     </span>
   </li>
 );
@@ -24,7 +31,7 @@ export const OrderOverview = ({ state }: { state: OrdersState }) => {
         <ul>
           {state.orders.map((order) => (
             // Die ID gehört zur Bestellung – die Position nicht.
-            <OrderItem key={order.id} order={order} />
+            <OrderRow key={order.id} order={order} />
           ))}
         </ul>
       );
