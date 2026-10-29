@@ -3,4 +3,3 @@ dist
 coverage
 storybook-static
 *.local
-dist-solution

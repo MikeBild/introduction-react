@@ -1,17 +1,28 @@
-import { NavLink, Outlet } from 'react-router';
+import type { ReactNode } from 'react';
+import type { Page } from '../App';
 
-export const Layout = () => (
+type LayoutProps = {
+  onNavigate: (page: Page) => void;
+  children: ReactNode;
+};
+
+// Navigation per Button: Die Adresszeile ändert sich nie.
+export const Layout = ({ onNavigate, children }: LayoutProps) => (
   <>
     <header>
       <nav aria-label="Hauptnavigation">
-        <NavLink to="/">Start</NavLink> |{' '}
-        <NavLink to="/about">Über uns</NavLink> |{' '}
-        <NavLink to="/resources">Ressourcen</NavLink>
+        <button type="button" onClick={() => onNavigate({ name: 'home' })}>
+          Start
+        </button>{' '}
+        <button type="button" onClick={() => onNavigate({ name: 'about' })}>
+          Über uns
+        </button>{' '}
+        <button type="button" onClick={() => onNavigate({ name: 'resources' })}>
+          Ressourcen
+        </button>
       </nav>
     </header>
-    <main>
-      <Outlet />
-    </main>
+    <main>{children}</main>
     <footer>Router App</footer>
   </>
 );
