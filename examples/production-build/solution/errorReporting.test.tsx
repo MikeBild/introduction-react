@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { ErrorBoundary } from './ErrorBoundary';
+import { AppErrorBoundary } from './AppErrorBoundary';
 import { createErrorReporter } from './errorReporting';
 
 it('reports the error with the release version', () => {
@@ -18,11 +18,11 @@ const BrokenWidget = () => {
 it('shows the fallback for render errors', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
   render(
-    <ErrorBoundary fallback={<p>Something went wrong</p>}>
+    <AppErrorBoundary reportError={() => {}}>
       <BrokenWidget />
-    </ErrorBoundary>
+    </AppErrorBoundary>
   );
-  expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+  expect(screen.getByRole('alert')).toHaveTextContent('Something went wrong.');
 });
 
 it('reports the current route', () => {
@@ -33,13 +33,16 @@ it('reports the current route', () => {
   );
 });
 
-it('reports render errors via onError', () => {
+it('reports render errors with source render', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
-  const onError = vi.fn();
+  const reportError = vi.fn();
   render(
-    <ErrorBoundary fallback={<p>Something went wrong</p>} onError={onError}>
+    <AppErrorBoundary reportError={reportError}>
       <BrokenWidget />
-    </ErrorBoundary>
+    </AppErrorBoundary>
   );
-  expect(onError).toHaveBeenCalledWith(new Error('Render failed'));
+  expect(reportError).toHaveBeenCalledWith(
+    new Error('Render failed'),
+    'render'
+  );
 });

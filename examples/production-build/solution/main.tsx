@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { App } from '../src/App';
 import { env } from '../src/env';
-import { ErrorBoundary } from './ErrorBoundary';
+import { AppErrorBoundary } from './AppErrorBoundary';
 import {
   createErrorReporter,
   installGlobalErrorHandlers,
@@ -13,11 +13,8 @@ installGlobalErrorHandlers(reportError);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ErrorBoundary
-      fallback={<p>Something went wrong. Please reload.</p>}
-      onError={(error) => reportError(error, 'render')}
-    >
+    <AppErrorBoundary reportError={reportError}>
       <App />
-    </ErrorBoundary>
+    </AppErrorBoundary>
   </StrictMode>
 );
