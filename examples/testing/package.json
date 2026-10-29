@@ -1,7 +1,7 @@
 {
   "name": "testing",
   "version": "0.0.0",
-  "description": "Eine Signup Form, getestet mit Vitest, Testing Library und MSW.",
+  "description": "Eine Signup Form mit zod-Validation, getestet mit Vitest, Testing Library und einem fetch-Spy.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,
@@ -37,7 +37,6 @@
     "@vitejs/plugin-react": "^6.1.2",
     "babel-plugin-react-compiler": "^1.0.0",
     "jsdom": "^30.1.3",
-    "msw": "^3.0.3",
     "prettier": "^3.9.10",
     "typescript": "^7.0.2",
     "vite": "^8.3.5",

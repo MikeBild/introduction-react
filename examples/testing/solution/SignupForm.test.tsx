@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { http, HttpResponse } from 'msw/http';
 import { expect, it } from 'vitest';
-import { server } from '../src/mocks/server';
 import { SignupForm } from '../src/SignupForm';
+import { mockFetchResponse } from '../src/test-utils';
 
 const fillAndSubmit = async (email: string, password: string) => {
   const user = userEvent.setup();
@@ -13,37 +12,31 @@ const fillAndSubmit = async (email: string, password: string) => {
 };
 
 it('begrüßt dich nach erfolgreicher Registrierung', async () => {
+  const fetchSpy = mockFetchResponse(201, { id: 'u1' });
   render(<SignupForm />);
   await fillAndSubmit('ada@example.com', 'geheim123');
   expect(await screen.findByRole('status')).toHaveTextContent(
     'Willkommen an Bord!'
   );
+  expect(fetchSpy).toHaveBeenCalledWith(
+    '/api/signup',
+    expect.objectContaining({ method: 'POST' })
+  );
 });
 
 it('zeigt den Validation Error am Feld und sendet keinen Request', async () => {
-  // Jeder Request würde hier auffallen – der Handler zählt mit.
-  let requestCount = 0;
-  server.use(
-    http.post('/api/signup', () => {
-      requestCount += 1;
-      return HttpResponse.json({ id: 'u1' }, { status: 201 });
-    })
-  );
+  const fetchSpy = mockFetchResponse(201, { id: 'u1' });
   render(<SignupForm />);
   await fillAndSubmit('keine-mail', 'kurz');
   expect(screen.getByLabelText('E-Mail')).toHaveAccessibleDescription(
     'Bitte gib eine gültige E-Mail-Adresse ein'
   );
   expect(screen.getByLabelText('Passwort')).toBeInvalid();
-  expect(requestCount).toBe(0);
+  expect(fetchSpy).not.toHaveBeenCalled();
 });
 
 it('zeigt einen Server Error, wenn die E-Mail schon registriert ist', async () => {
-  server.use(
-    http.post('/api/signup', () =>
-      HttpResponse.json({ message: 'conflict' }, { status: 409 })
-    )
-  );
+  mockFetchResponse(409, { message: 'conflict' });
   render(<SignupForm />);
   await fillAndSubmit('ada@example.com', 'geheim123');
   expect(await screen.findByRole('alert')).toHaveTextContent(
@@ -53,9 +46,7 @@ it('zeigt einen Server Error, wenn die E-Mail schon registriert ist', async () =
 });
 
 it('zeigt eine allgemeine Meldung bei einem 500er', async () => {
-  server.use(
-    http.post('/api/signup', () => new HttpResponse(null, { status: 500 }))
-  );
+  mockFetchResponse(500, { message: 'boom' });
   render(<SignupForm />);
   await fillAndSubmit('ada@example.com', 'geheim123');
   expect(await screen.findByRole('alert')).toHaveTextContent(
