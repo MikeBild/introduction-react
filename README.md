@@ -1,6 +1,6 @@
 # Übungen: React
 
-Übungs-Repo zum Workshop „React mit TypeScript bis Production“. Zu jeder Lektion – 23 im Kern, dazu die Zusatzkapitel – gibt es ein lauffähiges Beispiel mit Startpunkt (`src/`), Tests und Lösung (`solution/`). Alle Übungen spielen im Werkstatt-Shop mit Produkten, Warenkorb, Checkout und Bestellungen.
+Übungs-Repo zum Workshop „React mit TypeScript bis Produktion“. Zu jeder Lektion – 23 im Kern, dazu die Zusatzkapitel – gibt es ein lauffähiges Beispiel mit Startpunkt (`src/`), Tests und Lösung (`solution/`). Alle Übungen spielen im Werkstatt-Shop mit Produkten, Warenkorb, Checkout und Bestellungen.
 
 ## Was du lernst
 
@@ -38,7 +38,7 @@ npm run dev        # App im Browser
 npm test           # Vitest einmal
 npm run test:watch # Vitest im Watch Mode
 npm run typecheck  # TypeScript strict
-npm run build      # Type Check und Production Build
+npm run build      # Type Check und Build für die Produktion
 ```
 
 Die README im Beispiel beschreibt die Übung Schritt für Schritt. Tests, die du im Lauf der Übung grün machst, sind mit `it.skip` markiert. In `solution/` findest du eine mögliche Lösung samt Tests.
@@ -67,13 +67,13 @@ Die Reihenfolge folgt der Agenda und geht von einfach nach schwer. Die Stufe zei
 | 2 | 2 | Die URL ist State, den du teilen kannst | `react-routing` | [examples/router-app](examples/router-app/README.md) |
 | 2 | 2 | Ein Schema für Form, Server und Typ | `react-forms-validation` | [examples/forms-validation](examples/forms-validation/README.md) |
 | 3 | 2 | Accessibility von Anfang an | `react-accessibility` | [examples/accessible-components](examples/accessible-components/README.md) |
-| 3 | 2 | Teste, was Nutzer sehen und tun | `react-testing` | [examples/testing](examples/testing/README.md) · [Kapitel](10-testing.md) |
+| 3 | 2 | Teste, was Nutzende sehen und tun | `react-testing` | [examples/testing](examples/testing/README.md) · [Kapitel](10-testing.md) |
 | 3 | 2 | Atomic Design gibt dem Team ein Vokabular | `react-atomic-design` | [examples/component-library](examples/component-library/README.md) |
 | 3 | 3 | Generics bewahren den Typ des Aufrufers | `react-generic-components` | [examples/generic-components](examples/generic-components/README.md) · [Kapitel](react-typescript.md) |
 | 3 | 3 | Nach Features ordnen, Boundaries prüfen | `react-architecture` | [examples/feature-architecture](examples/feature-architecture/README.md) |
 | 3 | 3 | Erst messen, dann optimieren | `react-rendering-performance` | [examples/rendering-performance](examples/rendering-performance/README.md) · [Kapitel](21-hooks.md) |
 | 3 | 3 | Optimistic UI braucht einen Rückweg | `react-actions-optimistic` | [examples/actions-optimistic](examples/actions-optimistic/README.md) |
-| 3 | 3 | Production beginnt beim Build | `react-production` | [examples/production-build](examples/production-build/README.md) |
+| 3 | 3 | Produktion beginnt beim Build | `react-production` | [examples/production-build](examples/production-build/README.md) |
 
 ### Zusatzkapitel (optional)
 
@@ -108,7 +108,7 @@ Daten lädst du im Kern mit `fetch` und einem eigenen Hook (`data-fetching`), da
 
 ## Workshop und Folien
 
-- Workshop: [„React mit TypeScript bis Production“](https://workshops.mikebild.dev/w/react/remote/)
+- Workshop: [„React mit TypeScript bis Produktion“](https://workshops.mikebild.dev/w/react/remote/)
 - Workshop: [„React mit Vite bis zur installierbaren PWA“](https://workshops.mikebild.dev/w/react-fortgeschritten/remote/)
 - Workshop: [„Fullstack mit TypeScript, Node.js, GraphQL und React in 6 Tagen“](https://workshops.mikebild.dev/w/fullstack/onsite/)
 - Folien: [slides.mikebild.dev/introduction-react](https://slides.mikebild.dev/introduction-react.html)

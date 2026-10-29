@@ -2,7 +2,7 @@
 
 Das Dashboard des Werkstatt-Shops, vorbereitet für die Produktion: Config beim Start geprüft, eine Lazy Route, die Bestandteile fürs Error Reporting mit [react-error-boundary](https://github.com/bvaughn/react-error-boundary) und ein kleiner Server für die Produktion mit Express 5.
 
-Lektion: **Production beginnt beim Build** (`react-production`)
+Lektion: **Produktion beginnt beim Build** (`react-production`)
 
 ```bash
 npm install
