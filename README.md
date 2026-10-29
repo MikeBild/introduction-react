@@ -75,10 +75,11 @@ Die Reihenfolge folgt der Agenda und geht von einfach nach schwer. Die Stufe zei
 
 ### Zusatzkapitel (optional)
 
-Diese Kapitel bringen eigene Pakete mit, die im Kern bewusst fehlen.
+Diese Kapitel gehören nicht zum Kern. Die meisten bringen eigene Pakete mit, die im Kern bewusst fehlen.
 
 | Lektion | Baustein | Übung |
 |---|---|---|
+| Vite startet dein Projekt in Sekunden | `react-vite-setup` | [examples/vite-setup](examples/vite-setup/README.md) |
 | Wann lohnt sich TanStack Query? | `react-tanstack-query` | [examples/tanstack-query](examples/tanstack-query/README.md) · [Kapitel](8-server-access.md) |
 | Wann lohnt sich RxJS in React? | `react-rxjs` | [examples/rxjs](examples/rxjs/README.md) |
 | GraphQL mit Apollo Client | `graphql-why`, `graphql-schema-design`, `graphql-react-client` | [introduction-graphql](https://github.com/MikeBild/introduction-graphql) |
