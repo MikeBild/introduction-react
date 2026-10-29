@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
 import { searchResources } from '../resources';
 
-export const Resources = () => {
+type ResourcesProps = { onSelectResource: (resourceId: number) => void };
+
+export const Resources = ({ onSelectResource }: ResourcesProps) => {
   // Übung: Der Suchtext gehört in die URL (?q=…), nicht in useState.
   // Sonst geht er beim Reload, beim Teilen des Links und mit dem Back-Button verloren.
   const [searchText, setSearchText] = useState('');
@@ -21,7 +22,9 @@ export const Resources = () => {
       <ul>
         {visibleResources.map((resource) => (
           <li key={resource.id}>
-            <Link to={`/resources/${resource.id}`}>{resource.name}</Link>
+            <button type="button" onClick={() => onSelectResource(resource.id)}>
+              {resource.name}
+            </button>
           </li>
         ))}
       </ul>

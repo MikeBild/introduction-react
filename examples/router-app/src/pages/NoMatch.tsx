@@ -1,8 +1,10 @@
-import { Link } from 'react-router';
+type NoMatchProps = { onBackToHome: () => void };
 
-export const NoMatch = () => (
+export const NoMatch = ({ onBackToHome }: NoMatchProps) => (
   <>
     <h1>Seite nicht gefunden</h1>
-    <Link to="/">Zur Startseite</Link>
+    <button type="button" onClick={onBackToHome}>
+      Zur Startseite
+    </button>
   </>
 );
