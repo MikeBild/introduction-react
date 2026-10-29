@@ -1,13 +1,9 @@
 import '@testing-library/jest-dom/vitest';
 import { cleanup } from '@testing-library/react';
-import { afterAll, afterEach, beforeAll } from 'vitest';
-import { resetProducts } from './mocks/handlers';
-import { server } from './mocks/server';
+import { afterEach, vi } from 'vitest';
 
-beforeAll(() => server.listen({ onUnhandledFrame: 'error' }));
 afterEach(() => {
   cleanup();
-  server.resetHandlers();
-  resetProducts();
+  // Stellt das echte fetch nach jedem Test wieder her.
+  vi.restoreAllMocks();
 });
-afterAll(() => server.close());
