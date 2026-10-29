@@ -59,7 +59,9 @@ export const CheckoutForm = ({ cart }: { cart: readonly CartItem[] }) => {
     setIsSubmitting(false);
     if (response.kind === 'placed') return setPlacedOrderId(response.orderId);
     if (response.kind === 'fieldError') return setErrors(response.errors);
-    setFormError(`Bestellung fehlgeschlagen (${response.message})`);
+    setFormError(
+      `Die Bestellung ist fehlgeschlagen (${response.message}). Versuch es noch einmal.`
+    );
   };
 
   if (placedOrderId)

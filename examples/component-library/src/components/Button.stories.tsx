@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { Button } from './Button';
 
 const meta = {
-  title: 'Start/Button',
+  title: 'Startpunkt/Button',
   component: Button,
   args: { children: 'Speichern', onClick: fn() },
 } satisfies Meta<typeof Button>;

@@ -4,7 +4,7 @@ import { CustomerCard } from './CustomerCard';
 
 // Jede Story braucht eine andere Flag-Kombination – ein Zeichen für zu viele Flags.
 const meta = {
-  title: 'Start/CustomerCard',
+  title: 'Startpunkt/CustomerCard',
   component: CustomerCard,
   args: {
     title: 'Ada Schmidt',

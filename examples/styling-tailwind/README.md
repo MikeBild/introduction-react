@@ -2,7 +2,7 @@
 
 Die Checkout Form des Werkstatt-Shops mit Positionen und Summe, gestylt mit globalem CSS aus `src/styles.css`. Jede Klasse wie `.btn` gilt überall in der App – wer sie ändert, ändert jeden Button. Du ziehst die Styles in die Component und baust einen Button mit drei Variants.
 
-Lektion: **Styles gehören zur Component** (`react-styling`).
+Lektion: **Styles gehören zur Component** (`react-styling`)
 
 ```bash
 npm install

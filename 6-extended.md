@@ -4,7 +4,7 @@
 
 Gib Inhalte als `children` oder als benannte Slots hinein, statt Flags zu sammeln. Eine `Card` mit `header`, `children` und `actions` ersetzt zehn Props wie `showActions` oder `isCompact`.
 
-Übung dazu: [examples/component-library](examples/component-library/README.md) (Lektion `react-composition`)
+Übung: Lektion **Inhalte hineingeben statt Flags sammeln** (`react-composition`) – [examples/component-library](examples/component-library/README.md)
 
 ## Context
 

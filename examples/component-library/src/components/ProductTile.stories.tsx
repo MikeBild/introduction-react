@@ -3,7 +3,7 @@ import { products } from '../data/products';
 import { ProductTile } from './ProductTile';
 
 const meta = {
-  title: 'Start/ProductTile',
+  title: 'Startpunkt/ProductTile',
   component: ProductTile,
   decorators: [(Story) => <ul>{Story()}</ul>],
   args: { product: products[0] },

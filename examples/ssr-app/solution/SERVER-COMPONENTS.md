@@ -40,7 +40,7 @@ export default async function ProductPage({
 
 - Nur `AddToCartButton` landet im Client Bundle. Props über die Grenze müssen serialisierbar sein (`productName: string`, keine Funktionen).
 - `loadProductPage` läuft nur auf dem Server. Secrets, Datenbank-Clients und große Libraries wie ein Markdown-Parser für die Beschreibung bleiben dort.
-- Die Initial Data als JSON entfällt, der RSC Payload ersetzt sie.
+- Die Initial Data als JSON entfällt, der Payload der React Server Components (RSC Payload) ersetzt sie.
 
 ## Wann lohnt sich das?
 

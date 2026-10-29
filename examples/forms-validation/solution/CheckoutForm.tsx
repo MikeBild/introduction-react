@@ -41,7 +41,7 @@ export const CheckoutForm = ({ cart, placeOrder }: CheckoutFormProps) => {
       // Server Errors kommen mit demselben Pfad zurück ans Feld.
       if (isServerFieldError(error))
         return setErrors({ [error.path]: error.message });
-      setFormError('Bestellung fehlgeschlagen');
+      setFormError('Die Bestellung ist fehlgeschlagen. Versuch es noch einmal.');
     }
   };
 

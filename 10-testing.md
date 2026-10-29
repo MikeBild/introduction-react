@@ -34,7 +34,7 @@ it('meldet einen Server Error mit Status 500', async () => {
 - Stell das echte `fetch` nach jedem Test mit `vi.unstubAllGlobals()` wieder her, zum Beispiel in `src/test/setup.ts`.
 - Prüf auch, dass ein Request **nicht** passiert, etwa bei einem Validation Error: `expect(fetchSpy).not.toHaveBeenCalled()`.
 
-Wenn viele Tests dieselbe API brauchen oder du auch im Browser gegen eine Fake-API entwickeln willst, lohnt sich [MSW](https://mswjs.io). Für eine Form reicht der `fetch`-Spy.
+Wenn viele Tests dieselbe API brauchen oder du auch im Browser gegen eine Fake-API entwickeln willst, lohnt sich [Mock Service Worker (MSW)](https://mswjs.io). Für eine Form reicht der `fetch`-Spy.
 
 ## Übung
 
