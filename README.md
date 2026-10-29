@@ -26,36 +26,47 @@ Die README im Beispiel beschreibt die Übung Schritt für Schritt. Tests, die du
 
 ## Stack
 
-React 19.3 mit [React Compiler](https://react.dev/learn/react-compiler), TypeScript strict, Vite 8, Vitest 5 mit Testing Library und MSW, zod 4, TanStack Router und TanStack Query, react-error-boundary, Tailwind CSS 4 und Storybook 10. Class Components gibt es nur noch im Archiv.
+So wenig Pakete wie möglich. Jedes Beispiel nutzt React 19.3 mit [React Compiler](https://react.dev/learn/react-compiler), TypeScript strict, Vite 8 sowie Vitest 5 mit Testing Library. Weitere Pakete kommen nur dort dazu, wo die Übung sie braucht:
+
+- [React Router 8](https://reactrouter.com) in `router-app`
+- [zod 4](https://zod.dev) für Formular-Validierung in `forms-validation` und `testing`
+- [react-error-boundary](https://github.com/bvaughn/react-error-boundary) in `suspense-errors` und `production-build`
+- [Tailwind CSS 4](https://tailwindcss.com) in `styling-tailwind`
+- [Storybook 10](https://storybook.js.org) in `component-library`
+- [Express 5](https://expressjs.com) für die Server in `ssr-app` und `production-build`
+
+Daten lädst du mit `fetch`, `use` und `Suspense`, ohne Data-Fetching-Library. Class Components gibt es nur noch im Archiv.
 
 ## Lektionen und Übungen
 
-| Tag | Lektion | Baustein | Übung |
-|---|---|---|---|
-| 1 | Components als Funktionen denken | `react-components` | [examples/basic-app](examples/basic-app/README.md) |
-| 1 | JSX ist JavaScript, Props sind der Vertrag | `react-jsx-props` | [examples/jsx-props](examples/jsx-props/README.md) · [Kapitel](react-typescript.md) |
-| 1 | State ist ein Snapshot pro Render | `react-state-hooks` | [examples/basic-app](examples/basic-app/README.md) |
-| 1 | Wem gehört der Wert im Input? | `react-events-forms` | [examples/events-forms](examples/events-forms/README.md) · [Kapitel](5-event-bindings.md) |
-| 1 | Keys sind Identität, nicht Position | `react-lists-conditions` | [examples/lists-conditions](examples/lists-conditions/README.md) · [Kapitel](3-jsx.md) |
-| 1 | Inhalte hineingeben statt Flags sammeln | `react-composition` | [examples/component-library](examples/component-library/README.md) |
-| 1 | Styles gehören zur Component | `react-styling` | [examples/styling-tailwind](examples/styling-tailwind/README.md) · [Kapitel](7-css.md) |
-| 1 | Brauchst du diesen Effect wirklich? | `react-effects` | [examples/effects](examples/effects/README.md) · [Kapitel](21-hooks.md) |
-| 2 | Custom Hooks teilen Verhalten, nicht State | `react-custom-hooks` | [examples/custom-hooks](examples/custom-hooks/README.md) · [Kapitel](21-hooks.md) |
-| 2 | Atomic Design gibt dem Team ein Vokabular | `react-atomic-design` | [examples/component-library](examples/component-library/README.md) |
-| 2 | Context ist kein Store für alles | `react-context-state` | [examples/context-state](examples/context-state/README.md) · [Kapitel](6-extended.md) |
-| 2 | Unmögliche States mit useReducer verhindern | `react-reducer` | [examples/reducer-state-machine](examples/reducer-state-machine/README.md) |
-| 2 | Server State ist ein Cache | `react-data-fetching` | [examples/data-fetching](examples/data-fetching/README.md) · [Kapitel](8-server-access.md) |
-| 2 | Wo wird gewartet, wo werden Errors gefangen? | `react-suspense-errors` | [examples/suspense-errors](examples/suspense-errors/README.md) · [Kapitel](18-more-pattern.md) |
-| 2 | Die URL ist typisierter State | `react-routing` | [examples/router-app](examples/router-app/README.md) |
-| 2 | Ein Schema für Form, Server und Typ | `react-forms-validation` | [examples/forms-validation](examples/forms-validation/README.md) |
-| 2 | Teste, was Nutzer sehen und tun | `react-testing` | [examples/testing](examples/testing/README.md) · [Kapitel](10-testing.md) |
-| 3 | Erst messen, dann optimieren | `react-rendering-performance` | [examples/rendering-performance](examples/rendering-performance/README.md) · [Kapitel](21-hooks.md) |
-| 3 | Generics bewahren den Typ des Aufrufers | `react-generic-components` | [examples/generic-components](examples/generic-components/README.md) · [Kapitel](react-typescript.md) |
-| 3 | Optimistic UI braucht einen Rückweg | `react-actions-optimistic` | [examples/actions-optimistic](examples/actions-optimistic/README.md) |
-| 3 | Wann lohnen sich Server Components? | `react-server-components` | [examples/ssr-app](examples/ssr-app/README.md) |
-| 3 | Accessibility von Anfang an | `react-accessibility` | [examples/accessible-components](examples/accessible-components/README.md) |
-| 3 | Nach Features ordnen, Boundaries prüfen | `react-architecture` | [examples/feature-architecture](examples/feature-architecture/README.md) |
-| 3 | Production beginnt beim Build | `react-production` | [examples/production-build](examples/production-build/README.md) |
+Die Reihenfolge folgt der Agenda des Workshops und geht von einfach nach schwer. Die Stufe zeigt den Schwierigkeitsgrad: 1 Grundlagen, 2 Fortgeschritten, 3 Production-Themen.
+
+| Tag | Stufe | Lektion | Baustein | Übung |
+|---|---|---|---|---|
+| 1 | 1 | Components als Funktionen denken | `react-components` | [examples/basic-app](examples/basic-app/README.md) |
+| 1 | 1 | JSX ist JavaScript, Props sind der Vertrag | `react-jsx-props` | [examples/jsx-props](examples/jsx-props/README.md) · [Kapitel](react-typescript.md) |
+| 1 | 1 | State ist ein Snapshot pro Render | `react-state-hooks` | [examples/basic-app](examples/basic-app/README.md) |
+| 1 | 1 | Wem gehört der Wert im Input? | `react-events-forms` | [examples/events-forms](examples/events-forms/README.md) · [Kapitel](5-event-bindings.md) |
+| 1 | 1 | Keys sind Identität, nicht Position | `react-lists-conditions` | [examples/lists-conditions](examples/lists-conditions/README.md) · [Kapitel](3-jsx.md) |
+| 1 | 1 | Inhalte hineingeben statt Flags sammeln | `react-composition` | [examples/component-library](examples/component-library/README.md) |
+| 1 | 1 | Styles gehören zur Component | `react-styling` | [examples/styling-tailwind](examples/styling-tailwind/README.md) · [Kapitel](7-css.md) |
+| 1 | 1 | Brauchst du diesen Effect wirklich? | `react-effects` | [examples/effects](examples/effects/README.md) · [Kapitel](21-hooks.md) |
+| 2 | 2 | Custom Hooks teilen Verhalten, nicht State | `react-custom-hooks` | [examples/custom-hooks](examples/custom-hooks/README.md) · [Kapitel](21-hooks.md) |
+| 2 | 2 | Atomic Design gibt dem Team ein Vokabular | `react-atomic-design` | [examples/component-library](examples/component-library/README.md) |
+| 2 | 2 | Context ist kein Store für alles | `react-context-state` | [examples/context-state](examples/context-state/README.md) · [Kapitel](6-extended.md) |
+| 2 | 2 | Unmögliche States mit useReducer verhindern | `react-reducer` | [examples/reducer-state-machine](examples/reducer-state-machine/README.md) |
+| 2 | 2 | Server State ist ein Cache | `react-data-fetching` | [examples/data-fetching](examples/data-fetching/README.md) · [Kapitel](8-server-access.md) |
+| 2 | 2 | Wo wird gewartet, wo werden Errors gefangen? | `react-suspense-errors` | [examples/suspense-errors](examples/suspense-errors/README.md) · [Kapitel](18-more-pattern.md) |
+| 2 | 2 | Die URL ist typisierter State | `react-routing` | [examples/router-app](examples/router-app/README.md) |
+| 2 | 2 | Ein Schema für Form, Server und Typ | `react-forms-validation` | [examples/forms-validation](examples/forms-validation/README.md) |
+| 2 | 2 | Teste, was Nutzer sehen und tun | `react-testing` | [examples/testing](examples/testing/README.md) · [Kapitel](10-testing.md) |
+| 3 | 3 | Erst messen, dann optimieren | `react-rendering-performance` | [examples/rendering-performance](examples/rendering-performance/README.md) · [Kapitel](21-hooks.md) |
+| 3 | 3 | Generics bewahren den Typ des Aufrufers | `react-generic-components` | [examples/generic-components](examples/generic-components/README.md) · [Kapitel](react-typescript.md) |
+| 3 | 3 | Optimistic UI braucht einen Rückweg | `react-actions-optimistic` | [examples/actions-optimistic](examples/actions-optimistic/README.md) |
+| 3 | 3 | Wann lohnen sich Server Components? | `react-server-components` | [examples/ssr-app](examples/ssr-app/README.md) |
+| 3 | 3 | Accessibility von Anfang an | `react-accessibility` | [examples/accessible-components](examples/accessible-components/README.md) |
+| 3 | 3 | Nach Features ordnen, Boundaries prüfen | `react-architecture` | [examples/feature-architecture](examples/feature-architecture/README.md) |
+| 3 | 3 | Production beginnt beim Build | `react-production` | [examples/production-build](examples/production-build/README.md) |
 
 ## Alle Beispiele prüfen
 

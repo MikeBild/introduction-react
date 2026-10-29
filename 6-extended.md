@@ -33,7 +33,7 @@ export const useCart = () => {
 - Starte mit `null` statt mit einem Default-Objekt voller No-op-Funktionen.
 - Biete einen Custom Hook an, der außerhalb des Providers mit klarer Meldung abbricht.
 - Leg in Context nur Werte, die selten wechseln und viele brauchen: Theme, Session, Locale.
-- Server State gehört in einen Cache wie TanStack Query, nicht in Context.
+- Server-Daten gehören nicht in Context. Lade sie dort, wo sie gebraucht werden, mit `fetch`, `use` und `Suspense`.
 
 Higher-Order Components und Render Props findest du nur noch in Legacy-Code. Für geteiltes Verhalten schreibst du heute Custom Hooks.
 
