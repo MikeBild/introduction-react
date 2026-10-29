@@ -1,9 +1,9 @@
-import { createTodo } from './todoApi';
-import { TodoList } from './TodoList';
+import { Cart } from './Cart';
+import { addItemToDraft } from './cartApi';
 
 export const App = () => (
   <main>
-    <h1>Todos</h1>
-    <TodoList createTodo={createTodo} />
+    <h1>Warenkorb</h1>
+    <Cart addItemToDraft={addItemToDraft} />
   </main>
 );

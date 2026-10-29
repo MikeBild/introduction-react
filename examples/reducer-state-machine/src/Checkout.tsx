@@ -1,7 +1,8 @@
 import { useReducer } from 'react';
 import { checkoutReducer, initialCheckoutState } from './checkoutReducer';
+import type { OrderId } from './shop';
 
-export type PlaceOrder = () => Promise<string>;
+export type PlaceOrder = () => Promise<OrderId>;
 
 export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
   const [checkoutState, dispatch] = useReducer(
@@ -19,7 +20,7 @@ export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
   };
 
   if (checkoutState.status === 'success')
-    return <p>Order {checkoutState.orderId} placed</p>;
+    return <p>Bestellung {checkoutState.orderId} ist eingegangen</p>;
 
   return (
     <>
@@ -30,7 +31,9 @@ export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
         disabled={checkoutState.status === 'submitting'}
         onClick={handleSubmit}
       >
-        {checkoutState.status === 'submitting' ? 'Placing order …' : 'Order'}
+        {checkoutState.status === 'submitting'
+          ? 'Bestellung läuft …'
+          : 'Bestellen'}
       </button>
     </>
   );

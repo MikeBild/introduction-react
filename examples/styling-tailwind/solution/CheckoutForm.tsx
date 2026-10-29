@@ -1,7 +1,14 @@
 import type { SubmitEvent } from 'react';
+import {
+  formatCents,
+  orderTotalCents,
+  products,
+  type OrderItem,
+} from '../src/shop';
 import { Button } from './Button';
 
 type CheckoutFormProps = {
+  items: readonly OrderItem[];
   onPay: (data: FormData) => void;
   onBack: () => void;
   onCancel: () => void;
@@ -9,7 +16,12 @@ type CheckoutFormProps = {
 
 const inputClasses = 'rounded border border-slate-300 p-2';
 
+const productName = (item: OrderItem) =>
+  products.find((product) => product.id === item.productId)?.name ??
+  item.productId;
+
 export const CheckoutForm = ({
+  items,
   onPay,
   onBack,
   onCancel,
@@ -25,6 +37,21 @@ export const CheckoutForm = ({
       onSubmit={handleSubmit}
     >
       <h1 className="mb-4 text-2xl font-bold">Kasse</h1>
+      <ul className="mb-2 divide-y divide-slate-200">
+        {items.map((item) => (
+          <li key={item.productId} className="flex justify-between py-2">
+            <span>
+              {item.quantity} × {productName(item)}
+            </span>
+            <span className="tabular-nums">
+              {formatCents(item.quantity * item.priceCents)}
+            </span>
+          </li>
+        ))}
+      </ul>
+      <p className="mb-4 text-right text-lg font-bold">
+        Summe {formatCents(orderTotalCents(items))}
+      </p>
       <div className="mb-4 flex flex-col gap-1">
         <label htmlFor="name">Name</label>
         <input

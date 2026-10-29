@@ -1,19 +1,23 @@
 import { Checkout } from './Checkout';
+import { OrderStatusPanel } from './OrderStatusPanel';
+import { orderId } from './shop';
 
 const placeOrderAfterDelay = () =>
-  new Promise<string>((resolve, reject) =>
+  new Promise<ReturnType<typeof orderId>>((resolve, reject) =>
     setTimeout(
       () =>
         Math.random() > 0.3
-          ? resolve(crypto.randomUUID().slice(0, 8))
-          : reject(new Error('Payment declined')),
+          ? resolve(orderId(`o${Math.floor(Math.random() * 9000) + 1000}`))
+          : reject(new Error('Zahlung abgelehnt')),
       800
     )
   );
 
 export const App = () => (
   <main>
-    <h1>Checkout</h1>
+    <h1>Werkstatt-Shop</h1>
+    <h2>Checkout</h2>
     <Checkout placeOrder={placeOrderAfterDelay} />
+    <OrderStatusPanel />
   </main>
 );

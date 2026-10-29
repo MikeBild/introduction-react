@@ -1,9 +1,10 @@
-import { registerUser } from './registerUser';
-import { SignupForm } from './SignupForm';
+import { initialCart } from './cart';
+import { CheckoutForm } from './CheckoutForm';
+import { placeOrder } from './placeOrder';
 
 export const App = () => (
   <main>
-    <h1>Sign up</h1>
-    <SignupForm registerUser={registerUser} />
+    <h1>Checkout</h1>
+    <CheckoutForm cart={initialCart} placeOrder={placeOrder} />
   </main>
 );

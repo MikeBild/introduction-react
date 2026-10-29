@@ -2,18 +2,21 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { Checkout } from './Checkout';
+import { orderId } from './shop';
 
-it('shows the order id after a successful order', async () => {
-  render(<Checkout placeOrder={() => Promise.resolve('42')} />);
-  await userEvent.click(screen.getByRole('button', { name: 'Order' }));
-  expect(await screen.findByText('Order 42 placed')).toBeInTheDocument();
+it('zeigt die Bestellnummer nach Erfolg', async () => {
+  render(<Checkout placeOrder={() => Promise.resolve(orderId('o42'))} />);
+  await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
+  expect(
+    await screen.findByText('Bestellung o42 ist eingegangen')
+  ).toBeInTheDocument();
 });
 
-it('shows the error and allows a retry', async () => {
-  render(<Checkout placeOrder={() => Promise.reject('Payment declined')} />);
-  await userEvent.click(screen.getByRole('button', { name: 'Order' }));
+it('zeigt den Error und erlaubt einen neuen Versuch', async () => {
+  render(<Checkout placeOrder={() => Promise.reject('Zahlung abgelehnt')} />);
+  await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
   expect(await screen.findByRole('alert')).toHaveTextContent(
-    'Payment declined'
+    'Zahlung abgelehnt'
   );
-  expect(screen.getByRole('button', { name: 'Order' })).toBeEnabled();
+  expect(screen.getByRole('button', { name: 'Bestellen' })).toBeEnabled();
 });

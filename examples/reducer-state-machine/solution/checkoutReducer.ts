@@ -1,17 +1,19 @@
+import type { OrderId } from '../src/shop';
+
 export type CheckoutState =
   | { status: 'idle' | 'submitting' }
-  | { status: 'success'; orderId: string }
+  | { status: 'success'; orderId: OrderId }
   | { status: 'error'; message: string };
 
 export type CheckoutAction =
   | { type: 'submitted' }
-  | { type: 'succeeded'; orderId: string }
+  | { type: 'succeeded'; orderId: OrderId }
   | { type: 'failed'; message: string }
   | { type: 'reset' };
 
 export const initialCheckoutState: CheckoutState = { status: 'idle' };
 
-// Allowed transitions only – anything else keeps the current state.
+// Nur erlaubte Übergänge – alles andere behält den aktuellen State.
 export const checkoutReducer = (
   state: CheckoutState,
   action: CheckoutAction
