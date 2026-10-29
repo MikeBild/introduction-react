@@ -6,11 +6,12 @@
 
 - Components, State, Effects und Forms mit TypeScript strict bauen
 - Daten laden, Fehler abfangen, routen und mit einem Schema validieren
-- Zugänglich, getestet und performant bis zum Production Build ausliefern
+- Apps zugänglich, getestet und performant in Production bringen
 
 ## Voraussetzungen
 
-- **Node.js 26** – `nvm use` liest die Version aus [`.nvmrc`](.nvmrc). Dazu npm 11.
+- **Node.js 26** – `nvm use` liest die Version aus [`.nvmrc`](.nvmrc).
+- npm 11
 - Ein Editor mit TypeScript-Support, zum Beispiel VS Code
 - Chrome oder Firefox mit den [React DevTools](https://react.dev/learn/react-developer-tools)
 
