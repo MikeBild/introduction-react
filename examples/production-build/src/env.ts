@@ -1,14 +1,21 @@
-import { z } from 'zod';
+export type Env = { VITE_API_URL: string; VITE_RELEASE: string };
 
-const EnvSchema = z.object({
-  VITE_API_URL: z.url(),
-  VITE_RELEASE: z.string().min(1),
-});
+const readString = (source: Record<string, unknown>, key: keyof Env) => {
+  const value = source[key];
+  if (typeof value !== 'string' || value === '')
+    throw new Error(`Config: ${key} fehlt`);
+  return value;
+};
 
-export type Env = z.infer<typeof EnvSchema>;
-
-export const parseEnv = (source: Record<string, unknown>): Env =>
-  EnvSchema.parse(source);
+export const parseEnv = (source: Record<string, unknown>): Env => {
+  const apiUrl = readString(source, 'VITE_API_URL');
+  if (!URL.canParse(apiUrl))
+    throw new Error(`Config: VITE_API_URL ist keine URL: ${apiUrl}`);
+  return {
+    VITE_API_URL: apiUrl,
+    VITE_RELEASE: readString(source, 'VITE_RELEASE'),
+  };
+};
 
 // Fails at startup – not later in front of a user.
 export const env = parseEnv(import.meta.env);
