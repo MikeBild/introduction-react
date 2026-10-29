@@ -1,8 +1,8 @@
-import { ProductList } from './ProductList';
+import { ProductSearch } from './ProductSearch';
 
 export const App = () => (
   <main>
-    <h1>Produkte</h1>
-    <ProductList />
+    <h1>Werkstatt-Shop</h1>
+    <ProductSearch />
   </main>
 );
