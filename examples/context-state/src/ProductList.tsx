@@ -1,17 +1,13 @@
 import { useContext } from 'react';
 import { CartContext } from './cart';
-
-const products = [
-  { productId: 'p1', name: 'Kaffeebohnen' },
-  { productId: 'p2', name: 'Handmühle' },
-];
+import { products } from './shop';
 
 export const ProductList = () => {
   const { addItem } = useContext(CartContext);
   return (
     <ul>
       {products.map((product) => (
-        <li key={product.productId}>
+        <li key={product.id}>
           {product.name}{' '}
           <button type="button" onClick={() => addItem(product)}>
             {product.name} in den Warenkorb

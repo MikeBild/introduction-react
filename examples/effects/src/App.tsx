@@ -5,7 +5,7 @@ import { OrderPanel } from './OrderPanel';
 export const App = () => {
   const [customerIndex, setCustomerIndex] = useState(0);
   const [isPanelVisible, setIsPanelVisible] = useState(true);
-  const customer = customers[customerIndex % customers.length]!;
+  const customer = customers[customerIndex % customers.length];
   return (
     <main>
       <h1>Kunden</h1>

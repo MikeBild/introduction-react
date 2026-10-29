@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { createOrderCache } from './orderCache';
 import { OrderDetailPage } from './OrderDetailPage';
 import { fakeOrderApi } from './orders';
+import { orderId as toOrderId, orders } from './shop';
 
 // Ein Cache für die ganze App – außerhalb jeder Component.
 const orderCache = createOrderCache(fakeOrderApi);
 
 export const App = () => {
-  const [orderId, setOrderId] = useState('o-1');
+  const [orderId, setOrderId] = useState(orders[0].id);
   return (
     <main>
       <h1>Bestelldetails</h1>
@@ -15,10 +16,14 @@ export const App = () => {
       <select
         id="order"
         value={orderId}
-        onChange={(event) => setOrderId(event.target.value)}
+        onChange={(event) => setOrderId(toOrderId(event.target.value))}
       >
-        <option value="o-1">o-1</option>
-        <option value="o-2">o-2 (unbekannt)</option>
+        {orders.map((order) => (
+          <option key={order.id} value={order.id}>
+            {order.id}
+          </option>
+        ))}
+        <option value="o9999">o9999 (unbekannt)</option>
       </select>
       <OrderDetailPage
         key={orderId}

@@ -1,10 +1,10 @@
-import { formatPrice } from './formatPrice';
+import { formatCents } from './shop';
 
 // Übung: Dieser Vertrag ist zu locker und zu streng zugleich.
 // variant akzeptiert jeden String, und jedes Feld ist Pflicht.
 type CartItemCardProps = {
   name: string;
-  priceInCents: number;
+  priceCents: number;
   quantity: number;
   variant: string;
   note: string;
@@ -12,7 +12,7 @@ type CartItemCardProps = {
 
 export const CartItemCard = ({
   name,
-  priceInCents,
+  priceCents,
   quantity,
   variant,
   note,
@@ -23,8 +23,8 @@ export const CartItemCard = ({
       {name}
     </h2>
     <p>
-      {quantity} × {formatPrice(priceInCents)} ={' '}
-      {formatPrice(quantity * priceInCents)}
+      {quantity} × {formatCents(priceCents)} ={' '}
+      {formatCents(quantity * priceCents)}
     </p>
     {variant !== 'compact' && note !== '' && <p>{note}</p>}
   </article>

@@ -1,44 +1,57 @@
-import { Suspense, use } from 'react';
-import { ErrorBoundary } from './ErrorBoundary';
+import { useEffect, useState } from 'react';
 import type { OrderCache } from './orderCache';
+import type { OrderId } from './orders';
+import { OrderView } from './OrderSummary';
 
-type OrderSectionProps = { orderId: string; orderCache: OrderCache };
+type OrderSectionProps = { orderId: OrderId; orderCache: OrderCache };
 
-const formatEuro = (amountInCents: number) =>
-  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(
-    amountInCents / 100
-  );
+type LoadState<T> =
+  | { status: 'loading' }
+  | { status: 'error'; message: string }
+  | { status: 'success'; data: T };
+
+// Übung react-suspense-errors: Jede Component prüft Loading und Error selbst.
+// Ersetze den Hook durch use() und setz je Bereich Suspense und ErrorBoundary.
+const useLoad = <T,>(load: () => Promise<T>, key: OrderId) => {
+  const [state, setState] = useState<LoadState<T>>({ status: 'loading' });
+  useEffect(() => {
+    let isCurrent = true;
+    setState({ status: 'loading' });
+    load().then(
+      (data) => isCurrent && setState({ status: 'success', data }),
+      (error: unknown) =>
+        isCurrent &&
+        setState({
+          status: 'error',
+          message: error instanceof Error ? error.message : String(error),
+        })
+    );
+    return () => {
+      isCurrent = false;
+    };
+    // load ist bei jedem Render neu – der Effect hängt nur an der Bestellung.
+  }, [key]);
+  return state;
+};
 
 const OrderSummary = ({ orderId, orderCache }: OrderSectionProps) => {
-  const order = use(orderCache.readOrder(orderId));
-  return (
-    <section>
-      <h2>Bestellung {order.id}</h2>
-      <p>Kunde: {order.customer}</p>
-      <ul>
-        {order.items.map((item) => (
-          <li key={item.name}>
-            {item.quantity} × {item.name}
-          </li>
-        ))}
-      </ul>
-      <p>Summe: {formatEuro(order.totalInCents)}</p>
-    </section>
-  );
+  const order = useLoad(() => orderCache.readOrder(orderId), orderId);
+  if (order.status === 'loading') return <p>Bestellung lädt …</p>;
+  if (order.status === 'error') return <p role="alert">{order.message}</p>;
+  return <OrderView order={order.data} />;
 };
 
 const ShipmentStatus = ({ orderId, orderCache }: OrderSectionProps) => {
-  const shipment = use(orderCache.readShipment(orderId));
-  return <p>Versand: {shipment.status}</p>;
+  const shipment = useLoad(() => orderCache.readShipment(orderId), orderId);
+  if (shipment.status === 'loading') return <p>Versandstatus lädt …</p>;
+  if (shipment.status === 'error')
+    return <p role="alert">{shipment.message}</p>;
+  return <p>Versand: {shipment.data.status}</p>;
 };
 
-// Übung react-suspense-errors: Eine Boundary und ein Suspense für alles.
-// Fällt die Sendungsverfolgung aus, ist die ganze Seite weg – ohne Retry.
 export const OrderDetailPage = (props: OrderSectionProps) => (
-  <ErrorBoundary fallback={<p role="alert">Etwas ist schiefgelaufen.</p>}>
-    <Suspense fallback={<p>Bestellung lädt …</p>}>
-      <OrderSummary {...props} />
-      <ShipmentStatus {...props} />
-    </Suspense>
-  </ErrorBoundary>
+  <>
+    <OrderSummary {...props} />
+    <ShipmentStatus {...props} />
+  </>
 );

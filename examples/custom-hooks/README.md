@@ -1,6 +1,6 @@
 # Custom Hooks
 
-Eine Produktsuche, die erst nach einer kurzen Tipp-Pause filtert. Die Debounce-Logik steckt heute direkt in der Component. Du ziehst sie in einen eigenen, generischen Hook.
+Die Produktsuche des Werkstatt-Shops filtert erst nach einer kurzen Tipp-Pause. Die Debounce-Logik steckt heute direkt in der Component. Du ziehst sie in einen eigenen, generischen Hook.
 
 Lektion: **Custom Hooks teilen Verhalten, nicht State** (`react-custom-hooks`)
 

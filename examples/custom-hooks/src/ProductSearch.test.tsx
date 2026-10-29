@@ -18,9 +18,9 @@ const resultNames = () =>
 it('filtert erst nach der Pause', () => {
   render(<ProductSearch delayMs={300} />);
   fireEvent.change(screen.getByLabelText('Produkt suchen'), {
-    target: { value: 'kaffee' },
+    target: { value: 'schlüssel' },
   });
-  expect(resultNames()).toHaveLength(5);
+  expect(resultNames()).toHaveLength(4);
   act(() => vi.advanceTimersByTime(300));
-  expect(resultNames()).toEqual(['Kaffeebohnen', 'Kaffeefilter']);
+  expect(resultNames()).toEqual(['Drehmomentschlüssel', 'Steckschlüsselsatz']);
 });

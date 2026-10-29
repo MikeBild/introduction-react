@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { Customer, LoadOrders, Order } from '../src/ordersApi';
+import { formatCents, orderTotalCents, type OrderId } from '../src/shop';
 
 type OrderPanelProps = {
   customer: Customer;
   loadOrders: LoadOrders;
-  onReorder: (orderId: string) => void;
+  onReorder: (orderId: OrderId) => void;
 };
 
 export const OrderPanel = ({
@@ -12,9 +13,6 @@ export const OrderPanel = ({
   loadOrders,
   onReorder,
 }: OrderPanelProps) => {
-  // 1: Abgeleiteter Wert – beim Rendern berechnet, kein State, kein Effect.
-  const fullName = `${customer.firstName} ${customer.lastName}`;
-
   // 2: Synchronisation mit einem externen System bleibt ein Effect –
   // mit AbortController, damit alte Antworten keinen State mehr setzen.
   const [orders, setOrders] = useState<readonly Order[]>([]);
@@ -31,6 +29,12 @@ export const OrderPanel = ({
     return () => controller.abort();
   }, [customer.id, loadOrders]);
 
+  // 1: Abgeleiteter Wert – beim Rendern berechnet, kein State, kein Effect.
+  const totalCents = orders.reduce(
+    (sum, order) => sum + orderTotalCents(order.items),
+    0
+  );
+
   // 3: Interval mit Cleanup.
   const [secondsOpen, setSecondsOpen] = useState(0);
   useEffect(() => {
@@ -44,14 +48,15 @@ export const OrderPanel = ({
   // 4: Eine Nutzeraktion gehört in den Event Handler, nicht in einen Effect.
   return (
     <section>
-      <h2>Bestellungen von {fullName}</h2>
+      <h2>Bestellungen von {customer.name}</h2>
       <p>Seit {secondsOpen} Sekunden geöffnet</p>
+      <p>Summe: {formatCents(totalCents)}</p>
       <ul>
         {orders.map((order) => (
           <li key={order.id}>
-            {order.productName}{' '}
+            Bestellung {order.id}{' '}
             <button type="button" onClick={() => onReorder(order.id)}>
-              {order.productName} erneut bestellen
+              Bestellung {order.id} erneut bestellen
             </button>
           </li>
         ))}

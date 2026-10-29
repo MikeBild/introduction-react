@@ -15,7 +15,10 @@ beforeEach(() => {
 const renderPage = (api = createTestApi()) =>
   act(async () => {
     render(
-      <OrderDetailPage orderId="o-1" orderCache={createOrderCache(api)} />
+      <OrderDetailPage
+        orderId={testOrder.id}
+        orderCache={createOrderCache(api)}
+      />
     );
   });
 
@@ -33,14 +36,16 @@ it('zeigt erst den Loading State, dann die Bestellung', async () => {
   expect(screen.getByText('Bestellung lädt …')).toBeInTheDocument();
   await act(async () => pendingOrder.resolve(testOrder));
   expect(
-    screen.getByRole('heading', { name: 'Bestellung o-1' })
+    screen.getByRole('heading', { name: 'Bestellung o1001' })
   ).toBeInTheDocument();
   expect(screen.getByText('Versand: Unterwegs')).toBeInTheDocument();
 });
 
 it('fängt den Error, wenn die Bestellung nicht lädt', async () => {
   const api = createTestApi();
-  api.fetchOrder.mockRejectedValue(new Error('Bestellung o-1 nicht gefunden'));
+  api.fetchOrder.mockRejectedValue(
+    new Error('Bestellung o1001 nicht gefunden')
+  );
   await renderPage(api);
   expect(screen.getByRole('alert')).toBeInTheDocument();
 });
@@ -52,7 +57,7 @@ it('lädt nach einem Error per Retry neu', async () => {
   expect(screen.getByRole('alert')).toHaveTextContent('Netzwerk weg');
   await clickAndWait(screen.getByRole('button', { name: 'Erneut laden' }));
   expect(
-    await screen.findByRole('heading', { name: 'Bestellung o-1' })
+    await screen.findByRole('heading', { name: 'Bestellung o1001' })
   ).toBeInTheDocument();
   expect(api.fetchOrder).toHaveBeenCalledTimes(2);
 });
@@ -62,7 +67,7 @@ it('zeigt die Bestellung auch dann, wenn der Versandstatus fehlt', async () => {
   api.fetchShipment.mockRejectedValue(new Error('Tracking down'));
   await renderPage(api);
   expect(
-    screen.getByRole('heading', { name: 'Bestellung o-1' })
+    screen.getByRole('heading', { name: 'Bestellung o1001' })
   ).toBeInTheDocument();
   expect(
     screen.getByText('Versandstatus ist gerade nicht verfügbar.', {

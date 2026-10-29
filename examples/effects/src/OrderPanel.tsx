@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { Customer, LoadOrders, Order } from './ordersApi';
+import { formatCents, orderTotalCents, type OrderId } from './shop';
 
 type OrderPanelProps = {
   customer: Customer;
   loadOrders: LoadOrders;
-  onReorder: (orderId: string) => void;
+  onReorder: (orderId: OrderId) => void;
 };
 
 // Übung react-effects: Prüfe jeden der vier Effects.
@@ -13,17 +14,19 @@ export const OrderPanel = ({
   loadOrders,
   onReorder,
 }: OrderPanelProps) => {
-  // Effect 1: abgeleiteter Wert als State
-  const [fullName, setFullName] = useState('');
-  useEffect(() => {
-    setFullName(`${customer.firstName} ${customer.lastName}`);
-  }, [customer.firstName, customer.lastName]);
-
   // Effect 2: Request ohne Abbruch
   const [orders, setOrders] = useState<readonly Order[]>([]);
   useEffect(() => {
     loadOrders(customer.id).then(setOrders);
   }, [customer.id, loadOrders]);
+
+  // Effect 1: abgeleiteter Wert als State
+  const [totalCents, setTotalCents] = useState(0);
+  useEffect(() => {
+    setTotalCents(
+      orders.reduce((sum, order) => sum + orderTotalCents(order.items), 0)
+    );
+  }, [orders]);
 
   // Effect 3: Interval ohne Cleanup
   const [secondsOpen, setSecondsOpen] = useState(0);
@@ -32,21 +35,22 @@ export const OrderPanel = ({
   }, []);
 
   // Effect 4: reagiert auf einen Klick
-  const [reorderId, setReorderId] = useState<string | null>(null);
+  const [reorderId, setReorderId] = useState<OrderId | null>(null);
   useEffect(() => {
     if (reorderId) onReorder(reorderId);
   }, [reorderId, onReorder]);
 
   return (
     <section>
-      <h2>Bestellungen von {fullName}</h2>
+      <h2>Bestellungen von {customer.name}</h2>
       <p>Seit {secondsOpen} Sekunden geöffnet</p>
+      <p>Summe: {formatCents(totalCents)}</p>
       <ul>
         {orders.map((order) => (
           <li key={order.id}>
-            {order.productName}{' '}
+            Bestellung {order.id}{' '}
             <button type="button" onClick={() => setReorderId(order.id)}>
-              {order.productName} erneut bestellen
+              Bestellung {order.id} erneut bestellen
             </button>
           </li>
         ))}

@@ -1,30 +1,14 @@
 import { Suspense, use } from 'react';
 import { ErrorBoundary, type FallbackProps } from 'react-error-boundary';
 import type { OrderCache } from '../src/orderCache';
+import type { OrderId } from '../src/orders';
+import { OrderView } from '../src/OrderSummary';
 
-type OrderSectionProps = { orderId: string; orderCache: OrderCache };
-
-const formatEuro = (amountInCents: number) =>
-  new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(
-    amountInCents / 100
-  );
+type OrderSectionProps = { orderId: OrderId; orderCache: OrderCache };
 
 const OrderSummary = ({ orderId, orderCache }: OrderSectionProps) => {
   const order = use(orderCache.readOrder(orderId));
-  return (
-    <section>
-      <h2>Bestellung {order.id}</h2>
-      <p>Kunde: {order.customer}</p>
-      <ul>
-        {order.items.map((item) => (
-          <li key={item.name}>
-            {item.quantity} × {item.name}
-          </li>
-        ))}
-      </ul>
-      <p>Summe: {formatEuro(order.totalInCents)}</p>
-    </section>
-  );
+  return <OrderView order={order} />;
 };
 
 const ShipmentStatus = ({ orderId, orderCache }: OrderSectionProps) => {

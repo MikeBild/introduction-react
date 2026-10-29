@@ -1,6 +1,6 @@
-# Events & Forms
+# Events und Forms
 
-Eine Newsletter-Anmeldung mit einem halb fertigen Formular: ein Feld, kein Submit Handler, ein Klick lädt die Seite neu. Du baust daraus eine Controlled Form.
+Die Produktseite im Werkstatt-Shop: Unter dem Produkt steht ein Formular für die Menge. Es hat noch keinen Submit Handler, und niemand prüft den Bestand.
 
 Lektion: **Wem gehört der Wert im Input?** (`react-events-forms`)
 
@@ -12,12 +12,12 @@ npm test
 
 ## Übung
 
-1. Ergänze in `src/NewsletterForm.tsx` ein zweites Feld mit dem Label „E-Mail“ (`type="email"`).
-2. Mach beide Inputs zu Controlled Inputs: Je ein `useState`, `value` und `onChange`.
-3. Schreib einen Submit Handler mit dem Typ `SubmitEvent<HTMLFormElement>`. Er ruft `event.preventDefault()`, übergibt `{ name, email }` an `onSubscribe` und leert danach beide Felder.
-4. Deaktiviere den Button „Anmelden“, solange ein Feld leer ist. Leerzeichen zählen nicht als Eingabe. Leite das aus dem State ab, statt einen eigenen State dafür anzulegen.
-5. Entferne `.skip` in `src/NewsletterForm.test.tsx`.
+1. Klick in `npm run dev` auf „In den Warenkorb“. Die Seite lädt neu, „Im Warenkorb“ bleibt bei 0. Warum?
+2. Mach die Menge in `src/AddToCartForm.tsx` zu einem Controlled Input: `useState('1')` hält den Text, `value` und `onChange` verbinden ihn mit dem Feld.
+3. Leite die Zahl beim Rendern ab (`Number(quantity)`). Deaktiviere den Button, wenn die Menge leer ist oder nicht zwischen 1 und `stock` liegt.
+4. Ergänze `onSubmit` an der Form, typisiert mit `SubmitEvent<HTMLFormElement>`. Ruf `event.preventDefault()` auf und dann `onAdd` mit der Menge.
+5. Entferne `.skip` in `src/AddToCartForm.test.tsx`.
 
 ## Lösung
 
-`solution/NewsletterForm.tsx` mit Tests in `solution/NewsletterForm.test.tsx`. Um die Lösung im Browser zu sehen, ändere den Import in `src/App.tsx` auf `../solution/NewsletterForm`.
+`solution/AddToCartForm.tsx` mit Tests. Um sie im Browser zu sehen, ändere den Import in `src/App.tsx` auf `../solution/AddToCartForm`.

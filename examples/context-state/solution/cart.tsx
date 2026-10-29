@@ -1,11 +1,13 @@
 import { createContext, use, useState, type ReactNode } from 'react';
 
-export type CartItem = { productId: string; name: string };
+import type { OrderItem, Product, ProductId } from '../src/shop';
+
+export type CartItem = OrderItem;
 
 type CartContextValue = {
   items: readonly CartItem[];
-  addItem: (item: CartItem) => void;
-  removeItem: (productId: string) => void;
+  addItem: (product: Product) => void;
+  removeItem: (productId: ProductId) => void;
 };
 
 // Kein Default-Objekt: null heißt „kein Provider“.
@@ -13,9 +15,12 @@ const CartContext = createContext<CartContextValue | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [items, setItems] = useState<readonly CartItem[]>([]);
-  const addItem = (item: CartItem) =>
-    setItems((currentItems) => [...currentItems, item]);
-  const removeItem = (productId: string) =>
+  const addItem = (product: Product) =>
+    setItems((currentItems) => [
+      ...currentItems,
+      { productId: product.id, quantity: 1, priceCents: product.priceCents },
+    ]);
+  const removeItem = (productId: ProductId) =>
     setItems((currentItems) =>
       currentItems.filter((item) => item.productId !== productId)
     );

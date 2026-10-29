@@ -1,14 +1,11 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
-import type { Order } from './ordersApi';
+import { customers, orders, type CustomerId, type Order } from './shop';
 import { OrderPanel } from './OrderPanel';
 
-const ada = { id: 'c1', firstName: 'Ada', lastName: 'Lovelace' };
-const grace = { id: 'c2', firstName: 'Grace', lastName: 'Hopper' };
-const adaOrders: readonly Order[] = [{ id: 'o1', productName: 'Kaffeebohnen' }];
-const graceOrders: readonly Order[] = [
-  { id: 'o3', productName: 'Milchkännchen' },
-];
+const [ada, tom] = customers;
+const adaOrders = orders.filter((order) => order.customerId === ada.id);
+const tomOrders = orders.filter((order) => order.customerId === tom.id);
 
 afterEach(() => {
   vi.useRealTimers();
@@ -23,9 +20,9 @@ it('zeigt Name und Bestellungen', async () => {
     />
   );
   expect(
-    screen.getByRole('heading', { name: 'Bestellungen von Ada Lovelace' })
+    screen.getByRole('heading', { name: 'Bestellungen von Ada Schmidt' })
   ).toBeInTheDocument();
-  expect(await screen.findByText('Kaffeebohnen')).toBeInTheDocument();
+  expect(await screen.findByText('Summe: 109,80 €')).toBeInTheDocument();
 });
 
 // Übung react-effects: .skip Schritt für Schritt entfernen
@@ -39,7 +36,7 @@ it.skip('bestellt bei jedem Klick erneut', async () => {
     />
   );
   const button = await screen.findByRole('button', {
-    name: 'Kaffeebohnen erneut bestellen',
+    name: 'Bestellung o1001 erneut bestellen',
   });
   fireEvent.click(button);
   fireEvent.click(button);
@@ -63,8 +60,8 @@ it.skip('räumt das Interval beim Unmount auf', () => {
 });
 
 it.skip('ignoriert die Antwort für einen alten Kunden', async () => {
-  const pending = new Map<string, (orders: readonly Order[]) => void>();
-  const loadOrders = (customerId: string) =>
+  const pending = new Map<CustomerId, (orders: readonly Order[]) => void>();
+  const loadOrders = (customerId: CustomerId) =>
     new Promise<readonly Order[]>((resolve) =>
       pending.set(customerId, resolve)
     );
@@ -72,12 +69,16 @@ it.skip('ignoriert die Antwort für einen alten Kunden', async () => {
     <OrderPanel customer={ada} loadOrders={loadOrders} onReorder={() => {}} />
   );
   rerender(
-    <OrderPanel customer={grace} loadOrders={loadOrders} onReorder={() => {}} />
+    <OrderPanel customer={tom} loadOrders={loadOrders} onReorder={() => {}} />
   );
-  await act(async () => pending.get('c2')?.(graceOrders));
-  await act(async () => pending.get('c1')?.(adaOrders));
-  expect(screen.getByText('Milchkännchen')).toBeInTheDocument();
-  expect(screen.queryByText('Kaffeebohnen')).not.toBeInTheDocument();
+  await act(async () => pending.get(tom.id)?.(tomOrders));
+  await act(async () => pending.get(ada.id)?.(adaOrders));
+  expect(
+    screen.getByRole('button', { name: 'Bestellung o1002 erneut bestellen' })
+  ).toBeInTheDocument();
+  expect(
+    screen.queryByRole('button', { name: 'Bestellung o1001 erneut bestellen' })
+  ).not.toBeInTheDocument();
 });
 
 it.skip('bricht den Request beim Unmount ab', () => {

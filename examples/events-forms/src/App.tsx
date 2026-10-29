@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import { NewsletterForm } from './NewsletterForm';
-import type { Subscription } from './subscription';
+import { AddToCartForm } from './AddToCartForm';
+import { formatCents, products } from './shop';
+
+const product = products[0];
 
 export const App = () => {
-  const [subscriptions, setSubscriptions] = useState<readonly Subscription[]>(
-    []
-  );
+  const [quantityInCart, setQuantityInCart] = useState(0);
   return (
     <main>
-      <h1>Newsletter</h1>
-      <NewsletterForm
-        onSubscribe={(subscription) =>
-          setSubscriptions((current) => [...current, subscription])
-        }
+      <h1>{product.name}</h1>
+      <p>
+        {formatCents(product.priceCents)} · {product.stock} auf Lager
+      </p>
+      <AddToCartForm
+        stock={product.stock}
+        onAdd={(quantity) => setQuantityInCart((current) => current + quantity)}
       />
-      <p>{subscriptions.length} Anmeldungen</p>
+      <p>Im Warenkorb: {quantityInCart}</p>
     </main>
   );
 };

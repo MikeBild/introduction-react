@@ -1,14 +1,14 @@
-import type { Order, OrderApi, Shipment } from './orders';
+import type { Order, OrderApi, OrderId, Shipment } from './orders';
 
 // use() braucht ein stabiles Promise: Es entsteht hier, nicht beim Rendern.
 // Derselbe Request liefert bei jedem Render dasselbe Promise aus dem Cache.
 export const createOrderCache = (api: OrderApi) => {
-  const orders = new Map<string, Promise<Order>>();
-  const shipments = new Map<string, Promise<Shipment>>();
+  const orders = new Map<OrderId, Promise<Order>>();
+  const shipments = new Map<OrderId, Promise<Shipment>>();
   const getOrCreate = <T>(
-    cache: Map<string, Promise<T>>,
-    key: string,
-    load: (key: string) => Promise<T>
+    cache: Map<OrderId, Promise<T>>,
+    key: OrderId,
+    load: (key: OrderId) => Promise<T>
   ) => {
     const cached = cache.get(key);
     if (cached) return cached;
@@ -17,13 +17,13 @@ export const createOrderCache = (api: OrderApi) => {
     return promise;
   };
   return {
-    readOrder: (orderId: string) =>
+    readOrder: (orderId: OrderId) =>
       getOrCreate(orders, orderId, api.fetchOrder),
-    readShipment: (orderId: string) =>
+    readShipment: (orderId: OrderId) =>
       getOrCreate(shipments, orderId, api.fetchShipment),
     // Ein abgelehntes Promise bleibt abgelehnt – für einen Retry muss es raus.
-    forgetOrder: (orderId: string) => orders.delete(orderId),
-    forgetShipment: (orderId: string) => shipments.delete(orderId),
+    forgetOrder: (orderId: OrderId) => orders.delete(orderId),
+    forgetShipment: (orderId: OrderId) => shipments.delete(orderId),
   };
 };
 

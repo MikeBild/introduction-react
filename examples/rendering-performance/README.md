@@ -1,6 +1,6 @@
 # Rendering Performance
 
-Eine Produkttabelle mit 2.000 Zeilen und einem Notizfeld darüber. Jeder Tastendruck in der Notiz rendert die ganze Tabelle neu. Du misst das zuerst und behebst es dann mit der einfachsten Maßnahme.
+Die lange Produkttabelle des Werkstatt-Shops mit 2.000 Zeilen und einem Notizfeld darüber. Jeder Tastendruck in der Notiz rendert die ganze Tabelle neu. Du misst das zuerst und behebst es dann mit der einfachsten Maßnahme.
 
 Lektion: **Erst messen, dann optimieren** (`react-rendering-performance`)
 

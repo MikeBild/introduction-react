@@ -5,17 +5,13 @@ import { PriceTag } from './PriceTag';
 import { ProductCard } from './ProductCard';
 
 it('formatiert Cent-Beträge als Euro', () => {
-  render(<PriceTag amountInCents={390} />);
-  expect(screen.getByText('3,90 €')).toBeInTheDocument();
+  render(<PriceTag cents={1290} />);
+  expect(screen.getByText('12,90 €')).toBeInTheDocument();
 });
 
 it('markiert ausverkaufte Produkte', () => {
-  render(
-    <ProductCard
-      product={{ id: 'x', name: 'Tasse', priceInCents: 900, isInStock: false }}
-    />
-  );
-  expect(screen.getByText('ausverkauft')).toBeInTheDocument();
+  render(<ProductCard name="Hammer" priceCents={1290} stock={0} />);
+  expect(screen.getByText('Ausverkauft')).toBeInTheDocument();
 });
 
 it('rendert die ganze Liste', () => {
