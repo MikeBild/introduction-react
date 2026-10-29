@@ -23,7 +23,7 @@ Die Daten des Werkstatt-Shops liegen in `src/shop.ts`: `Product` mit `priceCents
 
 1. Ergänze ein Suchfeld mit dem Label „Suche“. Der Suchtext ist State.
 2. Berechne die gefilterte Liste beim Rendern. Leg sie nicht in einen zweiten State.
-3. Zeig „Keine Produkte für ‚…‘“, wenn nichts passt.
+3. Zeig „Keine Produkte für ‚…‘. Prüf die Schreibweise oder such nach einem kürzeren Begriff.“, wenn nichts passt.
 4. Baue einen Warenkorb: Die Positionen (`OrderItem[]`) sind State, jede Produktkarte bekommt einen Button „… in den Warenkorb“, jede Position einen Button „… entfernen“.
 5. Berechne die Summe mit `orderTotalCents` beim Rendern und zeig sie als „Summe: …“ in einem Bereich mit `aria-label="Warenkorb"`.
 6. Erzeuge bei jedem Update ein neues Array (Spread, `map`, `filter`), nie `push`.

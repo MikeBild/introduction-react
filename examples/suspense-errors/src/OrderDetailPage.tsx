@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { errorText } from './errorText';
 import type { OrderCache } from './orderCache';
 import type { OrderId } from './orders';
 import { OrderView } from './OrderSummary';
@@ -23,7 +24,7 @@ const useLoad = <T,>(load: () => Promise<T>, key: OrderId) => {
         isCurrent &&
         setState({
           status: 'error',
-          message: error instanceof Error ? error.message : String(error),
+          message: errorText(error, 'Lade die Seite neu.'),
         })
     );
     return () => {

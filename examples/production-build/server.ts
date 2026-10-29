@@ -1,7 +1,7 @@
 import express from 'express';
 import { join } from 'node:path';
 
-// Production-Server für dist/: liefert die App aus und nimmt Error Reports an.
+// Server für die Produktion: liefert die App aus dist/ aus und nimmt Error Reports an.
 // Node 26 führt diese Datei direkt aus (Type Stripping).
 const port = Number(process.env.PORT ?? 4173);
 const distDir = join(import.meta.dirname, 'dist');
@@ -29,5 +29,5 @@ app.get('/{*path}', (_req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Production-Server läuft auf http://localhost:${port}`);
+  console.log(`Server für die Produktion läuft auf http://localhost:${port}`);
 });

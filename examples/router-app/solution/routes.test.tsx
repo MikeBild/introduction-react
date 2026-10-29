@@ -53,7 +53,9 @@ it('lädt das Detail per Path Param', async () => {
 
 it('zeigt 404 in der Route, Navigation bleibt', async () => {
   renderAt('/orders/o9999');
-  expect(await screen.findByRole('alert')).toHaveTextContent('404 Not Found');
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Das haben wir nicht gefunden.'
+  );
   expect(screen.getByRole('link', { name: 'Produkte' })).toBeInTheDocument();
 });
 
@@ -62,6 +64,6 @@ it('fängt Loader-Fehler in der ErrorBoundary der Route', async () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
   renderAt('/orders');
   expect(await screen.findByRole('alert')).toHaveTextContent(
-    'Unerwarteter Fehler'
+    'Netz weg. Versuch es noch einmal.'
   );
 });

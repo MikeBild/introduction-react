@@ -69,7 +69,10 @@ export const App = () => {
           )}
         />
       ) : (
-        <p>Keine Produkte für „{searchText}“</p>
+        <p>
+          Keine Produkte für „{searchText}“. Prüf die Schreibweise oder such
+          nach einem kürzeren Begriff.
+        </p>
       )}
       <section aria-label="Warenkorb">
         <p>

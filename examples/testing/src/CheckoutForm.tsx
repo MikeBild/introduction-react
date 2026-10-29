@@ -1,5 +1,6 @@
 import { useState, type SubmitEvent } from 'react';
 import type { CartItem } from './cart';
+import { httpErrorText } from './errorText';
 import { toFieldErrors, type FieldErrors } from './fieldErrors';
 import { PlaceOrderInput } from './placeOrderInput';
 import { customers, products } from './shop';
@@ -32,7 +33,7 @@ const sendOrder = async (input: PlaceOrderInput) => {
       kind: 'fieldError' as const,
       errors: { [body.path]: body.message },
     };
-  return { kind: 'failed' as const, message: `HTTP ${response.status}` };
+  return { kind: 'failed' as const, message: httpErrorText(response.status) };
 };
 
 export const CheckoutForm = ({ cart }: { cart: readonly CartItem[] }) => {
@@ -59,9 +60,7 @@ export const CheckoutForm = ({ cart }: { cart: readonly CartItem[] }) => {
     setIsSubmitting(false);
     if (response.kind === 'placed') return setPlacedOrderId(response.orderId);
     if (response.kind === 'fieldError') return setErrors(response.errors);
-    setFormError(
-      `Die Bestellung ist fehlgeschlagen (${response.message}). Versuch es noch einmal.`
-    );
+    setFormError(`Die Bestellung ist fehlgeschlagen. ${response.message}`);
   };
 
   if (placedOrderId)

@@ -23,7 +23,7 @@ it('zeigt den Fallback bei Render Errors', () => {
     </AppErrorBoundary>
   );
   expect(screen.getByRole('alert')).toHaveTextContent(
-    'Etwas ist schiefgelaufen.'
+    'Dieser Bereich konnte nicht angezeigt werden.'
   );
 });
 

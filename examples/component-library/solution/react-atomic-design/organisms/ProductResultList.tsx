@@ -14,5 +14,8 @@ export const ProductResultList = ({
       ))}
     </ul>
   ) : (
-    <p>Keine Produkte gefunden</p>
+    <p>
+      Keine Produkte gefunden. Prüf die Schreibweise oder such nach einem
+      kürzeren Begriff.
+    </p>
   );

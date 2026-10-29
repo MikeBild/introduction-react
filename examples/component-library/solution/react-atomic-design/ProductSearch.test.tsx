@@ -21,7 +21,7 @@ it('ordnet die Slots des Templates an', () => {
 
 it('zeigt einen Hinweis bei leerer Trefferliste', () => {
   render(<ProductResultList products={[]} />);
-  expect(screen.getByText('Keine Produkte gefunden')).toBeVisible();
+  expect(screen.getByText(/^Keine Produkte gefunden\./)).toBeVisible();
 });
 
 it('filtert und zählt die Treffer auf der Page', async () => {

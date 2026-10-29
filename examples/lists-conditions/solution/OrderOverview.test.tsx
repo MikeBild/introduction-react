@@ -19,12 +19,14 @@ it('zeigt einen Loading State', () => {
 
 it('zeigt den Error State mit Meldung', () => {
   render(<OrderOverview state={{ status: 'error', message: 'Server down' }} />);
-  expect(screen.getByRole('alert')).toHaveTextContent('Server down');
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    'Bestellungen nicht verfügbar (Server down). Lade die Seite neu'
+  );
 });
 
 it('zeigt einen Empty State', () => {
   render(<OrderOverview state={{ status: 'success', orders: [] }} />);
-  expect(screen.getByText('Noch keine Bestellungen')).toBeInTheDocument();
+  expect(screen.getByText(/^Noch keine Bestellungen\./)).toBeInTheDocument();
   expect(screen.queryByRole('list')).not.toBeInTheDocument();
 });
 

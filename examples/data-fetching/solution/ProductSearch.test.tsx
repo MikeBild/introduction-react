@@ -39,14 +39,18 @@ it('zeigt HTTP-Fehler als Meldung', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 500, { message: 'Interner Fehler' });
-  expect(screen.getByRole('alert')).toHaveTextContent('HTTP 500');
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    'Der Server hat gerade ein Problem. Versuch es in einem Moment noch einmal.'
+  );
 });
 
 it('meldet eine unerwartete Antwort', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 200, [{ id: 'p1' }]);
-  expect(screen.getByRole('alert')).toHaveTextContent('Unerwartete Antwort');
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    'Unerwartete Antwort vom Server. Versuch es noch einmal.'
+  );
 });
 
 it('zeigt einen Hinweis, wenn nichts passt', async () => {
@@ -54,7 +58,9 @@ it('zeigt einen Hinweis, wenn nichts passt', async () => {
   render(<App />);
   typeSearch('zange');
   await api.respond('zange', 200, []);
-  expect(screen.getByText('Keine Treffer für „zange“')).toBeInTheDocument();
+  expect(
+    screen.getByText(/^Keine Treffer für „zange“\. Prüf die Schreibweise/)
+  ).toBeInTheDocument();
 });
 
 it('bricht den Request beim Unmount ab', () => {

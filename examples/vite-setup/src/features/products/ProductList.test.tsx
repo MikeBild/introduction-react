@@ -20,7 +20,9 @@ it('zeigt HTTP-Fehler als Meldung', async () => {
     new Response(null, { status: 502 })
   );
   render(<ProductList />);
-  expect(await screen.findByRole('alert')).toHaveTextContent('HTTP 502');
+  expect(await screen.findByRole('alert')).toHaveTextContent(
+    'Produkte nicht geladen. Der Server hat gerade ein Problem.'
+  );
 });
 
 // Übung: .skip entfernen

@@ -47,7 +47,10 @@ export const OrdersPage = () => {
       <h1>Bestellungen</h1>
       <StatusFilter />
       {orders.length === 0 ? (
-        <p>Keine Bestellungen mit diesem Status</p>
+        <p>
+          Keine Bestellungen mit diesem Status. Wähl einen anderen Status oder
+          „Alle“.
+        </p>
       ) : (
         <ul>
           {orders.map((order) => (

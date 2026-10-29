@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchProducts } from './api';
+import { errorText } from './errorText';
 import type { Product } from './shop';
 
 export type LoadState<T> =
@@ -18,7 +19,7 @@ export const useProducts = (search: string): LoadState<Product[]> => {
       .then((data) => setResult({ search, status: 'success', data }))
       .catch((error: unknown) => {
         if (!controller.signal.aborted)
-          setResult({ search, status: 'error', message: String(error) });
+          setResult({ search, status: 'error', message: errorText(error) });
       });
     return () => controller.abort();
   }, [search]);

@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+import { errorText } from '../src/errorText';
 import { formatCents } from '../src/shop';
 import { productsQuery, usePlaceOrder } from './queries';
 
@@ -6,7 +7,7 @@ export const ProductList = ({ search }: { search: string }) => {
   const products = useQuery(productsQuery(search));
   const placeOrderMutation = usePlaceOrder();
   if (products.isPending) return <p>Lade Produkte …</p>;
-  if (products.isError) return <p role="alert">{String(products.error)}</p>;
+  if (products.isError) return <p role="alert">{errorText(products.error)}</p>;
   return (
     <>
       <ul aria-label="Produkte">
@@ -29,7 +30,7 @@ export const ProductList = ({ search }: { search: string }) => {
         ))}
       </ul>
       {placeOrderMutation.isError && (
-        <p role="alert">{String(placeOrderMutation.error)}</p>
+        <p role="alert">{errorText(placeOrderMutation.error)}</p>
       )}
     </>
   );

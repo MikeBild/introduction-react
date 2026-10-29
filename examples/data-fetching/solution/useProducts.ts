@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { errorText } from '../src/errorText';
 import type { Product } from '../src/shop';
 import { fetchProducts } from './fetchProducts';
 
@@ -18,7 +19,7 @@ export const useProducts = (search: string): LoadState<Product[]> => {
       .then((data) => setResult({ search, status: 'success', data }))
       .catch((error: unknown) => {
         if (!controller.signal.aborted)
-          setResult({ search, status: 'error', message: String(error) });
+          setResult({ search, status: 'error', message: errorText(error) });
       });
     // Der Cleanup bricht den Request für den alten Suchtext ab.
     return () => controller.abort();

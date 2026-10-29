@@ -21,7 +21,9 @@ it.skip('filtert die Liste nach dem Suchtext', async () => {
 it.skip('zeigt einen Hinweis, wenn nichts passt', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Suche'), 'Bohrer');
-  expect(screen.getByText('Keine Produkte für „Bohrer“')).toBeInTheDocument();
+  expect(
+    screen.getByText(/^Keine Produkte für „Bohrer“\. Prüf die Schreibweise/)
+  ).toBeInTheDocument();
 });
 
 it.skip('legt Produkte in den Warenkorb und summiert', async () => {

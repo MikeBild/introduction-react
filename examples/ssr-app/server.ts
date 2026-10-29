@@ -11,7 +11,7 @@ type EntryServer = typeof import('./src/entry-server.tsx');
 // Flags statt Umgebungsvariablen, damit die Scripts auch unter Windows laufen.
 const isProduction = process.argv.includes('--production');
 const isSolution = process.argv.includes('--solution');
-// React lädt seinen Production Build erst beim dynamischen Import unten.
+// React lädt seinen Build für die Produktion erst beim dynamischen Import unten.
 if (isProduction) process.env.NODE_ENV = 'production';
 
 const port = Number(process.env.PORT ?? 5173);
@@ -75,7 +75,13 @@ const renderPage = async (url: string, res: Response) => {
       pipe(htmlStream);
     },
     onShellError(error) {
-      res.status(500).send(String(error));
+      // Details ins Log, in den Browser nur ein lesbarer Satz mit nächstem Schritt.
+      console.error(error);
+      res
+        .status(500)
+        .send(
+          'Die Seite konnte nicht erzeugt werden. Lade sie in einem Moment neu.'
+        );
     },
     onError(error) {
       console.error(error);

@@ -15,8 +15,8 @@ npm test
 ## Übung
 
 1. Tipp im Browser zügig „boh“ und dann „bohrer“. Nach gut einer Sekunde springt die Liste zurück auf die Treffer für „boh“. Die langsame Antwort hat die schnelle überholt.
-2. Schreib in `src/fetchProducts.ts` eine Funktion `fetchProducts(search, signal)`. Sie wirft bei HTTP-Fehlern selbst, behandelt die Antwort als `unknown` und prüft sie mit einem Type Guard, bevor sie ein `Product[]` zurückgibt.
-3. Schreib einen Hook `useProducts(search)` in `src/useProducts.ts`. Modellier den Status als Union Type `LoadState<T>` mit `loading`, `error` und `success`. Brich im Cleanup des Effects den Request per `AbortController` ab.
+2. Schreib in `src/fetchProducts.ts` eine Funktion `fetchProducts(search, signal)`. Sie wirft bei HTTP-Fehlern selbst einen `HttpError` aus `src/errorText.ts`, behandelt die Antwort als `unknown` und prüft sie mit einem Type Guard, bevor sie ein `Product[]` zurückgibt.
+3. Schreib einen Hook `useProducts(search)` in `src/useProducts.ts`. Modellier den Status als Union Type `LoadState<T>` mit `loading`, `error` und `success`. Die Meldung im Status `error` kommt aus `errorText(error)`: ein lesbarer Satz mit nächstem Schritt statt `String(error)`. Brich im Cleanup des Effects den Request per `AbortController` ab.
 4. Nutz den Hook in einer `ProductList` und lösch den alten Fetch-Code aus `ProductSearch`.
 5. Entferne `.skip` in `src/ProductSearch.test.tsx`. Die Tests beantworten Requests in falscher Reihenfolge und mit Status 500.
 
@@ -26,7 +26,7 @@ npm test
 
 - `solution/fetchProducts.ts` – Laden, Status prüfen, Antwort prüfen
 - `solution/useProducts.ts` – Effect mit `AbortController`, Ergebnis mit seinem Suchtext
-- `solution/ProductList.tsx` und `solution/ProductSearch.tsx`
+- `solution/ProductList.tsx` und `solution/ProductSearch.tsx` – mit Hinweis, was du bei null Treffern tun kannst
 - `solution/ProductSearch.test.tsx` – Race Condition, Abbruch, HTTP-Fehler, ungültige Antwort
 
 Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.

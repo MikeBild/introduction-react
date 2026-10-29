@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { placeOrder } from './api';
+import { errorText } from './errorText';
 import { OrderList } from './OrderList';
 import { ProductCount } from './ProductCount';
 import { ProductList } from './ProductList';
@@ -25,7 +26,7 @@ export const App = () => {
       });
       setOrdersVersion((version) => version + 1);
     } catch (error) {
-      setOrderError(String(error));
+      setOrderError(errorText(error));
     } finally {
       setIsOrdering(false);
     }

@@ -6,7 +6,13 @@ export const ProductList = ({ search }: { search: string }) => {
   if (products.status === 'loading') return <p>Lade Produkte …</p>;
   if (products.status === 'error')
     return <p role="alert">{products.message}</p>;
-  if (products.data.length === 0) return <p>Keine Treffer für „{search}“</p>;
+  if (products.data.length === 0)
+    return (
+      <p>
+        Keine Treffer für „{search}“. Prüf die Schreibweise oder such nach einem
+        kürzeren Begriff.
+      </p>
+    );
   return (
     <ul>
       {products.data.map((product) => (

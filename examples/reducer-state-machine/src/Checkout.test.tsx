@@ -13,10 +13,14 @@ it('zeigt die Bestellnummer nach Erfolg', async () => {
 });
 
 it('zeigt den Error und erlaubt einen neuen Versuch', async () => {
-  render(<Checkout placeOrder={() => Promise.reject('Zahlung abgelehnt')} />);
+  render(
+    <Checkout
+      placeOrder={() => Promise.reject(new Error('Zahlung abgelehnt'))}
+    />
+  );
   await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
   expect(await screen.findByRole('alert')).toHaveTextContent(
-    'Zahlung abgelehnt'
+    'Zahlung abgelehnt. Versuch es noch einmal.'
   );
   expect(screen.getByRole('button', { name: 'Bestellen' })).toBeEnabled();
 });

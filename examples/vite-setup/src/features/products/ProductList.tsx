@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { errorText } from '../../errorText';
 import { formatCents, type Product } from '../../shop';
 import { fetchProducts } from './fetchProducts';
 
@@ -20,7 +21,7 @@ export const ProductList = () => {
         if (!ignore)
           setState({
             status: 'error',
-            message: error instanceof Error ? error.message : String(error),
+            message: errorText(error, 'Lade die Seite neu.'),
           });
       }
     );
@@ -31,11 +32,7 @@ export const ProductList = () => {
 
   if (state.status === 'loading') return <p>Lade Produkte …</p>;
   if (state.status === 'error')
-    return (
-      <p role="alert">
-        Produkte nicht geladen ({state.message}). Lade die Seite neu.
-      </p>
-    );
+    return <p role="alert">Produkte nicht geladen. {state.message}</p>;
   return (
     <ul>
       {state.products.map((product) => (

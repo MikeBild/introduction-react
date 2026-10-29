@@ -16,8 +16,8 @@ npm test
 2. Ersetze in `src/OrderOverview.tsx` den Index als Key durch `order.id`. Wiederhole Schritt 1.
 3. Ergänze eigene Ansichten für die drei anderen Situationen aus `OrdersState`:
    - Loading: `<p role="status">Bestellungen werden geladen …</p>`
-   - Error: ein Element mit `role="alert"`, das die Meldung aus dem State zeigt
-   - Empty: „Noch keine Bestellungen“ statt einer leeren Liste
+   - Error: ein Element mit `role="alert"`, das die Meldung aus dem State zeigt und den nächsten Schritt nennt: „Lade die Seite neu und versuch es noch einmal.“
+   - Empty: „Noch keine Bestellungen. Sobald jemand bestellt, erscheint die Bestellung hier.“ statt einer leeren Liste
 4. Entferne `.skip` in `src/OrderOverview.test.tsx` Schritt für Schritt.
 
 Die Bestellungen kommen aus `src/shop.ts`: `Order` mit `status`, `customerId` und `items`. Die Summe berechnest du mit `orderTotalCents`.

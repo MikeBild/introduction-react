@@ -1,6 +1,6 @@
-# Production Build
+# Build für die Produktion
 
-Das Dashboard des Werkstatt-Shops, vorbereitet für Production: Config beim Start geprüft, eine Lazy Route, die Bestandteile fürs Error Reporting mit [react-error-boundary](https://github.com/bvaughn/react-error-boundary) und ein kleiner Production-Server mit Express 5.
+Das Dashboard des Werkstatt-Shops, vorbereitet für die Produktion: Config beim Start geprüft, eine Lazy Route, die Bestandteile fürs Error Reporting mit [react-error-boundary](https://github.com/bvaughn/react-error-boundary) und ein kleiner Server für die Produktion mit Express 5.
 
 Lektion: **Production beginnt beim Build** (`react-production`)
 
