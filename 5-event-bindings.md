@@ -1,31 +1,26 @@
-# Event- and Data-Binding
+# Events und Forms
 
-## Event-Handler
+React reicht Events als Props durch: `onClick`, `onChange`, `onSubmit`. Daten fließen nach unten, Events nach oben.
 
-```javascript
-const MyComponentSimpleHandler = props => (
-  <button onClick={e => alert('Alert!')}>Alert</button>
-);
-const MyComponent = props => (
-  <input type="text" onBlur={e => alert(e.target.value)} />
-);
+```tsx
+const [email, setEmail] = useState('');
+
+<input value={email} onChange={(event) => setEmail(event.target.value)} />;
 ```
 
-- [Event-Handler Example](/examples/basic-app/src/components/EventHandler.js)
+## Controlled oder Uncontrolled?
 
-## Data-Flow
+- **Controlled:** React-State hält den Wert, das Input zeigt ihn nur an. Nimm das, wenn du beim Tippen validierst, ableitest oder einen Button deaktivierst.
+- **Uncontrolled:** Das DOM hält den Wert, du liest ihn beim Submit über `FormData`. Nimm das für einfache Forms und für Form Actions aus React 19.
 
-![React Data-Flow](react-dataflow.png)
+## Regeln
 
-- One-way from parent to child components
-- Structure applications in pages as parents and components as childs
-- prefer childs as reusable, stateless and functional components
-- childs with **internal** state are possible
-- parents (aka pages) manage state for childs
+- Ruf in `onSubmit` zuerst `event.preventDefault()` auf, wenn du selbst sendest.
+- Typisiere Handler über die React-Typen, zum Beispiel `SubmitEvent<HTMLFormElement>` oder `ChangeEvent<HTMLInputElement>`.
+- Leite abgeleitete Werte wie „Button aktiv?“ beim Rendern ab, statt sie in eigenen State zu legen.
 
-## Communication between components
+## Übung
 
-- Passing data down via component in `props`
-- Passing events up via component callbacks in `props`
-- Using Pub/Sub (e.g. via EventEmitter)
-- Using data binding libraries e.g. Flux, Redux, Falcor, GraphQL Relay, GraphQL Apollo, etc.
+Lektion **Wem gehört der Wert im Input?** (`react-events-forms`): [examples/events-forms](examples/events-forms/README.md)
+
+Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/5-event-bindings.md](legacy/chapters/5-event-bindings.md).

@@ -2,27 +2,40 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { expect, it, vi } from 'vitest';
 import { ProfilePanel } from './ProfilePanel';
+import { customers } from '../src/shop';
 
-it('opens the profile region by keyboard', async () => {
-  render(<ProfilePanel onSave={() => {}} />);
+const customer = customers[0];
+
+it('öffnet die Profil-Region per Tastatur', async () => {
+  render(<ProfilePanel customer={customer} onSave={() => {}} />);
   await userEvent.tab();
   await userEvent.keyboard('{Enter}');
-  expect(screen.getByRole('region', { name: 'Profile' })).toBeInTheDocument();
+  expect(
+    screen.getByRole('region', { name: 'Profil von Ada Schmidt' })
+  ).toBeInTheDocument();
 });
 
-it('saves with the keyboard', async () => {
+it('speichert per Tastatur', async () => {
   const onSave = vi.fn();
-  render(<ProfilePanel onSave={onSave} />);
-  await userEvent.click(screen.getByRole('button', { name: 'Edit profile' }));
-  screen.getByRole('button', { name: 'Save' }).focus();
+  render(<ProfilePanel customer={customer} onSave={onSave} />);
+  await userEvent.click(
+    screen.getByRole('button', { name: 'Profil bearbeiten' })
+  );
+  screen.getByRole('button', { name: 'Speichern' }).focus();
   await userEvent.keyboard('{Enter}');
   expect(onSave).toHaveBeenCalledOnce();
 });
 
-it('returns focus to the trigger after closing', async () => {
-  render(<ProfilePanel onSave={() => {}} />);
-  await userEvent.click(screen.getByRole('button', { name: 'Edit profile' }));
-  await userEvent.click(screen.getByRole('button', { name: 'Close profile' }));
+it('setzt den Focus nach dem Schließen zurück auf den Auslöser', async () => {
+  render(<ProfilePanel customer={customer} onSave={() => {}} />);
+  await userEvent.click(
+    screen.getByRole('button', { name: 'Profil bearbeiten' })
+  );
+  await userEvent.click(
+    screen.getByRole('button', { name: 'Profil schließen' })
+  );
   expect(screen.queryByRole('region')).not.toBeInTheDocument();
-  expect(screen.getByRole('button', { name: 'Edit profile' })).toHaveFocus();
+  expect(
+    screen.getByRole('button', { name: 'Profil bearbeiten' })
+  ).toHaveFocus();
 });

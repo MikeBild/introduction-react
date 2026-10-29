@@ -1,31 +1,32 @@
 import { describe, expect, it } from 'vitest';
 import { checkoutReducer } from './checkoutReducer';
+import { orderId } from './shop';
 
 describe('checkoutReducer', () => {
-  it('moves from submitting to success', () => {
+  it('geht von submitting nach success', () => {
     expect(
       checkoutReducer(
         { status: 'submitting' },
-        { type: 'succeeded', orderId: '42' }
+        { type: 'succeeded', orderId: orderId('o42') }
       )
-    ).toEqual({ status: 'success', orderId: '42' });
+    ).toEqual({ status: 'success', orderId: orderId('o42') });
   });
 
-  // Exercise step 2: remove .skip
-  it.skip('ignores succeeded while idle', () => {
+  // Übung Schritt 2: .skip entfernen
+  it.skip('ignoriert succeeded im Status idle', () => {
     const idleState = { status: 'idle' } as const;
     expect(
-      checkoutReducer(idleState, { type: 'succeeded', orderId: '42' })
+      checkoutReducer(idleState, { type: 'succeeded', orderId: orderId('o42') })
     ).toBe(idleState);
   });
 
-  it.skip('ignores submitted while submitting', () => {
+  it.skip('ignoriert submitted während submitting', () => {
     const submittingState = { status: 'submitting' } as const;
     expect(checkoutReducer(submittingState, { type: 'submitted' })).toBe(
       submittingState
     );
   });
 
-  // Exercise step 3
-  it.todo('resets from success back to idle');
+  // Übung Schritt 3
+  it.todo('setzt von success zurück auf idle');
 });

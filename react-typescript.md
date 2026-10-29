@@ -1,96 +1,46 @@
-# 📘 React + TypeScript Cheat-Sheet
+# React mit TypeScript
 
-## 🔹 Props
-```ts
-type ButtonProps = { 
-  label: string; 
-  disabled?: boolean; 
-  onClick: () => void; 
-};
-```
-👉 `?` optional Props
+Props sind der Vertrag einer Component. TypeScript prüft ihn bei jedem Aufruf.
 
----
+## Props typisieren
 
-## 🔹 Component
-```ts
-const Button: React.FC<ButtonProps> = ({ label, onClick }) => (
-  <button onClick={onClick}>{label}</button>
-);
-```
-👉 Use `React.FC<Props>` or `(props: Props)`
-
-
----
-
-## 🔹 Children
-```ts
-type CardProps = { 
-  children: React.ReactNode 
-};
-```
-👉 `React.ReactNode` always for `children`.
-
----
-
-## 🔹 State
-```ts
-const [count, setCount] = useState<number>(0);
-const [user, setUser] = useState<User | null>(null);
-```
-👉 `useState<T>()` use Generic-Types.
-
----
-
-## 🔹 Events
-```ts
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  setValue(e.target.value);
+```tsx
+type CartItemCardProps = {
+  name: string;
+  quantity: number;
+  variant?: 'default' | 'compact' | 'highlighted';
+  note?: string;
 };
 
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
+export const CartItemCard = ({ name, quantity, variant = 'default', note }: CartItemCardProps) => …
+```
+
+- Beschreib Props mit einem `type`. Optionale Props bekommen einen Default in der Destrukturierung.
+- Nimm Union Types für Varianten statt `string` oder mehrerer Booleans.
+- Übernimm native Props mit `ComponentProps<'button'>`, statt sie einzeln aufzuzählen.
+- `React.FC`, `defaultProps` und `PropTypes` brauchst du nicht mehr.
+
+Übung: Lektion **JSX ist JavaScript, Props sind der Vertrag** (`react-jsx-props`) – [examples/jsx-props](examples/jsx-props/README.md)
+
+## Generische Components
+
+Eine generische Component bewahrt den Typ des Aufrufers. Die Spalten einer `DataTable<T>` kennen dann die Felder von `T`.
+
+```tsx
+type Column<T> = { header: string; render: (row: T) => ReactNode };
+
+type DataTableProps<T> = {
+  rows: readonly T[];
+  columns: readonly Column<T>[];
+  getRowKey: (row: T) => string;
 };
+
+export const DataTable = <T,>({ rows, columns, getRowKey }: DataTableProps<T>) => …
 ```
-👉 Event-Types: `ChangeEvent`, `MouseEvent`, `FormEvent`.
 
----
+- Kein `any`, keine Casts. Wenn du casten musst, fehlt ein Type Parameter.
+- Lass TypeScript `T` aus `rows` ableiten, statt ihn beim Aufruf anzugeben.
 
-## 🔹 Refs
-```ts
-const inputRef = useRef<HTMLInputElement | null>(null);
+Übung: Lektion **Generics bewahren den Typ des Aufrufers** (`react-generic-components`) – [examples/generic-components](examples/generic-components/README.md)
 
-useEffect(() => {
-  inputRef.current?.focus();
-}, []);
-```
-👉 Access to DOM-Elements
-
----
-
-## 🔹 Lists & Arrays
-```ts
-type User = { id: number; name: string };
-
-const [users, setUsers] = useState<User[]>([]);
-```
-👉 `T[]` for Arrays
-
----
-
-## 🔹 Utility Types
-```ts
-type Preview = Pick<User, "id" | "name">;
-type Editable = Partial<User>;
-type WithoutEmail = Omit<User, "email">;
-```
-👉 For flexible Props & State
-
----
-
-## 🔑 Faustregeln
-- **Props**: declare `type` or `interface`  
-- **Children**: Always `React.ReactNode`
-- **Events**: Use React-Events instead of Standard-Events  
-- **State**: Use Generics for `useState<T>()`
-- **Utility Types** useful Helpers to save time 
+Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/react-typescript.md](legacy/chapters/react-typescript.md).

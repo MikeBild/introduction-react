@@ -1,16 +1,23 @@
 import { useId } from 'react';
 
-// Reference: visible label, error linked via aria-describedby.
-export const EmailField = ({ error }: { error?: string }) => {
+// Referenz: sichtbares Label, Error per aria-describedby verknüpft.
+export const EmailField = ({
+  defaultValue,
+  error,
+}: {
+  defaultValue?: string;
+  error?: string;
+}) => {
   const inputId = useId();
   const errorId = `${inputId}-error`;
   return (
     <div>
-      <label htmlFor={inputId}>Email</label>
+      <label htmlFor={inputId}>E-Mail</label>
       <input
         id={inputId}
         name="email"
         type="email"
+        defaultValue={defaultValue}
         aria-invalid={Boolean(error)}
         aria-describedby={error ? errorId : undefined}
       />

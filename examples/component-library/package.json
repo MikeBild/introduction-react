@@ -1,13 +1,47 @@
 {
-  "private": true,
   "name": "component-library",
-  "version": "1.0.0",
+  "version": "0.0.0",
+  "description": "Eine kleine Component Library mit Storybook: Composition per Slots und Atomic Design.",
+  "author": "Mike Bild <mike.bild@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=26"
+  },
   "scripts": {
-    "bootstrap": "lerna clean && lerna bootstrap",
-    "build": "lerna run build",
-    "dev": "lerna run dev --stream"
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest --run",
+    "test:watch": "vitest",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
-    "lerna": "^6.6.1"
+    "@babel/core": "^7.29.7",
+    "@rolldown/plugin-babel": "^0.2.4",
+    "@storybook/react-vite": "^10.6.5",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.8",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "jsdom": "^30.1.3",
+    "prettier": "^3.9.10",
+    "storybook": "^10.6.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5",
+    "vitest": "^5.0.5"
   }
 }

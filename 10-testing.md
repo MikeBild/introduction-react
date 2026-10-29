@@ -1,113 +1,43 @@
-# Testing React-Application
+# Testing
 
-## Goods and Bads
+Teste, was Nutzer sehen und tun. Ein Test sucht Elemente per Role und Label, klickt und tippt mit `user-event` und prüft, was danach auf dem Bildschirm steht. Interna wie State oder Hooks prüft er nicht.
 
-![Test Pyramid](test-pyramid.png)
+## Werkzeuge
 
-## Classifications
+- [Vitest](https://vitest.dev) als Test Runner, konfiguriert in `vite.config.ts`
+- [Testing Library](https://testing-library.com/docs/react-testing-library/intro) mit `jest-dom`-Matchern
+- `vi.stubGlobal('fetch', …)` für die API: Jeder Test legt fest, was der Server antwortet
 
-![Test Classifications](test-classifications.png)
+```tsx
+const mockFetchResponse = (status: number, body: unknown) => {
+  const fetchMock = vi.fn(async () => Response.json(body, { status }));
+  vi.stubGlobal('fetch', fetchMock);
+  return fetchMock;
+};
 
-## Setup
+it('meldet einen Server Error mit Status 500', async () => {
+  const user = userEvent.setup();
+  mockFetchResponse(500, null);
+  render(<CheckoutForm cart={initialCart} />);
 
-- [Jest](https://jestjs.io/)
-- [Playwright E2E Testing](https://playwright.dev/)
-- [Vitest](https://vitest.dev)
-- [Vitest API](https://vitest.dev/api/)
-- [React testing library](https://testing-library.com)
+  await user.selectOptions(screen.getByLabelText('Kunde'), 'Ada Schmidt');
+  await user.click(screen.getByRole('button', { name: 'Bestellen' }));
 
-
-## Jest
-
-TBD
-
-## Playwright
-
-TBD
-
-## Vitest
-
-```bash
-npm install -D vitest jsdom @vitejs/plugin-react @testing-library/react @testing-library/jest-dom
-```
-
-## `package.json`
-
-```json
-"scripts": {
-  "test": "vitest",
-}
-```
-
-## `vite.config.ts`
-
-```
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: 'src/tests/setup.js',
-  },
+  expect(await screen.findByRole('alert')).toHaveTextContent('HTTP 500');
 });
 ```
 
-## `tests/setup.js`
-```
-import { expect, afterEach } from 'vitest';
-import { cleanup } from '@testing-library/react';
-import matchers from '@testing-library/jest-dom/matchers';
+## Regeln
 
-// extends Vitest's expect method with methods from react-testing-library
-expect.extend(matchers);
+- Nimm zuerst `getByRole`, dann `getByLabelText`, erst zuletzt `getByTestId`.
+- Warte auf asynchrone Änderungen mit `findBy…`, nicht mit festen Timeouts.
+- Stell das echte `fetch` nach jedem Test mit `vi.unstubAllGlobals()` wieder her, zum Beispiel in `src/test/setup.ts`.
+- Prüf auch, dass ein Request **nicht** passiert, etwa bei einem Validation Error: `expect(fetchSpy).not.toHaveBeenCalled()`.
 
-// runs a cleanup after each test case (e.g. clearing jsdom)
-afterEach(() => {
-  cleanup();
-});
-```
+Wenn viele Tests dieselbe API brauchen oder du auch im Browser gegen eine Fake-API entwickeln willst, lohnt sich [MSW](https://mswjs.io). Für eine Form reicht der `fetch`-Spy.
 
-## Running tests
+## Übung
 
-```bash
-npm test
-```
+Lektion **Teste, was Nutzer sehen und tun** (`react-testing`): [examples/testing](examples/testing/README.md)
 
-## Implementing tests
-
-- Follow Arrange, Act, Assert (AAA)
-- Consider the [Test-Pyramid](https://martinfowler.com/bliki/TestPyramid.html)
-
-```javascript
-import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
-import Header from "../components/Header";
-
-describe("App", () => {
-  it("renders headline", () => {
-    render(<Header />);
-
-    screen.debug();
-  });
-});
-
-describe("Example", () => {
-  it("1 should be 1", () => {
-    expect(1).toEqual(1);
-  });
-});
-
-```
-
-## Testing React
-
-- [Mocha + Enzyme React Basic App](examples/basic-app/test/Body.spec.js)
-
-## Examples
-
-- [Basic App](examples/basic-app/README.md)
-- [Redux App](examples/redux-app/README.md)
+Die alte Fassung dieses Kapitels (Jest, Enzyme) liegt unter [legacy/chapters/10-testing.md](legacy/chapters/10-testing.md).

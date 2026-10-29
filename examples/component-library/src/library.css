@@ -1,0 +1,48 @@
+body {
+  font-family: system-ui, sans-serif;
+  margin: 2rem;
+}
+.button {
+  border: 1px solid #1d4ed8;
+  border-radius: 6px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+}
+.button--primary {
+  background: #1d4ed8;
+  color: white;
+}
+.button--secondary {
+  background: white;
+  color: #1d4ed8;
+}
+.input {
+  border: 1px solid #94a3b8;
+  border-radius: 6px;
+  padding: 0.4rem;
+}
+.badge {
+  background: #fef3c7;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  padding: 0.1rem 0.5rem;
+}
+.card {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  padding: 1rem;
+}
+.card--compact {
+  padding: 0.5rem;
+}
+.card__footer {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.avatar {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}

@@ -1,76 +1,28 @@
-# More React Pattern
+# Suspense und Error Boundaries
 
-## Stateless Funtions
+Zwei Fragen bestimmen die Struktur einer Seite: Wo wird gewartet? Wo werden Errors gefangen? `Suspense` beantwortet die erste, eine Error Boundary die zweite.
 
-```javascript
-const HelloWorld = () => <div>Hello World!</div>;
+```tsx
+import { ErrorBoundary } from 'react-error-boundary';
 
-const HelloWorld = (props, context) => (
-  <div style={{ color: context.color }}>Hello {props.name}!</div>
-);
+<ErrorBoundary FallbackComponent={OrderError} onReset={retryOrder}>
+  <Suspense fallback={<p>Bestellung wird geladen …</p>}>
+    <OrderDetails orderPromise={orderPromise} />
+  </Suspense>
+</ErrorBoundary>;
 ```
 
-## Render props
+## Regeln
 
-```javascript
-const Layout = ({ subnav }) => (
-  <Fragment>
-    {subnav}
-    <content>...</content>
-  </Fragment>
-);
+- Schreib keine eigene Error-Boundary-Klasse mehr. [react-error-boundary](https://github.com/bvaughn/react-error-boundary) kapselt die einzige Stelle, an der React noch eine Klasse verlangt.
+- Erzeuge das Promise für `use()` außerhalb des Renderns und cache es. Ein neues Promise pro Render lädt endlos.
+- Leg `use()` nie in `try/catch`. Errors fängt die Boundary.
+- Setz Boundaries dorthin, wo ein Teil der Seite unabhängig ausfallen darf.
 
-<Layout subnav={<ul><li><a href="...">First</a></li></ul>}>
-```
+Render Props, Higher-Order Components und eigene Error-Boundary-Klassen findest du in der alten Fassung dieses Kapitels.
 
-## Higher Order Components
+## Übung
 
-```javascript
-export default WrappedComponent => {
-  return class extends Component {
-    constructor(props) {
-      super(props);
-    }
+Lektion **Wo wird gewartet, wo werden Errors gefangen?** (`react-suspense-errors`): [examples/suspense-errors](examples/suspense-errors/README.md)
 
-    render() {
-      return (
-        <F>
-          {this.props && this.props.loading && <Loading>Loading...</Loading>}
-          <WrappedComponent {...this.props} />
-        </F>
-      );
-    }
-  };
-};
-```
-
-```javascript
-withLoading(<Page />);
-```
-
-## Error Boundaries
-
-```javascript
-export default class Catch extends React.Component {
-  state = {
-    err: null,
-  };
-
-  componentDidCatch(err) {
-    this.setState({ err });
-  }
-
-  componentWillReceiveProps(next) {
-    if (!this.state.err) return;
-    this.setState({ err: null });
-  }
-
-  render() {
-    const { err } = this.state;
-
-    if (!err) return this.props.children;
-
-    return <pre children={err.toString()} />;
-  }
-}
-```
+Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/18-more-pattern.md](legacy/chapters/18-more-pattern.md).

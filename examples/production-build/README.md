@@ -1,18 +1,26 @@
 # Production Build
 
-A React app prepared for production: config validated with [zod](https://zod.dev), a lazily loaded route and the building blocks for error reporting.
+Das Dashboard des Werkstatt-Shops, vorbereitet für Production: Config beim Start geprüft, eine Lazy Route, die Bausteine fürs Error Reporting mit [react-error-boundary](https://github.com/bvaughn/react-error-boundary) und ein kleiner Production-Server mit Express 5.
+
+Lektion: **Production beginnt beim Build** (`react-production`)
 
 ```bash
 npm install
 npm run dev
 npm test
+npm run build
+npm start     # Express 5 liefert dist/ aus, http://localhost:4173
 ```
 
-## Exercise
+## Übung
 
-1. Add the current route (`url`) to every report in `src/errorReporting.ts` and register global handlers for `error` and `unhandledrejection`.
-2. Implement `componentDidCatch` in `src/ErrorBoundary.tsx` so it calls `onError`, then wrap `<App />` in `src/main.tsx`. Remove `.skip` from the tests.
-3. Run `npm run build && npm run preview`. Find the separate `ReportsPage` chunk in `dist/assets` – and the value of `VITE_API_URL` in the bundle.
-4. Set `VITE_API_URL=not-a-url` in `.env.local` and start the app: the config check fails right away.
+1. Ergänze in `src/errorReporting.ts` jeden Report um die aktuelle Route (`url`) und registriere globale Handler für `error` und `unhandledrejection`.
+2. Gib in `src/AppErrorBoundary.tsx` Render Errors über die `onError`-Prop von `ErrorBoundary` an `reportError(error, 'render')` weiter. Leg `AppErrorBoundary` in `src/main.tsx` um `<App />`. Entferne `.skip` in `src/errorReporting.test.tsx`.
+3. Führ `npm run build && npm start` aus. `server.ts` liefert `dist/` mit langem Cache für gehashte Assets aus und nimmt unter `/api/client-errors` die Error Reports an – du siehst sie im Terminal. Such in `dist/assets` den eigenen Chunk für `ReportsPage` – und den Wert von `VITE_API_URL` im Bundle. Alles mit `VITE_`-Präfix ist öffentlich.
+4. Setz in `.env.local` `VITE_API_URL=not-a-url` und starte die App: Die Config-Prüfung schlägt sofort fehl, nicht erst vor einer Nutzerin.
 
-A possible solution lives in `solution/`.
+Eine eigene Error-Boundary-Klasse brauchst du nicht mehr. `react-error-boundary` kapselt die einzige Stelle, an der React noch eine Klasse verlangt.
+
+## Lösung
+
+In `solution/` liegen `errorReporting.ts`, `AppErrorBoundary.tsx`, `main.tsx` und die vollständigen Tests.

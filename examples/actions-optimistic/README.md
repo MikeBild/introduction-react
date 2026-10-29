@@ -1,6 +1,8 @@
 # Actions Optimistic
 
-A todo list using a React 19 form action with `useActionState` – ready for `useOptimistic`.
+Der Warenkorb des Werkstatt-Shops mit einer Form Action aus React 19 und `useActionState`. Der Fake-Server braucht eine Sekunde und lehnt Positionen ab, für die der Bestand nicht reicht – bereit für `useOptimistic`.
+
+Lektion: **Optimistic UI braucht einen Rückweg** (`react-actions-optimistic`)
 
 ```bash
 npm install
@@ -8,11 +10,15 @@ npm run dev
 npm test
 ```
 
-## Exercise
+## Übung
 
-1. Move the submit button into `SubmitButton.tsx` and read the pending state there with `useFormStatus` from `react-dom`.
-2. Show a new todo immediately with `useOptimistic` in `src/TodoList.tsx`, greyed out while it is saving.
-3. Add a todo containing "fail": the optimistic entry disappears and the error is shown.
-4. Remove `.skip` from the tests in `src/TodoList.test.tsx`.
+1. Verschieb den Submit-Button in eine eigene Component `SubmitButton` und lies dort den Pending State mit `useFormStatus` aus `react-dom`.
+2. Zeig eine neue Position in `src/Cart.tsx` sofort mit `useOptimistic` an, ausgegraut, solange der Server speichert. `mergeItem` aus `src/cartApi.ts` hilft dir beim Zusammenfassen gleicher Produkte.
+3. Leg den Steckschlüsselsatz in den Warenkorb: Er ist ausverkauft. Die optimistische Position verschwindet, und die Meldung erscheint.
+4. Entferne `.skip` in `src/Cart.test.tsx`.
 
-A possible solution lives in `solution/`.
+Optimistic Updates passen hier, weil eine Position im Entwurf fast immer gespeichert wird. Für das Bezahlen würdest du darauf verzichten.
+
+## Lösung
+
+Eine mögliche Lösung liegt in `solution/`: `Cart.tsx`, `SubmitButton.tsx` und die Tests.

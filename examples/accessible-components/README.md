@@ -1,6 +1,8 @@
 # Accessible Components
 
-A profile panel with a few accessibility barriers to fix: semantic HTML first, ARIA only where HTML is not enough.
+Das Profil-Panel im Konto des Werkstatt-Shops, mit ein paar Barrieren: erst semantisches HTML, ARIA nur dort, wo HTML nicht reicht.
+
+Lektion: **Accessibility von Anfang an** (`react-accessibility`)
 
 ```bash
 npm install
@@ -8,11 +10,15 @@ npm run dev
 npm test
 ```
 
-## Exercise
+## Übung
 
-1. Use the panel in `src/ProfilePanel.tsx` with the keyboard only. Where do you get stuck?
-2. Replace the clickable `div` and `span` with real buttons. The icon button needs an accessible name ("Close profile").
-3. After closing the panel, move the focus back to the "Edit profile" button (`useRef`).
-4. Remove `.skip` from the tests in `src/ProfilePanel.test.tsx` – they query by role, like a screen reader.
+1. Bedien das Panel in `src/ProfilePanel.tsx` nur mit der Tastatur. Wo kommst du nicht weiter?
+2. Ersetze das klickbare `div` und das `span` durch echte Buttons. Der Icon Button braucht einen Accessible Name („Profil schließen“).
+3. Setz nach dem Schließen den Focus zurück auf den Button „Profil bearbeiten“ (`useRef`).
+4. Entferne `.skip` in `src/ProfilePanel.test.tsx`. Die Tests suchen per Role, so wie ein Screenreader.
 
-`src/EmailField.tsx` is the reference for labels and error messages. A possible solution lives in `solution/`.
+`src/EmailField.tsx` ist die Referenz für Labels und Fehlermeldungen.
+
+## Lösung
+
+Eine mögliche Lösung liegt in `solution/`.

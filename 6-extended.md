@@ -1,20 +1,44 @@
-# Extended React
+# Children, Composition und Context
+
+## Composition
+
+Gib Inhalte als `children` oder als benannte Slots hinein, statt Flags zu sammeln. Eine `Card` mit `header`, `children` und `actions` ersetzt zehn Props wie `showActions` oder `isCompact`.
+
+Übung dazu: [examples/component-library](examples/component-library/README.md) (Lektion `react-composition`)
 
 ## Context
 
-- Extend all children via context props
-- See it as the global object (singleton) of your component tree
-- DON'T updating the context
+Context transportiert Werte durch den Baum, ohne Props durch jede Ebene zu reichen. Er ist kein Store für alles: Jeder Wechsel des Werts rendert alle Consumer neu.
 
-## Provider
+```tsx
+type CartContextValue = { items: readonly CartItem[]; addItem: (item: CartItem) => void };
 
-- Uses the context
-- Pattern to pass object(s) to components from top to bottom
-- All its descendant can have access to it
+const CartContext = createContext<CartContextValue | null>(null);
 
-## Higher-Order-Components
+export const CartProvider = ({ children }: { children: ReactNode }) => {
+  const [items, setItems] = useState<readonly CartItem[]>([]);
+  const addItem = (item: CartItem) => setItems((current) => [...current, item]);
+  return <CartContext value={{ items, addItem }}>{children}</CartContext>;
+};
 
-- Extend component(s) by wrapping into "higher" component
-- Enhance component isolation, interoperability and composablity
-- Reduces maintainability by reusing components
-- Use [Recompose](17-recompose.md) module to build powerful functional composition
+export const useCart = () => {
+  const cart = use(CartContext);
+  if (!cart) throw new Error('useCart braucht einen CartProvider');
+  return cart;
+};
+```
+
+## Regeln
+
+- Starte mit `null` statt mit einem Default-Objekt voller No-op-Funktionen.
+- Biete einen Custom Hook an, der außerhalb des Providers mit klarer Meldung abbricht.
+- Leg in Context nur Werte, die selten wechseln und viele brauchen: Theme, Session, Locale.
+- Server-Daten gehören nicht in Context. Lade sie dort, wo sie gebraucht werden, mit `fetch`, `use` und `Suspense`.
+
+Higher-Order Components und Render Props findest du nur noch in Legacy-Code. Für geteiltes Verhalten schreibst du heute Custom Hooks.
+
+## Übung
+
+Lektion **Context ist kein Store für alles** (`react-context-state`): [examples/context-state](examples/context-state/README.md)
+
+Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/6-extended.md](legacy/chapters/6-extended.md).

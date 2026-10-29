@@ -1,17 +1,19 @@
+import type { OrderId } from './shop';
+
 export type CheckoutState =
   | { status: 'idle' | 'submitting' }
-  | { status: 'success'; orderId: string }
+  | { status: 'success'; orderId: OrderId }
   | { status: 'error'; message: string };
 
 export type CheckoutAction =
   | { type: 'submitted' }
-  | { type: 'succeeded'; orderId: string }
+  | { type: 'succeeded'; orderId: OrderId }
   | { type: 'failed'; message: string };
 
 export const initialCheckoutState: CheckoutState = { status: 'idle' };
 
-// The current state is ignored: every action is accepted in every state,
-// even transitions the state diagram forbids.
+// Übung react-reducer: Der aktuelle State wird ignoriert – jede Action gilt
+// in jedem State, auch wenn das Diagramm den Übergang verbietet.
 export const checkoutReducer = (
   _state: CheckoutState,
   action: CheckoutAction

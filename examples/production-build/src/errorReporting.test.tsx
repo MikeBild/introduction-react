@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
-import { ErrorBoundary } from './ErrorBoundary';
+import { AppErrorBoundary } from './AppErrorBoundary';
 import { createErrorReporter } from './errorReporting';
 
-it('reports the error with the release version', () => {
+it('meldet den Error mit der Release-Version', () => {
   const sendReport = vi.fn();
   createErrorReporter('1.2.0', sendReport)(new Error('Boom'), 'window');
   expect(sendReport).toHaveBeenCalledWith(
@@ -15,18 +15,20 @@ const BrokenWidget = () => {
   throw new Error('Render failed');
 };
 
-it('shows the fallback for render errors', () => {
+it('zeigt den Fallback bei Render Errors', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
   render(
-    <ErrorBoundary fallback={<p>Something went wrong</p>}>
+    <AppErrorBoundary reportError={() => {}}>
       <BrokenWidget />
-    </ErrorBoundary>
+    </AppErrorBoundary>
   );
-  expect(screen.getByText('Something went wrong')).toBeInTheDocument();
+  expect(screen.getByRole('alert')).toHaveTextContent(
+    'Etwas ist schiefgelaufen.'
+  );
 });
 
-// Exercise: remove .skip
-it.skip('reports the current route', () => {
+// Übung: .skip entfernen
+it.skip('meldet die aktuelle Route', () => {
   const sendReport = vi.fn();
   createErrorReporter('1.2.0', sendReport)(new Error('Boom'), 'window');
   expect(sendReport).toHaveBeenCalledWith(
@@ -34,13 +36,16 @@ it.skip('reports the current route', () => {
   );
 });
 
-it.skip('reports render errors via onError', () => {
+it.skip('meldet Render Errors mit der Quelle render', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
-  const onError = vi.fn();
+  const reportError = vi.fn();
   render(
-    <ErrorBoundary fallback={<p>Something went wrong</p>} onError={onError}>
+    <AppErrorBoundary reportError={reportError}>
       <BrokenWidget />
-    </ErrorBoundary>
+    </AppErrorBoundary>
   );
-  expect(onError).toHaveBeenCalledWith(new Error('Render failed'));
+  expect(reportError).toHaveBeenCalledWith(
+    new Error('Render failed'),
+    'render'
+  );
 });
