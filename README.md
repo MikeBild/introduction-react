@@ -1,6 +1,6 @@
 # Übungen: React
 
-Übungs-Repo zum Workshop „React mit TypeScript bis Produktion“. Zu jeder Lektion – 23 im Kern, dazu die Zusatzkapitel – gibt es ein lauffähiges Beispiel mit Startpunkt (`src/`), Tests und Lösung (`solution/`). Alle Übungen spielen im Werkstatt-Shop mit Produkten, Warenkorb, Checkout und Bestellungen.
+Übungs-Repo zum Workshop „React mit TypeScript bis zur Produktion“. Zu jeder Lektion – 23 im Kern, dazu die Zusatzkapitel – gibt es ein lauffähiges Beispiel mit Startpunkt (`src/`), Tests und Lösung (`solution/`). Alle Übungen spielen im Werkstatt-Shop mit Produkten, Warenkorb, Checkout und Bestellungen.
 
 ## Was du lernst
 
@@ -108,7 +108,7 @@ Daten lädst du im Kern mit `fetch` und einem eigenen Hook (`data-fetching`), da
 
 ## Workshop und Folien
 
-- Workshop: [„React mit TypeScript bis Produktion“](https://workshops.mikebild.dev/w/react/remote/)
+- Workshop: [„React mit TypeScript bis zur Produktion“](https://workshops.mikebild.dev/w/react/remote/)
 - Workshop: [„React mit Vite bis zur installierbaren PWA“](https://workshops.mikebild.dev/w/react-fortgeschritten/remote/)
 - Workshop: [„Fullstack mit TypeScript, Node.js, GraphQL und React in 6 Tagen“](https://workshops.mikebild.dev/w/fullstack/onsite/)
 - Folien: [slides.mikebild.dev/introduction-react](https://slides.mikebild.dev/introduction-react.html)
