@@ -105,9 +105,9 @@ describe("Example", () => {
 
 ## Testing React
 
-- [Mocha + Enzyme React Basic App](examples/basic-app/test/Body.spec.js)
+- [Mocha + Enzyme React Basic App](../examples/basic-app/test/Body.spec.js)
 
 ## Examples
 
-- [Basic App](examples/basic-app/README.md)
-- [Redux App](examples/redux-app/README.md)
+- [Basic App](../examples/basic-app/README.md)
+- [Redux App](../examples/redux-app/README.md)

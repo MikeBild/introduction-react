@@ -3,7 +3,7 @@
 - Map URLs to components
 - Browser-Support for Forward / Backward Navigation
 - Bookmark-Support for Single-Page-Apps
-- [Router-Example](/examples/router-app/README.md)
+- [Router-Example](../examples/router-app/README.md)
 
 ## Setup
 

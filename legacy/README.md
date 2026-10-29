@@ -1,4 +1,6 @@
-# Introduction to React
+# Introduction to React (Legacy)
+
+> Archiv: Kapitel und Beispiele aus den Jahren 2017 bis 2023 (Class Components, Redux, webpack, React 16 bis 18). Sie sind hier nur zum Nachlesen. Die aktuellen Übungen findest du im [README](../README.md) im Hauptverzeichnis.
 
 ## Recommendations
 
@@ -10,28 +12,28 @@
 
 ## Workshop
 
-- [Introduction](1-introduction.md)
-- [Setting up a React-Application](2-setup.md)
-- [JSX Expressions](3-jsx.md)
-- [React-Components](4-react-components.md)
-- [Event- and Data-Binding](5-event-bindings.md)
-- [Children, Context, Provider & Higher-Order-Components](6-extended.md)
-- [CSS](7-css.md)
-- [Server Access](8-server-access.md)
-- [React-Router](9-router.md)
-- [Testing](10-testing.md)
-- [Flux/Redux](11-redux.md)
-- [Server-Side / Universal React](12-ssr.md)
-- [Development Tools WebPack, Babel, ES-Lint](13-dev-tools.md)
-- [Recompose](14-recompose.md)
-- [ES2015/ES6/ES7](15-ecma.md)
-- [GraphQL](16-graphql.md)
-- [RxJS](17-rxjs.md)
-- [More React Pattern](18-more-pattern.md)
-- [MobX](19-mobx.md)
-- [GraphQL Apollo](20-graphql-apollo.md)
-- [React Hooks](21-hooks.md)
-- [TypeScript](react-typescript.md)
+- [Introduction](chapters/1-introduction.md)
+- [Setting up a React-Application](chapters/2-setup.md)
+- [JSX Expressions](chapters/3-jsx.md)
+- [React-Components](chapters/4-react-components.md)
+- [Event- and Data-Binding](chapters/5-event-bindings.md)
+- [Children, Context, Provider & Higher-Order-Components](chapters/6-extended.md)
+- [CSS](chapters/7-css.md)
+- [Server Access](chapters/8-server-access.md)
+- [React-Router](chapters/9-router.md)
+- [Testing](chapters/10-testing.md)
+- [Flux/Redux](chapters/11-redux.md)
+- [Server-Side / Universal React](chapters/12-ssr.md)
+- [Development Tools WebPack, Babel, ES-Lint](chapters/13-dev-tools.md)
+- [Recompose](chapters/14-recompose.md)
+- [ES2015/ES6/ES7](chapters/15-ecma.md)
+- [GraphQL](chapters/16-graphql.md)
+- [RxJS](chapters/17-rxjs.md)
+- [More React Pattern](chapters/18-more-pattern.md)
+- [MobX](chapters/19-mobx.md)
+- [GraphQL Apollo](chapters/20-graphql-apollo.md)
+- [React Hooks](chapters/21-hooks.md)
+- [TypeScript](chapters/react-typescript.md)
 
 ## Examples
 
@@ -41,17 +43,6 @@
 - [Redux App](examples/redux-app/README.md)
 - [Server-Side / Universal App](examples/ssr-app/README.md)
 - [NextJS](examples/nextjs/README.md)
-
-## Exercises
-
-TypeScript starters with Vite and Vitest. Each README describes the exercise.
-
-- [Reducer State Machine](examples/reducer-state-machine/README.md)
-- [Forms Validation](examples/forms-validation/README.md)
-- [Actions Optimistic](examples/actions-optimistic/README.md)
-- [Accessible Components](examples/accessible-components/README.md)
-- [Feature Architecture](examples/feature-architecture/README.md)
-- [Production Build](examples/production-build/README.md)
 
 ## Resources
 

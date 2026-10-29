@@ -53,4 +53,4 @@ module.exports = {
 
 ## Examples
 
-- [Advanced App](examples/advanced-app/README.md)
+- [Advanced App](../examples/advanced-app/README.md)

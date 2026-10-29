@@ -11,7 +11,7 @@ const MyComponent = props => (
 );
 ```
 
-- [Event-Handler Example](/examples/basic-app/src/components/EventHandler.js)
+- [Event-Handler Example](../examples/basic-app/src/components/EventHandler.js)
 
 ## Data-Flow
 

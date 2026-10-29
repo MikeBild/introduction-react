@@ -103,4 +103,4 @@ module: {
 
 ## Example
 
-- [Dev-Tools App](examples/dev-tools-app/README.md)
+- [Dev-Tools App](../examples/dev-tools-app/README.md)
