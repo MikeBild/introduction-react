@@ -38,6 +38,6 @@ Wenn viele Tests dieselbe API brauchen oder du auch im Browser gegen eine Fake-A
 
 ## Übung
 
-Lektion **Teste, was Nutzer sehen und tun** (`react-testing`): [examples/testing](examples/testing/README.md)
+Lektion **Teste, was Nutzende sehen und tun** (`react-testing`): [examples/testing](examples/testing/README.md)
 
 Die alte Fassung dieses Kapitels (Jest, Enzyme) liegt unter [legacy/chapters/10-testing.md](legacy/chapters/10-testing.md).

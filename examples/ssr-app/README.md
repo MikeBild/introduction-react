@@ -9,7 +9,7 @@ npm install
 npm run dev          # Startpunkt mit Vite im Middleware Mode, http://localhost:5173
 npm test
 npm run build
-npm start            # Production-Server aus dist/
+npm start            # Server für die Produktion aus dist/
 ```
 
 Node 26 führt `server.ts` direkt aus (Type Stripping), du brauchst dafür keinen eigenen Build-Schritt.

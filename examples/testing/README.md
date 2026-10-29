@@ -2,7 +2,7 @@
 
 Der fertige Checkout des Werkstatt-Shops: Er validiert mit dem geteilten Schema `PlaceOrderInput` und schickt die Bestellung per `POST /api/orders`. Was fehlt, sind die Tests. Du schreibst sie mit Vitest und Testing Library und ersetzt `fetch` im Test durch einen Stub.
 
-Lektion: **Teste, was Nutzer sehen und tun** (`react-testing`)
+Lektion: **Teste, was Nutzende sehen und tun** (`react-testing`)
 
 ```bash
 npm install
