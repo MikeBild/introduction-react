@@ -1,6 +1,8 @@
 # Forms Validation
 
-A signup form validated with a single [zod](https://zod.dev) schema, with errors linked to their fields.
+Eine Signup Form, validiert mit einem einzigen [zod](https://zod.dev)-Schema. Errors hängen an ihrem Feld.
+
+Lektion: **Ein Schema für Form, Server und Typ** (`react-forms-validation`)
 
 ```bash
 npm install
@@ -8,11 +10,13 @@ npm run dev
 npm test
 ```
 
-## Exercise
+## Übung
 
-1. Extend `SignupSchema` in `src/signupSchema.ts` with `age` (`z.coerce.number()`, at least 18) and `acceptsTerms` (checkbox, `z.literal('on')`). The form data type follows via `z.infer`.
-2. Render both fields in `src/SignupForm.tsx` with a visible `label`, `aria-invalid` and `aria-describedby` – like the email field.
-3. Show server errors (try `taken@example.com`) at the matching field instead of the banner.
-4. Remove `.skip` from the tests in `src/SignupForm.test.tsx`.
+1. Erweitere `SignupSchema` in `src/signupSchema.ts` um `age` (`z.coerce.number()`, mindestens 18) und `acceptsTerms` (Checkbox, `z.literal('on')`). Der Typ der Form-Daten folgt über `z.infer`.
+2. Rendere beide Felder in `src/SignupForm.tsx` mit sichtbarem `label`, `aria-invalid` und `aria-describedby` – wie das E-Mail-Feld.
+3. Zeig Server Errors (probier `taken@example.com`) am passenden Feld statt im Banner.
+4. Entferne `.skip` in `src/SignupForm.test.tsx`.
 
-A possible solution lives in `solution/`.
+## Lösung
+
+Eine mögliche Lösung liegt in `solution/`.
