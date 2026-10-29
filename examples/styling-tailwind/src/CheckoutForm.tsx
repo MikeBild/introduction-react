@@ -1,12 +1,19 @@
 import type { SubmitEvent } from 'react';
+import { formatCents, orderTotalCents, products, type OrderItem } from './shop';
 
 type CheckoutFormProps = {
+  items: readonly OrderItem[];
   onPay: (data: FormData) => void;
   onBack: () => void;
   onCancel: () => void;
 };
 
+const productName = (item: OrderItem) =>
+  products.find((product) => product.id === item.productId)?.name ??
+  item.productId;
+
 export const CheckoutForm = ({
+  items,
   onPay,
   onBack,
   onCancel,
@@ -19,6 +26,17 @@ export const CheckoutForm = ({
   return (
     <form className="checkout-form" onSubmit={handleSubmit}>
       <h1>Kasse</h1>
+      <ul className="order-summary">
+        {items.map((item) => (
+          <li key={item.productId}>
+            <span>
+              {item.quantity} × {productName(item)}
+            </span>
+            <span>{formatCents(item.quantity * item.priceCents)}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="total">Summe {formatCents(orderTotalCents(items))}</p>
       <div className="field">
         <label htmlFor="name">Name</label>
         <input id="name" name="name" autoComplete="name" required />

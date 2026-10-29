@@ -1,8 +1,9 @@
-import { SignupForm } from './SignupForm';
+import { initialCart } from './cart';
+import { CheckoutForm } from './CheckoutForm';
 
 export const App = () => (
   <main>
-    <h1>Registrieren</h1>
-    <SignupForm />
+    <h1>Checkout</h1>
+    <CheckoutForm cart={initialCart} />
   </main>
 );

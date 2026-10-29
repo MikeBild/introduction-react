@@ -57,3 +57,20 @@ body {
   background: #dc2626;
   color: white;
 }
+
+.order-summary {
+  list-style: none;
+  padding: 0;
+}
+
+.order-summary li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.total {
+  text-align: right;
+  font-weight: 700;
+}

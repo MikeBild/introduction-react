@@ -20,8 +20,10 @@ export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
   if (checkoutState.status === 'success')
     return (
       <>
-        <p>Order {checkoutState.orderId} placed</p>
-        <button onClick={() => dispatch({ type: 'reset' })}>New order</button>
+        <p>Bestellung {checkoutState.orderId} ist eingegangen</p>
+        <button onClick={() => dispatch({ type: 'reset' })}>
+          Neue Bestellung
+        </button>
       </>
     );
 
@@ -34,7 +36,9 @@ export const Checkout = ({ placeOrder }: { placeOrder: PlaceOrder }) => {
         disabled={checkoutState.status === 'submitting'}
         onClick={handleSubmit}
       >
-        {checkoutState.status === 'submitting' ? 'Placing order …' : 'Order'}
+        {checkoutState.status === 'submitting'
+          ? 'Bestellung läuft …'
+          : 'Bestellen'}
       </button>
     </>
   );

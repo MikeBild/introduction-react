@@ -4,6 +4,5 @@ import { afterEach, vi } from 'vitest';
 
 afterEach(() => {
   cleanup();
-  // Stellt das echte fetch nach jedem Test wieder her.
-  vi.restoreAllMocks();
+  vi.unstubAllGlobals();
 });
