@@ -1,6 +1,6 @@
+import express, { type Response } from 'express';
 import { readFile } from 'node:fs/promises';
-import { createServer, type ServerResponse } from 'node:http';
-import { extname, join, normalize } from 'node:path';
+import { join } from 'node:path';
 import { Transform } from 'node:stream';
 import { pathToFileURL } from 'node:url';
 import type { ViteDevServer } from 'vite';
@@ -13,41 +13,25 @@ const isProduction = process.argv.includes('--production');
 const isSolution = process.argv.includes('--solution');
 // React lädt seinen Production Build erst beim dynamischen Import unten.
 if (isProduction) process.env.NODE_ENV = 'production';
+
 const port = Number(process.env.PORT ?? 5173);
 const templateFile = isSolution ? 'solution.html' : 'index.html';
 const clientDir = join(import.meta.dirname, 'dist/client');
 
-const contentTypes: Record<string, string> = {
-  '.js': 'text/javascript',
-  '.css': 'text/css',
-  '.svg': 'image/svg+xml',
-  '.json': 'application/json',
-};
+const app = express();
 
 let vite: ViteDevServer | undefined;
-if (!isProduction) {
-  const { createServer: createViteServer } = await import('vite');
-  vite = await createViteServer({
+if (isProduction) {
+  // Gehashte Assets aus dem Client-Build, aber nie die Templates selbst.
+  app.use(express.static(clientDir, { index: false }));
+} else {
+  const { createServer } = await import('vite');
+  vite = await createServer({
     server: { middlewareMode: true },
     appType: 'custom',
   });
+  app.use(vite.middlewares);
 }
-
-const serveStaticAsset = async (pathname: string, res: ServerResponse) => {
-  const filePath = normalize(join(clientDir, pathname));
-  if (!filePath.startsWith(clientDir)) return false;
-  try {
-    const content = await readFile(filePath);
-    res.setHeader(
-      'Content-Type',
-      contentTypes[extname(filePath)] ?? 'application/octet-stream'
-    );
-    res.end(content);
-    return true;
-  } catch {
-    return false;
-  }
-};
 
 const isEntryServer = (
   module: Record<string, unknown>
@@ -70,7 +54,7 @@ const loadTemplateAndEntry = async (url: string) => {
   return { template, entry };
 };
 
-const renderPage = async (url: string, res: ServerResponse) => {
+const renderPage = async (url: string, res: Response) => {
   const { template, entry } = await loadTemplateAndEntry(url);
   const data = await entry.loadProductPage();
   const [head, tail] = template
@@ -79,8 +63,7 @@ const renderPage = async (url: string, res: ServerResponse) => {
 
   const { pipe, abort } = entry.render(data, {
     onShellReady() {
-      res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/html; charset=utf-8');
+      res.status(200).type('html');
       res.write(head);
       const htmlStream = new Transform({
         transform(chunk, encoding, callback) {
@@ -92,8 +75,7 @@ const renderPage = async (url: string, res: ServerResponse) => {
       pipe(htmlStream);
     },
     onShellError(error) {
-      res.statusCode = 500;
-      res.end(String(error));
+      res.status(500).send(String(error));
     },
     onError(error) {
       console.error(error);
@@ -102,29 +84,17 @@ const renderPage = async (url: string, res: ServerResponse) => {
   setTimeout(abort, 10_000);
 };
 
-createServer((req, res) => {
-  const url = req.url ?? '/';
-  const handle = async () => {
-    if (!isProduction || url === '/' || !(await serveStaticAsset(url, res)))
-      await renderPage(url, res);
-  };
-  if (vite) {
-    vite.middlewares(req, res, () => {
-      handle().catch((error: unknown) => {
-        if (error instanceof Error) vite?.ssrFixStacktrace(error);
-        console.error(error);
-        res.statusCode = 500;
-        res.end(String(error));
-      });
-    });
-    return;
+// Express 5 leitet Fehler aus async Handlern selbst an next() weiter.
+app.get('/{*path}', async (req, res) => {
+  try {
+    await renderPage(req.originalUrl, res);
+  } catch (error) {
+    if (error instanceof Error) vite?.ssrFixStacktrace(error);
+    throw error;
   }
-  handle().catch((error: unknown) => {
-    console.error(error);
-    res.statusCode = 500;
-    res.end(String(error));
-  });
-}).listen(port, () => {
+});
+
+app.listen(port, () => {
   console.log(
     `${isSolution ? 'Lösung' : 'Startpunkt'} läuft auf http://localhost:${port}`
   );

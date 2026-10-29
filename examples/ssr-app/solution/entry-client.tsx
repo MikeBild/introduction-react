@@ -1,9 +1,11 @@
-import { ProductPageDataSchema } from '../src/productPage';
+import { isProductPageData } from '../src/productPage';
 import { hydrate } from './hydrate';
 
 const container = document.getElementById('root');
-const initialData = document.getElementById('initial-data')?.textContent;
-if (!container || !initialData)
+const initialData: unknown = JSON.parse(
+  document.getElementById('initial-data')?.textContent ?? 'null'
+);
+if (!container || !isProductPageData(initialData))
   throw new Error('Server-HTML oder Initial Data fehlt');
 
-hydrate(container, ProductPageDataSchema.parse(JSON.parse(initialData)));
+hydrate(container, initialData);
