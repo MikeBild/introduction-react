@@ -1,4 +1,8 @@
 .DS_Store
 node_modules
 npm-debug.log
+dist
+coverage
+storybook-static
+*.local
 databases/*
