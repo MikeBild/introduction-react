@@ -1,22 +1,8 @@
-import { Suspense } from 'react';
-import { ProductList } from './ProductList';
-import { isProductList } from './products';
-import { useFetchJson } from './useFetchJson';
+import { ProductSearch } from './ProductSearch';
 
-export const App = () => {
-  const { promise, reload, isReloading } = useFetchJson(
-    '/api/products.json',
-    isProductList
-  );
-  return (
-    <main>
-      <h1>Produkte</h1>
-      <button type="button" onClick={reload} disabled={isReloading}>
-        Neu laden
-      </button>
-      <Suspense fallback={<p>Lädt …</p>}>
-        <ProductList productsPromise={promise} onRetry={reload} />
-      </Suspense>
-    </main>
-  );
-};
+export const App = () => (
+  <main>
+    <h1>Werkstatt-Shop</h1>
+    <ProductSearch />
+  </main>
+);

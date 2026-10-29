@@ -1,7 +1,7 @@
 {
   "name": "router-app",
   "version": "0.0.0",
-  "description": "Ressourcen-Verwaltung ohne Router als Startpunkt, mit React Router 8 als Lösung.",
+  "description": "Bestellübersicht des Werkstatt-Shops mit React Router 8 im Data Mode: Loader, Search Params, Error Boundary je Route.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

@@ -1,8 +1,8 @@
 # Router App
 
-Eine kleine App zum Buchen von Räumen mit Startseite, „Über uns“, Ressourcenliste und Detailseite. Heute merkt sie sich die aktuelle Seite nur in `useState`. Du baust sie auf [React Router](https://reactrouter.com) 8 um. Danach ist die URL der State: Path Params und Search Params bestimmen, was du siehst.
+Die Bestellübersicht des Werkstatt-Shops – noch ganz ohne Router. Welche Seite offen ist und welcher Statusfilter gilt, steckt in `useState`. Lädst du neu, drückst „Zurück“ oder teilst einen Link, ist die Ansicht weg.
 
-Lektion: **Die URL ist typisierter State** (`react-routing`)
+Lektion: **Die URL ist State, den du teilen kannst** (`react-routing`)
 
 ```bash
 npm install
@@ -12,13 +12,21 @@ npm test
 
 ## Übung
 
-1. Starte die App, öffne eine Ressource und such nach „raum“. Drück dann Reload oder den Back-Button. Was geht verloren? Die Adresszeile ändert sich nie.
-2. Leg in `src/App.tsx` die Routes mit `<BrowserRouter>`, `<Routes>` und `<Route>` aus `react-router` an: `/`, `/about`, `/resources`, `/resources/:resourceId` und `*` für „Seite nicht gefunden“. `react-router` ist schon installiert.
-3. Mach `Layout` zur Layout Route: `<NavLink>` statt Buttons, `<Outlet />` statt `children`. Ersetze die Buttons in der Liste durch `<Link>`. Den `Page`-Typ und die Callback-Props brauchst du danach nicht mehr.
-4. Lies in `ResourceDetail` die ID mit `useParams()`. Path Params sind immer Strings. Schreib eine kleine Funktion `parseResourceId`, die nur ganze Zahlen akzeptiert und sonst `null` liefert. Ungültige oder unbekannte IDs zeigen „Seite nicht gefunden“.
-5. Hol den Suchtext in `Resources` mit `useSearchParams()` aus `?q=`. Die URL ist die einzige Quelle, kein paralleler `useState`. Schreib beim Tippen mit `{ replace: true }`, sonst füllt jeder Buchstabe die History.
-6. Entferne `.skip` in `src/App.test.tsx`. Die Tests setzen die Adresse wie ein Deep Link.
+1. Probier es aus: Filter auf „Versendet“, Bestellung öffnen, Seite neu laden. Was bleibt übrig?
+2. Leg in `src/routes.tsx` die Routes mit `createBrowserRouter` an und render in `App` einen `RouterProvider` aus `react-router/dom`. Ein Layout `ShopLayout` mit `NavLink` und `Outlet` umschließt die Seiten.
+3. Bau die Liste unter `/orders`. Ein `ordersLoader` liest `?status=` aus `request.url`, prüft den Wert mit `readStatus` aus `src/orderStatus.ts` und reicht `request.signal` an `fetchOrders` weiter. Die Component liest die Daten mit `useLoaderData<typeof ordersLoader>()`.
+4. Mach aus dem Statusfilter einen Search Param mit `useSearchParams`. Der Filter liegt dann nur noch in der URL, nicht zusätzlich in `useState`.
+5. Bau das Detail unter `/orders/:orderId` mit einem `orderLoader`. Gibt es die Bestellung nicht, wirft der Loader `data(null, { status: 404, statusText: 'Not Found' })`.
+6. Gib jeder Route eine `ErrorBoundary` mit `useRouteError`, die einen `Link` zurück zur Bestellübersicht zeigt.
+7. Entferne `.skip` in `src/App.test.tsx`. Die Tests öffnen die App unter einer URL – wie ein geteilter Link.
+
+`src/ordersApi.ts` ist eine Fake-API ohne Netzwerk. Sie antwortet nach 50 ms und lässt sich per `AbortSignal` abbrechen.
 
 ## Lösung
 
-`solution/App.tsx` mit den Routes, `solution/pages/` und `solution/resourceId.ts`. `solution/App.test.tsx` testet über einen `MemoryRouter` mit `initialEntries`. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+- `solution/routes.tsx` – alle Routes mit Loader und `ErrorBoundary`
+- `solution/ShopLayout.tsx`, `solution/OrdersPage.tsx`, `solution/OrderPage.tsx`, `solution/RouteError.tsx`
+- `solution/App.tsx` – `RouterProvider` mit `createBrowserRouter`
+- `solution/routes.test.tsx` – Tests mit `createMemoryRouter`, auch für Loader-Fehler
+
+Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
