@@ -1,4 +1,4 @@
-# Lists & Conditions
+# Lists und Conditions
 
 Die Bestellübersicht des Werkstatt-Shops kennt nur den Happy Path und nutzt die Position in der Liste als Key. Du ergänzt eigene Ansichten für Loading, Error und Empty und gibst jedem Eintrag einen stabilen Key.
 

@@ -2,7 +2,7 @@
 
 Die Produktliste des Werkstatt-Shops in einem frischen Vite-Projekt. Die Produkte kommen von einer kleinen Fake-API auf Port 3000, der Dev Server läuft auf Port 5173 – und genau dazwischen klemmt es noch.
 
-Lektion: **Vite startet dein Projekt in Sekunden** (`react-vite-setup`)
+Zusatzkapitel: **Vite startet dein Projekt in Sekunden** (`react-vite-setup`)
 
 ```bash
 npm install
@@ -29,7 +29,7 @@ Wenn du magst, leg das Template einmal selbst in einem leeren Ordner an und verg
 
 ## Übung
 
-1. Starte `npm run api` und `npm run dev` und öffne die App. Statt der Produkte siehst du eine Fehlermeldung, in der Konsole der DevTools einen CORS-Fehler. `src/features/products/fetchProducts.ts` ruft `http://localhost:3000` direkt auf, also einen zweiten Origin, und die Fake-API erlaubt das nicht.
+1. Starte `npm run api` und `npm run dev` und öffne die App. Statt der Produkte siehst du eine Fehlermeldung, in der Konsole der DevTools einen CORS-Fehler (Cross-Origin Resource Sharing). `src/features/products/fetchProducts.ts` ruft `http://localhost:3000` direkt auf, also einen zweiten Origin, und die Fake-API erlaubt das nicht.
 2. Ändere die URL in `fetchProducts.ts` auf den relativen Pfad `/api/products`. Jetzt antwortet der Dev Server selbst – mit der `index.html`, die Meldung lautet deshalb auf ungültiges JSON. Trag in `vite.config.ts` einen Proxy ein: `server: { proxy: { '/api': 'http://localhost:3000' } }`. Nach dem Neustart siehst du die Produkte, und im Terminal der Fake-API kommen die Requests an. CORS musst du dafür nicht öffnen. Entferne `.skip` in `src/features/products/ProductList.test.tsx` und beim Proxy-Test in `vite.config.test.ts`.
 3. Ersetze in `ProductList.tsx` und `fetchProducts.ts` die Importe `../../shop` durch `@/shop`. `npm run typecheck` bleibt grün, denn `tsconfig.app.json` kennt den Alias unter `paths`. Der Dev Server meldet aber „Failed to resolve import“: Vite liest `paths` nicht von selbst. Ergänze `resolve: { tsconfigPaths: true }` in `vite.config.ts`, dann pflegst du Aliase nur in der tsconfig. Entferne `.skip` beim Alias-Test in `vite.config.test.ts`. Vitest nutzt dieselbe Konfiguration, die Tests finden den Alias also auch.
 4. Vergleich Dev Server und Build. Im Tab Network der DevTools lädt der Browser im Development jedes Modul einzeln, zum Beispiel `/src/features/products/ProductList.tsx`. Führ `npm run build` aus und schau in `dist/assets`: Dort liegt ein einziges gebündeltes Script mit Hash im Namen.

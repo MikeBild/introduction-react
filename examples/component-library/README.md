@@ -2,7 +2,7 @@
 
 Die Component Library des Werkstatt-Shops mit [Storybook](https://storybook.js.org). Alle Components liegen heute flach in `src/components/`, und die `CustomerCard` sammelt für jede neue Anforderung ein weiteres Flag. Du baust sie auf Slots um und ordnest die Library nach Atomic Design.
 
-Lektionen: **Inhalte hineingeben statt Flags sammeln** (`react-composition`) und **Atomic Design gibt dem Team ein Vokabular** (`react-atomic-design`).
+Lektionen: **Inhalte hineingeben statt Flags sammeln** (`react-composition`) und **Atomic Design gibt dem Team ein Vokabular** (`react-atomic-design`)
 
 ```bash
 npm install
@@ -32,7 +32,7 @@ npm test
 - `solution/react-atomic-design/` – `atoms/`, `molecules/`, `organisms/`, `templates/`, `pages/` mit Tests und Stories
 - `solution/App.tsx` – beides zusammen in der App
 
-Storybook zeigt Startpunkt und Lösung nebeneinander: unter „Start“ den heutigen Stand, unter „Composition“ und „Atomic Design“ die Lösung. Für die App änderst du den Import in `src/main.tsx` auf `../solution/App`.
+Storybook zeigt Startpunkt und Lösung nebeneinander: unter „Startpunkt“ den heutigen Stand, unter „Composition“ und „Atomic Design“ die Lösung. Für die App änderst du den Import in `src/main.tsx` auf `../solution/App`.
 
 ```bash
 npm run build-storybook   # statisches Storybook nach storybook-static/

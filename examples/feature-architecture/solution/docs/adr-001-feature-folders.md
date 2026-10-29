@@ -1,7 +1,7 @@
 # ADR 001: Code nach Features ordnen
 
 - Status: angenommen
-- Datum: 2026-10-29
+- Datum: 29.10.2026
 
 ## Kontext
 

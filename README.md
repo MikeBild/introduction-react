@@ -1,14 +1,32 @@
-# Introduction to React
+# Übungen: React
 
-Übungen zum Workshop **React + TypeScript production-ready**. Zu jeder Lektion – 23 im Kern, dazu die Zusatzkapitel – gibt es ein lauffähiges Beispiel mit Startpunkt (`src/`) und Lösung (`solution/`).
+Übungs-Repo zum Workshop „React mit TypeScript bis Production“. Zu jeder Lektion – 23 im Kern, dazu die Zusatzkapitel – gibt es ein lauffähiges Beispiel mit Startpunkt (`src/`), Tests und Lösung (`solution/`). Alle Übungen spielen im Werkstatt-Shop mit Produkten, Warenkorb, Checkout und Bestellungen.
+
+## Was du lernst
+
+- Components, State, Effects und Forms mit TypeScript strict bauen
+- Daten laden, Fehler abfangen, routen und mit einem Schema validieren
+- Zugänglich, getestet und performant bis zum Production Build ausliefern
 
 ## Voraussetzungen
 
-- Node.js 26 oder neuer (siehe `.nvmrc`), npm 11
+- **Node.js 26** – `nvm use` liest die Version aus [`.nvmrc`](.nvmrc). Dazu npm 11.
 - Ein Editor mit TypeScript-Support, zum Beispiel VS Code
 - Chrome oder Firefox mit den [React DevTools](https://react.dev/learn/react-developer-tools)
 
-## So arbeitest du mit den Beispielen
+## Einrichten
+
+```bash
+git clone https://github.com/MikeBild/introduction-react.git
+cd introduction-react
+nvm use
+./scripts/check-all.sh              # alle Beispiele prüfen
+./scripts/check-all.sh ssr-app      # nur eins
+```
+
+Das Script führt je Beispiel `npm ci`, `typecheck`, `test` und `build` aus, dazu den Build der Lösung und von Storybook, wo es sie gibt.
+
+## So arbeitest du mit einer Übung
 
 Jedes Beispiel unter `examples/` ist ein eigenes Projekt. Installiere die Abhängigkeiten im Ordner des Beispiels, nicht im Hauptverzeichnis:
 
@@ -24,30 +42,13 @@ npm run build      # Type Check und Production Build
 
 Die README im Beispiel beschreibt die Übung Schritt für Schritt. Tests, die du im Lauf der Übung grün machst, sind mit `it.skip` markiert. In `solution/` findest du eine mögliche Lösung samt Tests.
 
-## Stack
-
-So wenig Pakete wie möglich. Jedes Beispiel nutzt React 19.3 mit [React Compiler](https://react.dev/learn/react-compiler), TypeScript strict, Vite 8 sowie Vitest 5 mit Testing Library. Weitere Pakete kommen nur dort dazu, wo die Übung sie braucht:
-
-- [React Router 8](https://reactrouter.com) in `router-app`
-- [zod 4](https://zod.dev) für Formular-Validierung in `forms-validation` und `testing`
-- [react-error-boundary](https://github.com/bvaughn/react-error-boundary) in `suspense-errors` und `production-build`
-- [Tailwind CSS 4](https://tailwindcss.com) in `styling-tailwind`
-- [Storybook 10](https://storybook.js.org) in `component-library`
-- [TanStack Query 5](https://tanstack.com/query) nur im Zusatzkapitel `tanstack-query`
-- [RxJS](https://rxjs.dev) nur im Zusatzkapitel `rxjs`
-- [Express 5](https://expressjs.com) für die Server in `ssr-app` und `production-build`
-
-Daten lädst du im Kern mit `fetch` und einem eigenen Hook (`data-fetching`), danach mit `use` und `Suspense` (`suspense-errors`), ohne Data-Fetching-Library. Class Components gibt es nur noch im Archiv.
-
-## Lektionen und Übungen
-
-Alle Übungen spielen im **Werkstatt-Shop**: Produkte, Warenkorb, Checkout und Bestellungen. Typen und Beispieldaten liegen in jedem Beispiel unter `src/shop.ts`, Geld immer in ganzen Cent. Der Checkout validiert mit dem gemeinsamen Schema `PlaceOrderInput`.
+## Übungen
 
 ### Kern (3 Tage)
 
 Die Reihenfolge folgt der Agenda und geht von einfach nach schwer. Die Stufe zeigt den Schwierigkeitsgrad: 1 Grundlagen, 2 Fortgeschritten, 3 Production-Themen.
 
-| Tag | Stufe | Lektion | Baustein | Übung |
+| Tag | Stufe | Lektion | ID | Übung |
 |---|---|---|---|---|
 | 1 | 1 | Components als Funktionen denken | `react-components` | [examples/basic-app](examples/basic-app/README.md) |
 | 1 | 1 | JSX ist JavaScript, Props sind der Vertrag | `react-jsx-props` | [examples/jsx-props](examples/jsx-props/README.md) · [Kapitel](react-typescript.md) |
@@ -75,9 +76,9 @@ Die Reihenfolge folgt der Agenda und geht von einfach nach schwer. Die Stufe zei
 
 ### Zusatzkapitel (optional)
 
-Diese Kapitel gehören nicht zum Kern. Die meisten bringen eigene Pakete mit, die im Kern bewusst fehlen.
+Diese Lektionen gehören nicht zum Kern. Die meisten bringen eigene Pakete mit, die im Kern bewusst fehlen.
 
-| Lektion | Baustein | Übung |
+| Lektion | ID | Übung |
 |---|---|---|
 | Vite startet dein Projekt in Sekunden | `react-vite-setup` | [examples/vite-setup](examples/vite-setup/README.md) |
 | Wann lohnt sich TanStack Query? | `react-tanstack-query` | [examples/tanstack-query](examples/tanstack-query/README.md) · [Kapitel](8-server-access.md) |
@@ -85,23 +86,40 @@ Diese Kapitel gehören nicht zum Kern. Die meisten bringen eigene Pakete mit, di
 | GraphQL mit Apollo Client | `graphql-why`, `graphql-schema-design`, `graphql-react-client` | [introduction-graphql](https://github.com/MikeBild/introduction-graphql) |
 | Wann lohnen sich Server Components? | `react-server-components` | [examples/ssr-app](examples/ssr-app/README.md) |
 
-## Alle Beispiele prüfen
+## Der Werkstatt-Shop
 
-```bash
-./scripts/check-all.sh              # alle Beispiele
-./scripts/check-all.sh ssr-app      # nur eins
-```
+Typen und Beispieldaten liegen in jedem Beispiel unter `src/shop.ts`, Geld immer in ganzen Cent. Der Checkout validiert mit dem gemeinsamen Schema `PlaceOrderInput`.
 
-Das Script führt je Beispiel `npm ci`, `typecheck`, `test` und `build` aus, dazu den Build der Lösung und von Storybook, wo es sie gibt.
+## Stack
+
+So wenig Pakete wie möglich. Jedes Beispiel nutzt React 19.3 mit [React Compiler](https://react.dev/learn/react-compiler), TypeScript strict, Vite 8 sowie Vitest 5 mit Testing Library. Weitere Pakete kommen nur dort dazu, wo die Übung sie braucht:
+
+- [React Router 8](https://reactrouter.com) in `router-app`
+- [zod 4](https://zod.dev) für Formular-Validierung in `forms-validation` und `testing`
+- [react-error-boundary](https://github.com/bvaughn/react-error-boundary) in `suspense-errors` und `production-build`
+- [Tailwind CSS 4](https://tailwindcss.com) in `styling-tailwind`
+- [Storybook 10](https://storybook.js.org) in `component-library`
+- [TanStack Query 5](https://tanstack.com/query) nur im Zusatzkapitel `tanstack-query`
+- [RxJS](https://rxjs.dev) nur im Zusatzkapitel `rxjs`
+- [Express 5](https://expressjs.com) für die Server in `ssr-app` und `production-build`
+
+Daten lädst du im Kern mit `fetch` und einem eigenen Hook (`data-fetching`), danach mit `use` und `Suspense` (`suspense-errors`), ohne Data-Fetching-Library. Class Components gibt es nur noch im Archiv.
+
+## Workshop und Folien
+
+- Workshop: [„React mit TypeScript bis Production“](https://workshops.mikebild.dev/w/react/remote/)
+- Workshop: [„React mit Vite bis zur installierbaren PWA“](https://workshops.mikebild.dev/w/react-fortgeschritten/remote/)
+- Workshop: [„Fullstack mit TypeScript, Node.js, GraphQL und React in 6 Tagen“](https://workshops.mikebild.dev/w/fullstack/onsite/)
+- Folien: [slides.mikebild.dev/introduction-react](https://slides.mikebild.dev/introduction-react.html)
 
 ## Archiv
 
-Kapitel und Beispiele aus den Jahren 2017 bis 2023 (Class Components, Redux, webpack, Next.js Pages Router, React 16 bis 18) liegen unter [legacy/](legacy/README.md). Die Folien findest du unter [slides/](slides/).
+Kapitel, Beispiele und Folien aus den Jahren 2017 bis 2023 (Class Components, Redux, webpack, Next.js Pages Router, React 16 bis 18) liegen unter [legacy/](legacy/README.md) und [slides/](slides/).
 
 ## Fehler melden
 
-Wenn du einen Fehler findest oder dir etwas fehlt, leg ein Issue in diesem Repository an. Sicherheitslücken meldest du bitte nicht über den öffentlichen [Issue Tracker](https://github.com/MikeBild/introduction-react/issues).
+Wenn du einen Fehler findest oder dir etwas fehlt, leg ein Issue in diesem Repository an. Sicherheitslücken meldest du bitte nicht über den öffentlichen [Issue-Tracker](https://github.com/MikeBild/introduction-react/issues).
 
 ## Lizenz
 
-MIT, siehe [LICENSE](LICENSE).
+[MIT](LICENSE)

@@ -3,7 +3,7 @@ import { fn } from 'storybook/test';
 import { SearchField } from './SearchField';
 
 const meta = {
-  title: 'Start/SearchField',
+  title: 'Startpunkt/SearchField',
   component: SearchField,
   args: { label: 'Produkt suchen', value: '', onChange: fn() },
 } satisfies Meta<typeof SearchField>;

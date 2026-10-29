@@ -1,4 +1,4 @@
-# JSX & Props
+# JSX und Props
 
 Eine Karte für einen Warenkorb-Eintrag im Werkstatt-Shop. Ihr Props-Vertrag ist zu locker und zu streng zugleich: `variant` akzeptiert jeden String, und jedes Feld ist Pflicht. Du schreibst einen Vertrag, der Tippfehler findet und nur verlangt, was wirklich nötig ist.
 

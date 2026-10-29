@@ -36,7 +36,9 @@ export const CheckoutForm = ({ cart, placeOrder }: CheckoutFormProps) => {
     } catch (error) {
       // Übung: Server Errors am passenden Feld zeigen, nicht im Banner.
       setServerError(
-        isServerFieldError(error) ? error.message : 'Bestellung fehlgeschlagen'
+        isServerFieldError(error)
+          ? error.message
+          : 'Die Bestellung ist fehlgeschlagen. Versuch es noch einmal.'
       );
     }
   };

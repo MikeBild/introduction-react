@@ -31,7 +31,11 @@ export const ProductList = () => {
 
   if (state.status === 'loading') return <p>Lade Produkte …</p>;
   if (state.status === 'error')
-    return <p role="alert">Produkte nicht geladen: {state.message}</p>;
+    return (
+      <p role="alert">
+        Produkte nicht geladen ({state.message}). Lade die Seite neu.
+      </p>
+    );
   return (
     <ul>
       {state.products.map((product) => (

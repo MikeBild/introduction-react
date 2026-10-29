@@ -2,7 +2,7 @@
 
 Die Produktliste des Werkstatt-Shops, heute noch eine einzige Component. Du zerlegst sie in kleine Function Components und ergänzt dann einen Filter und einen Warenkorb mit `useState`.
 
-Lektionen: **Components als Funktionen denken** (`react-components`) und **State ist ein Snapshot pro Render** (`react-state-hooks`).
+Lektionen: **Components als Funktionen denken** (`react-components`) und **State ist ein Snapshot pro Render** (`react-state-hooks`)
 
 ```bash
 npm install
@@ -23,7 +23,7 @@ Die Daten des Werkstatt-Shops liegen in `src/shop.ts`: `Product` mit `priceCents
 
 1. Ergänze ein Suchfeld mit dem Label „Suche“. Der Suchtext ist State.
 2. Berechne die gefilterte Liste beim Rendern. Leg sie nicht in einen zweiten State.
-3. Zeig „Keine Produkte für „…““, wenn nichts passt.
+3. Zeig „Keine Produkte für ‚…‘“, wenn nichts passt.
 4. Baue einen Warenkorb: Die Positionen (`OrderItem[]`) sind State, jede Produktkarte bekommt einen Button „… in den Warenkorb“, jede Position einen Button „… entfernen“.
 5. Berechne die Summe mit `orderTotalCents` beim Rendern und zeig sie als „Summe: …“ in einem Bereich mit `aria-label="Warenkorb"`.
 6. Erzeuge bei jedem Update ein neues Array (Spread, `map`, `filter`), nie `push`.
