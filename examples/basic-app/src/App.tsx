@@ -1,7 +1,7 @@
 import { products } from './shop';
 
 // Übung react-components: Diese eine Component macht alles.
-// Zerlege sie in drei Function Components mit typisierten Props.
+// Zerlege sie in drei Functional Components mit typisierten Props.
 export const App = () => (
   <main>
     <h1>Werkstatt-Shop</h1>

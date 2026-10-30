@@ -1,7 +1,7 @@
 {
   "name": "basic-app",
   "version": "0.0.0",
-  "description": "Eine Produktliste aus Function Components mit typisierten Props und useState.",
+  "description": "Eine Produktliste aus Functional Components mit typisierten Props und useState.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

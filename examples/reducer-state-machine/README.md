@@ -17,7 +17,7 @@ npm test
 3. Bilde in `src/orderReducer.ts` die Statusfolge einer Bestellung ab: `draft → placed → paid → shipped`, `cancelled` nur aus `draft` oder `placed`. `placed` geht nur mit mindestens einer Position, und ab `placed` ändern sich die Positionen nicht mehr.
 4. Entferne `.skip` in `src/orderReducer.test.ts` und `src/OrderStatusPanel.test.tsx`.
 
-Die Reducer testest du mit Vitest ganz ohne React – sie sind reine Funktionen. Die Domäne mit `Order`, `OrderItem` und den Branded IDs liegt in `src/shop.ts`.
+Die Reducer testest du mit Vitest ganz ohne React – sie sind Pure Functions. Die Domäne mit `Order`, `OrderItem` und den Branded IDs liegt in `src/shop.ts`.
 
 ## Lösung
 

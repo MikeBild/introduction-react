@@ -1,6 +1,6 @@
 # Basic App
 
-Die Produktliste des Werkstatt-Shops, heute noch eine einzige Component. Du zerlegst sie in kleine Function Components und ergänzt dann einen Filter und einen Warenkorb mit `useState`.
+Die Produktliste des Werkstatt-Shops, heute noch eine einzige Component. Du zerlegst sie in kleine Functional Components und ergänzt dann einen Filter und einen Warenkorb mit `useState`.
 
 Lektionen: **Components als Funktionen denken** (`react-components`) und **State ist ein Snapshot pro Render** (`react-state-hooks`)
 
@@ -15,7 +15,7 @@ Die Daten des Werkstatt-Shops liegen in `src/shop.ts`: `Product` mit `priceCents
 ## Übung 1 – Components (`react-components`)
 
 1. Zeichne den Component Tree der Seite.
-2. Zerlege `App` in `src/App.tsx` in drei Function Components: `ProductList`, `ProductCard` und `PriceTag`.
+2. Zerlege `App` in `src/App.tsx` in drei Functional Components: `ProductList`, `ProductCard` und `PriceTag`.
 3. Beschreib die Props jeder Component mit einem `type`, zum Beispiel `type ProductCardProps = { name: string; priceCents: number; stock: number }`.
 4. Lass `npm test` laufen. Der bestehende Test bleibt grün, denn die Oberfläche ändert sich nicht.
 

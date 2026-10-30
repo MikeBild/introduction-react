@@ -1,6 +1,6 @@
 # Hooks
 
-Hooks geben Function Components State, Effects und geteiltes Verhalten. Sie folgen zwei Regeln: Ruf sie nur auf oberster Ebene einer Component oder eines Custom Hooks auf, nie in Bedingungen oder Schleifen.
+Hooks geben Functional Components State, Effects und geteiltes Verhalten. Sie folgen zwei Regeln: Ruf sie nur auf oberster Ebene einer Component oder eines Custom Hooks auf, nie in Bedingungen oder Schleifen.
 
 ## useEffect – brauchst du ihn wirklich?
 
