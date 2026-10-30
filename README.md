@@ -82,6 +82,9 @@ Diese Lektionen gehören nicht zum Kern. Die meisten bringen eigene Pakete mit, 
 | Lektion | ID | Übung |
 |---|---|---|
 | Vite startet dein Projekt in Sekunden | `react-vite-setup` | [examples/vite-setup](examples/vite-setup/README.md) |
+| Jede Story zeigt einen Zustand | `react-storybook` | [examples/forms-validation](examples/forms-validation/README.md) |
+| Wohin mit dem Build? | `react-deployment` | [examples/production-build](examples/production-build/README.md) |
+| Eine PWA läuft auch ohne Netz | `react-pwa` | [examples/production-build](examples/production-build/README.md) |
 | Wann lohnt sich TanStack Query? | `react-tanstack-query` | [examples/tanstack-query](examples/tanstack-query/README.md) · [Kapitel](8-server-access.md) |
 | Wann lohnt sich RxJS in React? | `react-rxjs` | [examples/rxjs](examples/rxjs/README.md) |
 | GraphQL mit Apollo Client | `graphql-why`, `graphql-schema-design`, `graphql-react-client` | [introduction-graphql](https://github.com/MikeBild/introduction-graphql) |
