@@ -89,6 +89,7 @@ Diese Lektionen gehören nicht zum Kern. Die meisten bringen eigene Pakete mit, 
 | Wann lohnt sich RxJS in React? | `react-rxjs` | [examples/rxjs](examples/rxjs/README.md) |
 | GraphQL mit Apollo Client | `graphql-why`, `graphql-schema-design`, `graphql-react-client` | [introduction-graphql](https://github.com/MikeBild/introduction-graphql) |
 | Wann lohnen sich Server Components? | `react-server-components` | [examples/ssr-app](examples/ssr-app/README.md) |
+| E2E-Tests sichern die wichtigsten Wege | `react-e2e-playwright` | [examples/e2e](examples/e2e/README.md) |
 
 ## Der Werkstatt-Shop
 
@@ -105,7 +106,8 @@ So wenig Pakete wie möglich. Jedes Beispiel nutzt React 19.3 mit [React Compile
 - [Storybook 10](https://storybook.js.org) in `component-library`
 - [TanStack Query 5](https://tanstack.com/query) nur im Zusatzkapitel `tanstack-query`
 - [RxJS](https://rxjs.dev) nur im Zusatzkapitel `rxjs`
-- [Express 5](https://expressjs.com) für die Server in `ssr-app` und `production-build`
+- [Express 5](https://expressjs.com) für die Server in `ssr-app`, `production-build` und `e2e`
+- [Playwright](https://playwright.dev) für die End-to-End-Tests im Zusatzkapitel `e2e`; der Browser kommt per `npx playwright install chromium`
 
 Daten lädst du im Kern mit `fetch` und einem eigenen Hook (`data-fetching`), danach mit `use` und `Suspense` (`suspense-errors`), ohne Data-Fetching-Library. Class Components gibt es nur noch im Archiv.
 
