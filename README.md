@@ -126,7 +126,7 @@ Kapitel, Beispiele und Folien aus den Jahren 2017 bis 2023 (Class Components, Re
 
 ## Fehler melden
 
-Wenn du einen Fehler findest oder dir etwas fehlt, leg ein Issue in diesem Repository an. Sicherheitslücken meldest du bitte nicht über den öffentlichen [Issue-Tracker](https://github.com/MikeBild/introduction-react/issues).
+Hast du einen Fehler gefunden oder eine Idee? Leg ein [Issue](https://github.com/MikeBild/introduction-react/issues) an. Sicherheitslücken meldest du bitte nicht öffentlich, sondern über das Kontaktformular auf [mikebild.dev](https://www.mikebild.dev).
 
 ## Lizenz
 
