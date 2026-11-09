@@ -117,6 +117,8 @@ Daten lädst du im Kern mit `fetch` und einem eigenen Hook (`data-fetching`), da
 - Workshop: [„React mit Vite bis zur installierbaren PWA“](https://workshops.mikebild.dev/w/react-fortgeschritten/remote/)
 - Workshop: [„Fullstack mit TypeScript, Node.js, GraphQL und React in 6 Tagen“](https://workshops.mikebild.dev/w/fullstack/onsite/)
 - Folien: [slides.mikebild.dev/introduction-react](https://slides.mikebild.dev/introduction-react.html)
+- Beiträge auf mikebild.dev:
+  - [React-Überblick: Von JSX zur Komponentenarchitektur](https://www.mikebild.dev/de/blog/react-ueberblick-von-jsx-zur-architektur/)
 
 ## Archiv
 
