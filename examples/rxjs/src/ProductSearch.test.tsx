@@ -9,11 +9,11 @@ const typeSearch = (text: string) =>
     target: { value: text },
   });
 
-// Wartet, bis der Request für einen Suchtext nach dem Debounce rausgeht.
+// Waits until the request for a search text goes out after the debounce.
 const waitForRequest = (api: ReturnType<typeof controlFetch>, search: string) =>
   waitFor(() => expect(() => api.findRequest(search)).not.toThrow());
 
-it('sucht erst, wenn du kurz nicht tippst', async () => {
+it('searches only once you stop typing for a moment', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('h');
@@ -25,8 +25,8 @@ it('sucht erst, wenn du kurz nicht tippst', async () => {
   expect(await screen.findAllByRole('listitem')).toHaveLength(3);
 });
 
-// Übung: .skip entfernen
-it.skip('kündigt die alte Suche, wenn ein neuer Suchtext kommt', async () => {
+// Exercise: remove .skip
+it.skip('cancels the old search when a new search text arrives', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('boh');
@@ -36,7 +36,7 @@ it.skip('kündigt die alte Suche, wenn ein neuer Suchtext kommt', async () => {
   expect(api.findRequest('boh').signal?.aborted).toBe(true);
 });
 
-it.skip('zeigt die Treffer der letzten Suche, auch wenn eine alte später kommt', async () => {
+it.skip('shows the results of the latest search, even if an old one arrives later', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('boh');
@@ -49,7 +49,7 @@ it.skip('zeigt die Treffer der letzten Suche, auch wenn eine alte später kommt'
   expect(screen.queryByText(/Bohrhammer/)).not.toBeInTheDocument();
 });
 
-it.skip('sucht nach einem Server-Fehler weiter', async () => {
+it.skip('keeps searching after a server error', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('hammer');

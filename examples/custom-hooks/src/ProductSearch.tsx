@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { searchProducts } from './products';
 
-// Übung react-custom-hooks: Die Debounce-Logik steckt mitten in der Component.
-// Extrahiere sie in einen generischen useDebouncedValue<T>.
+// Exercise react-custom-hooks: the debounce logic sits in the middle of the component.
+// Extract it into a generic useDebouncedValue<T>.
 export const ProductSearch = ({ delayMs = 300 }: { delayMs?: number }) => {
   const [query, setQuery] = useState('');
   const [debouncedQuery, setDebouncedQuery] = useState('');

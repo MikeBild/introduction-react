@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { formatCents, type Product } from './shop';
 
-// Übung react-data-fetching: Dieser Fetch-Code hat mehrere Probleme.
-// – Eine alte, langsame Antwort überschreibt die neue.
-// – HTTP-Fehler wie 500 bleiben unbemerkt.
-// – Die Antwort wird ungeprüft als Product[] benutzt.
-// – Drei Booleans und Arrays statt eines Status.
-// – Fehler erscheinen roh als String(error), ohne nächsten Schritt.
+// Exercise react-data-fetching: this fetch code has several problems.
+// – An old, slow response overwrites the new one.
+// – HTTP errors like 500 go unnoticed.
+// – The response is used as Product[] without validation.
+// – Three booleans and arrays instead of one status.
+// – Errors appear raw as String(error), without a next step.
 export const ProductSearch = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<Product[]>([]);

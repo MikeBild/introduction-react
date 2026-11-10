@@ -1,8 +1,10 @@
-# JSX und Props
+*English · [Deutsch](README.de.md)*
 
-Eine Karte für einen Warenkorb-Eintrag im Werkstatt-Shop. Ihr Props-Vertrag ist zu locker und zu streng zugleich: `variant` akzeptiert jeden String, und jedes Feld ist Pflicht. Du schreibst einen Vertrag, der Tippfehler findet und nur verlangt, was wirklich nötig ist.
+# JSX and Props
 
-Lektion: **JSX ist JavaScript, Props sind der Vertrag** (`react-jsx-props`)
+A card for a cart entry in the workshop shop. Its props contract is too loose and too strict at the same time: `variant` accepts any string, and every field is required. You write a contract that finds typos and only requires what is really necessary.
+
+Lesson: **JSX is JavaScript, props are the contract** (`react-jsx-props`)
 
 ```bash
 npm install
@@ -11,14 +13,14 @@ npm test
 npm run typecheck
 ```
 
-## Übung
+## Exercise
 
-1. Starte die App. Die zweite Karte sieht nicht kompakt aus – warum meldet TypeScript den Fehler nicht?
-2. Typisiere `variant` in `src/CartItemCard.tsx` als Union Type `'default' | 'compact' | 'highlighted'`. Jetzt zeigt `npm run typecheck` den Tippfehler in `src/App.tsx`. Behebe ihn.
-3. Mach `quantity`, `variant` und `note` optional. Setz Default-Werte direkt in der Destrukturierung: Menge 1, Variante `'default'`.
-4. Entferne in `src/typeChecks.tsx` das `// ` am Anfang der auskommentierten Zeilen. `npm run typecheck` muss danach ohne Fehler laufen. Die Zeilen mit `@ts-expect-error` prüfen, dass falsche Aufrufe weiterhin scheitern.
-5. Ergänze einen Test für die Menge 1 ohne Angabe.
+1. Start the app. The second card does not look compact – why does TypeScript not report the error?
+2. Type `variant` in `src/CartItemCard.tsx` as the union type `'default' | 'compact' | 'highlighted'`. Now `npm run typecheck` shows the typo in `src/App.tsx`. Fix it.
+3. Make `quantity`, `variant`, and `note` optional. Set default values directly in the destructuring: quantity 1, variant `'default'`.
+4. In `src/typeChecks.tsx`, remove the `// ` at the start of the commented-out lines. `npm run typecheck` must then run without errors. The lines with `@ts-expect-error` check that wrong calls still fail.
+5. Add a test for quantity 1 without specifying it.
 
-## Lösung
+## Reference solution
 
-`solution/CartItemCard.tsx`, `solution/typeChecks.tsx` und `solution/CartItemCard.test.tsx`. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+`solution/CartItemCard.tsx`, `solution/typeChecks.tsx`, and `solution/CartItemCard.test.tsx`. To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App`.

@@ -1,7 +1,7 @@
 import { formatCents } from './shop';
 
-// Übung: Dieser Vertrag ist zu locker und zu streng zugleich.
-// variant akzeptiert jeden String, und jedes Feld ist Pflicht.
+// Exercise: this contract is too loose and too strict at the same time.
+// variant accepts any string, and every field is required.
 type CartItemCardProps = {
   name: string;
   priceCents: number;

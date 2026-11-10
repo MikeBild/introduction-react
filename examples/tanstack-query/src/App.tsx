@@ -6,10 +6,10 @@ import { ProductCount } from './ProductCount';
 import { ProductList } from './ProductList';
 import type { ProductId } from './shop';
 
-// Übung react-tanstack-query: Alles ist von Hand gebaut.
-// – ProductList und ProductCount laden dieselben Produkte zweimal.
-// – Ein Suchtext, den du schon hattest, wird erneut geladen.
-// – Nach dem Bestellen zählt App eine Version hoch, damit OrderList neu lädt.
+// Exercise react-tanstack-query: everything is built by hand.
+// – ProductList and ProductCount load the same products twice.
+// – A search text you already had is loaded again.
+// – After ordering, App increments a version so that OrderList reloads.
 export const App = () => {
   const [search, setSearch] = useState('');
   const [ordersVersion, setOrdersVersion] = useState(0);

@@ -1,6 +1,6 @@
-// Übung: Sobald es src/DataTable.tsx gibt, entferne das `// ` am Anfang der Zeilen
-// (in VS Code: markieren, Cmd/Strg + /). `npm run typecheck` muss danach
-// ohne Fehler laufen. Diese Funktion wird nie ausgeführt.
+// Exercise: once src/DataTable.tsx exists, remove the `// ` at the start of the lines
+// (in VS Code: select them, Cmd/Ctrl + /). `npm run typecheck` must then
+// run without errors. This function is never executed.
 //
 // import { DataTable } from './DataTable';
 // import { customers, products } from './data';
@@ -21,7 +21,7 @@
 //   <DataTable
 //     rows={customers}
 //     getRowKey={(customer) => customer.id}
-//     // @ts-expect-error – Customer hat kein Feld "mail"
+//     // @ts-expect-error – Customer has no field "mail"
 //     columns={[{ field: 'mail', header: 'E-Mail' }]}
 //   />,
 // ];

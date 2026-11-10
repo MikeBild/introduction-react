@@ -12,7 +12,7 @@ const renderForm = () => {
   return { ...handlers, container };
 };
 
-it('bezahlt mit den eingegebenen Daten', async () => {
+it('pays with the entered data', async () => {
   const { onPay } = renderForm();
   await userEvent.type(screen.getByLabelText('Name'), 'Ada');
   await userEvent.type(screen.getByLabelText('IBAN'), 'DE00123');
@@ -20,13 +20,13 @@ it('bezahlt mit den eingegebenen Daten', async () => {
   expect(onPay).toHaveBeenCalledOnce();
 });
 
-it('zeigt Positionen und Summe in Cent gerechnet', () => {
+it('shows items and total calculated in cents', () => {
   renderForm();
   expect(screen.getAllByRole('listitem')).toHaveLength(2);
   expect(screen.getByText('Summe 288,80 €')).toBeInTheDocument();
 });
 
-it('storniert über den Danger-Button', async () => {
+it('cancels via the danger button', async () => {
   const { onCancel } = renderForm();
   await userEvent.click(
     screen.getByRole('button', { name: 'Bestellung stornieren' })
@@ -34,7 +34,7 @@ it('storniert über den Danger-Button', async () => {
   expect(onCancel).toHaveBeenCalledOnce();
 });
 
-it('nutzt keine globalen CSS-Klassen mehr', () => {
+it('no longer uses global CSS classes', () => {
   const { container } = renderForm();
   expect(
     container.querySelector(
@@ -43,7 +43,7 @@ it('nutzt keine globalen CSS-Klassen mehr', () => {
   ).toBeNull();
 });
 
-it('zeigt jede Variant mit eigenen Utilities', () => {
+it('shows each variant with its own utilities', () => {
   renderForm();
   expect(screen.getByRole('button', { name: 'Jetzt bezahlen' })).toHaveClass(
     'bg-blue-700'

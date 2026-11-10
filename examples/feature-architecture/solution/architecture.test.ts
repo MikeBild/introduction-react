@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-// Jede Quelldatei als Rohtext, z. B. './features/cart/useCart.ts'.
+// Every source file as raw text, e.g. './features/cart/useCart.ts'.
 const sourceFiles = import.meta.glob<string>(
   ['./**/*.{ts,tsx}', '!./**/*.test.{ts,tsx}'],
   { query: '?raw', import: 'default', eager: true }
@@ -8,7 +8,7 @@ const sourceFiles = import.meta.glob<string>(
 
 type ImportEdge = { importer: string; target: string };
 
-// Pfade ohne Endung, relativ zum Ordner, z. B. 'features/catalog/products'.
+// Paths without extension, relative to the folder, e.g. 'features/catalog/products'.
 const toModulePath = (filePath: string) =>
   filePath.replace(/^\.\//, '').replace(/\.tsx?$/, '');
 
@@ -25,8 +25,8 @@ const importEdges: readonly ImportEdge[] = Object.entries(sourceFiles).flatMap(
 const featureOf = (modulePath: string) =>
   modulePath.match(/^features\/([^/]+)/)?.[1];
 
-describe('Architektur', () => {
-  it('ui und shared importieren nie aus features', () => {
+describe('Architecture', () => {
+  it('ui and shared never import from features', () => {
     expect(
       importEdges.filter(
         ({ importer, target }) =>
@@ -35,7 +35,7 @@ describe('Architektur', () => {
     ).toEqual([]);
   });
 
-  it('Features importieren andere Features nur über deren index.ts', () => {
+  it('features import other features only through their index.ts', () => {
     expect(
       importEdges.filter(({ importer, target }) => {
         const targetFeature = featureOf(target);
@@ -49,7 +49,7 @@ describe('Architektur', () => {
     ).toEqual([]);
   });
 
-  it('Features importieren nie aus der App-Schicht (App.tsx)', () => {
+  it('features never import from the app layer (App.tsx)', () => {
     expect(
       importEdges.filter(
         ({ importer, target }) => featureOf(importer) && target === 'App'

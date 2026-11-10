@@ -2,8 +2,8 @@ import { render, screen, within } from '@testing-library/react';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-// Bleibt grün, wenn du CustomerTable durch DataTable<Customer> ersetzt.
-it('zeigt die Kundenliste als Tabelle', () => {
+// Stays green when you replace CustomerTable with DataTable<Customer>.
+it('shows the customer list as a table', () => {
   render(<App />);
   expect(
     screen.getAllByRole('columnheader').map((header) => header.textContent)

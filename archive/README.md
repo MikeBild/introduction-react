@@ -1,6 +1,6 @@
-# Introduction to React (Legacy)
+# Introduction to React (Archive)
 
-> Archiv: Kapitel und Beispiele aus den Jahren 2017 bis 2023 (Class Components, Redux, webpack, React 16 bis 18). Sie sind hier nur zum Nachlesen. Die aktuellen Übungen findest du im [README](../README.md) im Hauptverzeichnis.
+> Archive: chapters and examples from 2017 to 2023 (class components, Redux, webpack, React 16 to 18). They are here for reading only. You find the current exercises in the [README](../README.md) in the repo root.
 
 ## Recommendations
 

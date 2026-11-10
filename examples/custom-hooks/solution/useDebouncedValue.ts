@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-// Teilt Verhalten, nicht State: Jeder Aufruf hat seinen eigenen Timer.
+// Shares behavior, not State: every call has its own timer.
 export const useDebouncedValue = <T>(value: T, delayMs: number): T => {
   const [debouncedValue, setDebouncedValue] = useState(value);
 

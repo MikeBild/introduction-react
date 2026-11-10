@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Actions Optimistic
 
-Der Warenkorb des Werkstatt-Shops mit einer Form Action aus React 19 und `useActionState`. Der Fake-Server braucht eine Sekunde und lehnt Positionen ab, für die der Bestand nicht reicht – bereit für `useOptimistic`.
+The cart of the workshop shop with a Form Action from React 19 and `useActionState`. The fake server takes a second and rejects line items when the stock is not sufficient – ready for `useOptimistic`.
 
-Lektion: **Optimistic UI braucht einen Rückweg** (`react-actions-optimistic`)
+Lesson: **Optimistic UI needs a way back** (`react-actions-optimistic`)
 
 ```bash
 npm install
@@ -10,15 +12,15 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Verschieb den Submit-Button in eine eigene Component `SubmitButton` und lies dort den Pending State mit `useFormStatus` aus `react-dom`.
-2. Zeig eine neue Position in `src/Cart.tsx` sofort mit `useOptimistic` an, ausgegraut, solange der Server speichert. `mergeItem` aus `src/cartApi.ts` hilft dir beim Zusammenfassen gleicher Produkte.
-3. Leg den Steckschlüsselsatz in den Warenkorb: Er ist ausverkauft. Die optimistische Position verschwindet, und die Meldung erscheint.
-4. Entferne `.skip` in `src/Cart.test.tsx`.
+1. Move the submit button into its own component `SubmitButton` and read the pending state there with `useFormStatus` from `react-dom`.
+2. Show a new line item in `src/Cart.tsx` immediately with `useOptimistic`, grayed out while the server saves. `mergeItem` from `src/cartApi.ts` helps you merge identical products.
+3. Put the socket wrench set into the cart: it is sold out. The optimistic line item disappears, and the message appears.
+4. Remove `.skip` in `src/Cart.test.tsx`.
 
-Optimistic Updates passen hier, weil eine Position im Entwurf fast immer gespeichert wird. Für das Bezahlen würdest du darauf verzichten.
+Optimistic updates fit here because a line item in a draft is saved almost every time. For payment you would do without them.
 
-## Lösung
+## Reference solution
 
-Eine mögliche Lösung liegt in `solution/`: `Cart.tsx`, `SubmitButton.tsx` und die Tests.
+A reference solution is in `solution/`: `Cart.tsx`, `SubmitButton.tsx`, and the tests.

@@ -1,49 +1,51 @@
+*English · [Deutsch](README.de.md)*
+
 # SSR App
 
-Die Produktseite des Werkstatt-Shops mit Server-Side Rendering: Der Server rendert per `renderToPipeableStream` fertiges HTML und streamt es an den Browser. Die Seite sieht sofort vollständig aus – aber der Button „In den Warenkorb“ reagiert nicht.
+The product page of the workshop shop with server-side rendering: the server renders finished HTML via `renderToPipeableStream` and streams it to the browser. The page looks complete right away – but the “In den Warenkorb” (add to cart) button does not respond.
 
-Zusatzkapitel: **Wann lohnen sich Server Components?** (`react-server-components`)
+Extra chapter: **When are server components worth it?** (`react-server-components`)
 
 ```bash
 npm install
-npm run dev          # Startpunkt mit Vite im Middleware Mode, http://localhost:5173
+npm run dev          # starting point with Vite in middleware mode, http://localhost:5173
 npm test
 npm run build
-npm start            # Server für die Produktion aus dist/
+npm start            # production server from dist/
 ```
 
-Node 26 führt `server.ts` direkt aus (Type Stripping), du brauchst dafür keinen eigenen Build-Schritt.
+Node 26 runs `server.ts` directly (type stripping), you do not need a separate build step for it.
 
-## Aufbau
+## Structure
 
-| Datei                     | Läuft auf | Aufgabe                                                    |
-| ------------------------- | --------- | ---------------------------------------------------------- |
-| `server.ts`               | Server    | Express-5-Server, lädt Daten, streamt HTML in `index.html` |
-| `src/entry-server.tsx`    | Server    | `render()` mit `renderToPipeableStream`                    |
-| `src/productPage.ts`      | Server    | `loadProductPage()`, Typen und Type Guard der Daten        |
-| `src/App.tsx`             | beide     | Produktseite mit Beschreibung, Preis, Bestand, Bewertungen |
-| `src/AddToCartButton.tsx` | beide     | der einzige interaktive Teil (`useState`)                  |
-| `src/entry-client.tsx`    | Browser   | Client Entry, von `index.html` geladen                     |
+| File                      | Runs on | Purpose                                                      |
+| ------------------------- | ------- | ------------------------------------------------------------ |
+| `server.ts`               | server  | Express 5 server, loads data, streams HTML into `index.html` |
+| `src/entry-server.tsx`    | server  | `render()` with `renderToPipeableStream`                     |
+| `src/productPage.ts`      | server  | `loadProductPage()`, types and type guard of the data        |
+| `src/App.tsx`             | both    | product page with description, price, stock, reviews         |
+| `src/AddToCartButton.tsx` | both    | the only interactive part (`useState`)                       |
+| `src/entry-client.tsx`    | browser | client entry, loaded by `index.html`                         |
 
-## Übung
+## Exercise
 
-1. Starte `npm run dev` und öffne die Seite. Schalte JavaScript in den DevTools aus und lade neu: Was zeigt der Server schon, was fehlt?
-2. Schalte JavaScript wieder ein und klick den Button. Der Zähler bleibt bei 0. Finde heraus, warum: Das Script läuft (`data-client-loaded` am `<html>`-Element), aber kein React-Code übernimmt das Server-HTML.
-3. Ergänze die Hydration in `src/entry-client.tsx`: Lies die Initial Data aus `<script id="initial-data">`, prüfe sie mit `isProductPageData` und ruf `hydrateRoot` mit denselben Daten auf wie der Server. Achte auf die Console: Ein Hydration Mismatch erscheint dort als Error.
-4. Skizziere, welche Teile der Seite heute Server Components wären und wo die `'use client'`-Grenze läge. Wie viel JavaScript bräuchte der Browser dann noch?
+1. Start `npm run dev` and open the page. Disable JavaScript in the DevTools and reload: what does the server already show, what is missing?
+2. Enable JavaScript again and click the button. The counter stays at 0. Find out why: the script runs (`data-client-loaded` on the `<html>` element), but no React code takes over the server HTML.
+3. Add the hydration in `src/entry-client.tsx`: read the initial data from `<script id="initial-data">`, check it with `isProductPageData`, and call `hydrateRoot` with the same data as the server. Watch the console: a hydration mismatch appears there as an error.
+4. Sketch which parts of the page would be Server Components today and where the `'use client'` boundary would run. How much JavaScript would the browser still need then?
 
-## Befund im Startpunkt
+## Findings in the starting point
 
-Der Server liefert vollständiges HTML und die Daten als JSON. Das Client-Script wird geladen, ruft aber weder `hydrateRoot` noch `createRoot` auf. Darum hängen an den Buttons keine Event Handler, und der Zähler bleibt nach jedem Klick bei „Im Warenkorb: 0“. Ein `createRoot` statt `hydrateRoot` würde das Server-HTML verwerfen und neu bauen – der Button ginge dann, aber der Vorteil des Server-HTML wäre verschenkt.
+The server delivers complete HTML and the data as JSON. The client script is loaded but calls neither `hydrateRoot` nor `createRoot`. That is why no event handlers are attached to the buttons, and the counter stays at “Im Warenkorb: 0” (in cart: 0) after every click. A `createRoot` instead of `hydrateRoot` would throw away the server HTML and rebuild it – the button would work then, but the advantage of the server HTML would be wasted.
 
-## Lösung
+## Reference solution
 
-- `solution/hydrate.tsx` – `hydrateRoot` mit derselben `App` und denselben Daten
-- `solution/entry-client.tsx` – liest und prüft die Initial Data, startet die Hydration
-- `solution/hydrate.test.tsx` – prüft in jsdom: kein Mismatch, Button klickbar, DOM vom Server übernommen
-- `solution/SERVER-COMPONENTS.md` – Skizze mit Server Components und `'use client'`-Grenze
+- `solution/hydrate.tsx` – `hydrateRoot` with the same `App` and the same data
+- `solution/entry-client.tsx` – reads and checks the initial data, starts the hydration
+- `solution/hydrate.test.tsx` – checks in jsdom: no mismatch, button clickable, DOM taken over from the server
+- `solution/SERVER-COMPONENTS.md` – sketch with Server Components and the `'use client'` boundary
 
-Die Lösung läuft mit eigenem HTML-Einstieg (`solution.html`):
+The reference solution runs with its own HTML entry (`solution.html`):
 
 ```bash
 npm run dev:solution

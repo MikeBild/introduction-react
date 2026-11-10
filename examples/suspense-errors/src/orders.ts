@@ -12,8 +12,8 @@ export type OrderApi = {
 const wait = (milliseconds: number) =>
   new Promise((resolve) => setTimeout(resolve, milliseconds));
 
-// Fake-Backend: o9999 kennt der Server nicht, die Sendungsverfolgung ist
-// langsam und fällt beim ersten Aufruf aus.
+// Fake backend: the server does not know o9999, the shipment tracking is
+// slow and fails on the first call.
 let shipmentCalls = 0;
 export const fakeOrderApi: OrderApi = {
   fetchOrder: async (orderId) => {

@@ -1,22 +1,24 @@
-# ADR 001: Code nach Features ordnen
+*English · [Deutsch](adr-001-feature-folders.de.md)*
 
-- Status: angenommen
-- Datum: 29.10.2026
+# ADR 001: Organize code by features
 
-## Kontext
+- Status: accepted
+- Date: 2026-10-29
 
-Der Shop wächst. In einem Ordner `components/` liegen Warenkorb, Katalog und Design System nebeneinander. Wer am Warenkorb arbeitet, greift schnell auf Interna des Katalogs zu. Jede Änderung im Katalog kann dann den Warenkorb brechen.
+## Context
 
-## Entscheidung
+The shop is growing. In a `components/` folder, cart, catalog, and design system sit side by side. Whoever works on the cart quickly reaches into the internals of the catalog. Every change in the catalog can then break the cart.
 
-- Fachlicher Code liegt unter `features/<name>/`. Jedes Feature exportiert seine Public API über `index.ts`.
-- Andere Features importieren nur über diese `index.ts`, nie direkt aus einer Datei des Features.
-- `ui/` (Design System) und `shared/` (fachfreie Helfer) importieren nie aus `features/`.
-- Features importieren nie aus der App-Schicht (`App.tsx`). Die App setzt Features zusammen, nicht umgekehrt.
-- `architecture.test.ts` prüft diese Regeln bei jedem `npm test`.
+## Decision
 
-## Konsequenzen
+- Domain code lives under `features/<name>/`. Every feature exports its public API via `index.ts`.
+- Other features import only through this `index.ts`, never directly from a file of the feature.
+- `ui/` (design system) and `shared/` (domain-free helpers) never import from `features/`.
+- Features never import from the app layer (`App.tsx`). The app composes features, not the other way around.
+- `architecture.test.ts` checks these rules on every `npm test`.
 
-- Interna eines Features darfst du umbauen, solange die `index.ts` gleich bleibt.
-- Neue Abhängigkeiten zwischen Features werden im Review sichtbar, weil die `index.ts` wächst.
-- Der Test liest Imports per Regex. Dynamische Imports oder Aliase erkennt er nicht. Wird das nötig, steigen wir auf `eslint-plugin-boundaries` oder `dependency-cruiser` um.
+## Consequences
+
+- You may refactor the internals of a feature as long as the `index.ts` stays the same.
+- New dependencies between features become visible in review, because the `index.ts` grows.
+- The test reads imports with a regex. It does not recognize dynamic imports or aliases. If that becomes necessary, we switch to `eslint-plugin-boundaries` or `dependency-cruiser`.

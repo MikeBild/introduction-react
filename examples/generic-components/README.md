@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Generic Components
 
-Die Kundenliste des Werkstatt-Shops als Tabelle, fest verdrahtet auf den Typ `Customer`. Für Produkte bräuchtest du eine Kopie. Du baust stattdessen eine generische `DataTable<T>`, die den Typ des Aufrufers bewahrt.
+The customer list of the workshop shop as a table, hard-wired to the type `Customer`. For products you would need a copy. Instead, you build a generic `DataTable<T>` that preserves the caller’s type.
 
-Lektion: **Generics bewahren den Typ des Aufrufers** (`react-generic-components`)
+Lesson: **Generics preserve the caller’s type** (`react-generic-components`)
 
 ```bash
 npm install
@@ -11,14 +13,14 @@ npm test
 npm run typecheck
 ```
 
-## Übung
+## Exercise
 
-1. Leg `src/DataTable.tsx` an mit einer Component `DataTable<T>` und den Props `rows: readonly T[]`, `columns: readonly Column<T>[]` und `getRowKey: (row: T) => string`.
-2. Definiere `Column<T>` als Union Type: Eine Spalte zeigt entweder ein Feld (`field: keyof T & string`) oder rendert selbst (`render: (row: T) => ReactNode`). Beide haben einen `header`.
-3. Ersetze in `src/App.tsx` die `CustomerTable` durch `DataTable` mit Spalten für Name, E-Mail und Umsatz. Der Test in `src/App.test.tsx` muss grün bleiben.
-4. Entferne in `src/typeChecks.tsx` das `// ` am Anfang der Zeilen. `npm run typecheck` muss ohne Fehler laufen: Dieselbe Tabelle funktioniert für Produkte, und ein falscher Feldname scheitert.
-5. Prüf deinen Code: kein `any`, kein `as`. Tipp: In einer `.tsx`-Datei schreibst du eine generische Arrow Function als `<T,>(…) =>`.
+1. Create `src/DataTable.tsx` with a component `DataTable<T>` and the props `rows: readonly T[]`, `columns: readonly Column<T>[]`, and `getRowKey: (row: T) => string`.
+2. Define `Column<T>` as a union type: a column either shows a field (`field: keyof T & string`) or renders itself (`render: (row: T) => ReactNode`). Both have a `header`.
+3. In `src/App.tsx`, replace the `CustomerTable` with `DataTable` with columns for name, email, and revenue. The test in `src/App.test.tsx` must stay green.
+4. In `src/typeChecks.tsx`, remove the `// ` at the start of the lines. `npm run typecheck` must run without errors: the same table works for products, and a wrong field name fails.
+5. Check your code: no `any`, no `as`. Tip: in a `.tsx` file you write a generic arrow function as `<T,>(…) =>`.
 
-## Lösung
+## Reference solution
 
-`solution/DataTable.tsx`, `solution/App.tsx`, `solution/typeChecks.tsx` und `solution/DataTable.test.tsx`. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+`solution/DataTable.tsx`, `solution/App.tsx`, `solution/typeChecks.tsx`, and `solution/DataTable.test.tsx`. To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App`.

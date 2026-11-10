@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 import { createShopApi } from './fakeApi';
 
-// Leitet fetch auf die Fake-API um. Jeder Test bekommt frische Bestellungen.
+// Redirects fetch to the fake API. Every test gets fresh orders.
 export const mockShopApi = () => {
   const handle = createShopApi();
   const fetchSpy = vi
@@ -16,7 +16,7 @@ export const mockShopApi = () => {
       return Response.json(body, { status });
     });
 
-  // Zählt Requests, etwa requestCount('GET', '/api/products?q=').
+  // Counts requests, for example requestCount('GET', '/api/products?q=').
   const requestCount = (method: string, pathAndQuery: string) =>
     fetchSpy.mock.calls.filter(([input, init]) => {
       const url = new URL(String(input), 'http://localhost');

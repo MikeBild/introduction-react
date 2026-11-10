@@ -3,15 +3,15 @@ import { logRender } from './logRender';
 import { ProductTable } from './ProductTable';
 import { products } from './products';
 
-// Übung react-rendering-performance: Jeder Tastendruck in der Notiz rendert
-// die ganze Tabelle neu. Miss es zuerst, dann verschiebe den State nach unten.
+// Exercise react-rendering-performance: every keystroke in the note re-renders
+// the whole table. Measure it first, then move the State down.
 export const ProductPage = ({
   onRender = logRender,
 }: {
   onRender?: ProfilerOnRenderCallback;
 }) => {
-  // Schaltet den React Compiler für diese Component ab, damit du das
-  // Verhalten ohne automatische Memoisierung misst.
+  // Turns the React Compiler off for this Component so that you measure the
+  // behavior without automatic memoization.
   'use no memo';
   const [note, setNote] = useState('');
 

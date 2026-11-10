@@ -12,8 +12,8 @@ const parseJson = (text: string): unknown => {
   }
 };
 
-// Fake-API des Werkstatt-Shops. Läuft im Dev-Server (vite.config.ts)
-// und in den Tests hinter einem fetch-Spy. Jede Instanz hat eigene Bestellungen.
+// Fake API of the workshop shop. Runs in the dev server (vite.config.ts)
+// and in the tests behind a fetch spy. Every instance has its own orders.
 export const createShopApi = () => {
   const storedOrders: Order[] = [...orders];
 

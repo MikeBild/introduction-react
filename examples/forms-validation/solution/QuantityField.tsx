@@ -8,7 +8,7 @@ type QuantityFieldProps = {
   errors: FieldErrors;
 };
 
-// Der Schlüssel des Errors folgt dem Pfad im Schema: items.0.quantity
+// The key of the error follows the path in the schema: items.0.quantity
 export const QuantityField = ({
   item,
   index,

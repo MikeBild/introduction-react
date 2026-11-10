@@ -4,7 +4,7 @@ import { expect, it, vi } from 'vitest';
 import { App } from './App';
 import { CartBadge } from './CartBadge';
 
-it('zählt hinzugefügte Artikel', async () => {
+it('counts added items', async () => {
   render(<App />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Werkstattwagen in den Warenkorb' })
@@ -12,8 +12,8 @@ it('zählt hinzugefügte Artikel', async () => {
   expect(screen.getByText('Warenkorb: 1 Artikel')).toBeInTheDocument();
 });
 
-// Übung react-context-state: .skip entfernen
-it.skip('meldet einen fehlenden CartProvider mit klarer Fehlermeldung', () => {
+// Exercise react-context-state: remove .skip
+it.skip('reports a missing CartProvider with a clear error message', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
   expect(() => render(<CartBadge />)).toThrow(
     'useCart muss innerhalb von <CartProvider> aufgerufen werden'

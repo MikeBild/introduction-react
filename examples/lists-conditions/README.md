@@ -1,8 +1,10 @@
-# Lists und Conditions
+*English · [Deutsch](README.de.md)*
 
-Die Bestellübersicht des Werkstatt-Shops kennt nur den Happy Path und nutzt die Position in der Liste als Key. Du ergänzt eigene Ansichten für Loading, Error und Empty und gibst jedem Eintrag einen stabilen Key.
+# Lists and Conditions
 
-Lektion: **Keys sind Identität, nicht Position** (`react-lists-conditions`)
+The order overview of the workshop shop only knows the happy path and uses the position in the list as the key. You add dedicated views for loading, error, and empty, and give every entry a stable key.
+
+Lesson: **Keys are identity, not position** (`react-lists-conditions`)
 
 ```bash
 npm install
@@ -10,20 +12,20 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Starte die App, setz bei Bestellung o1001 den Haken und klick auf „Neue Bestellung oben einfügen“. Beobachte, bei welcher Bestellung der Haken jetzt steht.
-2. Ersetze in `src/OrderOverview.tsx` den Index als Key durch `order.id`. Wiederhole Schritt 1.
-3. Ergänze eigene Ansichten für die drei anderen Situationen aus `OrdersState`:
+1. Start the app, tick the checkbox on order o1001, and click “Neue Bestellung oben einfügen” (insert new order at the top). Watch which order the checkmark is on now.
+2. In `src/OrderOverview.tsx`, replace the index as key with `order.id`. Repeat step 1.
+3. Add dedicated views for the three other situations from `OrdersState`:
    - Loading: `<p role="status">Bestellungen werden geladen …</p>`
-   - Error: ein Element mit `role="alert"`, das die Meldung aus dem State zeigt und den nächsten Schritt nennt: „Lade die Seite neu und versuch es noch einmal.“
-   - Empty: „Noch keine Bestellungen. Sobald jemand bestellt, erscheint die Bestellung hier.“ statt einer leeren Liste
-4. Entferne `.skip` in `src/OrderOverview.test.tsx` Schritt für Schritt.
+   - Error: an element with `role="alert"` that shows the message from the state and names the next step: “Lade die Seite neu und versuch es noch einmal.” (reload the page and try again)
+   - Empty: “Noch keine Bestellungen. Sobald jemand bestellt, erscheint die Bestellung hier.” (no orders yet, as soon as someone orders, the order appears here) instead of an empty list
+4. Remove `.skip` in `src/OrderOverview.test.tsx` step by step.
 
-Die Bestellungen kommen aus `src/shop.ts`: `Order` mit `status`, `customerId` und `items`. Die Summe berechnest du mit `orderTotalCents`.
+The orders come from `src/shop.ts`: `Order` with `status`, `customerId`, and `items`. You compute the total with `orderTotalCents`.
 
-Tipp: Ein `switch` über `state.status` lässt TypeScript prüfen, dass du keinen Fall vergessen hast.
+Tip: a `switch` over `state.status` lets TypeScript check that you have not forgotten a case.
 
-## Lösung
+## Reference solution
 
-`solution/OrderOverview.tsx` mit Tests in `solution/OrderOverview.test.tsx`. Um die Lösung im Browser zu sehen, ändere den Import in `src/App.tsx` auf `../solution/OrderOverview`.
+`solution/OrderOverview.tsx` with tests in `solution/OrderOverview.test.tsx`. To see the reference solution in the browser, change the import in `src/App.tsx` to `../solution/OrderOverview`.

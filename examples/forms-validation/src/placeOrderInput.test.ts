@@ -1,7 +1,7 @@
 import { expect, it } from 'vitest';
 import { PlaceOrderInput } from './placeOrderInput';
 
-it('akzeptiert eine Bestellung mit einer Position', () => {
+it('accepts an order with one item', () => {
   expect(
     PlaceOrderInput.safeParse({
       customerId: 'c1',
@@ -10,7 +10,7 @@ it('akzeptiert eine Bestellung mit einer Position', () => {
   ).toBe(true);
 });
 
-it('lehnt unbekannte Felder ab', () => {
+it('rejects unknown fields', () => {
   expect(
     PlaceOrderInput.safeParse({ customerId: 'c1', items: [], coupon: 'X' })
       .success

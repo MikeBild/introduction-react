@@ -9,8 +9,8 @@ export const ProductPage = ({
 }: {
   onRender?: ProfilerOnRenderCallback;
 }) => {
-  // Bleibt bewusst ohne Compiler: State Colocation reicht hier schon,
-  // ganz ohne memo.
+  // Deliberately stays without the Compiler: State Colocation is enough here,
+  // without any memo.
   'use no memo';
   return (
     <main>

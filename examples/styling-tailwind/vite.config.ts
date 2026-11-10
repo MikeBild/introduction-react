@@ -4,8 +4,8 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
-  // React Compiler memoisiert Components und Hooks beim Build automatisch.
-  // tailwindcss() erzeugt nur die Utilities, die im Code vorkommen.
+  // React Compiler memoizes Components and Hooks automatically at build time.
+  // tailwindcss() only generates the utilities that appear in the code.
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

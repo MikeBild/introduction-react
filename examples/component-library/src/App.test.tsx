@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-it('zeigt alle Kunden', () => {
+it('shows all customers', () => {
   render(<App />);
   expect(
     screen.getByRole('heading', { name: /Ada Schmidt/ })
@@ -11,20 +11,20 @@ it('zeigt alle Kunden', () => {
   expect(screen.getAllByRole('button', { name: 'Bearbeiten' })).toHaveLength(2);
 });
 
-it('filtert Produkte über das Suchfeld', async () => {
+it('filters products via the search field', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Produkt suchen'), 'schlüssel');
   expect(screen.getAllByRole('listitem')).toHaveLength(2);
 });
 
-// Übung react-composition: .skip entfernen
-it.skip('zeigt jeden Kunden als article mit Überschrift', () => {
+// Exercise react-composition: remove .skip
+it.skip('shows each customer as an article with a heading', () => {
   render(<App />);
   expect(screen.getAllByRole('article')).toHaveLength(2);
 });
 
-// Übung react-atomic-design: .skip entfernen
-it.skip('zeigt im Template der Produktsuche die Anzahl der Treffer', async () => {
+// Exercise react-atomic-design: remove .skip
+it.skip('shows the number of results in the product search template', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Produkt suchen'), 'schlüssel');
   expect(screen.getByText('2 Treffer')).toBeInTheDocument();

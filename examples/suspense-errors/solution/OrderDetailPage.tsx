@@ -17,8 +17,8 @@ const ShipmentStatus = ({ orderId, orderCache }: OrderSectionProps) => {
   return <p>Versand: {shipment.status}</p>;
 };
 
-// error ist unknown: Geworfen werden kann alles, nicht nur Error-Objekte.
-// errorText macht daraus einen lesbaren Satz mit nächstem Schritt.
+// error is unknown: anything can be thrown, not just Error objects.
+// errorText turns it into a readable sentence with a next step.
 const OrderErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
   <div role="alert">
     <p>
@@ -41,17 +41,17 @@ const ShipmentErrorFallback = ({ resetErrorBoundary }: FallbackProps) => (
 );
 
 export const OrderDetailPage = ({ orderId, orderCache }: OrderSectionProps) => (
-  // Äußere Boundary: Ohne Bestellung ist die Seite nutzlos.
+  // Outer boundary: without the order the page is useless.
   <ErrorBoundary
     FallbackComponent={OrderErrorFallback}
-    // Vor dem Retry das abgelehnte Promise aus dem Cache werfen.
+    // Before the retry, evict the rejected Promise from the cache.
     onReset={() => orderCache.forgetOrder(orderId)}
     resetKeys={[orderId]}
   >
     <Suspense fallback={<p>Bestellung lädt …</p>}>
       <OrderSummary orderId={orderId} orderCache={orderCache} />
-      {/* Innere Boundary: Der langsame Versandstatus blockiert die
-          Bestellung nicht, und sein Fehler bleibt lokal. */}
+      {/* Inner boundary: the slow shipment status does not block the
+          order, and its error stays local. */}
       <ErrorBoundary
         FallbackComponent={ShipmentErrorFallback}
         onReset={() => orderCache.forgetShipment(orderId)}

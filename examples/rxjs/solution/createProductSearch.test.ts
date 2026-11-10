@@ -2,7 +2,7 @@ import { afterEach, beforeEach, expect, it, vi } from 'vitest';
 import { searchCatalog } from '../src/catalog';
 import { createProductSearch } from './createProductSearch';
 
-// Der Stream lässt sich ohne React testen – mit Fake Timers für debounceTime.
+// The stream can be tested without React – with fake timers for debounceTime.
 beforeEach(() => {
   vi.useFakeTimers();
 });
@@ -21,7 +21,7 @@ const mockProducts = () =>
       )
     );
 
-it('sendet beim schnellen Tippen nur einen Request', async () => {
+it('sends only one request while typing fast', async () => {
   const fetchSpy = mockProducts();
   const productSearch = createProductSearch();
   const results: string[][] = [];
@@ -37,7 +37,7 @@ it('sendet beim schnellen Tippen nur einen Request', async () => {
   subscription.unsubscribe();
 });
 
-it('ignoriert denselben Suchtext ein zweites Mal', async () => {
+it('ignores the same search text a second time', async () => {
   const fetchSpy = mockProducts();
   const productSearch = createProductSearch();
   const subscription = productSearch.results$.subscribe();
@@ -49,7 +49,7 @@ it('ignoriert denselben Suchtext ein zweites Mal', async () => {
   subscription.unsubscribe();
 });
 
-it('macht aus einem Netzwerkfehler eine leere Liste', async () => {
+it('turns a network error into an empty list', async () => {
   vi.spyOn(globalThis, 'fetch').mockRejectedValue(new TypeError('offline'));
   const productSearch = createProductSearch();
   const results: unknown[] = [];

@@ -1,5 +1,5 @@
-// Entspricht dem gemeinsamen zod-Schema PlaceOrderInput des Werkstatt-Shops.
-// Hier reicht der Typ mit einem kleinen Type Guard – zod nutzt das Repo nur für Forms.
+// Matches the shared zod schema PlaceOrderInput of the workshop shop.
+// Here the type with a small type guard is enough – the repo uses zod only for forms.
 export type PlaceOrderInput = {
   customerId: string;
   items: { productId: string; quantity: number }[];

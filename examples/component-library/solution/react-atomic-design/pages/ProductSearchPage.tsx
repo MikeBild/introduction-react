@@ -4,7 +4,7 @@ import { SearchField } from '../molecules/SearchField';
 import { ProductResultList } from '../organisms/ProductResultList';
 import { ProductSearchTemplate } from '../templates/ProductSearchTemplate';
 
-// Page: füllt das Template mit echtem State und echten Daten.
+// Page: fills the Template with real State and real data.
 export const ProductSearchPage = () => {
   const [searchText, setSearchText] = useState('');
   const foundProducts = searchProducts(searchText);

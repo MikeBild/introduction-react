@@ -1,14 +1,16 @@
+*English · [Deutsch](7-css.de.md)*
+
 # Styling
 
-Styles gehören zur Component. Globales CSS mit Klassen wie `.btn-primary` wächst unkontrolliert: Niemand traut sich, eine Regel zu löschen.
+Styles belong with the component. Global CSS with classes like `.btn-primary` grows out of control: nobody dares to delete a rule.
 
-## Optionen
+## Options
 
-- **Tailwind CSS 4:** Utility-Klassen direkt im JSX, eingebunden über `@tailwindcss/vite` und `@import "tailwindcss";`.
-- **CSS Modules:** `Button.module.css` neben der Component, Klassen lokal pro Datei.
-- **Inline Styles:** nur für Werte, die zur Laufzeit berechnet werden.
+- **Tailwind CSS 4:** utility classes directly in JSX, wired up through `@tailwindcss/vite` and `@import "tailwindcss";`.
+- **CSS Modules:** `Button.module.css` next to the component, classes scoped to the file.
+- **Inline styles:** only for values computed at runtime.
 
-## Variants statt Klassen-Strings
+## Variants instead of class strings
 
 ```tsx
 const variantClasses = {
@@ -24,8 +26,8 @@ export const Button = ({ variant = 'primary', className = '', ...props }: Button
 );
 ```
 
-## Übung
+## Exercise
 
-Lektion **Styles gehören zur Component** (`react-styling`): [examples/styling-tailwind](examples/styling-tailwind/README.md)
+Lesson **Styles belong with the component** (`react-styling`): [examples/styling-tailwind](examples/styling-tailwind/README.md)
 
-Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/7-css.md](legacy/chapters/7-css.md).
+The earlier version of this chapter is in [archive/chapters/7-css.md](archive/chapters/7-css.md).

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-// Slots statt Flags: Der Aufrufer gibt Inhalte hinein, die Card ordnet sie nur an.
+// Slots instead of flags: the caller passes content in, the Card only arranges it.
 type CardProps = {
   header: ReactNode;
   children?: ReactNode;

@@ -9,12 +9,12 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-// Übung react-custom-hooks: Leg src/useDebouncedValue.ts an, importiere den
-// Hook hier und entferne .skip.
+// Exercise react-custom-hooks: create src/useDebouncedValue.ts, import the
+// Hook here and remove .skip.
 // import { useDebouncedValue } from './useDebouncedValue';
 const useDebouncedValue = <T>(value: T, _delayMs: number): T => value;
 
-it.skip('liefert den neuen Wert erst nach der Verzögerung', () => {
+it.skip('returns the new value only after the delay', () => {
   const { result, rerender } = renderHook(
     ({ value }) => useDebouncedValue(value, 300),
     { initialProps: { value: 'a' } }
@@ -25,7 +25,7 @@ it.skip('liefert den neuen Wert erst nach der Verzögerung', () => {
   expect(result.current).toBe('ab');
 });
 
-it.skip('startet die Wartezeit bei jeder Änderung neu', () => {
+it.skip('restarts the wait time on every change', () => {
   const { result, rerender } = renderHook(
     ({ value }) => useDebouncedValue(value, 300),
     { initialProps: { value: 1 } }

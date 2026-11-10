@@ -1,14 +1,16 @@
-# Children, Composition und Context
+*English · [Deutsch](6-extended.de.md)*
+
+# Children, composition, and Context
 
 ## Composition
 
-Gib Inhalte als `children` oder als benannte Slots hinein, statt Flags zu sammeln. Eine `Card` mit `header`, `children` und `actions` ersetzt zehn Props wie `showActions` oder `isCompact`.
+Pass content in as `children` or as named slots instead of collecting flags. A `Card` with `header`, `children`, and `actions` replaces ten props like `showActions` or `isCompact`.
 
-Übung: Lektion **Inhalte hineingeben statt Flags sammeln** (`react-composition`) – [examples/component-library](examples/component-library/README.md)
+Exercise: lesson **Pass content in instead of collecting flags** (`react-composition`) – [examples/component-library](examples/component-library/README.md)
 
 ## Context
 
-Context transportiert Werte durch den Baum, ohne Props durch jede Ebene zu reichen. Er ist kein Store für alles: Jeder Wechsel des Werts rendert alle Consumer neu.
+Context carries values through the tree without passing props through every level. It is not a store for everything: every change of the value re-renders all consumers.
 
 ```tsx
 type CartContextValue = { items: readonly CartItem[]; addItem: (item: CartItem) => void };
@@ -28,17 +30,17 @@ export const useCart = () => {
 };
 ```
 
-## Regeln
+## Rules
 
-- Starte mit `null` statt mit einem Default-Objekt voller No-op-Funktionen.
-- Biete einen Custom Hook an, der außerhalb des Providers mit klarer Meldung abbricht.
-- Leg in Context nur Werte, die selten wechseln und viele brauchen: Theme, Session, Locale.
-- Server-Daten gehören nicht in Context. Lade sie dort, wo sie gebraucht werden, mit `fetch`, `use` und `Suspense`.
+- Start with `null` instead of a default object full of no-op functions.
+- Offer a Custom Hook that fails with a clear message outside the provider.
+- Put only values into Context that change rarely and that many components need: theme, session, locale.
+- Server data does not belong in Context. Load it where it is needed, with `fetch`, `use`, and `Suspense`.
 
-Higher-Order Components und Render Props findest du nur noch in Legacy-Code. Für geteiltes Verhalten schreibst du heute Custom Hooks.
+Higher-Order Components and render props only appear in older code. For shared behavior you write Custom Hooks today.
 
-## Übung
+## Exercise
 
-Lektion **Context ist kein Store für alles** (`react-context-state`): [examples/context-state](examples/context-state/README.md)
+Lesson **Context is not a store for everything** (`react-context-state`): [examples/context-state](examples/context-state/README.md)
 
-Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/6-extended.md](legacy/chapters/6-extended.md).
+The earlier version of this chapter is in [archive/chapters/6-extended.md](archive/chapters/6-extended.md).

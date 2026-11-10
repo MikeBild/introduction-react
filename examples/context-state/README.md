@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Context State
 
-Der Werkstatt-Shop hält seinen Warenkorb (`OrderItem[]`) im Context. Der Context hat ein Default-Objekt mit leeren Funktionen. Vergisst jemand den Provider, passiert beim Klick einfach nichts – ohne Fehlermeldung.
+The workshop shop keeps its cart (`OrderItem[]`) in Context. The Context has a default object with empty functions. If someone forgets the provider, a click simply does nothing – without an error message.
 
-Lektion: **Context ist kein Store für alles** (`react-context-state`)
+Lesson: **Context is not a store for everything** (`react-context-state`)
 
 ```bash
 npm install
@@ -10,16 +12,16 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Typisiere den Context in `src/cart.tsx` als `CartContextValue | null` und starte ihn mit `null` statt mit einem Default-Objekt.
-2. Exportiere `CartContext` nicht mehr. Schreib stattdessen einen Custom Hook `useCart()`, der den Context mit `use` liest und einen Error wirft, wenn kein Provider da ist: „useCart muss innerhalb von <CartProvider> aufgerufen werden“.
-3. Stell `CartBadge` und `ProductList` auf `useCart()` um.
-4. Nutze die React-19-Schreibweise `<CartContext value={…}>` statt `<CartContext.Provider>`.
-5. Entferne `.skip` in `src/cart.test.tsx`.
+1. Type the Context in `src/cart.tsx` as `CartContextValue | null` and start it with `null` instead of a default object.
+2. Stop exporting `CartContext`. Instead, write a Custom Hook `useCart()` that reads the Context with `use` and throws an error when there is no provider: “useCart muss innerhalb von <CartProvider> aufgerufen werden” (useCart must be called inside <CartProvider>).
+3. Switch `CartBadge` and `ProductList` to `useCart()`.
+4. Use the React 19 syntax `<CartContext value={…}>` instead of `<CartContext.Provider>`.
+5. Remove `.skip` in `src/cart.test.tsx`.
 
-Zum Nachdenken: Der Warenkorb ändert sich selten und wird an mehreren Stellen gebraucht – ein guter Fall für Context. Der Suchtext eines einzelnen Formulars wäre es nicht. Server-Daten lädst du dort, wo sie gebraucht werden (siehe `examples/data-fetching`).
+Think about it: the cart changes rarely and is needed in several places – a good case for Context. The search text of a single form would not be. You load server data where it is needed (see `examples/data-fetching`).
 
-## Lösung
+## Reference solution
 
-`solution/cart.tsx` mit `CartProvider` und `useCart`, dazu die umgestellten Components und Tests.
+`solution/cart.tsx` with `CartProvider` and `useCart`, plus the converted components and tests.

@@ -1,7 +1,7 @@
 import type { OrderAction } from '../src/orderReducer';
 import type { Order, OrderStatus } from '../src/shop';
 
-// Statusfolge: draft → placed → paid → shipped, cancelled nur aus draft oder placed.
+// Status sequence: draft → placed → paid → shipped, cancelled only from draft or placed.
 const nextStatus: Record<
   'placed' | 'paid' | 'shipped' | 'cancelled',
   readonly OrderStatus[]
@@ -12,7 +12,7 @@ const nextStatus: Record<
   cancelled: ['draft', 'placed'],
 };
 
-// Erlaubte Übergänge – alles andere behält den aktuellen State.
+// Allowed transitions – everything else keeps the current State.
 export const orderReducer = (state: Order, action: OrderAction): Order => {
   switch (action.type) {
     case 'itemAdded':

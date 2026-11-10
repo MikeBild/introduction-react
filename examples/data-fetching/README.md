@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Data Fetching
 
-Die Produktsuche des Werkstatt-Shops lädt bei jeder Eingabe neu. Der Fetch-Code steckt direkt in der Component – und hat einen Fehler, den du erst siehst, wenn das Netz langsam ist: Eine alte Antwort kann eine neue überholen.
+The product search of the workshop shop reloads on every keystroke. The fetch code sits directly in the component – and has a bug you only see when the network is slow: an old answer can overtake a new one.
 
-Lektion: **Alte Antworten dürfen neue nicht überholen** (`react-data-fetching`)
+Lesson: **Old answers must not overtake new ones** (`react-data-fetching`)
 
 ```bash
 npm install
@@ -10,23 +12,23 @@ npm run dev
 npm test
 ```
 
-`npm run dev` startet eine kleine Fake-API unter `/api/products?q=…`. Kurze Suchtexte antworten absichtlich langsamer.
+`npm run dev` starts a small fake API at `/api/products?q=…`. Short search texts deliberately answer more slowly.
 
-## Übung
+## Exercise
 
-1. Tipp im Browser zügig „boh“ und dann „bohrer“. Nach gut einer Sekunde springt die Liste zurück auf die Treffer für „boh“. Die langsame Antwort hat die schnelle überholt.
-2. Schreib in `src/fetchProducts.ts` eine Funktion `fetchProducts(search, signal)`. Sie wirft bei HTTP-Fehlern selbst einen `HttpError` aus `src/errorText.ts`, behandelt die Antwort als `unknown` und prüft sie mit einem Type Guard, bevor sie ein `Product[]` zurückgibt.
-3. Schreib einen Hook `useProducts(search)` in `src/useProducts.ts`. Modellier den Status als Union Type `LoadState<T>` mit `loading`, `error` und `success`. Die Meldung im Status `error` kommt aus `errorText(error)`: ein lesbarer Satz mit nächstem Schritt statt `String(error)`. Brich im Cleanup des Effects den Request per `AbortController` ab.
-4. Nutz den Hook in einer `ProductList` und lösch den alten Fetch-Code aus `ProductSearch`.
-5. Entferne `.skip` in `src/ProductSearch.test.tsx`. Die Tests beantworten Requests in falscher Reihenfolge und mit Status 500.
+1. In the browser, quickly type “boh” and then “bohrer”. After a good second, the list jumps back to the results for “boh”. The slow answer has overtaken the fast one.
+2. In `src/fetchProducts.ts`, write a function `fetchProducts(search, signal)`. On HTTP errors it throws an `HttpError` from `src/errorText.ts` itself, treats the response as `unknown`, and checks it with a type guard before returning a `Product[]`.
+3. Write a hook `useProducts(search)` in `src/useProducts.ts`. Model the status as a union type `LoadState<T>` with `loading`, `error`, and `success`. The message in the `error` status comes from `errorText(error)`: a readable sentence with a next step instead of `String(error)`. In the cleanup of the effect, abort the request with an `AbortController`.
+4. Use the hook in a `ProductList` and delete the old fetch code from `ProductSearch`.
+5. Remove `.skip` in `src/ProductSearch.test.tsx`. The tests answer requests in the wrong order and with status 500.
 
-`use` und `Suspense` kommen erst in der Lektion **Wo wird gewartet, wo werden Errors gefangen?** (`examples/suspense-errors`). Cache, Deduplizierung und Retries zeigt das Zusatzkapitel TanStack Query (`examples/tanstack-query`).
+`use` and `Suspense` come later in the lesson **Where do you wait, where are errors caught?** (`examples/suspense-errors`). Cache, deduplication, and retries are shown in the extra chapter TanStack Query (`examples/tanstack-query`).
 
-## Lösung
+## Reference solution
 
-- `solution/fetchProducts.ts` – Laden, Status prüfen, Antwort prüfen
-- `solution/useProducts.ts` – Effect mit `AbortController`, Ergebnis mit seinem Suchtext
-- `solution/ProductList.tsx` und `solution/ProductSearch.tsx` – mit Hinweis, was du bei null Treffern tun kannst
-- `solution/ProductSearch.test.tsx` – Race Condition, Abbruch, HTTP-Fehler, ungültige Antwort
+- `solution/fetchProducts.ts` – load, check status, check response
+- `solution/useProducts.ts` – effect with `AbortController`, result together with its search text
+- `solution/ProductList.tsx` and `solution/ProductSearch.tsx` – with a hint on what you can do with zero results
+- `solution/ProductSearch.test.tsx` – race condition, abort, HTTP error, invalid response
 
-Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App`.

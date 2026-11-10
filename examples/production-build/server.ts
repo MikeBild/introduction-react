@@ -1,14 +1,14 @@
 import express from 'express';
 import { join } from 'node:path';
 
-// Server für die Produktion: liefert die App aus dist/ aus und nimmt Error Reports an.
-// Node 26 führt diese Datei direkt aus (Type Stripping).
+// Production server: serves the app from dist/ and accepts error reports.
+// Node 26 runs this file directly (Type Stripping).
 const port = Number(process.env.PORT ?? 4173);
 const distDir = join(import.meta.dirname, 'dist');
 
 const app = express();
 
-// sendBeacon schickt den Report als text/plain.
+// sendBeacon sends the report as text/plain.
 app.post(
   '/api/client-errors',
   express.text({ type: '*/*', limit: '10kb' }),
@@ -18,7 +18,7 @@ app.post(
   }
 );
 
-// Gehashte Assets dürfen lange im Cache liegen, index.html nie.
+// Hashed assets may stay in the cache for a long time, index.html never.
 app.use(
   '/assets',
   express.static(join(distDir, 'assets'), { immutable: true, maxAge: '1y' })

@@ -1,9 +1,9 @@
 import { createServer } from 'node:http';
 import { products } from './src/shop.ts';
 
-// Fake-API des Werkstatt-Shops: GET /api/products auf Port 3000.
-// Node 26 führt diese Datei direkt aus (Type Stripping): npm run api
-// Absichtlich ohne CORS-Header – im Development läuft alles über den Proxy von Vite.
+// Fake API of the workshop shop: GET /api/products on port 3000.
+// Node 26 runs this file directly (Type Stripping): npm run api
+// Deliberately without CORS headers – in development everything goes through Vite's proxy.
 const port = Number(process.env.PORT ?? 3000);
 
 const server = createServer((req, res) => {

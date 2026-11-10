@@ -1,7 +1,7 @@
 import { formatCents, revenueCents, type Customer } from './data';
 
-// Übung: Diese Tabelle kennt nur Customer. Für Produkte bräuchtest du
-// eine Kopie. Bau stattdessen eine generische DataTable<T> in src/DataTable.tsx.
+// Exercise: this table only knows Customer. For products you would need
+// a copy. Build a generic DataTable<T> in src/DataTable.tsx instead.
 export const CustomerTable = ({
   customers,
 }: {

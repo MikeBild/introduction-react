@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-// Referenz: sichtbares Label, Error per aria-describedby verknüpft.
+// Reference: visible label, error linked via aria-describedby.
 export const EmailField = ({
   defaultValue,
   error,

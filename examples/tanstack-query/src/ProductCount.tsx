@@ -1,6 +1,6 @@
 import { useProducts } from './useProducts';
 
-// Zweite Component mit denselben Daten – mit dem eigenen Hook ein zweiter Request.
+// A second Component with the same data – with the Custom Hook that means a second request.
 export const ProductCount = ({ search }: { search: string }) => {
   const products = useProducts(search);
   return (

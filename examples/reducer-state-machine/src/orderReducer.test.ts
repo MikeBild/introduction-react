@@ -19,13 +19,13 @@ const orderWith = (status: OrderStatus, items = [drill]): Order => ({
 });
 
 describe('orderReducer', () => {
-  it('geht von draft nach placed', () => {
+  it('goes from draft to placed', () => {
     expect(orderReducer(orderWith('draft'), { type: 'placed' }).status).toBe(
       'placed'
     );
   });
 
-  it('nimmt im Entwurf neue Positionen auf', () => {
+  it('adds new items while in draft', () => {
     const next = orderReducer(orderWith('draft', []), {
       type: 'itemAdded',
       item: drill,
@@ -33,25 +33,25 @@ describe('orderReducer', () => {
     expect(next.items).toEqual([drill]);
   });
 
-  // Übung: .skip entfernen
-  it.skip('ignoriert paid, solange die Bestellung ein Entwurf ist', () => {
+  // Exercise: remove .skip
+  it.skip('ignores paid as long as the order is a draft', () => {
     const draft = orderWith('draft');
     expect(orderReducer(draft, { type: 'paid' })).toBe(draft);
   });
 
-  it.skip('platziert keine leere Bestellung', () => {
+  it.skip('does not place an empty order', () => {
     const emptyDraft = orderWith('draft', []);
     expect(orderReducer(emptyDraft, { type: 'placed' })).toBe(emptyDraft);
   });
 
-  it.skip('ändert ab placed keine Positionen mehr', () => {
+  it.skip('no longer changes items from placed on', () => {
     const placed = orderWith('placed');
     expect(orderReducer(placed, { type: 'itemAdded', item: drill })).toBe(
       placed
     );
   });
 
-  it.skip('storniert nur aus draft oder placed', () => {
+  it.skip('cancels only from draft or placed', () => {
     const paid = orderWith('paid');
     expect(orderReducer(paid, { type: 'cancelled' })).toBe(paid);
     expect(

@@ -15,7 +15,7 @@ const addToCart = async (productName: string, quantity: string) => {
   );
 };
 
-it('lehnt Menge 0 ab, ohne den Server zu fragen', async () => {
+it('rejects quantity 0 without asking the server', async () => {
   render(<Cart addItemToDraft={() => Promise.reject('unerwarteter Aufruf')} />);
   await addToCart('Drehmomentschlüssel', '0');
   expect(await screen.findByRole('alert')).toHaveTextContent(
@@ -23,7 +23,7 @@ it('lehnt Menge 0 ab, ohne den Server zu fragen', async () => {
   );
 });
 
-it('zeigt die Position, nachdem der Server sie gespeichert hat', async () => {
+it('shows the item after the server has saved it', async () => {
   render(<Cart addItemToDraft={(_orderId, item) => Promise.resolve([item])} />);
   await addToCart('Drehmomentschlüssel', '2');
   expect(await screen.findByRole('listitem')).toHaveTextContent(
@@ -32,8 +32,8 @@ it('zeigt die Position, nachdem der Server sie gespeichert hat', async () => {
   expect(screen.getByText('Summe: 179,80 €')).toBeInTheDocument();
 });
 
-// Übung: .skip entfernen
-it.skip('zeigt die Position sofort, während der Server noch speichert', async () => {
+// Exercise: remove .skip
+it.skip('shows the item immediately while the server is still saving', async () => {
   const { promise: savedItems, resolve: resolveSavedItems } =
     Promise.withResolvers<OrderItem[]>();
   render(<Cart addItemToDraft={() => savedItems} />);
@@ -45,7 +45,7 @@ it.skip('zeigt die Position sofort, während der Server noch speichert', async (
   resolveSavedItems([]);
 });
 
-it.skip('entfernt die optimistische Position, wenn der Bestand nicht reicht', async () => {
+it.skip('removes the optimistic item when the stock is insufficient', async () => {
   render(
     <Cart
       addItemToDraft={() =>
@@ -60,7 +60,7 @@ it.skip('entfernt die optimistische Position, wenn der Bestand nicht reicht', as
   expect(screen.queryByRole('listitem')).not.toBeInTheDocument();
 });
 
-it('fasst gleiche Produkte zu einer Position zusammen', () => {
+it('merges identical products into one item', () => {
   const item = { productId: productId('p1'), quantity: 1, priceCents: 8990 };
   expect(mergeItem([item], item)).toEqual([{ ...item, quantity: 2 }]);
 });

@@ -11,8 +11,8 @@ type LoadState<T> =
   | { status: 'error'; message: string }
   | { status: 'success'; data: T };
 
-// Übung react-suspense-errors: Jede Component prüft Loading und Error selbst.
-// Ersetze den Hook durch use() und setz je Bereich Suspense und ErrorBoundary.
+// Exercise react-suspense-errors: every Component checks loading and error itself.
+// Replace the Hook with use() and add Suspense and ErrorBoundary per section.
 const useLoad = <T,>(load: () => Promise<T>, key: OrderId) => {
   const [state, setState] = useState<LoadState<T>>({ status: 'loading' });
   useEffect(() => {
@@ -30,7 +30,7 @@ const useLoad = <T,>(load: () => Promise<T>, key: OrderId) => {
     return () => {
       isCurrent = false;
     };
-    // load ist bei jedem Render neu – der Effect hängt nur an der Bestellung.
+    // load is new on every render – the Effect only depends on the order.
   }, [key]);
   return state;
 };

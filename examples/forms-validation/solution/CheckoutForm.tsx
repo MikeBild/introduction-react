@@ -23,7 +23,7 @@ export const CheckoutForm = ({ cart, placeOrder }: CheckoutFormProps) => {
   const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    // FormData liefert Text, das Schema will Zahlen.
+    // FormData delivers text, the schema wants numbers.
     const items = cart.map((item) => ({
       productId: item.productId,
       quantity: Number(formData.get(item.productId)),
@@ -38,7 +38,7 @@ export const CheckoutForm = ({ cart, placeOrder }: CheckoutFormProps) => {
     try {
       setPlacedOrderId(await placeOrder(result.data));
     } catch (error) {
-      // Server Errors kommen mit demselben Pfad zurück ans Feld.
+      // Server errors come back to the field with the same path.
       if (isServerFieldError(error))
         return setErrors({ [error.path]: error.message });
       setFormError('Die Bestellung ist fehlgeschlagen. Versuch es noch einmal.');

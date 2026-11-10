@@ -4,7 +4,7 @@ import { expect, it } from 'vitest';
 import { Checkout } from './Checkout';
 import { orderId } from '../src/shop';
 
-it('startet nach Erfolg eine neue Bestellung', async () => {
+it('starts a new order after success', async () => {
   render(<Checkout placeOrder={() => Promise.resolve(orderId('o42'))} />);
   await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
   await userEvent.click(

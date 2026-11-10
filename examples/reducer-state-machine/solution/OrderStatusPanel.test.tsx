@@ -6,13 +6,13 @@ import { OrderStatusPanel } from './OrderStatusPanel';
 const clickButton = (name: string) =>
   userEvent.click(screen.getByRole('button', { name }));
 
-it('bestellt eine leere Bestellung nicht', async () => {
+it('does not place an empty order', async () => {
   render(<OrderStatusPanel />);
   await clickButton('Bestellen');
   expect(screen.getByRole('status')).toHaveTextContent('draft');
 });
 
-it('storniert nach dem Versand nicht mehr', async () => {
+it('no longer cancels after shipping', async () => {
   render(<OrderStatusPanel />);
   await clickButton('Schraubendreher-Set hinzufügen');
   await clickButton('Bestellen');

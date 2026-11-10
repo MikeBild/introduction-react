@@ -36,7 +36,7 @@ export const Cart = ({
       quantity,
       priceCents: product.priceCents,
     };
-    // Gilt nur, solange die Action läuft – danach zählt wieder cartState.
+    // Applies only while the Action is running – after that, cartState counts again.
     addOptimisticItem(newItem);
     try {
       const savedItems = await addItemToDraft(draftOrderId, newItem);

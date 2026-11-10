@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-// Eine Spalte zeigt entweder ein Feld von T direkt oder rendert selbst.
+// A column either shows a field of T directly or renders on its own.
 export type Column<T> =
   | { field: keyof T & string; header: string }
   | { id: string; header: string; render: (row: T) => ReactNode };

@@ -7,11 +7,11 @@ import type { Order } from './orders';
 import { createTestApi, testOrder } from './testApi';
 
 beforeEach(() => {
-  // React loggt gefangene Render Errors – im Test ist das nur Rauschen.
+  // React logs caught render errors – in the test that is just noise.
   vi.spyOn(console, 'error').mockImplementation(() => {});
 });
 
-// Mit use() suspendiert die Component. React 19 verlangt dann ein awaited act().
+// With use() the Component suspends. React 19 then requires an awaited act().
 const renderPage = (api = createTestApi()) =>
   act(async () => {
     render(
@@ -22,13 +22,13 @@ const renderPage = (api = createTestApi()) =>
     );
   });
 
-// Auch der Retry suspendiert – deshalb läuft der Klick in einem awaited act().
+// The retry suspends too – that is why the click runs inside an awaited act().
 const clickAndWait = (button: HTMLElement) =>
   act(async () => {
     await userEvent.click(button);
   });
 
-it('zeigt erst den Loading State, dann die Bestellung', async () => {
+it('shows the loading state first, then the order', async () => {
   const api = createTestApi();
   const pendingOrder = Promise.withResolvers<Order>();
   api.fetchOrder.mockReturnValue(pendingOrder.promise);
@@ -41,7 +41,7 @@ it('zeigt erst den Loading State, dann die Bestellung', async () => {
   expect(screen.getByText('Versand: Unterwegs')).toBeInTheDocument();
 });
 
-it('fängt den Error, wenn die Bestellung nicht lädt', async () => {
+it('catches the error when the order does not load', async () => {
   const api = createTestApi();
   api.fetchOrder.mockRejectedValue(
     new Error('Bestellung o1001 nicht gefunden')
@@ -50,8 +50,8 @@ it('fängt den Error, wenn die Bestellung nicht lädt', async () => {
   expect(screen.getByRole('alert')).toBeInTheDocument();
 });
 
-// Übung: .skip entfernen
-it.skip('lädt nach einem Error per Retry neu', async () => {
+// Exercise: remove .skip
+it.skip('reloads via retry after an error', async () => {
   const api = createTestApi();
   api.fetchOrder.mockRejectedValueOnce(new Error('Netzwerk weg'));
   await renderPage(api);
@@ -63,7 +63,7 @@ it.skip('lädt nach einem Error per Retry neu', async () => {
   expect(api.fetchOrder).toHaveBeenCalledTimes(2);
 });
 
-it.skip('zeigt die Bestellung auch dann, wenn der Versandstatus fehlt', async () => {
+it.skip('shows the order even when the shipment status is missing', async () => {
   const api = createTestApi();
   api.fetchShipment.mockRejectedValue(new Error('Tracking down'));
   await renderPage(api);

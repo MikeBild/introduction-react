@@ -5,7 +5,7 @@ import { initialCart } from '../src/cart';
 import { CheckoutForm } from '../src/CheckoutForm';
 import { mockFetchResponse } from '../src/test/mockFetchResponse';
 
-it('zeigt die Bestellnummer nach erfolgreicher Bestellung', async () => {
+it('shows the order number after a successful order', async () => {
   // Arrange
   const user = userEvent.setup();
   const fetchMock = mockFetchResponse(201, { id: 'o1004' });
@@ -34,7 +34,7 @@ it('zeigt die Bestellnummer nach erfolgreicher Bestellung', async () => {
   );
 });
 
-it('zeigt den Validation Error am Feld und sendet keinen Request', async () => {
+it('shows the validation error at the field and sends no request', async () => {
   const user = userEvent.setup();
   const fetchMock = mockFetchResponse(201, { id: 'o1004' });
   render(<CheckoutForm cart={initialCart} />);
@@ -51,7 +51,7 @@ it('zeigt den Validation Error am Feld und sendet keinen Request', async () => {
   expect(fetchMock).not.toHaveBeenCalled();
 });
 
-it('meldet einen Server Error mit Status 500', async () => {
+it('reports a server error with status 500', async () => {
   const user = userEvent.setup();
   mockFetchResponse(500, null);
   render(<CheckoutForm cart={initialCart} />);
@@ -65,7 +65,7 @@ it('meldet einen Server Error mit Status 500', async () => {
   expect(screen.getByRole('button', { name: 'Bestellen' })).toBeEnabled();
 });
 
-it('zeigt einen Bestandsfehler vom Server an der Position', async () => {
+it('shows a stock error from the server at the item', async () => {
   const user = userEvent.setup();
   mockFetchResponse(409, {
     path: 'items.1.quantity',

@@ -7,7 +7,7 @@ import {
 
 export type { Order } from './shop';
 
-// Ein State pro Situation – nie gleichzeitig loading und error.
+// One State per situation – never loading and error at the same time.
 export type OrdersState =
   | { status: 'loading' }
   | { status: 'error'; message: string }

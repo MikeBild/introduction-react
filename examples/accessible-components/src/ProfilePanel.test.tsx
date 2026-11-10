@@ -6,7 +6,7 @@ import { customers } from './shop';
 
 const customer = customers[0];
 
-it('öffnet die Profil-Region per Tastatur', async () => {
+it('opens the profile region with the keyboard', async () => {
   render(<ProfilePanel customer={customer} onSave={() => {}} />);
   await userEvent.tab();
   await userEvent.keyboard('{Enter}');
@@ -15,8 +15,8 @@ it('öffnet die Profil-Region per Tastatur', async () => {
   ).toBeInTheDocument();
 });
 
-// Übung: .skip entfernen
-it.skip('speichert per Tastatur', async () => {
+// Exercise: remove .skip
+it.skip('saves with the keyboard', async () => {
   const onSave = vi.fn();
   render(<ProfilePanel customer={customer} onSave={onSave} />);
   await userEvent.click(
@@ -27,7 +27,7 @@ it.skip('speichert per Tastatur', async () => {
   expect(onSave).toHaveBeenCalledOnce();
 });
 
-it.skip('setzt den Focus nach dem Schließen zurück auf den Auslöser', async () => {
+it.skip('returns focus to the trigger after closing', async () => {
   render(<ProfilePanel customer={customer} onSave={() => {}} />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Profil bearbeiten' })

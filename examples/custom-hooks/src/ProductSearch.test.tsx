@@ -15,7 +15,7 @@ const resultNames = () =>
     .queryAllByRole('listitem')
     .map((item) => item.textContent);
 
-it('filtert erst nach der Pause', () => {
+it('filters only after the pause', () => {
   render(<ProductSearch delayMs={300} />);
   fireEvent.change(screen.getByLabelText('Produkt suchen'), {
     target: { value: 'schlüssel' },

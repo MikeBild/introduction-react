@@ -13,7 +13,7 @@ export type CheckoutAction =
 
 export const initialCheckoutState: CheckoutState = { status: 'idle' };
 
-// Nur erlaubte Übergänge – alles andere behält den aktuellen State.
+// Only allowed transitions – everything else keeps the current State.
 export const checkoutReducer = (
   state: CheckoutState,
   action: CheckoutAction

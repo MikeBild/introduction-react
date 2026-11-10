@@ -9,7 +9,7 @@ const typeSearch = (text: string) =>
     target: { value: text },
   });
 
-it('zeigt Produkte, Treffer und Bestellungen', async () => {
+it('shows products, result count and orders', async () => {
   mockShopApi();
   render(<App />);
   expect(await screen.findByText('9 Treffer')).toBeInTheDocument();
@@ -18,7 +18,7 @@ it('zeigt Produkte, Treffer und Bestellungen', async () => {
   ).toBeInTheDocument();
 });
 
-it('zeigt nach dem Bestellen die neue Bestellung', async () => {
+it('shows the new order after ordering', async () => {
   mockShopApi();
   render(<App />);
   await userEvent.click(
@@ -29,8 +29,8 @@ it('zeigt nach dem Bestellen die neue Bestellung', async () => {
   ).toBeInTheDocument();
 });
 
-// Übung: .skip entfernen
-it.skip('lädt die Produkte für Liste und Treffer nur einmal', async () => {
+// Exercise: remove .skip
+it.skip('loads the products for list and result count only once', async () => {
   const api = mockShopApi();
   render(<App />);
   await screen.findByText('9 Treffer');
@@ -38,7 +38,7 @@ it.skip('lädt die Produkte für Liste und Treffer nur einmal', async () => {
   expect(api.requestCount('GET', '/api/products?q=')).toBe(1);
 });
 
-it.skip('holt einen schon geladenen Suchtext aus dem Cache', async () => {
+it.skip('serves an already loaded search text from the cache', async () => {
   const api = mockShopApi();
   render(<App />);
   await screen.findByText('9 Treffer');

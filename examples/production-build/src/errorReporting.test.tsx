@@ -3,7 +3,7 @@ import { expect, it, vi } from 'vitest';
 import { AppErrorBoundary } from './AppErrorBoundary';
 import { createErrorReporter } from './errorReporting';
 
-it('meldet den Error mit der Release-Version', () => {
+it('reports the error with the release version', () => {
   const sendReport = vi.fn();
   createErrorReporter('1.2.0', sendReport)(new Error('Boom'), 'window');
   expect(sendReport).toHaveBeenCalledWith(
@@ -15,7 +15,7 @@ const BrokenWidget = () => {
   throw new Error('Render failed');
 };
 
-it('zeigt den Fallback bei Render Errors', () => {
+it('shows the fallback on render errors', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
   render(
     <AppErrorBoundary reportError={() => {}}>
@@ -27,8 +27,8 @@ it('zeigt den Fallback bei Render Errors', () => {
   );
 });
 
-// Übung: .skip entfernen
-it.skip('meldet die aktuelle Route', () => {
+// Exercise: remove .skip
+it.skip('reports the current route', () => {
   const sendReport = vi.fn();
   createErrorReporter('1.2.0', sendReport)(new Error('Boom'), 'window');
   expect(sendReport).toHaveBeenCalledWith(
@@ -36,7 +36,7 @@ it.skip('meldet die aktuelle Route', () => {
   );
 });
 
-it.skip('meldet Render Errors mit der Quelle render', () => {
+it.skip('reports render errors with the source render', () => {
   vi.spyOn(console, 'error').mockImplementation(() => {});
   const reportError = vi.fn();
   render(

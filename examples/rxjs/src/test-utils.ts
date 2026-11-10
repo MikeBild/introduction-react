@@ -7,8 +7,8 @@ type PendingRequest = {
   resolve: (response: Response) => void;
 };
 
-// Ersetzt fetch durch Requests, die du im Test selbst beantwortest –
-// in beliebiger Reihenfolge. Ein abgebrochener Request lehnt mit AbortError ab.
+// Replaces fetch with requests that you answer yourself in the test –
+// in any order. An aborted request rejects with an AbortError.
 export const controlFetch = () => {
   const requests: PendingRequest[] = [];
   const fetchSpy = vi.spyOn(globalThis, 'fetch').mockImplementation(

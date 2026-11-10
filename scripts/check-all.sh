@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Prüft alle Beispiele: npm ci, Type Check, Tests, Build (plus Lösung und Storybook, falls vorhanden).
-# Aufruf: ./scripts/check-all.sh [beispiel …]
+# Checks all examples: npm ci, type check, tests, build (plus solution and Storybook, if present).
+# Usage: ./scripts/check-all.sh [example …]
 set -euo pipefail
 cd "$(dirname "$0")/../examples"
 

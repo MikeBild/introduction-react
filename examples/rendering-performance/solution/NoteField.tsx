@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// Der State lebt dort, wo er gebraucht wird – Tippen rendert nur dieses Feld.
+// The State lives where it is needed – typing only re-renders this field.
 export const NoteField = () => {
   const [note, setNote] = useState('');
   return (

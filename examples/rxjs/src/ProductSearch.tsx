@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { formatCents, type Product } from './shop';
 
-// Übung react-rxjs: Debounce, Abbruch und Fehler – alles von Hand.
-// – Der Timeout debounced, aber ein laufender Request wird nie gekündigt.
-// – Eine alte, langsame Antwort überschreibt die neue.
-// – Ein HTTP-Fehler landet ungeprüft im State.
+// Exercise react-rxjs: debounce, cancellation and errors – all by hand.
+// – The timeout debounces, but a running request is never aborted.
+// – An old, slow response overwrites the new one.
+// – An HTTP error lands in the State unchecked.
 export const ProductSearch = () => {
   const [search, setSearch] = useState('');
   const [products, setProducts] = useState<Product[]>([]);

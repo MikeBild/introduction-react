@@ -1,7 +1,7 @@
 import { formatCents, orders, orderTotalCents } from './shop';
 
-// Wird erst bei Bedarf geladen – such nach dem Build seinen eigenen Chunk in dist/assets.
-// Stell dir hier eine schwere Chart-Library vor.
+// Loaded only on demand – after the build, look for its own chunk in dist/assets.
+// Imagine a heavy chart library here.
 const ReportsPage = () => (
   <section>
     <h2>Bestell-Reports</h2>

@@ -17,7 +17,7 @@ const statusLabels: Record<OrderStatus, string> = {
 const productName = (productId: string) =>
   products.find((product) => product.id === productId)?.name ?? productId;
 
-// Reine Anzeige – weiß nichts vom Laden.
+// Pure display – knows nothing about loading.
 export const OrderView = ({ order }: { order: Order }) => (
   <section>
     <h2>Bestellung {order.id}</h2>

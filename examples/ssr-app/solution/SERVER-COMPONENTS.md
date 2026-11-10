@@ -1,21 +1,23 @@
-# Skizze: die Produktseite mit Server Components
+*English · [Deutsch](SERVER-COMPONENTS.de.md)*
 
-## Was heute passiert
+# Sketch: the product page with Server Components
 
-Der Server rendert die ganze `App` zu HTML. Der Browser lädt danach trotzdem den Code aller Components (`App`, Bewertungsliste, Preisformat) und rendert sie bei der Hydration noch einmal, nur um einen einzigen Button interaktiv zu machen. Die Daten reisen doppelt: als HTML und als JSON in `<script id="initial-data">`.
+## What happens today
 
-## Mit Server Components
+The server renders the whole `App` to HTML. The browser nevertheless loads the code of all components afterwards (`App`, review list, price format) and renders them once more during hydration, only to make a single button interactive. The data travels twice: as HTML and as JSON in `<script id="initial-data">`.
+
+## With Server Components
 
 ```text
-ProductPage            Server Component, async, lädt Daten direkt
-├── ProductDetails     Server Component (Name, Beschreibung, Preis)
-├── AddToCartButton    'use client' – einziger Client-Code
-└── ReviewList         Server Component, darf eigene Daten laden
+ProductPage            Server Component, async, loads data directly
+├── ProductDetails     Server Component (name, description, price)
+├── AddToCartButton    'use client' – the only client code
+└── ReviewList         Server Component, may load its own data
     └── ReviewItem     Server Component
 ```
 
 ```tsx
-// ProductPage.tsx – Server Component, kein 'use client'
+// ProductPage.tsx – Server Component, no 'use client'
 export default async function ProductPage({
   productId,
 }: {
@@ -35,21 +37,21 @@ export default async function ProductPage({
 ```tsx
 // AddToCartButton.tsx
 'use client';
-// unverändert: useState und onClick brauchen den Browser
+// unchanged: useState and onClick need the browser
 ```
 
-- Nur `AddToCartButton` landet im Client Bundle. Props über die Grenze müssen serialisierbar sein (`productName: string`, keine Funktionen).
-- `loadProductPage` läuft nur auf dem Server. Secrets, Datenbank-Clients und große Libraries wie ein Markdown-Parser für die Beschreibung bleiben dort.
-- Die Initial Data als JSON entfällt, der Payload der React Server Components (RSC Payload) ersetzt sie.
+- Only `AddToCartButton` ends up in the client bundle. Props across the boundary must be serializable (`productName: string`, no functions).
+- `loadProductPage` runs only on the server. Secrets, database clients, and large libraries such as a Markdown parser for the description stay there.
+- The initial data as JSON goes away; the payload of the React Server Components (RSC payload) replaces it.
 
-## Wann lohnt sich das?
+## When is it worth it?
 
-- Viele Inhalte sind nur Anzeige, wenig ist interaktiv: Shop, Docs, Content-Seiten.
-- Daten liegen nah am Server, und Wasserfälle zwischen Browser und API kosten spürbar Zeit.
-- Das Client Bundle ist zu groß, weil Libraries nur fürs Rendern gebraucht werden.
+- Much of the content is display only, little is interactive: shop, docs, content pages.
+- Data lives close to the server, and waterfalls between browser and API cost noticeable time.
+- The client bundle is too large because libraries are only needed for rendering.
 
-Eher nicht, wenn die App fast komplett interaktiv ist (Editor, Dashboard mit Live-Daten) oder kein Server zur Laufzeit vorhanden ist (reines Static Hosting).
+Rather not when the app is almost entirely interactive (editor, dashboard with live data) or there is no server at runtime (pure static hosting).
 
-## Womit?
+## With what?
 
-Server Components brauchen einen Bundler, der Server- und Client-Module trennt. Das liefert ein Framework: Next.js (App Router), React Router im RSC-Modus oder direkt `@vitejs/plugin-rsc` für Vite. Ein eigener `renderToPipeableStream`-Server wie in diesem Beispiel reicht dafür nicht.
+Server Components need a bundler that separates server and client modules. A framework provides that: Next.js (App Router), React Router in RSC mode, or `@vitejs/plugin-rsc` for Vite directly. A custom `renderToPipeableStream` server like the one in this example is not enough for that.

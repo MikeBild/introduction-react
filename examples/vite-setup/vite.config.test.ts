@@ -6,7 +6,7 @@ import { afterAll, beforeAll, expect, it } from 'vitest';
 const fromRoot = (path: string) =>
   fileURLToPath(new URL(path, import.meta.url));
 
-// Startet den Dev Server mit vite.config.ts, ohne einen Port zu öffnen.
+// Starts the dev server with vite.config.ts without opening a port.
 let server: ViteDevServer;
 beforeAll(async () => {
   server = await createServer({
@@ -17,14 +17,14 @@ beforeAll(async () => {
 });
 afterAll(() => server.close());
 
-// Übung: .skip entfernen
-it.skip('leitet /api an die Fake-API auf Port 3000 weiter', () => {
+// Exercise: remove .skip
+it.skip('forwards /api to the fake API on port 3000', () => {
   expect(server.config.server.proxy).toEqual({
     '/api': 'http://localhost:3000',
   });
 });
 
-it.skip('löst den Alias @/ aus der tsconfig auf', async () => {
+it.skip('resolves the alias @/ from the tsconfig', async () => {
   const resolved = await server.pluginContainer.resolveId(
     '@/shop',
     fromRoot('./src/features/products/ProductList.tsx')

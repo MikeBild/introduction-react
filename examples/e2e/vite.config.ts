@@ -3,14 +3,14 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // React Compiler memoisiert Components und Hooks beim Build automatisch.
+  // React Compiler memoizes Components and Hooks automatically at build time.
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   server: {
-    // Feste Adresse: Playwright wartet in der webServer-Config genau darauf.
+    // Fixed address: Playwright waits for exactly this in the webServer config.
     host: '127.0.0.1',
     port: 5173,
     strictPort: true,
-    // Der Browser spricht nur mit einer Origin; /api leitet Vite an die API weiter.
+    // The browser talks to only one origin; Vite forwards /api to the API.
     proxy: { '/api': 'http://127.0.0.1:3030' },
   },
 });

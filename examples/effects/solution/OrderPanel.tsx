@@ -13,8 +13,8 @@ export const OrderPanel = ({
   loadOrders,
   onReorder,
 }: OrderPanelProps) => {
-  // 2: Synchronisation mit einem externen System bleibt ein Effect –
-  // mit AbortController, damit alte Antworten keinen State mehr setzen.
+  // 2: Synchronizing with an external system stays an Effect –
+  // with an AbortController, so that old responses no longer set State.
   const [orders, setOrders] = useState<readonly Order[]>([]);
   useEffect(() => {
     const controller = new AbortController();
@@ -29,13 +29,13 @@ export const OrderPanel = ({
     return () => controller.abort();
   }, [customer.id, loadOrders]);
 
-  // 1: Abgeleiteter Wert – beim Rendern berechnet, kein State, kein Effect.
+  // 1: Derived value – computed during render, no State, no Effect.
   const totalCents = orders.reduce(
     (sum, order) => sum + orderTotalCents(order.items),
     0
   );
 
-  // 3: Interval mit Cleanup.
+  // 3: Interval with cleanup.
   const [secondsOpen, setSecondsOpen] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(
@@ -45,7 +45,7 @@ export const OrderPanel = ({
     return () => clearInterval(intervalId);
   }, []);
 
-  // 4: Eine Aktion der Nutzenden gehört in den Event Handler, nicht in einen Effect.
+  // 4: A user action belongs in the event handler, not in an Effect.
   return (
     <section>
       <h2>Bestellungen von {customer.name}</h2>

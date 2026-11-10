@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router/dom';
 import { routes } from './routes';
 
 export const App = () => {
-  // Einmal pro App anlegen. In main.tsx ginge auch ein Router auf Modulebene.
+  // Create it once per app. A module-level router in main.tsx would work too.
   const [router] = useState(() => createBrowserRouter(routes));
   return <RouterProvider router={router} />;
 };

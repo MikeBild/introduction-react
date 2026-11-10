@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Custom Hooks
 
-Die Produktsuche des Werkstatt-Shops filtert erst nach einer kurzen Tipp-Pause. Die Debounce-Logik steckt heute direkt in der Component. Du ziehst sie in einen eigenen, generischen Hook.
+The product search of the workshop shop filters only after a short typing pause. The debounce logic currently sits directly in the component. You extract it into your own generic hook.
 
-Lektion: **Custom Hooks teilen Verhalten, nicht State** (`react-custom-hooks`)
+Lesson: **Custom hooks share behavior, not state** (`react-custom-hooks`)
 
 ```bash
 npm install
@@ -10,13 +12,13 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Leg `src/useDebouncedValue.ts` an und exportiere `useDebouncedValue<T>(value: T, delayMs: number): T`. Übernimm `useState`, `useEffect` und den Cleanup aus `src/ProductSearch.tsx`.
-2. Nutze den Hook in `ProductSearch`. Die Component kennt danach keinen Timer mehr.
-3. Ersetze in `src/useDebouncedValue.test.ts` den Platzhalter durch den Import deines Hooks und entferne `.skip`. Die Tests nutzen `renderHook` und Fake Timers.
-4. Überleg dir: Zwei Components rufen `useDebouncedValue` auf – teilen sie sich den Wert? Warum nicht?
+1. Create `src/useDebouncedValue.ts` and export `useDebouncedValue<T>(value: T, delayMs: number): T`. Take over `useState`, `useEffect`, and the cleanup from `src/ProductSearch.tsx`.
+2. Use the hook in `ProductSearch`. Afterwards, the component no longer knows about a timer.
+3. In `src/useDebouncedValue.test.ts`, replace the placeholder with the import of your hook and remove `.skip`. The tests use `renderHook` and fake timers.
+4. Think about it: two components call `useDebouncedValue` – do they share the value? Why not?
 
-## Lösung
+## Reference solution
 
-`solution/useDebouncedValue.ts` und `solution/ProductSearch.tsx` mit Tests.
+`solution/useDebouncedValue.ts` and `solution/ProductSearch.tsx` with tests.

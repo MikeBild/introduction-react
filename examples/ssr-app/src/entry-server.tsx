@@ -8,7 +8,7 @@ import type { ProductPageData } from './productPage';
 
 export { loadProductPage, serializeProductPageData } from './productPage';
 
-// Rendert die Seite auf dem Server als HTML-Stream.
+// Renders the page on the server as an HTML stream.
 export const render = (
   data: ProductPageData,
   options: RenderToPipeableStreamOptions

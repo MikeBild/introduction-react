@@ -3,13 +3,13 @@ import userEvent from '@testing-library/user-event';
 import { expect, it, vi } from 'vitest';
 import { AddToCartForm } from './AddToCartForm';
 
-it('zeigt das Feld für die Menge', () => {
+it('shows the quantity field', () => {
   render(<AddToCartForm stock={4} onAdd={() => {}} />);
   expect(screen.getByLabelText('Menge')).toHaveValue(1);
 });
 
-// Übung: .skip Schritt für Schritt entfernen
-it.skip('deaktiviert den Button, wenn die Menge den Bestand übersteigt', async () => {
+// Exercise: remove .skip step by step
+it.skip('disables the button when the quantity exceeds the stock', async () => {
   render(<AddToCartForm stock={4} onAdd={() => {}} />);
   const quantity = screen.getByLabelText('Menge');
   const submitButton = screen.getByRole('button', { name: 'In den Warenkorb' });
@@ -21,7 +21,7 @@ it.skip('deaktiviert den Button, wenn die Menge den Bestand übersteigt', async 
   expect(submitButton).toBeEnabled();
 });
 
-it.skip('deaktiviert den Button bei leerer Menge oder 0', async () => {
+it.skip('disables the button for an empty quantity or 0', async () => {
   render(<AddToCartForm stock={4} onAdd={() => {}} />);
   const quantity = screen.getByLabelText('Menge');
   const submitButton = screen.getByRole('button', { name: 'In den Warenkorb' });
@@ -31,7 +31,7 @@ it.skip('deaktiviert den Button bei leerer Menge oder 0', async () => {
   expect(submitButton).toBeDisabled();
 });
 
-it.skip('übergibt die Menge an onAdd', async () => {
+it.skip('passes the quantity to onAdd', async () => {
   const onAdd = vi.fn();
   render(<AddToCartForm stock={4} onAdd={onAdd} />);
   const quantity = screen.getByLabelText('Menge');

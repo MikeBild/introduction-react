@@ -1,7 +1,7 @@
 import { productId, products, type Product } from './shop.ts';
 
-// Katalog des Werkstatt-Shops für die Fake-API: die Produkte aus shop.ts
-// plus ein paar Bohrer und Hämmer, damit sich die Suche lohnt.
+// Catalog of the workshop shop for the fake API: the products from shop.ts
+// plus a few drills and hammers, so that searching is worthwhile.
 export const catalog: readonly Product[] = [
   ...products,
   { id: productId('p5'), name: 'Akkubohrer', priceCents: 12900, stock: 6 },

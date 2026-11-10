@@ -19,13 +19,13 @@ const orderWith = (status: OrderStatus, items = [drill]): Order => ({
 });
 
 describe('orderReducer', () => {
-  it('geht von draft nach placed', () => {
+  it('goes from draft to placed', () => {
     expect(orderReducer(orderWith('draft'), { type: 'placed' }).status).toBe(
       'placed'
     );
   });
 
-  it('nimmt im Entwurf neue Positionen auf', () => {
+  it('adds new items while in draft', () => {
     const next = orderReducer(orderWith('draft', []), {
       type: 'itemAdded',
       item: drill,
@@ -33,24 +33,24 @@ describe('orderReducer', () => {
     expect(next.items).toEqual([drill]);
   });
 
-  it('ignoriert paid, solange die Bestellung ein Entwurf ist', () => {
+  it('ignores paid as long as the order is a draft', () => {
     const draft = orderWith('draft');
     expect(orderReducer(draft, { type: 'paid' })).toBe(draft);
   });
 
-  it('platziert keine leere Bestellung', () => {
+  it('does not place an empty order', () => {
     const emptyDraft = orderWith('draft', []);
     expect(orderReducer(emptyDraft, { type: 'placed' })).toBe(emptyDraft);
   });
 
-  it('ändert ab placed keine Positionen mehr', () => {
+  it('no longer changes items from placed on', () => {
     const placed = orderWith('placed');
     expect(orderReducer(placed, { type: 'itemAdded', item: drill })).toBe(
       placed
     );
   });
 
-  it('storniert nur aus draft oder placed', () => {
+  it('cancels only from draft or placed', () => {
     const paid = orderWith('paid');
     expect(orderReducer(paid, { type: 'cancelled' })).toBe(paid);
     expect(
@@ -59,7 +59,7 @@ describe('orderReducer', () => {
   });
 });
 
-it('durchläuft die ganze Statusfolge', () => {
+it('runs through the whole status sequence', () => {
   const steps = ['placed', 'paid', 'shipped'] as const;
   const shipped = steps.reduce(
     (order, type) => orderReducer(order, { type }),

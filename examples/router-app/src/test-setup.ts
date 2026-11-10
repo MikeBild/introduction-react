@@ -4,6 +4,6 @@ import { afterEach } from 'vitest';
 
 afterEach(() => {
   cleanup();
-  // Jeder Test startet wieder auf "/".
+  // Every test starts again at "/".
   window.history.replaceState(null, '', '/');
 });

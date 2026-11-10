@@ -3,10 +3,10 @@ import { fetchOrder, fetchOrders } from './ordersApi';
 import { readStatus, statusLabels, statuses } from './orderStatus';
 import { formatCents, orderTotalCents, type Order } from './shop';
 
-// Übung react-routing: Die Bestellübersicht kennt keine URL.
-// – Welche Seite offen ist und welcher Filter gilt, steckt in useState.
-// – Reload, Zurück-Button und geteilte Links verlieren die Ansicht.
-// – Daten laden in Effects, Errors fängt niemand.
+// Exercise react-routing: the order overview knows no URL.
+// – Which page is open and which filter applies lives in useState.
+// – Reload, the back button and shared links lose the view.
+// – Data loads in Effects, nobody catches errors.
 type Page = { name: 'orders' } | { name: 'order'; orderId: string };
 
 const OrdersPage = ({ onOpen }: { onOpen: (orderId: string) => void }) => {

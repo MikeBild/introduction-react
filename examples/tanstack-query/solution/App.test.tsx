@@ -5,7 +5,7 @@ import { expect, it, vi } from 'vitest';
 import { mockShopApi } from '../src/test-utils';
 import { App } from './App';
 
-// Pro Test ein frischer QueryClient ohne Retries – Tests teilen keinen Cache.
+// A fresh QueryClient without retries per test – tests share no cache.
 const renderApp = () =>
   render(
     <App
@@ -25,7 +25,7 @@ const typeSearch = (text: string) =>
     target: { value: text },
   });
 
-it('zeigt Produkte, Treffer und Bestellungen', async () => {
+it('shows products, result count and orders', async () => {
   mockShopApi();
   renderApp();
   expect(await screen.findByText('9 Treffer')).toBeInTheDocument();
@@ -34,7 +34,7 @@ it('zeigt Produkte, Treffer und Bestellungen', async () => {
   ).toBeInTheDocument();
 });
 
-it('lädt die Produkte für Liste und Treffer nur einmal', async () => {
+it('loads the products for list and result count only once', async () => {
   const api = mockShopApi();
   renderApp();
   await screen.findByText('9 Treffer');
@@ -42,7 +42,7 @@ it('lädt die Produkte für Liste und Treffer nur einmal', async () => {
   expect(api.requestCount('GET', '/api/products?q=')).toBe(1);
 });
 
-it('holt einen schon geladenen Suchtext aus dem Cache', async () => {
+it('serves an already loaded search text from the cache', async () => {
   const api = mockShopApi();
   renderApp();
   await screen.findByText('9 Treffer');
@@ -53,7 +53,7 @@ it('holt einen schon geladenen Suchtext aus dem Cache', async () => {
   expect(api.requestCount('GET', '/api/products?q=')).toBe(1);
 });
 
-it('invalidiert die Bestellübersicht nach dem Bestellen', async () => {
+it('invalidates the order overview after ordering', async () => {
   const api = mockShopApi();
   renderApp();
   await userEvent.click(
@@ -66,7 +66,7 @@ it('invalidiert die Bestellübersicht nach dem Bestellen', async () => {
   expect(api.requestCount('GET', '/api/orders')).toBe(2);
 });
 
-it('zeigt HTTP-Fehler der Query', async () => {
+it('shows HTTP errors of the query', async () => {
   vi.spyOn(globalThis, 'fetch').mockResolvedValue(
     Response.json({ message: 'kaputt' }, { status: 500 })
   );

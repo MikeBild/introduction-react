@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { fn } from 'storybook/test';
 import { CustomerCard } from './CustomerCard';
 
-// Jede Story braucht eine andere Flag-Kombination – ein Zeichen für zu viele Flags.
+// Every story needs a different combination of flags – a sign of too many flags.
 const meta = {
   title: 'Startpunkt/CustomerCard',
   component: CustomerCard,

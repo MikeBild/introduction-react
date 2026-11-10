@@ -10,7 +10,7 @@ export const App = () => (
       variant="highlighted"
       note="Mit Kalibrierschein"
     />
-    {/* Der Tippfehler fällt erst auf, wenn variant ein Union Type ist. */}
+    {/* The typo only shows up once variant is a Union Type. */}
     <CartItemCard
       name="Schraubendreher-Set"
       priceCents={1990}

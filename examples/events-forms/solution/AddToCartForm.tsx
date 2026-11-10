@@ -6,7 +6,7 @@ type AddToCartFormProps = {
 };
 
 export const AddToCartForm = ({ stock, onAdd }: AddToCartFormProps) => {
-  // Der State hält den Text aus dem Feld, die Zahl wird beim Rendern abgeleitet.
+  // The State holds the text from the field, the number is derived during render.
   const [quantity, setQuantity] = useState('1');
   const amount = Number(quantity);
   const isValid = quantity !== '' && amount >= 1 && amount <= stock;

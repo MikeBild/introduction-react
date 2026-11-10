@@ -1,5 +1,5 @@
-/* Übung react-styling: Globales CSS – jede Klasse gilt überall in der App.
-   Wer .btn ändert, ändert jeden Button. Ersetze das durch Tailwind-Klassen. */
+/* Exercise react-styling: global CSS – every class applies everywhere in the app.
+   Whoever changes .btn changes every button. Replace this with Tailwind classes. */
 body {
   font-family: system-ui, sans-serif;
   margin: 0;

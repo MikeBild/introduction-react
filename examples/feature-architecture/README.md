@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Feature Architecture
 
-Der Werkstatt-Shop, nach Features geordnet (`features/`, `ui/`, `shared/`). Ein Test prüft die Boundaries.
+The workshop shop, organized by features (`features/`, `ui/`, `shared/`). A test checks the boundaries.
 
-Lektion: **Nach Features ordnen, Boundaries prüfen** (`react-architecture`)
+Lesson: **Organize by feature, verify boundaries** (`react-architecture`)
 
 ```bash
 npm install
@@ -10,13 +12,13 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Entferne `.skip` in `src/architecture.test.ts` und lies den gemeldeten Verstoß.
-2. Behebe ihn: `cart` darf `catalog` nur über `features/catalog/index.ts` nutzen, die Public API des Features.
-3. Mach aus dem `it.todo` eine eigene Regel: Features importieren nie aus der App-Schicht (`App.tsx`).
-4. Halte die Entscheidung als kurzes Architecture Decision Record, kurz ADR (Kontext, Entscheidung, Konsequenzen), in `docs/adr-001-feature-folders.md` fest.
+1. Remove `.skip` in `src/architecture.test.ts` and read the reported violation.
+2. Fix it: `cart` may use `catalog` only through `features/catalog/index.ts`, the public API of the feature.
+3. Turn the `it.todo` into a rule of its own: features never import from the app layer (`App.tsx`).
+4. Record the decision as a short Architecture Decision Record, ADR for short (context, decision, consequences), in `docs/adr-001-feature-folders.md`.
 
-## Lösung
+## Reference solution
 
-`solution/` enthält den korrigierten Code mit allen drei Regeln im Architecture Test und das ADR unter `solution/docs/adr-001-feature-folders.md`.
+`solution/` contains the corrected code with all three rules in the architecture test and the ADR under `solution/docs/adr-001-feature-folders.md`.

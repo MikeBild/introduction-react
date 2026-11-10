@@ -1,8 +1,10 @@
-# Styling mit Tailwind
+*English · [Deutsch](README.de.md)*
 
-Die Checkout Form des Werkstatt-Shops mit Positionen und Summe, gestylt mit globalem CSS aus `src/styles.css`. Jede Klasse wie `.btn` gilt überall in der App – wer sie ändert, ändert jeden Button. Du ziehst die Styles in die Component und baust einen Button mit drei Variants.
+# Styling with Tailwind
 
-Lektion: **Styles gehören zur Component** (`react-styling`)
+The checkout form of the workshop shop with line items and total, styled with global CSS from `src/styles.css`. Every class like `.btn` applies everywhere in the app – whoever changes it changes every button. You move the styles into the component and build a button with three variants.
+
+Lesson: **Styles belong with the component** (`react-styling`)
 
 ```bash
 npm install
@@ -10,24 +12,24 @@ npm run dev
 npm test
 ```
 
-[Tailwind CSS v4](https://tailwindcss.com) ist schon eingerichtet: Das Plugin `@tailwindcss/vite` steht in `vite.config.ts`, und `src/tailwind.css` enthält `@import 'tailwindcss'`. Eine `tailwind.config.js` brauchst du nicht.
+[Tailwind CSS v4](https://tailwindcss.com) is already set up: the plugin `@tailwindcss/vite` is in `vite.config.ts`, and `src/tailwind.css` contains `@import 'tailwindcss'`. You do not need a `tailwind.config.js`.
 
-Produkte, Positionen und `formatCents` kommen aus `src/shop.ts`, der gemeinsamen Domäne des Werkstatt-Shops. Beträge rechnet die App in ganzen Cent.
+Products, line items, and `formatCents` come from `src/shop.ts`, the shared domain of the workshop shop. The app calculates amounts in whole cents.
 
-## Übung
+## Exercise
 
-1. Importier in `src/App.tsx` `./tailwind.css` statt `./styles.css` und lösch `src/styles.css`.
-2. Bau `src/Button.tsx` mit drei Variants. Leg die Klassen in eine Map `variantClasses` und leite den Typ der Prop daraus ab (`keyof typeof variantClasses`):
+1. In `src/App.tsx`, import `./tailwind.css` instead of `./styles.css` and delete `src/styles.css`.
+2. Build `src/Button.tsx` with three variants. Put the classes into a map `variantClasses` and derive the type of the prop from it (`keyof typeof variantClasses`):
    - `primary`: `bg-blue-700 text-white hover:bg-blue-800`
    - `secondary`: `bg-white text-slate-900 border border-slate-300`
    - `danger`: `bg-red-700 text-white hover:bg-red-800`
-3. Schreib jede Klasse vollständig aus. Tailwind findet nur Klassen, die so im Code stehen – `bg-${color}-600` erkennt es nicht.
-4. Ersetze in `src/CheckoutForm.tsx` die drei Buttons durch `<Button>` und die übrigen Klassen (`checkout-form`, `field`, `actions`, `order-summary`, `total`) durch Utilities.
-5. Entferne `.skip` in `src/CheckoutForm.test.tsx`.
-6. Prüf mit `npm run build`, dass die CSS-Datei in `dist/assets` genau die Utilities enthält, die du benutzt.
+3. Write every class out in full. Tailwind only finds classes that appear literally in the code – it does not recognize `bg-${color}-600`.
+4. In `src/CheckoutForm.tsx`, replace the three buttons with `<Button>` and the remaining classes (`checkout-form`, `field`, `actions`, `order-summary`, `total`) with utilities.
+5. Remove `.skip` in `src/CheckoutForm.test.tsx`.
+6. Check with `npm run build` that the CSS file in `dist/assets` contains exactly the utilities you use.
 
-## Lösung
+## Reference solution
 
-`solution/Button.tsx`, `solution/CheckoutForm.tsx`, `solution/App.tsx` und die Tests.
+`solution/Button.tsx`, `solution/CheckoutForm.tsx`, `solution/App.tsx`, and the tests.
 
-Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App`.

@@ -3,7 +3,7 @@ import { expect, it } from 'vitest';
 import { App } from './App';
 import { loadProductPage, serializeProductPageData } from './productPage';
 
-it('rendert Produkt, Preis und Bewertungen auf dem Server', async () => {
+it('renders product, price and reviews on the server', async () => {
   const html = renderToString(<App data={await loadProductPage()} />);
   expect(html).toContain('<h1>Drehmomentschlüssel</h1>');
   expect(html).toContain('89,90');
@@ -11,7 +11,7 @@ it('rendert Produkt, Preis und Bewertungen auf dem Server', async () => {
   expect(html).toContain('Im Warenkorb: <!-- -->0');
 });
 
-it('escaped Initial Data für das Script-Tag', async () => {
+it('escapes Initial Data for the script tag', async () => {
   const data = await loadProductPage();
   data.reviews[0].text = '</script><script>alert(1)</script>';
   const serialized = serializeProductPageData(data);

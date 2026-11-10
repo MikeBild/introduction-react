@@ -1,8 +1,10 @@
-# Suspense und Errors
+*English · [Deutsch](README.de.md)*
 
-Die Bestelldetails im Werkstatt-Shop: Bestellung und Versandstatus laden heute mit einem eigenen Effect-Hook. Jede Component prüft Loading und Error selbst, und nach einem Error gibt es keinen Retry.
+# Suspense and Errors
 
-Lektion: **Wo wird gewartet, wo werden Errors gefangen?** (`react-suspense-errors`)
+The order details in the workshop shop: order and shipping status currently load with a custom effect hook. Every component checks loading and error itself, and after an error there is no retry.
+
+Lesson: **Where do you wait, where are errors caught?** (`react-suspense-errors`)
 
 ```bash
 npm install
@@ -10,22 +12,22 @@ npm run dev
 npm test
 ```
 
-Im Browser fällt der Versandstatus beim ersten Laden absichtlich aus, und Bestellung `o9999` gibt es nicht. So siehst du beide Fehlerfälle.
+In the browser, the shipping status deliberately fails on the first load, and order `o9999` does not exist. That way you see both error cases.
 
-## Übung
+## Exercise
 
-1. Lies `src/OrderDetailPage.tsx`. Zähl, wie oft dort `loading` und `error` geprüft werden.
-2. Lies die Bestellung mit `use(orderCache.readOrder(orderId))`. Der Cache in `src/orderCache.ts` legt das Promise einmal pro Bestellung in eine `Map` – nie beim Rendern. Die Component beschreibt danach nur noch den Erfolgsfall.
-3. Setz um den Bereich eine `ErrorBoundary` aus [react-error-boundary](https://github.com/bvaughn/react-error-boundary) und darin ein `Suspense` mit „Bestellung lädt …“. Schreib keine eigene Class Component.
-4. Schreib eine `FallbackComponent` mit der Meldung des Errors und einem Button „Erneut laden“, der `resetErrorBoundary` aufruft. Der Error ist `unknown`: `errorText(error, …)` aus `src/errorText.ts` prüft ihn und macht daraus einen lesbaren Satz mit nächstem Schritt.
-5. Lösch vor dem Retry das abgelehnte Promise: `onReset={() => orderCache.forgetOrder(orderId)}`. Sonst liefert `use()` wieder denselben Error.
-6. Gib dem Versandstatus einen eigenen Bereich mit `ErrorBoundary` und `Suspense`. Die Bestellung erscheint dann sofort, der Versandstatus folgt oder zeigt „Versandstatus ist gerade nicht verfügbar.“ mit dem Button „Versandstatus erneut laden“.
-7. Entferne `.skip` in `src/OrderDetailPage.test.tsx`.
+1. Read `src/OrderDetailPage.tsx`. Count how often `loading` and `error` are checked there.
+2. Read the order with `use(orderCache.readOrder(orderId))`. The cache in `src/orderCache.ts` puts the promise into a `Map` once per order – never during render. Afterwards, the component only describes the success case.
+3. Wrap the region in an `ErrorBoundary` from [react-error-boundary](https://github.com/bvaughn/react-error-boundary) and inside it a `Suspense` with “Bestellung lädt …” (order is loading). Do not write your own class component.
+4. Write a `FallbackComponent` with the error’s message and a button “Erneut laden” (reload) that calls `resetErrorBoundary`. The error is `unknown`: `errorText(error, …)` from `src/errorText.ts` checks it and turns it into a readable sentence with a next step.
+5. Before the retry, delete the rejected promise: `onReset={() => orderCache.forgetOrder(orderId)}`. Otherwise `use()` delivers the same error again.
+6. Give the shipping status its own region with `ErrorBoundary` and `Suspense`. The order then appears immediately, and the shipping status follows or shows “Versandstatus ist gerade nicht verfügbar.” (shipping status is currently unavailable) with the button “Versandstatus erneut laden” (reload shipping status).
+7. Remove `.skip` in `src/OrderDetailPage.test.tsx`.
 
-`use()` steht nie in einem `try`/`catch`, Errors fängt die Boundary.
+`use()` never sits in a `try`/`catch`; the boundary catches errors.
 
-## Lösung
+## Reference solution
 
-`solution/OrderDetailPage.tsx` mit zwei verschachtelten Bereichen, `solution/App.tsx` und die Tests in `solution/OrderDetailPage.test.tsx`.
+`solution/OrderDetailPage.tsx` with two nested regions, `solution/App.tsx`, and the tests in `solution/OrderDetailPage.test.tsx`.
 
-Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App`.

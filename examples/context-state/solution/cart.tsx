@@ -10,7 +10,7 @@ type CartContextValue = {
   removeItem: (productId: ProductId) => void;
 };
 
-// Kein Default-Objekt: null heißt „kein Provider“.
+// No default object: null means “no Provider”.
 const CartContext = createContext<CartContextValue | null>(null);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
@@ -24,13 +24,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setItems((currentItems) =>
       currentItems.filter((item) => item.productId !== productId)
     );
-  // React 19: der Context selbst ist der Provider.
+  // React 19: the Context itself is the Provider.
   return (
     <CartContext value={{ items, addItem, removeItem }}>{children}</CartContext>
   );
 };
 
-// Einziger Zugang zum Context – mit Fehlermeldung statt stiller No-ops.
+// The only access to the Context – with an error message instead of silent no-ops.
 export const useCart = (): CartContextValue => {
   const cart = use(CartContext);
   if (!cart)

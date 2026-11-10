@@ -1,12 +1,14 @@
+*English · [Deutsch](10-testing.de.md)*
+
 # Testing
 
-Teste, was Nutzende sehen und tun. Ein Test sucht Elemente per Role und Label, klickt und tippt mit `user-event` und prüft, was danach auf dem Bildschirm steht. Interna wie State oder Hooks prüft er nicht.
+Test what users see and do. A test finds elements by role and label, clicks and types with `user-event`, and checks what is on the screen afterwards. It does not check internals such as state or hooks.
 
-## Werkzeuge
+## Tools
 
-- [Vitest](https://vitest.dev) als Test Runner, konfiguriert in `vite.config.ts`
-- [Testing Library](https://testing-library.com/docs/react-testing-library/intro) mit `jest-dom`-Matchern
-- `vi.stubGlobal('fetch', …)` für die API: Jeder Test legt fest, was der Server antwortet
+- [Vitest](https://vitest.dev) as the test runner, configured in `vite.config.ts`
+- [Testing Library](https://testing-library.com/docs/react-testing-library/intro) with `jest-dom` matchers
+- `vi.stubGlobal('fetch', …)` for the API: each test decides what the server answers
 
 ```tsx
 const mockFetchResponse = (status: number, body: unknown) => {
@@ -15,7 +17,7 @@ const mockFetchResponse = (status: number, body: unknown) => {
   return fetchMock;
 };
 
-it('meldet einen Server Error mit Status 500', async () => {
+it('reports a server error with status 500', async () => {
   const user = userEvent.setup();
   mockFetchResponse(500, null);
   render(<CheckoutForm cart={initialCart} />);
@@ -27,17 +29,17 @@ it('meldet einen Server Error mit Status 500', async () => {
 });
 ```
 
-## Regeln
+## Rules
 
-- Nimm zuerst `getByRole`, dann `getByLabelText`, erst zuletzt `getByTestId`.
-- Warte auf asynchrone Änderungen mit `findBy…`, nicht mit festen Timeouts.
-- Stell das echte `fetch` nach jedem Test mit `vi.unstubAllGlobals()` wieder her, zum Beispiel in `src/test/setup.ts`.
-- Prüf auch, dass ein Request **nicht** passiert, etwa bei einem Validation Error: `expect(fetchSpy).not.toHaveBeenCalled()`.
+- Reach for `getByRole` first, then `getByLabelText`, and only as a last resort `getByTestId`.
+- Wait for asynchronous changes with `findBy…`, not with fixed timeouts.
+- Restore the real `fetch` after each test with `vi.unstubAllGlobals()`, for example in `src/test/setup.ts`.
+- Also check that a request does **not** happen, for example on a validation error: `expect(fetchSpy).not.toHaveBeenCalled()`.
 
-Wenn viele Tests dieselbe API brauchen oder du auch im Browser gegen eine Fake-API entwickeln willst, lohnt sich [Mock Service Worker (MSW)](https://mswjs.io). Für eine Form reicht der `fetch`-Spy.
+If many tests need the same API, or you also want to develop in the browser against a fake API, [Mock Service Worker (MSW)](https://mswjs.io) is worth it. For one form, the `fetch` spy is enough.
 
-## Übung
+## Exercise
 
-Lektion **Teste, was Nutzende sehen und tun** (`react-testing`): [examples/testing](examples/testing/README.md)
+Lesson **Test what users see and do** (`react-testing`): [examples/testing](examples/testing/README.md)
 
-Die alte Fassung dieses Kapitels (Jest, Enzyme) liegt unter [legacy/chapters/10-testing.md](legacy/chapters/10-testing.md).
+The earlier version of this chapter (Jest, Enzyme) is in [archive/chapters/10-testing.md](archive/chapters/10-testing.md).

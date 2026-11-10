@@ -7,19 +7,19 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-// Öffnet die App unter einer URL – so wie ein geteilter Link.
+// Opens the app at a URL – just like a shared link.
 const openAt = (url: string) => {
   window.history.pushState(null, '', url);
   render(<App />);
 };
 
-it('zeigt die Bestellübersicht', async () => {
+it('shows the order overview', async () => {
   openAt('/orders');
   expect(await screen.findByText('Bestellung o1001')).toBeInTheDocument();
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
 });
 
-it('öffnet eine Bestellung', async () => {
+it('opens an order', async () => {
   openAt('/orders');
   await userEvent.click(await screen.findByText('Bestellung o1002'));
   expect(
@@ -27,14 +27,14 @@ it('öffnet eine Bestellung', async () => {
   ).toBeInTheDocument();
 });
 
-// Übung: .skip entfernen
-it.skip('liest den Statusfilter aus der URL', async () => {
+// Exercise: remove .skip
+it.skip('reads the status filter from the URL', async () => {
   openAt('/orders?status=placed');
   expect(await screen.findByText('Bestellung o1001')).toBeInTheDocument();
   expect(screen.getAllByRole('listitem')).toHaveLength(1);
 });
 
-it.skip('schreibt den Statusfilter in die URL', async () => {
+it.skip('writes the status filter to the URL', async () => {
   openAt('/orders');
   await screen.findByText('Bestellung o1001');
   await userEvent.selectOptions(screen.getByLabelText('Status'), 'shipped');
@@ -43,7 +43,7 @@ it.skip('schreibt den Statusfilter in die URL', async () => {
   expect(window.location.search).toBe('?status=shipped');
 });
 
-it.skip('öffnet eine Bestellung per Deep Link', async () => {
+it.skip('opens an order via deep link', async () => {
   openAt('/orders/o1002');
   expect(
     await screen.findByRole('heading', { name: 'Bestellung o1002' })
@@ -51,7 +51,7 @@ it.skip('öffnet eine Bestellung per Deep Link', async () => {
   expect(screen.getByText('Summe: 288,80 €')).toBeInTheDocument();
 });
 
-it.skip('zeigt für eine unbekannte Bestellung 404', async () => {
+it.skip('shows 404 for an unknown order', async () => {
   openAt('/orders/o9999');
   expect(await screen.findByRole('alert')).toHaveTextContent(
     'Das haben wir nicht gefunden.'

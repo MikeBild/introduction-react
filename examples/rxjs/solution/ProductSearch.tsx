@@ -6,7 +6,7 @@ import { useObservable } from './useObservable';
 const noProducts: Product[] = [];
 
 export const ProductSearch = () => {
-  // Jede Component bekommt ihre eigene Suche.
+  // Every Component gets its own search.
   const [productSearch] = useState(createProductSearch);
   const products = useObservable(productSearch.results$, noProducts);
   return (

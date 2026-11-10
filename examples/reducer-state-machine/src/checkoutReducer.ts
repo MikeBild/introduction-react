@@ -12,8 +12,8 @@ export type CheckoutAction =
 
 export const initialCheckoutState: CheckoutState = { status: 'idle' };
 
-// Übung react-reducer: Der aktuelle State wird ignoriert – jede Action gilt
-// in jedem State, auch wenn das Diagramm den Übergang verbietet.
+// Exercise react-reducer: the current State is ignored – every Action applies
+// in every State, even when the diagram forbids the transition.
 export const checkoutReducer = (
   _state: CheckoutState,
   action: CheckoutAction

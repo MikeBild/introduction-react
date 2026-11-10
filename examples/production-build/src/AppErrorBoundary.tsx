@@ -19,7 +19,7 @@ type AppErrorBoundaryProps = {
   children: ReactNode;
 };
 
-// Übung: Melde Render Errors über die onError-Prop von ErrorBoundary.
+// Exercise: report render errors via the onError prop of ErrorBoundary.
 export const AppErrorBoundary = ({ children }: AppErrorBoundaryProps) => (
   <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>
 );

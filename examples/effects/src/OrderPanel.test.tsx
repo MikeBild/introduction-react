@@ -11,7 +11,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-it('zeigt Name und Bestellungen', async () => {
+it('shows name and orders', async () => {
   render(
     <OrderPanel
       customer={ada}
@@ -25,8 +25,8 @@ it('zeigt Name und Bestellungen', async () => {
   expect(await screen.findByText('Summe: 109,80 €')).toBeInTheDocument();
 });
 
-// Übung react-effects: .skip Schritt für Schritt entfernen
-it.skip('bestellt bei jedem Klick erneut', async () => {
+// Exercise react-effects: remove .skip step by step
+it.skip('reorders on every click', async () => {
   const onReorder = vi.fn();
   render(
     <OrderPanel
@@ -43,7 +43,7 @@ it.skip('bestellt bei jedem Klick erneut', async () => {
   expect(onReorder).toHaveBeenCalledTimes(2);
 });
 
-it.skip('räumt das Interval beim Unmount auf', () => {
+it.skip('cleans up the interval on unmount', () => {
   vi.useFakeTimers();
   const clearIntervalSpy = vi.spyOn(globalThis, 'clearInterval');
   const { unmount } = render(
@@ -59,7 +59,7 @@ it.skip('räumt das Interval beim Unmount auf', () => {
   expect(clearIntervalSpy).toHaveBeenCalled();
 });
 
-it.skip('ignoriert die Antwort für einen alten Kunden', async () => {
+it.skip('ignores the response for an old customer', async () => {
   const pending = new Map<CustomerId, (orders: readonly Order[]) => void>();
   const loadOrders = (customerId: CustomerId) =>
     new Promise<readonly Order[]>((resolve) =>
@@ -81,7 +81,7 @@ it.skip('ignoriert die Antwort für einen alten Kunden', async () => {
   ).not.toBeInTheDocument();
 });
 
-it.skip('bricht den Request beim Unmount ab', () => {
+it.skip('aborts the request on unmount', () => {
   const signals: AbortSignal[] = [];
   const { unmount } = render(
     <OrderPanel

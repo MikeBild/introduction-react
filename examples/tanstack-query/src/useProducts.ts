@@ -10,7 +10,7 @@ export type LoadState<T> =
 
 type Result<T> = { search: string } & LoadState<T>;
 
-// Der eigene Hook aus der Lektion react-data-fetching.
+// The Custom Hook from the lesson react-data-fetching.
 export const useProducts = (search: string): LoadState<Product[]> => {
   const [result, setResult] = useState<Result<Product[]> | null>(null);
   useEffect(() => {

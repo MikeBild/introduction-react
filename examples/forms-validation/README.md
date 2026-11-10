@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Forms Validation
 
-Der Checkout des Werkstatt-Shops, validiert mit dem geteilten [zod](https://zod.dev)-Schema `PlaceOrderInput`. Dasselbe Schema nutzt auch das Backend. Errors stehen an ihrem Feld.
+The checkout of the workshop shop, validated with the shared [zod](https://zod.dev) schema `PlaceOrderInput`. The backend uses the same schema. Errors appear at their field.
 
-Lektion: **Ein Schema für Form, Server und Typ** (`react-forms-validation`)
+Lesson: **One schema for form, server, and type** (`react-forms-validation`)
 
 ```bash
 npm install
@@ -10,25 +12,25 @@ npm run dev
 npm test
 ```
 
-## Aufbau
+## Structure
 
-| Datei                    | Aufgabe                                                                  |
-| ------------------------ | ------------------------------------------------------------------------ |
-| `src/placeOrderInput.ts` | das geteilte Schema `PlaceOrderInput`, unverändert aus dem Backend       |
-| `src/fieldErrors.ts`     | `toFieldErrors` macht aus Issues Texte je Pfad, z. B. `items.0.quantity` |
-| `src/placeOrder.ts`      | Fake-Server: validiert erneut und prüft den Bestand                      |
-| `src/CheckoutForm.tsx`   | der Checkout mit Kunde und Mengen                                        |
-| `src/shop.ts`            | Domäne des Werkstatt-Shops: Produkte, Kunden, Branded IDs                |
+| File                     | Purpose                                                                   |
+| ------------------------ | ------------------------------------------------------------------------- |
+| `src/placeOrderInput.ts` | the shared schema `PlaceOrderInput`, unchanged from the backend           |
+| `src/fieldErrors.ts`     | `toFieldErrors` turns issues into texts per path, e.g. `items.0.quantity` |
+| `src/placeOrder.ts`      | fake server: validates again and checks the stock                         |
+| `src/CheckoutForm.tsx`   | the checkout with customer and quantities                                 |
+| `src/shop.ts`            | domain of the workshop shop: products, customers, branded IDs             |
 
-## Übung
+## Exercise
 
-1. Bring in `handleSubmit` die Mengen aus der Form in die Form des Schemas: `FormData` liefert Text, `PlaceOrderInput` will Zahlen. Bau `items` aus dem Warenkorb und den Eingaben, dann ruf `safeParse` auf.
-2. Zeig Errors an der Menge: Leg eine Component `QuantityField` an, die den Error unter dem Schlüssel `items.${index}.quantity` liest und per `aria-invalid` und `aria-describedby` mit dem Feld verknüpft.
-3. Zeig Server Errors am passenden Feld statt im Banner. Probier es mit dem ausverkauften Steckschlüsselsatz: Der Server antwortet mit dem Pfad `items.1.quantity`.
-4. Entferne `.skip` in `src/CheckoutForm.test.tsx`.
+1. In `handleSubmit`, bring the quantities from the form into the shape of the schema: `FormData` delivers text, `PlaceOrderInput` wants numbers. Build `items` from the cart and the inputs, then call `safeParse`.
+2. Show errors at the quantity: create a component `QuantityField` that reads the error under the key `items.${index}.quantity` and links it to the field via `aria-invalid` and `aria-describedby`.
+3. Show server errors at the matching field instead of in the banner. Try it with the sold-out socket wrench set: the server answers with the path `items.1.quantity`.
+4. Remove `.skip` in `src/CheckoutForm.test.tsx`.
 
-Das Schema bleibt textfrei. Die Fehlertexte formuliert die Oberfläche in `src/fieldErrors.ts`.
+The schema stays free of text. The UI phrases the error messages in `src/fieldErrors.ts`.
 
-## Lösung
+## Reference solution
 
-Eine mögliche Lösung liegt in `solution/`: `CheckoutForm.tsx`, `QuantityField.tsx` und die Tests.
+A reference solution is in `solution/`: `CheckoutForm.tsx`, `QuantityField.tsx`, and the tests.

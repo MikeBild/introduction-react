@@ -5,7 +5,7 @@ export type AddItemToDraft = (
   item: OrderItem
 ) => Promise<OrderItem[]>;
 
-// Gleiches Produkt erhöht die Menge, statt eine zweite Position anzulegen.
+// The same product increases the quantity instead of creating a second item.
 export const mergeItem = (
   items: readonly OrderItem[],
   newItem: OrderItem
@@ -20,7 +20,7 @@ export const mergeItem = (
 
 const savedItemsByOrder = new Map<OrderId, OrderItem[]>();
 
-// Fake-Server: langsam, und er lehnt Positionen ohne ausreichenden Bestand ab.
+// Fake server: slow, and it rejects items without sufficient stock.
 export const addItemToDraft: AddItemToDraft = async (orderId, item) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
   const product = products.find(({ id }) => id === item.productId);

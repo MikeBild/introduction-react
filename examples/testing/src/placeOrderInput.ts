@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-// Gemeinsames Schema – Frontend und Backend nutzen dasselbe.
+// Shared schema – frontend and backend use the same one.
 export const OrderItemInput = z.strictObject({
   productId: z.string().min(1),
   quantity: z.number().int().min(1),

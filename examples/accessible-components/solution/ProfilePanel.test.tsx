@@ -6,7 +6,7 @@ import { customers } from '../src/shop';
 
 const customer = customers[0];
 
-it('öffnet die Profil-Region per Tastatur', async () => {
+it('opens the profile region with the keyboard', async () => {
   render(<ProfilePanel customer={customer} onSave={() => {}} />);
   await userEvent.tab();
   await userEvent.keyboard('{Enter}');
@@ -15,7 +15,7 @@ it('öffnet die Profil-Region per Tastatur', async () => {
   ).toBeInTheDocument();
 });
 
-it('speichert per Tastatur', async () => {
+it('saves with the keyboard', async () => {
   const onSave = vi.fn();
   render(<ProfilePanel customer={customer} onSave={onSave} />);
   await userEvent.click(
@@ -26,7 +26,7 @@ it('speichert per Tastatur', async () => {
   expect(onSave).toHaveBeenCalledOnce();
 });
 
-it('setzt den Focus nach dem Schließen zurück auf den Auslöser', async () => {
+it('returns focus to the trigger after closing', async () => {
   render(<ProfilePanel customer={customer} onSave={() => {}} />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Profil bearbeiten' })

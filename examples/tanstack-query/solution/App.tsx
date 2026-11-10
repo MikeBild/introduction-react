@@ -4,7 +4,7 @@ import { OrderList } from './OrderList';
 import { ProductCount } from './ProductCount';
 import { ProductList } from './ProductList';
 
-// staleTime bewusst setzen: Der Default 0 lädt bei jedem Mount neu.
+// Set staleTime deliberately: the default 0 refetches on every mount.
 const createQueryClient = () =>
   new QueryClient({ defaultOptions: { queries: { staleTime: 30_000 } } });
 

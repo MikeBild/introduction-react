@@ -1,7 +1,7 @@
 import { customers, products } from '../src/data';
 import { DataTable } from './DataTable';
 
-// Wird nie ausgeführt – `tsc --noEmit` prüft nur, dass die Typen passen.
+// Never executed – `tsc --noEmit` only checks that the types fit.
 export const typeChecks = () => [
   <DataTable
     rows={products}
@@ -18,7 +18,7 @@ export const typeChecks = () => [
   <DataTable
     rows={customers}
     getRowKey={(customer) => customer.id}
-    // @ts-expect-error – Customer hat kein Feld "mail"
+    // @ts-expect-error – Customer has no field "mail"
     columns={[{ field: 'mail', header: 'E-Mail' }]}
   />,
 ];

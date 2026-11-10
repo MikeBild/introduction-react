@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-// Der einzige interaktive Teil der Seite – er braucht JavaScript im Browser.
+// The only interactive part of the page – it needs JavaScript in the browser.
 export const AddToCartButton = ({ productName }: { productName: string }) => {
   const [quantity, setQuantity] = useState(0);
   return (

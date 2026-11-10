@@ -3,21 +3,21 @@ import { checkoutReducer } from './checkoutReducer';
 import { orderId } from '../src/shop';
 
 describe('checkoutReducer (solution)', () => {
-  it('ignoriert succeeded im Status idle', () => {
+  it('ignores succeeded in the idle status', () => {
     const idleState = { status: 'idle' } as const;
     expect(
       checkoutReducer(idleState, { type: 'succeeded', orderId: orderId('o42') })
     ).toBe(idleState);
   });
 
-  it('ignoriert submitted während submitting', () => {
+  it('ignores submitted while submitting', () => {
     const submittingState = { status: 'submitting' } as const;
     expect(checkoutReducer(submittingState, { type: 'submitted' })).toBe(
       submittingState
     );
   });
 
-  it('setzt von success zurück auf idle', () => {
+  it('resets from success back to idle', () => {
     expect(
       checkoutReducer(
         { status: 'success', orderId: orderId('o42') },

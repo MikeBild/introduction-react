@@ -1,8 +1,8 @@
 import { Badge } from './Badge';
 import { Button } from './Button';
 
-// Übung react-composition: Jede neue Anforderung hat hier ein weiteres Flag
-// hinzugefügt. Ersetze die Flags durch Slots (header, children, actions).
+// Exercise react-composition: every new requirement has added another flag
+// here. Replace the flags with slots (header, children, actions).
 type CustomerCardProps = {
   title: string;
   subtitle?: string;

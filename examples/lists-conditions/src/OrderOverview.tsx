@@ -1,8 +1,8 @@
 import { customerName, statusLabels, type OrdersState } from './orders';
 import { formatCents, orderTotalCents } from './shop';
 
-// Übung: Bisher gibt es nur den Happy Path, und der Key ist die Position.
-// Ergänze eigene Ansichten für Loading, Error und Empty und nutze stabile Keys.
+// Exercise: so far there is only the happy path, and the key is the position in the list.
+// Add separate views for loading, error and empty, and use stable keys.
 export const OrderOverview = ({ state }: { state: OrdersState }) => {
   const orders = state.status === 'success' ? state.orders : [];
   return (

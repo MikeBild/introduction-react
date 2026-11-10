@@ -22,8 +22,8 @@ export const CheckoutForm = ({ cart, placeOrder }: CheckoutFormProps) => {
   const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    // Übung: Bring auch die Mengen in die Form des Schemas.
-    // Bisher schickt die Form die Mengen aus dem Warenkorb, nicht die Eingaben.
+    // Exercise: bring the quantities into the shape of the schema as well.
+    // So far the form sends the quantities from the cart, not the inputs.
     const result = PlaceOrderInput.safeParse({
       customerId: formData.get('customerId'),
       items: cart,
@@ -34,7 +34,7 @@ export const CheckoutForm = ({ cart, placeOrder }: CheckoutFormProps) => {
     try {
       setPlacedOrderId(await placeOrder(result.data));
     } catch (error) {
-      // Übung: Server Errors am passenden Feld zeigen, nicht im Banner.
+      // Exercise: show server errors at the matching field, not in the banner.
       setServerError(
         isServerFieldError(error)
           ? error.message

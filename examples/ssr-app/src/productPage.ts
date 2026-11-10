@@ -16,7 +16,7 @@ export type ProductPageData = {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null;
 
-// Prüft die Initial Data im Client, bevor React sie hydriert.
+// Checks the Initial Data in the client before React hydrates it.
 export const isProductPageData = (value: unknown): value is ProductPageData =>
   isRecord(value) &&
   isRecord(value.product) &&
@@ -26,7 +26,7 @@ export const isProductPageData = (value: unknown): value is ProductPageData =>
   typeof value.description === 'string' &&
   Array.isArray(value.reviews);
 
-// Läuft nur auf dem Server – hier könnte eine Datenbank oder ein internes API stehen.
+// Runs only on the server – a database or an internal API could sit here.
 export const loadProductPage = async (): Promise<ProductPageData> => ({
   product: products[0],
   description:
@@ -37,7 +37,7 @@ export const loadProductPage = async (): Promise<ProductPageData> => ({
   ],
 });
 
-// Daten für ein <script type="application/json"> – "<" escapen, damit
-// kein "</script>" aus den Daten das Script-Tag vorzeitig schließt.
+// Data for a <script type="application/json"> – escape "<" so that
+// no "</script>" from the data closes the script tag early.
 export const serializeProductPageData = (data: ProductPageData) =>
   JSON.stringify(data).replace(/</g, '\\u003c');

@@ -8,15 +8,15 @@ import {
   type Order,
 } from '../src/shop.ts';
 
-// Die API des Werkstatt-Shops für die E2E-Tests: echtes HTTP, dasselbe Schema wie das Formular.
-// Bestellungen liegen im Speicher; in deinem Projekt steht hier eine Test-Datenbank.
-// Node 26 führt diese Datei direkt aus (Type Stripping).
+// The workshop shop API for the E2E tests: real HTTP, the same schema as the form.
+// Orders live in memory; in your project a test database sits here.
+// Node 26 runs this file directly (Type Stripping).
 const port = Number(process.env.API_PORT ?? 3030);
 
 const orders = new Map<string, Order>();
 let nextOrderNumber = 1004;
 
-// Fehler am Feld: Das Formular zeigt message unter dem Feld mit diesem Pfad.
+// Field error: the form shows message below the field with this path.
 const reject = (res: Response, status: number, path: string, message: string) =>
   res.status(status).json({ path, message });
 

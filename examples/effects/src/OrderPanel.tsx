@@ -8,19 +8,19 @@ type OrderPanelProps = {
   onReorder: (orderId: OrderId) => void;
 };
 
-// Übung react-effects: Prüfe jeden der vier Effects.
+// Exercise react-effects: check each of the four Effects.
 export const OrderPanel = ({
   customer,
   loadOrders,
   onReorder,
 }: OrderPanelProps) => {
-  // Effect 2: Request ohne Abbruch
+  // Effect 2: request without abort
   const [orders, setOrders] = useState<readonly Order[]>([]);
   useEffect(() => {
     loadOrders(customer.id).then(setOrders);
   }, [customer.id, loadOrders]);
 
-  // Effect 1: abgeleiteter Wert als State
+  // Effect 1: derived value as State
   const [totalCents, setTotalCents] = useState(0);
   useEffect(() => {
     setTotalCents(
@@ -28,13 +28,13 @@ export const OrderPanel = ({
     );
   }, [orders]);
 
-  // Effect 3: Interval ohne Cleanup
+  // Effect 3: interval without cleanup
   const [secondsOpen, setSecondsOpen] = useState(0);
   useEffect(() => {
     setInterval(() => setSecondsOpen((seconds) => seconds + 1), 1000);
   }, []);
 
-  // Effect 4: reagiert auf einen Klick
+  // Effect 4: reacts to a click
   const [reorderId, setReorderId] = useState<OrderId | null>(null);
   useEffect(() => {
     if (reorderId) onReorder(reorderId);

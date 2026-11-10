@@ -12,8 +12,8 @@ const productName = (item: CartItem) =>
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   typeof value === 'object' && value !== null;
 
-// POST /api/orders mit dem geteilten Schema. Bei 409 meldet der Server
-// den Pfad des Felds, z. B. { path: 'items.0.quantity', message: '…' }.
+// POST /api/orders with the shared schema. On 409 the server reports
+// the field's path, e.g. { path: 'items.0.quantity', message: '…' }.
 const sendOrder = async (input: PlaceOrderInput) => {
   const response = await fetch('/api/orders', {
     method: 'POST',

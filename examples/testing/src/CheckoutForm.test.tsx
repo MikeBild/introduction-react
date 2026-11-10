@@ -3,8 +3,8 @@ import { expect, it } from 'vitest';
 import { initialCart } from './cart';
 import { CheckoutForm } from './CheckoutForm';
 
-// Beispiel: Finde Elemente so, wie Nutzende sie finden – über Rolle und Label.
-it('zeigt Kunde, Mengen und den Button', () => {
+// Example: find elements the way users find them – by role and label.
+it('shows customer, quantities and the button', () => {
   render(<CheckoutForm cart={initialCart} />);
   expect(screen.getByLabelText('Kunde')).toBeInTheDocument();
   expect(
@@ -13,7 +13,7 @@ it('zeigt Kunde, Mengen und den Button', () => {
   expect(screen.getByRole('button', { name: 'Bestellen' })).toBeEnabled();
 });
 
-// Übung react-testing: Schreib diese drei Tests.
-it.todo('zeigt die Bestellnummer nach erfolgreicher Bestellung');
-it.todo('zeigt den Validation Error am Feld und sendet keinen Request');
-it.todo('meldet einen Server Error mit Status 500');
+// Exercise react-testing: write these three tests.
+it.todo('shows the order number after a successful order');
+it.todo('shows the validation error at the field and sends no request');
+it.todo('reports a server error with status 500');

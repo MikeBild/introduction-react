@@ -5,8 +5,8 @@ import { ProductsPage } from './ProductsPage';
 import { RouteError } from './RouteError';
 import { ShopLayout } from './ShopLayout';
 
-// Jede Route hat ihre eigene ErrorBoundary – ein Fehler im Detail
-// lässt Layout und Navigation stehen.
+// Every route has its own ErrorBoundary – an error in the detail
+// leaves layout and navigation in place.
 export const routes: RouteObject[] = [
   {
     path: '/',

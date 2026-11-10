@@ -5,7 +5,7 @@ import { ProductResultList } from './organisms/ProductResultList';
 import { ProductSearchPage } from './pages/ProductSearchPage';
 import { ProductSearchTemplate } from './templates/ProductSearchTemplate';
 
-it('ordnet die Slots des Templates an', () => {
+it('arranges the slots of the template', () => {
   render(
     <ProductSearchTemplate
       title="Suche"
@@ -19,12 +19,12 @@ it('ordnet die Slots des Templates an', () => {
   expect(screen.getByText('0 Treffer')).toBeVisible();
 });
 
-it('zeigt einen Hinweis bei leerer Trefferliste', () => {
+it('shows a hint when the result list is empty', () => {
   render(<ProductResultList products={[]} />);
   expect(screen.getByText(/^Keine Produkte gefunden\./)).toBeVisible();
 });
 
-it('filtert und zählt die Treffer auf der Page', async () => {
+it('filters and counts the results on the page', async () => {
   render(<ProductSearchPage />);
   expect(screen.getByText('4 Treffer')).toBeVisible();
   await userEvent.type(screen.getByLabelText('Produkt suchen'), 'schlüssel');

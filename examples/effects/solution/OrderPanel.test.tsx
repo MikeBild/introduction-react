@@ -11,7 +11,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-it('zeigt Name und Bestellungen', async () => {
+it('shows name and orders', async () => {
   render(
     <OrderPanel
       customer={ada}
@@ -25,7 +25,7 @@ it('zeigt Name und Bestellungen', async () => {
   expect(await screen.findByText('Summe: 109,80 €')).toBeInTheDocument();
 });
 
-it('bestellt bei jedem Klick erneut', async () => {
+it('reorders on every click', async () => {
   const onReorder = vi.fn();
   render(
     <OrderPanel
@@ -42,7 +42,7 @@ it('bestellt bei jedem Klick erneut', async () => {
   expect(onReorder).toHaveBeenCalledTimes(2);
 });
 
-it('räumt das Interval beim Unmount auf', () => {
+it('cleans up the interval on unmount', () => {
   vi.useFakeTimers();
   const clearIntervalSpy = vi.spyOn(globalThis, 'clearInterval');
   const { unmount } = render(
@@ -58,7 +58,7 @@ it('räumt das Interval beim Unmount auf', () => {
   expect(clearIntervalSpy).toHaveBeenCalled();
 });
 
-it('ignoriert die Antwort für einen alten Kunden', async () => {
+it('ignores the response for an old customer', async () => {
   const pending = new Map<CustomerId, (orders: readonly Order[]) => void>();
   const loadOrders = (customerId: CustomerId) =>
     new Promise<readonly Order[]>((resolve) =>
@@ -80,7 +80,7 @@ it('ignoriert die Antwort für einen alten Kunden', async () => {
   ).not.toBeInTheDocument();
 });
 
-it('bricht den Request beim Unmount ab', () => {
+it('aborts the request on unmount', () => {
   const signals: AbortSignal[] = [];
   const { unmount } = render(
     <OrderPanel

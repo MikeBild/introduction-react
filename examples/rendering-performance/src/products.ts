@@ -9,7 +9,7 @@ const toolNames = [
   'Schraubendreher-Set',
 ] as const;
 
-// 2.000 Zeilen – genug, damit jedes unnötige Rendering messbar wird.
+// 2,000 rows – enough to make every unnecessary render measurable.
 export const products: readonly Product[] = Array.from(
   { length: 2000 },
   (_, index) => ({

@@ -1,8 +1,10 @@
-# Server-Daten laden
+*English · [Deutsch](8-server-access.de.md)*
 
-Daten vom Server kommen asynchron, können fehlschlagen und kommen nicht immer in der Reihenfolge an, in der du sie angefragt hast. Für den Einstieg brauchst du keine Library: `fetch`, ein `AbortController` und ein eigener Hook reichen.
+# Loading server data
 
-## Vorher: alte Antworten überholen neue
+Data from the server arrives asynchronously, can fail, and does not always arrive in the order you requested it. To get started you need no library: `fetch`, an `AbortController`, and your own hook are enough.
+
+## Before: old answers overtake new ones
 
 ```tsx
 const [products, setProducts] = useState<Product[]>([]);
@@ -13,9 +15,9 @@ useEffect(() => {
 }, [search]);
 ```
 
-Tippst du schnell „boh“ und dann „bohrer“, kann die langsamere Antwort für „boh“ zuletzt ankommen und die richtige Liste überschreiben. Dazu fehlen die Prüfung von `response.ok` und ein Error State.
+If you quickly type “boh” and then “bohrer”, the slower answer for “boh” can arrive last and overwrite the correct list. On top of that, the check of `response.ok` and an error state are missing.
 
-## Nachher: ein Hook mit AbortController
+## After: a hook with AbortController
 
 ```tsx
 export type LoadState<T> =
@@ -33,27 +35,27 @@ export const useProducts = (search: string): LoadState<Product[]> => {
       .catch((error: unknown) => {
         if (!controller.signal.aborted) setState({ status: 'error', message: String(error) });
       });
-    // Der Cleanup bricht den Request für den alten Suchtext ab.
+    // The cleanup aborts the request for the old search text.
     return () => controller.abort();
   }, [search]);
   return state;
 };
 ```
 
-## Regeln
+## Rules
 
-- Gib jedem Request, den ein Effect startet, einen `AbortController` und brich ihn im Cleanup ab.
-- Beschreib den Zustand als Union Type. Dann gibt es kein „lädt und hat einen Fehler“ gleichzeitig.
-- Prüf `response.ok` und die Form der Daten mit einem Type Guard, statt blind zu casten.
-- Mock `fetch` in Tests mit `vi.stubGlobal('fetch', …)` oder `vi.spyOn(globalThis, 'fetch')`.
+- Give every request that an effect starts an `AbortController` and abort it in the cleanup.
+- Describe the state as a union type. Then there is no “loading and has an error” at the same time.
+- Check `response.ok` and the shape of the data with a type guard instead of casting blindly.
+- Mock `fetch` in tests with `vi.stubGlobal('fetch', …)` or `vi.spyOn(globalThis, 'fetch')`.
 
-Wie du dieselben Daten mit `use` und `Suspense` liest, zeigt [18-more-pattern.md](18-more-pattern.md).
+How to read the same data with `use` and `Suspense` is shown in [18-more-pattern.md](18-more-pattern.md).
 
-Übung: Lektion **Alte Antworten dürfen neue nicht überholen** (`react-data-fetching`) – [examples/data-fetching](examples/data-fetching/README.md)
+Exercise: lesson **Old answers must not overtake new ones** (`react-data-fetching`) – [examples/data-fetching](examples/data-fetching/README.md)
 
-## Zusatzkapitel: TanStack Query
+## Extra chapter: TanStack Query
 
-Brauchst du Caching über Components und Seiten hinweg, Deduplizierung gleicher Requests, Hintergrund-Refresh oder Mutationen mit Invalidierung, wird der eigene Hook schnell groß. Dann lohnt sich [TanStack Query](https://tanstack.com/query):
+If you need caching across components and pages, deduplication of identical requests, background refresh, or mutations with invalidation, your own hook quickly grows large. Then [TanStack Query](https://tanstack.com/query) is worth it:
 
 ```tsx
 const productsQuery = (search: string) =>
@@ -62,6 +64,6 @@ const productsQuery = (search: string) =>
 const { data, isPending, error } = useQuery(productsQuery(search));
 ```
 
-Übung: Lektion **Wann lohnt sich TanStack Query?** (`react-tanstack-query`) – [examples/tanstack-query](examples/tanstack-query/README.md)
+Exercise: lesson **When is TanStack Query worth it?** (`react-tanstack-query`) – [examples/tanstack-query](examples/tanstack-query/README.md)
 
-Die alte Fassung dieses Kapitels (Redux Thunks) liegt unter [legacy/chapters/8-server-access.md](legacy/chapters/8-server-access.md).
+The earlier version of this chapter (Redux thunks) is in [archive/chapters/8-server-access.md](archive/chapters/8-server-access.md).

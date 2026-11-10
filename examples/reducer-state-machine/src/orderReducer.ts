@@ -8,8 +8,8 @@ export type OrderAction =
   | { type: 'shipped' }
   | { type: 'cancelled' };
 
-// Übung react-reducer: Dieser Reducer akzeptiert jede Action in jedem Status –
-// auch Übergänge, die die Statusfolge verbietet.
+// Exercise react-reducer: this Reducer accepts every Action in every status –
+// including transitions that the status sequence forbids.
 export const orderReducer = (state: Order, action: OrderAction): Order => {
   switch (action.type) {
     case 'itemAdded':

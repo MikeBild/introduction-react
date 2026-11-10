@@ -3,21 +3,21 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-it('zeigt alle Produkte mit Preis', () => {
+it('shows all products with their price', () => {
   render(<App />);
   expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(4);
   expect(screen.getByText('89,90 €')).toBeInTheDocument();
   expect(screen.getByText('Ausverkauft')).toBeInTheDocument();
 });
 
-it('filtert die Liste nach dem Suchtext', async () => {
+it('filters the list by the search text', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Suche'), 'schlüssel');
   expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(2);
   expect(screen.queryByText('Werkstattwagen')).not.toBeInTheDocument();
 });
 
-it('zeigt einen Hinweis, wenn nichts passt', async () => {
+it('shows a hint when nothing matches', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Suche'), 'Bohrer');
   expect(
@@ -25,7 +25,7 @@ it('zeigt einen Hinweis, wenn nichts passt', async () => {
   ).toBeInTheDocument();
 });
 
-it('legt Produkte in den Warenkorb und summiert', async () => {
+it('adds products to the cart and sums them up', async () => {
   render(<App />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Drehmomentschlüssel in den Warenkorb' })
@@ -38,7 +38,7 @@ it('legt Produkte in den Warenkorb und summiert', async () => {
   expect(within(cart).getByText('Summe: 109,80 €')).toBeInTheDocument();
 });
 
-it('entfernt Positionen aus dem Warenkorb', async () => {
+it('removes items from the cart', async () => {
   render(<App />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Werkstattwagen in den Warenkorb' })

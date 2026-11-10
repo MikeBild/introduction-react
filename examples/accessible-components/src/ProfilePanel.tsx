@@ -4,7 +4,7 @@ import type { Customer } from './shop';
 
 type ProfilePanelProps = { customer: Customer; onSave: () => void };
 
-// Übung: Dieses Panel hat Barrieren – finde und behebe sie.
+// Exercise: this panel has accessibility barriers – find and fix them.
 export const ProfilePanel = ({ customer, onSave }: ProfilePanelProps) => {
   const [isOpen, setIsOpen] = useState(false);
 

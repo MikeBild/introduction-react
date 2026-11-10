@@ -3,9 +3,9 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig, type Plugin } from 'vitest/config';
 import { searchCatalog } from './src/catalog.ts';
 
-// Mini-API nur für npm run dev: GET /api/products?q=…
-// Kurze Suchtexte antworten absichtlich langsamer – so siehst du im Browser,
-// wie eine alte Antwort eine neue überholt.
+// Mini API for npm run dev only: GET /api/products?q=…
+// Short search texts deliberately answer more slowly – so you can see in the browser
+// how an old response overtakes a new one.
 const fakeProductsApi = (): Plugin => ({
   name: 'fake-products-api',
   configureServer(server) {
@@ -22,7 +22,7 @@ const fakeProductsApi = (): Plugin => ({
 });
 
 export default defineConfig({
-  // React Compiler memoisiert Components und Hooks beim Build automatisch.
+  // React Compiler memoizes Components and Hooks automatically at build time.
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

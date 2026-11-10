@@ -5,13 +5,13 @@ import { Transform } from 'node:stream';
 import { pathToFileURL } from 'node:url';
 import type { ViteDevServer } from 'vite';
 
-// Node 26 führt diese Datei direkt aus (Type Stripping), ohne Build-Schritt.
+// Node 26 runs this file directly (Type Stripping), without a build step.
 type EntryServer = typeof import('./src/entry-server.tsx');
 
-// Flags statt Umgebungsvariablen, damit die Scripts auch unter Windows laufen.
+// Flags instead of environment variables so that the scripts also run on Windows.
 const isProduction = process.argv.includes('--production');
 const isSolution = process.argv.includes('--solution');
-// React lädt seinen Build für die Produktion erst beim dynamischen Import unten.
+// React loads its production build only at the dynamic import below.
 if (isProduction) process.env.NODE_ENV = 'production';
 
 const port = Number(process.env.PORT ?? 5173);
@@ -22,7 +22,7 @@ const app = express();
 
 let vite: ViteDevServer | undefined;
 if (isProduction) {
-  // Gehashte Assets aus dem Client-Build, aber nie die Templates selbst.
+  // Hashed assets from the client build, but never the templates themselves.
   app.use(express.static(clientDir, { index: false }));
 } else {
   const { createServer } = await import('vite');
@@ -75,7 +75,7 @@ const renderPage = async (url: string, res: Response) => {
       pipe(htmlStream);
     },
     onShellError(error) {
-      // Details ins Log, in den Browser nur ein lesbarer Satz mit nächstem Schritt.
+      // Details go to the log, the browser only gets a readable sentence with a next step.
       console.error(error);
       res
         .status(500)
@@ -90,7 +90,7 @@ const renderPage = async (url: string, res: Response) => {
   setTimeout(abort, 10_000);
 };
 
-// Express 5 leitet Fehler aus async Handlern selbst an next() weiter.
+// Express 5 forwards errors from async handlers to next() by itself.
 app.get('/{*path}', async (req, res) => {
   try {
     await renderPage(req.originalUrl, res);

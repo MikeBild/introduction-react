@@ -10,11 +10,11 @@ import {
 import { ProductList } from '../react-components/ProductList';
 
 export const App = () => {
-  // State: nur Suchtext und Warenkorb-Positionen.
+  // State: only the search text and the cart items.
   const [searchText, setSearchText] = useState('');
   const [cart, setCart] = useState<readonly OrderItem[]>([]);
 
-  // Abgeleitet beim Rendern: gefilterte Liste und Summe.
+  // Derived during render: filtered list and total.
   const normalizedSearchText = searchText.trim().toLowerCase();
   const visibleProducts = products.filter((product) =>
     product.name.toLowerCase().includes(normalizedSearchText)

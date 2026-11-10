@@ -3,7 +3,7 @@ import { checkoutReducer } from './checkoutReducer';
 import { orderId } from './shop';
 
 describe('checkoutReducer', () => {
-  it('geht von submitting nach success', () => {
+  it('goes from submitting to success', () => {
     expect(
       checkoutReducer(
         { status: 'submitting' },
@@ -12,21 +12,21 @@ describe('checkoutReducer', () => {
     ).toEqual({ status: 'success', orderId: orderId('o42') });
   });
 
-  // Übung Schritt 2: .skip entfernen
-  it.skip('ignoriert succeeded im Status idle', () => {
+  // Exercise step 2: remove .skip
+  it.skip('ignores succeeded in the idle status', () => {
     const idleState = { status: 'idle' } as const;
     expect(
       checkoutReducer(idleState, { type: 'succeeded', orderId: orderId('o42') })
     ).toBe(idleState);
   });
 
-  it.skip('ignoriert submitted während submitting', () => {
+  it.skip('ignores submitted while submitting', () => {
     const submittingState = { status: 'submitting' } as const;
     expect(checkoutReducer(submittingState, { type: 'submitted' })).toBe(
       submittingState
     );
   });
 
-  // Übung Schritt 3
-  it.todo('setzt von success zurück auf idle');
+  // Exercise step 3
+  it.todo('resets from success back to idle');
 });

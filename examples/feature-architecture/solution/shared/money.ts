@@ -1,4 +1,4 @@
-// Werkstatt-Shop: Geld immer in ganzen Cent.
+// Workshop shop: money always in whole cents.
 const euro = new Intl.NumberFormat('de-DE', {
   style: 'currency',
   currency: 'EUR',

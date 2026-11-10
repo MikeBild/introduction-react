@@ -1,8 +1,8 @@
 import { expect, test } from '@playwright/test';
 
-// Beispiel: Playwright findet Elemente wie Testing Library – über Rolle und Label.
-// Jedes expect(locator) wartet, bis die Bedingung stimmt oder das Timeout abläuft.
-test('zeigt den Checkout mit Kunde, Mengen und Button', async ({ page }) => {
+// Example: Playwright finds elements like Testing Library does – by role and label.
+// Every expect(locator) waits until the condition holds or the timeout expires.
+test('shows the checkout with customer, quantities and button', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByRole('heading', { name: 'Checkout' })).toBeVisible();
   await expect(page.getByLabel('Kunde')).toHaveValue('');
@@ -12,17 +12,17 @@ test('zeigt den Checkout mit Kunde, Mengen und Button', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Bestellen' })).toBeEnabled();
 });
 
-// Übung react-e2e-playwright: Entferne .skip und schreib die beiden Tests.
-test.skip('gibt eine Bestellung auf und zeigt die Bestellnummer', async ({
+// Exercise react-e2e-playwright: remove .skip and write the two tests.
+test.skip('places an order and shows the order number', async ({
   page,
 }) => {
-  // Erfolgsweg: Kunde wählen, Menge setzen, bestellen, Bestellnummer in der Rolle status prüfen.
+  // Happy path: choose a customer, set a quantity, order, check the order number in the status role.
   await page.goto('/');
 });
 
-test.skip('hält die Bestellung bei einer ungültigen Menge auf', async ({
+test.skip('stops the order on an invalid quantity', async ({
   page,
 }) => {
-  // Fehlerweg: Menge 0, bestellen, Meldung am Feld prüfen, keine Bestellnummer.
+  // Error path: quantity 0, order, check the message at the field, no order number.
   await page.goto('/');
 });

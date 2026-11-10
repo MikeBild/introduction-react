@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test('gibt eine Bestellung auf und zeigt die Bestellnummer', async ({
+test('places an order and shows the order number', async ({
   page,
   request,
 }) => {
@@ -14,12 +14,12 @@ test('gibt eine Bestellung auf und zeigt die Bestellnummer', async ({
     .fill('2');
   await page.getByRole('button', { name: 'Bestellen' }).click();
 
-  // Assert: expect wartet, bis die Antwort der API im DOM steht.
-  // Die Nummer vergibt der Server, deshalb ein Muster statt eines festen Werts.
+  // Assert: expect waits until the API response is in the DOM.
+  // The server assigns the number, hence a pattern instead of a fixed value.
   const status = page.getByRole('status');
   await expect(status).toHaveText(/^Bestellung o\d+ ist eingegangen$/);
 
-  // Die Bestellung liegt wirklich auf dem Server: Die API kennt sie unter ihrer Nummer.
+  // The order really is on the server: the API knows it by its number.
   const [id] = (await status.innerText()).match(/o\d+/) ?? [];
   const response = await request.get(`/api/orders/${id}`);
   expect(response.status()).toBe(200);
@@ -33,8 +33,8 @@ test('gibt eine Bestellung auf und zeigt die Bestellnummer', async ({
   });
 });
 
-test('hält die Bestellung bei einer ungültigen Menge auf', async ({ page }) => {
-  // Arrange: Jeder Request an die API landet in dieser Liste.
+test('stops the order on an invalid quantity', async ({ page }) => {
+  // Arrange: every request to the API ends up in this list.
   const apiRequests: string[] = [];
   page.on('request', (request) => {
     if (request.url().includes('/api/')) apiRequests.push(request.url());
@@ -49,7 +49,7 @@ test('hält die Bestellung bei einer ungültigen Menge auf', async ({ page }) =>
   await quantity.fill('0');
   await page.getByRole('button', { name: 'Bestellen' }).click();
 
-  // Assert: Die Meldung hängt am Feld, es gibt keine Bestellnummer und keinen Request.
+  // Assert: the message is attached to the field, there is no order number and no request.
   await expect(quantity).toHaveAccessibleDescription(
     'Bitte eine ganze Zahl ab 1'
   );
@@ -59,8 +59,8 @@ test('hält die Bestellung bei einer ungültigen Menge auf', async ({ page }) =>
   expect(apiRequests).toEqual([]);
 });
 
-// Ein Fehler, den nur die echte API kennt: Der Bestand steht auf dem Server.
-test('zeigt einen Bestandsfehler vom Server an der Position', async ({
+// An error that only the real API knows: the stock lives on the server.
+test('shows a stock error from the server at the item', async ({
   page,
 }) => {
   await page.goto('/');

@@ -3,7 +3,7 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig, type Plugin } from 'vitest/config';
 import { createShopApi } from './src/fakeApi.ts';
 
-// Mini-API nur für npm run dev: /api/products?q=…, /api/orders (GET, POST).
+// Mini API for npm run dev only: /api/products?q=…, /api/orders (GET, POST).
 const fakeShopApi = (): Plugin => ({
   name: 'fake-shop-api',
   configureServer(server) {
@@ -14,7 +14,7 @@ const fakeShopApi = (): Plugin => ({
       req.on('end', () => {
         const url = new URL(req.originalUrl ?? '', 'http://localhost');
         const { status, body } = handle(req.method ?? 'GET', url, bodyText);
-        // Etwas Latenz, damit du Loading States und Requests im Network-Tab siehst.
+        // Some latency so that you can see loading states and requests in the Network tab.
         setTimeout(() => {
           res.statusCode = status;
           res.setHeader('Content-Type', 'application/json');
@@ -26,7 +26,7 @@ const fakeShopApi = (): Plugin => ({
 });
 
 export default defineConfig({
-  // React Compiler memoisiert Components und Hooks beim Build automatisch.
+  // React Compiler memoizes Components and Hooks automatically at build time.
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] }),

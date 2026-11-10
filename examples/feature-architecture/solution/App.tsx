@@ -1,7 +1,7 @@
 import { CartSummary, useCart } from './features/cart';
 import { ProductList } from './features/catalog';
 
-// App-Schicht: setzt Features zusammen, kennt keine Interna.
+// App layer: composes features, knows no internals.
 export const App = () => {
   const { productIds, addToCart } = useCart();
   return (

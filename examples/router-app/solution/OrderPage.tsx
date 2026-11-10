@@ -10,7 +10,7 @@ import { formatCents, orderTotalCents, products } from '../src/shop';
 
 export const orderLoader = async ({ params, request }: LoaderFunctionArgs) => {
   const order = await fetchOrder(params.orderId ?? '', request.signal);
-  // Wirft der Loader, rendert die ErrorBoundary dieser Route.
+  // If the loader throws, this route's ErrorBoundary renders.
   if (!order) throw data(null, { status: 404, statusText: 'Not Found' });
   return { order };
 };

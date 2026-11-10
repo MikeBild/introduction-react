@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # RxJS
 
-Die Produktsuche des Werkstatt-Shops mit Debounce von Hand: ein `setTimeout` im Effect, dazu `fetch` ohne Abbruch und ohne Fehlerbehandlung. Debounce, Kündigen und Fehler sind Abläufe über die Zeit – genau dafür ist RxJS gebaut.
+The product search of the workshop shop with a hand-rolled debounce: a `setTimeout` in the effect, plus `fetch` without abort and without error handling. Debounce, cancellation, and errors are processes over time – that is exactly what RxJS is built for.
 
-Zusatzkapitel: **Wann lohnt sich RxJS in React?** (`react-rxjs`)
+Extra chapter: **When is RxJS worth it in React?** (`react-rxjs`)
 
 ```bash
 npm install
@@ -10,26 +12,26 @@ npm run dev
 npm test
 ```
 
-`npm run dev` startet eine Fake-API unter `/api/products?q=…`. Kurze Suchtexte antworten absichtlich langsamer.
+`npm run dev` starts a fake API at `/api/products?q=…`. Short search texts deliberately answer more slowly.
 
-## Übung
+## Exercise
 
-1. Tipp im Browser „boh“, warte kurz und tipp weiter bis „bohrer“. Kurz danach springt die Liste zurück auf die Treffer für „boh“.
-2. Bau in `src/createProductSearch.ts` eine Funktion `createProductSearch()` ohne React: Ein `Subject<string>` nimmt die Eingaben auf, `debounceTime(300)` und `distinctUntilChanged()` filtern, `switchMap` lädt per `fromFetch` und kündigt die alte Suche. `catchError` im inneren Stream liefert bei Fehlern eine leere Liste.
-3. Schreib einen Hook `useObservable(source$, initialValue)`, der im Effect abonniert und im Cleanup kündigt.
-4. Leg in `ProductSearch` pro Component eine eigene Suche mit `useState(createProductSearch)` an und zeig die Treffer per `useObservable`. Lösch den Effect und den Timeout.
-5. Entferne `.skip` in `src/ProductSearch.test.tsx`.
+1. In the browser, type “boh”, wait briefly, and keep typing until “bohrer”. Shortly afterwards, the list jumps back to the results for “boh”.
+2. In `src/createProductSearch.ts`, build a function `createProductSearch()` without React: a `Subject<string>` takes the inputs, `debounceTime(300)` and `distinctUntilChanged()` filter, `switchMap` loads via `fromFetch` and cancels the old search. `catchError` in the inner stream delivers an empty list on errors.
+3. Write a hook `useObservable(source$, initialValue)` that subscribes in the effect and unsubscribes in the cleanup.
+4. In `ProductSearch`, create one search per component with `useState(createProductSearch)` and show the results via `useObservable`. Delete the effect and the timeout.
+5. Remove `.skip` in `src/ProductSearch.test.tsx`.
 
-## Wann lohnt es sich?
+## When is it worth it?
 
-RxJS lohnt sich bei Zeitlogik, mehreren Quellen und Retries. Für einen Wert pro Render reichen State und Hooks – vergleich den Code mit dem Hook `useProducts` aus `examples/data-fetching`. Übergib nie ein Observable in Props oder Context: React bekommt nur den letzten Wert.
+RxJS is worth it for time-based logic, multiple sources, and retries. For one value per render, state and hooks are enough – compare the code with the hook `useProducts` from `examples/data-fetching`. Never pass an Observable in props or Context: React only gets the last value.
 
-## Lösung
+## Reference solution
 
-- `solution/createProductSearch.ts` – der Stream mit `debounceTime`, `switchMap` und `catchError`
-- `solution/useObservable.ts` – der Hook zwischen Stream und State
-- `solution/ProductSearch.tsx` und `solution/App.tsx`
-- `solution/createProductSearch.test.ts` – der Stream ohne React, mit Fake Timers
-- `solution/ProductSearch.test.tsx` – Kündigen, Reihenfolge, Fehler
+- `solution/createProductSearch.ts` – the stream with `debounceTime`, `switchMap`, and `catchError`
+- `solution/useObservable.ts` – the hook between stream and state
+- `solution/ProductSearch.tsx` and `solution/App.tsx`
+- `solution/createProductSearch.test.ts` – the stream without React, with fake timers
+- `solution/ProductSearch.test.tsx` – cancellation, order, errors
 
-Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App`.
+To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App`.

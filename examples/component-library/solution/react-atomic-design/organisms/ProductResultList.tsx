@@ -1,7 +1,7 @@
 import type { Product } from '../../../src/data/products';
 import { ProductTile } from '../molecules/ProductTile';
 
-// Organism: ein eigenständiger Bereich der Seite, zusammengesetzt aus Molecules.
+// Organism: a self-contained section of the page, composed of Molecules.
 export const ProductResultList = ({
   products,
 }: {

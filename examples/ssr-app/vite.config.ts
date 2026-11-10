@@ -3,10 +3,10 @@ import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig(({ isSsrBuild }) => ({
-  // React Compiler memoisiert Components und Hooks beim Build automatisch.
+  // React Compiler memoizes Components and Hooks automatically at build time.
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   build: {
-    // Client Build: Startpunkt und Lösung als zwei HTML-Einstiege.
+    // Client build: starting point and solution as two HTML entry points.
     rolldownOptions: isSsrBuild
       ? {}
       : { input: { index: 'index.html', solution: 'solution.html' } },

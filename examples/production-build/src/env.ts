@@ -17,5 +17,5 @@ export const parseEnv = (source: Record<string, unknown>): Env => {
   };
 };
 
-// Bricht beim Start ab – nicht erst später vor einer Nutzerin.
+// Fails at startup – not later in front of a user.
 export const env = parseEnv(import.meta.env);

@@ -8,7 +8,7 @@ export {
   type Product,
 } from './shop';
 
-// Umsatz eines Kunden: Summe aller Bestellungen, die nicht storniert sind.
+// Revenue of a customer: the sum of all orders that are not canceled.
 export const revenueCents = (customerId: CustomerId) =>
   orders
     .filter(

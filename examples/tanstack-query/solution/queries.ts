@@ -6,11 +6,11 @@ import {
 import { fetchOrders, fetchProducts, placeOrder } from '../src/api';
 import type { PlaceOrderInput } from '../src/placeOrderInput';
 
-// Key und queryFn gebündelt – wiederverwendbar in Components und Loadern.
+// Key and queryFn bundled – reusable in Components and loaders.
 export const productsQuery = (search: string) =>
   queryOptions({
     queryKey: ['products', search],
-    // Das signal bricht veraltete Requests ab, wie der AbortController im eigenen Hook.
+    // The signal aborts outdated requests, like the AbortController in the Custom Hook.
     queryFn: ({ signal }) => fetchProducts(search, signal),
   });
 
@@ -23,7 +23,7 @@ export const usePlaceOrder = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (input: PlaceOrderInput) => placeOrder(input),
-    // Nach dem Bestellen ist die Bestellübersicht veraltet.
+    // After ordering, the order overview is stale.
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['orders'] }),
   });
 };

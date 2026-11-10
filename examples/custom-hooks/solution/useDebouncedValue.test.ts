@@ -10,7 +10,7 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
-it('liefert den neuen Wert erst nach der Verzögerung', () => {
+it('returns the new value only after the delay', () => {
   const { result, rerender } = renderHook(
     ({ value }) => useDebouncedValue(value, 300),
     { initialProps: { value: 'a' } }
@@ -21,7 +21,7 @@ it('liefert den neuen Wert erst nach der Verzögerung', () => {
   expect(result.current).toBe('ab');
 });
 
-it('startet die Wartezeit bei jeder Änderung neu', () => {
+it('restarts the wait time on every change', () => {
   const { result, rerender } = renderHook(
     ({ value }) => useDebouncedValue(value, 300),
     { initialProps: { value: 1 } }

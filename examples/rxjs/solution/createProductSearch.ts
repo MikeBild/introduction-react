@@ -18,26 +18,26 @@ const isProduct = (value: unknown): value is Product =>
   'priceCents' in value &&
   'stock' in value;
 
-// Wirft bei unerwarteter Antwort, etwa dem Fehler-JSON eines HTTP 500.
+// Throws on an unexpected response, such as the error JSON of an HTTP 500.
 const toProducts = (data: unknown): Product[] => {
   if (!Array.isArray(data) || !data.every(isProduct))
     throw new Error('Unerwartete Antwort');
   return data;
 };
 
-// Die Suche als Stream – ohne React, ohne JSX.
+// The search as a stream – without React, without JSX.
 export const createProductSearch = () => {
   const input$ = new Subject<string>();
   const results$ = input$.pipe(
     debounceTime(300),
     distinctUntilChanged(),
-    // switchMap kündigt die laufende Suche, fromFetch bricht dabei den Request ab.
+    // switchMap unsubscribes from the running search, and fromFetch aborts the request.
     switchMap((search) =>
       fromFetch(`/api/products?q=${encodeURIComponent(search)}`, {
         selector: (response) => response.json(),
       }).pipe(
         map(toProducts),
-        // Im inneren Stream abfangen, sonst endet die ganze Suche.
+        // Catch it in the inner stream, otherwise the whole search ends.
         catchError(() => of([]))
       )
     )

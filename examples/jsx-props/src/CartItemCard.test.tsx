@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { expect, it } from 'vitest';
 import { CartItemCard } from './CartItemCard';
 
-it('zeigt Menge, Einzelpreis und Summe', () => {
+it('shows quantity, unit price and total', () => {
   render(
     <CartItemCard
       name="Drehmomentschlüssel"
@@ -16,7 +16,7 @@ it('zeigt Menge, Einzelpreis und Summe', () => {
   expect(screen.getByText('Mit Kalibrierschein')).toBeInTheDocument();
 });
 
-it('blendet die Notiz in der kompakten Variante aus', () => {
+it('hides the note in the compact variant', () => {
   render(
     <CartItemCard
       name="Drehmomentschlüssel"

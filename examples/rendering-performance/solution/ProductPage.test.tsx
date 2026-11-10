@@ -2,12 +2,12 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';
 import { ProductPage } from './ProductPage';
 
-it('rendert alle 2.000 Produkte', () => {
+it('renders all 2,000 products', () => {
   render(<ProductPage onRender={() => {}} />);
   expect(screen.getAllByRole('row')).toHaveLength(2001);
 });
 
-it('rendert die Tabelle beim Tippen in der Notiz nicht neu', () => {
+it('does not re-render the table while typing in the note', () => {
   const onRender = vi.fn();
   render(<ProductPage onRender={onRender} />);
   onRender.mockClear();

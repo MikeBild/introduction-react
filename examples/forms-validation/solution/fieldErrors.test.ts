@@ -2,7 +2,7 @@ import { expect, it } from 'vitest';
 import { toFieldErrors } from '../src/fieldErrors';
 import { PlaceOrderInput } from '../src/placeOrderInput';
 
-it('macht aus dem Pfad eines Issues den Schlüssel des Felds', () => {
+it('turns the path of an issue into the key of the field', () => {
   const result = PlaceOrderInput.safeParse({
     customerId: '',
     items: [{ productId: 'p1', quantity: 1.5 }],

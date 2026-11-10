@@ -9,15 +9,15 @@ const typeSearch = (text: string) =>
     target: { value: text },
   });
 
-it('zeigt die Produkte zum Suchtext', async () => {
+it('shows the products for the search text', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 200, catalog);
   expect(screen.getAllByRole('listitem')).toHaveLength(catalog.length);
 });
 
-// Übung: .skip entfernen
-it.skip('zeigt die Antwort für den letzten Suchtext, auch wenn eine alte später kommt', async () => {
+// Exercise: remove .skip
+it.skip('shows the response for the latest search text, even if an older one arrives later', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('boh');
@@ -28,7 +28,7 @@ it.skip('zeigt die Antwort für den letzten Suchtext, auch wenn eine alte späte
   expect(screen.queryByText(/Bohrhammer/)).not.toBeInTheDocument();
 });
 
-it.skip('bricht den alten Request ab', () => {
+it.skip('aborts the old request', () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('boh');
@@ -36,7 +36,7 @@ it.skip('bricht den alten Request ab', () => {
   expect(api.findRequest('boh').signal?.aborted).toBe(true);
 });
 
-it.skip('zeigt HTTP-Fehler als Meldung', async () => {
+it.skip('shows HTTP errors as a message', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 500, { message: 'Interner Fehler' });

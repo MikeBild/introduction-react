@@ -6,7 +6,7 @@ import { ProductList } from './ProductList';
 const mockApi = () =>
   vi.spyOn(globalThis, 'fetch').mockResolvedValue(Response.json(products));
 
-it('zeigt die Produkte mit Preis', async () => {
+it('shows the products with price', async () => {
   mockApi();
   render(<ProductList />);
   expect(await screen.findByText(/Drehmomentschlüssel/)).toHaveTextContent(
@@ -15,7 +15,7 @@ it('zeigt die Produkte mit Preis', async () => {
   expect(screen.getAllByRole('listitem')).toHaveLength(products.length);
 });
 
-it('zeigt HTTP-Fehler als Meldung', async () => {
+it('shows HTTP errors as a message', async () => {
   vi.spyOn(globalThis, 'fetch').mockResolvedValue(
     new Response(null, { status: 502 })
   );
@@ -25,8 +25,8 @@ it('zeigt HTTP-Fehler als Meldung', async () => {
   );
 });
 
-// Übung: .skip entfernen
-it.skip('fragt die API unter /api/products auf dem eigenen Origin an', async () => {
+// Exercise: remove .skip
+it.skip('requests the API at /api/products on its own origin', async () => {
   const fetchSpy = mockApi();
   render(<ProductList />);
   await screen.findAllByRole('listitem');

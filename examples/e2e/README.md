@@ -1,66 +1,68 @@
-# E2E-Tests mit Playwright
+*English · [Deutsch](README.de.md)*
 
-Der fertige Checkout des Werkstatt-Shops mit einer echten API: Das Formular validiert mit dem geteilten Schema `PlaceOrderInput`, die API in `server/api.ts` prüft Kunde und Bestand und speichert die Bestellung. Was fehlt, sind die End-to-End-Tests. Du schreibst sie mit Playwright: Ein echter Browser bedient die App, nichts ist gestubbt.
+# E2E tests with Playwright
 
-Lektion: **E2E-Tests sichern die wichtigsten Wege** (`react-e2e-playwright`)
+The finished checkout of the workshop shop with a real API: the form validates with the shared schema `PlaceOrderInput`, the API in `server/api.ts` checks customer and stock and saves the order. What is missing are the end-to-end tests. You write them with Playwright: a real browser operates the app, nothing is stubbed.
+
+Lesson: **E2E tests protect the most important paths** (`react-e2e-playwright`)
 
 ```bash
 npm install
-npx playwright install chromium   # einmalig: lädt den Browser für die Tests
-npm test                          # startet API und App, führt alle Tests aus
-npm run test:ui                   # dieselben Tests Schritt für Schritt im UI Mode
+npx playwright install chromium   # once: downloads the browser for the tests
+npm test                          # starts API and app, runs all tests
+npm run test:ui                   # the same tests step by step in UI mode
 ```
 
-Playwright startet API (`http://127.0.0.1:3030`) und App (`http://127.0.0.1:5173`) selbst, siehe `webServer` in `playwright.config.ts`. Zum Ausprobieren im Browser startest du beide von Hand: `npm run api` und `npm run dev` in zwei Terminals.
+Playwright starts the API (`http://127.0.0.1:3030`) and the app (`http://127.0.0.1:5173`) itself, see `webServer` in `playwright.config.ts`. To try it in the browser, start both by hand: `npm run api` and `npm run dev` in two terminals.
 
-## Aufbau
+## Structure
 
-| Datei                    | Aufgabe                                                                    |
-| ------------------------ | -------------------------------------------------------------------------- |
-| `playwright.config.ts`   | `webServer` für API und App, `baseURL`, Chromium, Trace bei Fehlern        |
-| `e2e/checkout.spec.ts`   | Startpunkt: ein Beispiel-Test und zwei Tests mit `.skip`                   |
-| `server/api.ts`          | Express-API: `POST /api/orders` validiert, prüft Bestand, speichert        |
-| `src/CheckoutForm.tsx`   | der Checkout mit Kunde und Mengen, Fehler am Feld, Bestellnummer im Status |
-| `src/placeOrderInput.ts` | das geteilte zod-Schema, Formular und API nutzen dasselbe                  |
-| `vite.config.ts`         | fester Port 5173, `/api` geht per Proxy an die API                         |
+| File                     | Purpose                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| `playwright.config.ts`   | `webServer` for API and app, `baseURL`, Chromium, trace on failure                         |
+| `e2e/checkout.spec.ts`   | starting point: one example test and two tests with `.skip`                                |
+| `server/api.ts`          | Express API: `POST /api/orders` validates, checks stock, saves                             |
+| `src/CheckoutForm.tsx`   | the checkout with customer and quantities, errors at the field, order number in the status |
+| `src/placeOrderInput.ts` | the shared zod schema, form and API use the same one                                       |
+| `vite.config.ts`         | fixed port 5173, `/api` goes to the API via proxy                                          |
 
-## Welche Ebene prüft was?
+## Which level checks what?
 
-| Ebene            | Anzahl | Dauer         | Läuft gegen                     | Beispiel im Shop                            |
-| ---------------- | ------ | ------------- | ------------------------------- | ------------------------------------------- |
-| Component-Test   | viele  | Millisekunden | eine Component in jsdom         | Das Feld zeigt „Bitte eine ganze Zahl ab 1“ |
-| Integration-Test | einige | Millisekunden | die API mit echter Datenbank    | `POST /api/orders` antwortet mit 409        |
-| E2E-Test         | wenige | Sekunden      | Browser, App, API und Datenbank | Die Bestellung kommt mit Nummer an          |
+| Level            | Count | Duration     | Runs against                    | Example in the shop                                                      |
+| ---------------- | ----- | ------------ | ------------------------------- | ------------------------------------------------------------------------ |
+| Component test   | many  | milliseconds | one component in jsdom          | The field shows “Bitte eine ganze Zahl ab 1” (whole number of 1 or more) |
+| Integration test | some  | milliseconds | the API with a real database    | `POST /api/orders` answers with 409                                      |
+| E2E test         | few   | seconds      | browser, app, API, and database | The order arrives with a number                                          |
 
-Alles, was eine Ebene tiefer schneller und genauer zu prüfen ist, gehört dorthin. Die Lektion **Teste, was Nutzende sehen und tun** (`react-testing`, Beispiel [`testing`](../testing/README.md)) zeigt die Component-Tests für denselben Checkout.
+Everything that can be checked faster and more precisely one level down belongs there. The lesson **Test what users see and do** (`react-testing`, example [`testing`](../testing/README.md)) shows the component tests for the same checkout.
 
-## Übung
+## Exercise
 
-Ersetze in `e2e/checkout.spec.ts` die beiden `test.skip` durch echte Tests. Gliedere jeden Test nach Arrange, Act, Assert.
+In `e2e/checkout.spec.ts`, replace the two `test.skip` with real tests. Structure each test as Arrange, Act, Assert.
 
-1. **Erfolgsweg „Bestellung aufgeben“:** Wähl „Ada Schmidt“ als Kunde, setz die Menge für den Drehmomentschlüssel auf `2` und klick „Bestellen“. Erwarte in der Rolle `status` den Text „Bestellung o… ist eingegangen“. Die Nummer vergibt der Server, prüf sie deshalb mit einem Muster wie `/Bestellung o\d+ ist eingegangen/`.
-2. **Fehlerweg „Validierung“:** Setz die Menge auf `0` und klick „Bestellen“. Prüf mit `toHaveAccessibleDescription`, dass „Bitte eine ganze Zahl ab 1“ am Feld hängt, und dass es keine Bestellnummer gibt (`toHaveCount(0)` auf der Rolle `status`).
+1. **Happy path “place order”:** Choose “Ada Schmidt” as the customer, set the quantity for the torque wrench to `2`, and click “Bestellen” (order). Expect the text “Bestellung o… ist eingegangen” (order o… has been received) in the `status` role. The server assigns the number, so check it with a pattern like `/Bestellung o\d+ ist eingegangen/`.
+2. **Error path “validation”:** Set the quantity to `0` and click “Bestellen”. Use `toHaveAccessibleDescription` to check that “Bitte eine ganze Zahl ab 1” is attached to the field, and that there is no order number (`toHaveCount(0)` on the `status` role).
 
-Regeln dabei:
+Rules along the way:
 
-- Such Elemente über Rolle und Label (`getByRole`, `getByLabel`), nicht über CSS-Selektoren oder Test-IDs.
-- Warte nie mit `waitForTimeout`. Aktionen warten selbst, bis das Element bereit ist, und `expect(locator)` wiederholt die Prüfung bis zum Timeout.
-- Jeder Test beginnt mit `page.goto('/')` und baut seinen Zustand selbst auf. Playwright gibt ihm einen eigenen Browser Context.
+- Find elements by role and label (`getByRole`, `getByLabel`), not by CSS selectors or test IDs.
+- Never wait with `waitForTimeout`. Actions wait on their own until the element is ready, and `expect(locator)` repeats the check until the timeout.
+- Every test starts with `page.goto('/')` and sets up its own state. Playwright gives it its own browser context.
 
-## Flaky Tests
+## Flaky tests
 
-Ein Test ist flaky, wenn er mal rot und mal grün ist, ohne dass sich der Code ändert.
+A test is flaky when it is sometimes red and sometimes green without the code changing.
 
-| Flaky, weil …                             | Gegenmittel                                                   |
-| ----------------------------------------- | ------------------------------------------------------------- |
-| feste Wartezeit (`waitForTimeout`, sleep) | Auto-Waiting der Aktionen und `expect(locator)` nutzen        |
-| geteilter Zustand zwischen Tests          | eigener Browser Context je Test, Playwright macht das selbst  |
-| Daten, die ein anderer Test verändert     | feste Daten je Test anlegen, keine Zählung über alle Tests    |
-| Reihenfolge der Tests                     | jeder Test muss allein grün sein (`npx playwright test -g …`) |
-| CSS-Selektor, der beim Umbau bricht       | `getByRole` und `getByLabel` statt Klassen und IDs            |
+| Flaky because …                         | Remedy                                                       |
+| --------------------------------------- | ------------------------------------------------------------ |
+| fixed wait (`waitForTimeout`, sleep)    | use the auto-waiting of actions and `expect(locator)`        |
+| shared state between tests              | own browser context per test, Playwright does this itself    |
+| data that another test changes          | create fixed data per test, no counting across all tests     |
+| order of the tests                      | every test must pass on its own (`npx playwright test -g …`) |
+| CSS selector that breaks on refactoring | `getByRole` and `getByLabel` instead of classes and IDs      |
 
-Mit `--retries=2` läuft ein roter Test noch einmal; besteht er dann, meldet Playwright ihn als _flaky_ statt als bestanden. Die Ursache findest du im Trace Viewer: `npx playwright show-trace test-results/<test>/trace.zip` zeigt je Schritt Screenshot, DOM und Requests.
+With `--retries=2` a red test runs once more; if it then passes, Playwright reports it as _flaky_ instead of passed. You find the cause in the Trace Viewer: `npx playwright show-trace test-results/<test>/trace.zip` shows screenshot, DOM, and requests for each step.
 
-## Lösung
+## Reference solution
 
-`solution/checkout.spec.ts` enthält beide Tests und einen dritten: einen Bestandsfehler, den nur die echte API kennt (`Nur 4 auf Lager` am Feld). Der Erfolgsweg prüft zusätzlich über `request.get('/api/orders/<id>')`, dass die Bestellung auf dem Server liegt. `npm test` führt Startpunkt und Lösung aus.
+`solution/checkout.spec.ts` contains both tests and a third one: a stock error that only the real API knows (“Nur 4 auf Lager”, only 4 in stock, shown at the field). The happy path additionally checks via `request.get('/api/orders/<id>')` that the order is on the server. `npm test` runs the starting point and the reference solution.

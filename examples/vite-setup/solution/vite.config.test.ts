@@ -6,7 +6,7 @@ import { afterAll, beforeAll, expect, it } from 'vitest';
 const fromHere = (path: string) =>
   fileURLToPath(new URL(path, import.meta.url));
 
-// Startet den Dev Server mit solution/vite.config.ts, ohne einen Port zu öffnen.
+// Starts the dev server with solution/vite.config.ts without opening a port.
 let server: ViteDevServer;
 beforeAll(async () => {
   server = await createServer({
@@ -17,13 +17,13 @@ beforeAll(async () => {
 });
 afterAll(() => server.close());
 
-it('leitet /api an die Fake-API auf Port 3000 weiter', () => {
+it('forwards /api to the fake API on port 3000', () => {
   expect(server.config.server.proxy).toEqual({
     '/api': 'http://localhost:3000',
   });
 });
 
-it('löst den Alias @/ aus der tsconfig auf', async () => {
+it('resolves the alias @/ from the tsconfig', async () => {
   const resolved = await server.pluginContainer.resolveId(
     '@/shop',
     fromHere('./ProductList.tsx')

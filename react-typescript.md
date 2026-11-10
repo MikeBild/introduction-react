@@ -1,8 +1,10 @@
-# React mit TypeScript
+*English · [Deutsch](react-typescript.de.md)*
 
-Props sind der Vertrag einer Component. TypeScript prüft ihn bei jedem Aufruf.
+# React with TypeScript
 
-## Props typisieren
+Props are the contract of a component. TypeScript checks it on every call.
+
+## Typing props
 
 ```tsx
 type CartItemCardProps = {
@@ -15,16 +17,16 @@ type CartItemCardProps = {
 export const CartItemCard = ({ name, quantity, variant = 'default', note }: CartItemCardProps) => …
 ```
 
-- Beschreib Props mit einem `type`. Optionale Props bekommen einen Default in der Destrukturierung.
-- Nimm Union Types für Varianten statt `string` oder mehrerer Booleans.
-- Übernimm native Props mit `ComponentProps<'button'>`, statt sie einzeln aufzuzählen.
-- `React.FC`, `defaultProps` und `PropTypes` brauchst du nicht mehr.
+- Describe props with a `type`. Optional props get a default in the destructuring.
+- Use union types for variants instead of `string` or several booleans.
+- Take over native props with `ComponentProps<'button'>` instead of listing them one by one.
+- You no longer need `React.FC`, `defaultProps`, or `PropTypes`.
 
-Übung: Lektion **JSX ist JavaScript, Props sind der Vertrag** (`react-jsx-props`) – [examples/jsx-props](examples/jsx-props/README.md)
+Exercise: lesson **JSX is JavaScript, props are the contract** (`react-jsx-props`) – [examples/jsx-props](examples/jsx-props/README.md)
 
-## Generische Components
+## Generic components
 
-Eine generische Component bewahrt den Typ des Aufrufers. Die Spalten einer `DataTable<T>` kennen dann die Felder von `T`.
+A generic component preserves the caller’s type. The columns of a `DataTable<T>` then know the fields of `T`.
 
 ```tsx
 type Column<T> = { header: string; render: (row: T) => ReactNode };
@@ -38,9 +40,9 @@ type DataTableProps<T> = {
 export const DataTable = <T,>({ rows, columns, getRowKey }: DataTableProps<T>) => …
 ```
 
-- Kein `any`, keine Casts. Wenn du casten musst, fehlt ein Type Parameter.
-- Lass TypeScript `T` aus `rows` ableiten, statt ihn beim Aufruf anzugeben.
+- No `any`, no casts. If you have to cast, a type parameter is missing.
+- Let TypeScript infer `T` from `rows` instead of specifying it at the call site.
 
-Übung: Lektion **Generics bewahren den Typ des Aufrufers** (`react-generic-components`) – [examples/generic-components](examples/generic-components/README.md)
+Exercise: lesson **Generics preserve the caller’s type** (`react-generic-components`) – [examples/generic-components](examples/generic-components/README.md)
 
-Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/react-typescript.md](legacy/chapters/react-typescript.md).
+The earlier version of this chapter is in [archive/chapters/react-typescript.md](archive/chapters/react-typescript.md).

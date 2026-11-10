@@ -1,6 +1,6 @@
 import type { ComponentProps } from 'react';
 
-// Vollständige Klassennamen in einer Map – Tailwind findet nur, was so im Code steht.
+// Complete class names in a map – Tailwind only finds what appears literally in the code.
 const variantClasses = {
   primary: 'bg-blue-700 text-white hover:bg-blue-800',
   secondary:
@@ -8,7 +8,7 @@ const variantClasses = {
   danger: 'bg-red-700 text-white hover:bg-red-800',
 } as const satisfies Record<string, string>;
 
-// Die Variant ist ein Union Type aus den Schlüsseln der Map.
+// The variant is a union type of the map's keys.
 type ButtonVariant = keyof typeof variantClasses;
 
 type ButtonProps = ComponentProps<'button'> & { variant?: ButtonVariant };

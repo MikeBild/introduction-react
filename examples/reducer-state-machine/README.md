@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Reducer State Machine
 
-Der Checkout und eine Bestellung des Werkstatt-Shops als State Machines mit `useReducer` und typisierten Actions.
+The checkout and an order of the workshop shop as state machines with `useReducer` and typed actions.
 
-Lektion: **Unmögliche States mit useReducer verhindern** (`react-reducer`)
+Lesson: **Prevent impossible states with useReducer** (`react-reducer`)
 
 ```bash
 npm install
@@ -10,15 +12,15 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Zeichne die States des Checkouts (`idle`, `submitting`, `success`, `error`) und die erlaubten Übergänge.
-2. Lass `checkoutReducer` in `src/checkoutReducer.ts` bei jedem verbotenen Übergang den aktuellen State zurückgeben. Entferne `.skip` in `src/checkoutReducer.test.ts`. Ergänze eine `reset`-Action (`success` → `idle`) und mach aus dem `it.todo` einen Test.
-3. Bilde in `src/orderReducer.ts` die Statusfolge einer Bestellung ab: `draft → placed → paid → shipped`, `cancelled` nur aus `draft` oder `placed`. `placed` geht nur mit mindestens einer Position, und ab `placed` ändern sich die Positionen nicht mehr.
-4. Entferne `.skip` in `src/orderReducer.test.ts` und `src/OrderStatusPanel.test.tsx`.
+1. Draw the states of the checkout (`idle`, `submitting`, `success`, `error`) and the allowed transitions.
+2. Make `checkoutReducer` in `src/checkoutReducer.ts` return the current state on every forbidden transition. Remove `.skip` in `src/checkoutReducer.test.ts`. Add a `reset` action (`success` → `idle`) and turn the `it.todo` into a test.
+3. In `src/orderReducer.ts`, model the status sequence of an order: `draft → placed → paid → shipped`, `cancelled` only from `draft` or `placed`. `placed` is only possible with at least one line item, and from `placed` on, the line items no longer change.
+4. Remove `.skip` in `src/orderReducer.test.ts` and `src/OrderStatusPanel.test.tsx`.
 
-Die Reducer testest du mit Vitest ganz ohne React – sie sind Pure Functions. Die Domäne mit `Order`, `OrderItem` und den Branded IDs liegt in `src/shop.ts`.
+You test the reducers with Vitest entirely without React – they are Pure Functions. The domain with `Order`, `OrderItem`, and the branded IDs lives in `src/shop.ts`.
 
-## Lösung
+## Reference solution
 
-Eine mögliche Lösung liegt in `solution/`: `checkoutReducer.ts`, `orderReducer.ts` mit einer Tabelle der erlaubten Vorgänger-Status, die passenden Components und alle Tests.
+A reference solution is in `solution/`: `checkoutReducer.ts`, `orderReducer.ts` with a table of the allowed predecessor statuses, the matching components, and all tests.

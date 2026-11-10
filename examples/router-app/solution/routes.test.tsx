@@ -16,25 +16,25 @@ const renderAt = (url: string) => {
   return router;
 };
 
-it('zeigt alle Bestellungen', async () => {
+it('shows all orders', async () => {
   renderAt('/orders');
   expect(await screen.findByText('Bestellung o1001')).toBeInTheDocument();
   expect(screen.getAllByRole('link', { name: /^Bestellung / })).toHaveLength(3);
 });
 
-it('filtert per Search Param', async () => {
+it('filters via Search Param', async () => {
   renderAt('/orders?status=placed');
   expect(await screen.findByText('Bestellung o1001')).toBeInTheDocument();
   expect(screen.getAllByRole('link', { name: /^Bestellung / })).toHaveLength(1);
 });
 
-it('ignoriert unbekannte Status-Werte', async () => {
+it('ignores unknown status values', async () => {
   renderAt('/orders?status=unbekannt');
   expect(await screen.findByText('Bestellung o1001')).toBeInTheDocument();
   expect(screen.getByLabelText('Status')).toHaveValue('all');
 });
 
-it('schreibt den Filter in die URL und lädt neu', async () => {
+it('writes the filter to the URL and reloads', async () => {
   const router = renderAt('/orders');
   await screen.findByText('Bestellung o1001');
   await userEvent.selectOptions(screen.getByLabelText('Status'), 'draft');
@@ -43,7 +43,7 @@ it('schreibt den Filter in die URL und lädt neu', async () => {
   expect(router.state.location.search).toBe('?status=draft');
 });
 
-it('lädt das Detail per Path Param', async () => {
+it('loads the detail via Path Param', async () => {
   renderAt('/orders/o1002');
   expect(
     await screen.findByRole('heading', { name: 'Bestellung o1002' })
@@ -51,7 +51,7 @@ it('lädt das Detail per Path Param', async () => {
   expect(screen.getByText('Summe: 288,80 €')).toBeInTheDocument();
 });
 
-it('zeigt 404 in der Route, Navigation bleibt', async () => {
+it('shows 404 inside the route, navigation stays', async () => {
   renderAt('/orders/o9999');
   expect(await screen.findByRole('alert')).toHaveTextContent(
     'Das haben wir nicht gefunden.'
@@ -59,7 +59,7 @@ it('zeigt 404 in der Route, Navigation bleibt', async () => {
   expect(screen.getByRole('link', { name: 'Produkte' })).toBeInTheDocument();
 });
 
-it('fängt Loader-Fehler in der ErrorBoundary der Route', async () => {
+it('catches loader errors in the route ErrorBoundary', async () => {
   vi.spyOn(ordersApi, 'fetchOrders').mockRejectedValue(new Error('Netz weg'));
   vi.spyOn(console, 'error').mockImplementation(() => {});
   renderAt('/orders');

@@ -3,7 +3,7 @@ import { errorText, httpErrorText } from '../src/errorText';
 
 export const RouteError = () => {
   const error = useRouteError();
-  // Lesbarer Satz mit nächstem Schritt statt „404 Not Found“
+  // A readable sentence with a next step instead of “404 Not Found”
   const message = isRouteErrorResponse(error)
     ? httpErrorText(error.status)
     : errorText(error);

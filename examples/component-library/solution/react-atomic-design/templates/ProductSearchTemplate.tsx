@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-// Template: legt nur das Layout fest. Es kennt weder Daten noch State.
+// Template: defines only the layout. It knows neither data nor State.
 type ProductSearchTemplateProps = {
   title: ReactNode;
   searchField: ReactNode;

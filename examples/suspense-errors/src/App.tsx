@@ -4,7 +4,7 @@ import { OrderDetailPage } from './OrderDetailPage';
 import { fakeOrderApi } from './orders';
 import { orderId as toOrderId, orders } from './shop';
 
-// Ein Cache für die ganze App – außerhalb jeder Component.
+// One cache for the whole app – outside of every Component.
 const orderCache = createOrderCache(fakeOrderApi);
 
 export const App = () => {

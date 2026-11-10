@@ -1,6 +1,8 @@
-# JSX, Listen und Bedingungen
+*English · [Deutsch](3-jsx.de.md)*
 
-JSX ist JavaScript. Jeder Ausdruck in `{}` ist ein normaler JavaScript-Ausdruck, jede Liste ein `map`, jede Bedingung ein `&&`, ein Ternary oder ein früher `return`.
+# JSX, lists, and conditions
+
+JSX is JavaScript. Every expression in `{}` is a regular JavaScript expression, every list is a `map`, every condition is an `&&`, a ternary, or an early `return`.
 
 ```tsx
 type Order = { id: string; number: string; total: number };
@@ -19,15 +21,15 @@ export const OrderList = ({ orders }: { orders: readonly Order[] }) => {
 };
 ```
 
-## Regeln
+## Rules
 
-- Nimm als `key` eine stabile ID aus den Daten, nie den Index. Der Key ist die Identität eines Eintrags, nicht seine Position.
-- Gib jedem Zustand eine eigene Ansicht: Loading, Error, Empty und Erfolg.
-- Schreib `{count > 0 && …}` statt `{count && …}`, sonst rendert React eine `0`.
-- Verschachtelte Ternaries lagerst du in eine eigene Component oder einen frühen `return` aus.
+- Use a stable ID from the data as the `key`, never the index. The key is the identity of an entry, not its position.
+- Give each state its own view: loading, error, empty, and success.
+- Write `{count > 0 && …}` instead of `{count && …}`, otherwise React renders a `0`.
+- Move nested ternaries into their own component or an early `return`.
 
-## Übung
+## Exercise
 
-Lektion **Keys sind Identität, nicht Position** (`react-lists-conditions`): [examples/lists-conditions](examples/lists-conditions/README.md)
+Lesson **Keys are identity, not position** (`react-lists-conditions`): [examples/lists-conditions](examples/lists-conditions/README.md)
 
-Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/3-jsx.md](legacy/chapters/3-jsx.md).
+The earlier version of this chapter is in [archive/chapters/3-jsx.md](archive/chapters/3-jsx.md).

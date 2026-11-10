@@ -1,6 +1,6 @@
 import { orders, type Order, type OrderStatus } from './shop';
 
-// Fake-API ohne Netzwerk: antwortet nach kurzer Pause und lässt sich abbrechen.
+// Fake API without a network: answers after a short pause and can be aborted.
 const delay = (ms: number, signal?: AbortSignal) =>
   new Promise<void>((resolve, reject) => {
     const timeoutId = setTimeout(resolve, ms);

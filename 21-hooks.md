@@ -1,20 +1,22 @@
+*English · [Deutsch](21-hooks.de.md)*
+
 # Hooks
 
-Hooks geben Functional Components State, Effects und geteiltes Verhalten. Sie folgen zwei Regeln: Ruf sie nur auf oberster Ebene einer Component oder eines Custom Hooks auf, nie in Bedingungen oder Schleifen.
+Hooks give Functional Components state, effects, and shared behavior. They follow two rules: call them only at the top level of a component or a Custom Hook, never inside conditions or loops.
 
-## useEffect – brauchst du ihn wirklich?
+## useEffect – do you really need it?
 
-Ein Effect synchronisiert deine Component mit etwas außerhalb von React: einem Timer, einer Subscription, einem Request. Für alles andere brauchst du ihn nicht.
+An effect synchronizes your component with something outside of React: a timer, a subscription, a request. For everything else you do not need it.
 
-- Abgeleitete Werte berechnest du beim Rendern.
-- Reaktionen auf einen Klick gehören in den Event Handler.
-- Jeder Effect, der etwas startet, gibt eine Cleanup-Funktion zurück.
+- Compute derived values during render.
+- Reactions to a click belong in the event handler.
+- Every effect that starts something returns a cleanup function.
 
-Übung: Lektion **Brauchst du diesen Effect wirklich?** (`react-effects`) – [examples/effects](examples/effects/README.md)
+Exercise: lesson **Do you really need this effect?** (`react-effects`) – [examples/effects](examples/effects/README.md)
 
 ## Custom Hooks
 
-Ein Custom Hook teilt Verhalten, nicht State. Zwei Components, die denselben Hook nutzen, haben jeweils ihren eigenen State.
+A Custom Hook shares behavior, not state. Two components that use the same hook each have their own state.
 
 ```ts
 export const useDebouncedValue = <T,>(value: T, delayMs: number): T => {
@@ -27,14 +29,14 @@ export const useDebouncedValue = <T,>(value: T, delayMs: number): T => {
 };
 ```
 
-Übung: Lektion **Custom Hooks teilen Verhalten, nicht State** (`react-custom-hooks`) – [examples/custom-hooks](examples/custom-hooks/README.md)
+Exercise: lesson **Custom hooks share behavior, not state** (`react-custom-hooks`) – [examples/custom-hooks](examples/custom-hooks/README.md)
 
-## Rendering Performance
+## Rendering performance
 
-Erst messen, dann optimieren. Der React Compiler memoisiert Components und Werte beim Build, in allen Beispielen ist er über `vite.config.ts` aktiv. `memo`, `useMemo` und `useCallback` brauchst du nur noch dort, wo der Profiler ein Problem zeigt.
+Measure first, then optimize. The React Compiler memoizes components and values at build time; it is active in all examples via `vite.config.ts`. You only need `memo`, `useMemo`, and `useCallback` where the profiler shows a problem.
 
-- Miss mit dem Profiler der React DevTools oder mit `<Profiler onRender>`.
-- Verschieb State nach unten, in die Component, die ihn braucht.
-- Gib teure Teile als `children` hinein, dann rendern sie beim State-Wechsel nicht neu.
+- Measure with the profiler in the React DevTools or with `<Profiler onRender>`.
+- Move state down into the component that needs it.
+- Pass expensive parts in as `children`, then they do not re-render on a state change.
 
-Übung: Lektion **Erst messen, dann optimieren** (`react-rendering-performance`) – [examples/rendering-performance](examples/rendering-performance/README.md)
+Exercise: lesson **Measure first, then optimize** (`react-rendering-performance`) – [examples/rendering-performance](examples/rendering-performance/README.md)

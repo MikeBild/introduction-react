@@ -6,8 +6,8 @@ import type { LoadState } from './useProducts';
 
 type Result = { version: number } & LoadState<Order[]>;
 
-// Noch ein eigener Hook – fast derselbe Code wie useProducts.
-// Neu laden heißt hier: version hochzählen.
+// Another Custom Hook – almost the same code as useProducts.
+// Reloading here means: increment version.
 export const useOrders = (version: number): LoadState<Order[]> => {
   const [result, setResult] = useState<Result | null>(null);
   useEffect(() => {
@@ -20,6 +20,6 @@ export const useOrders = (version: number): LoadState<Order[]> => {
       });
     return () => controller.abort();
   }, [version]);
-  // Beim Neuladen bleibt die alte Liste stehen, bis die neue da ist.
+  // While reloading, the old list stays until the new one arrives.
   return result ?? { status: 'loading' };
 };

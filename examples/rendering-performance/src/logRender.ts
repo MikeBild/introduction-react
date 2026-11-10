@@ -1,6 +1,6 @@
 import type { ProfilerOnRenderCallback } from 'react';
 
-// Schreibt jede Messung des <Profiler> in die Konsole.
+// Writes every <Profiler> measurement to the console.
 export const logRender: ProfilerOnRenderCallback = (
   id,
   phase,

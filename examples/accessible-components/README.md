@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Accessible Components
 
-Das Profil-Panel im Konto des Werkstatt-Shops, mit ein paar Barrieren: erst semantisches HTML, ARIA nur dort, wo HTML nicht reicht.
+The profile panel in the account area of the workshop shop, with a few barriers: semantic HTML first, ARIA only where HTML is not enough.
 
-Lektion: **Accessibility von Anfang an** (`react-accessibility`)
+Lesson: **Accessibility from the start** (`react-accessibility`)
 
 ```bash
 npm install
@@ -10,15 +12,15 @@ npm run dev
 npm test
 ```
 
-## Übung
+## Exercise
 
-1. Bedien das Panel in `src/ProfilePanel.tsx` nur mit der Tastatur. Wo kommst du nicht weiter?
-2. Ersetze das klickbare `div` und das `span` durch echte Buttons. Der Icon Button braucht einen Accessible Name („Profil schließen“).
-3. Setz nach dem Schließen den Focus zurück auf den Button „Profil bearbeiten“ (`useRef`).
-4. Entferne `.skip` in `src/ProfilePanel.test.tsx`. Die Tests suchen per Role, so wie ein Screenreader.
+1. Operate the panel in `src/ProfilePanel.tsx` with the keyboard only. Where do you get stuck?
+2. Replace the clickable `div` and the `span` with real buttons. The icon button needs an accessible name (“Profil schließen”, close profile).
+3. After closing, move focus back to the “Profil bearbeiten” (edit profile) button (`useRef`).
+4. Remove `.skip` in `src/ProfilePanel.test.tsx`. The tests query by role, just like a screen reader.
 
-`src/EmailField.tsx` ist die Referenz für Labels und Fehlermeldungen.
+`src/EmailField.tsx` is the reference for labels and error messages.
 
-## Lösung
+## Reference solution
 
-Eine mögliche Lösung liegt in `solution/`.
+A reference solution is in `solution/`.

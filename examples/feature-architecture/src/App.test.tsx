@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-it('legt ein Produkt in den Warenkorb', async () => {
+it('adds a product to the cart', async () => {
   render(<App />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Werkstattwagen in den Warenkorb' })

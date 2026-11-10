@@ -6,7 +6,7 @@ import { CheckoutForm } from './CheckoutForm';
 import { placeOrder } from '../src/placeOrder';
 import { orderId } from '../src/shop';
 
-it('zeigt den fehlenden Kunden am Feld', async () => {
+it('shows the missing customer at the field', async () => {
   const placeOrderSpy = vi.fn(() => Promise.resolve(orderId('o1')));
   render(<CheckoutForm cart={initialCart} placeOrder={placeOrderSpy} />);
   await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
@@ -16,7 +16,7 @@ it('zeigt den fehlenden Kunden am Feld', async () => {
   expect(placeOrderSpy).not.toHaveBeenCalled();
 });
 
-it('zeigt eine ungültige Menge am Feld', async () => {
+it('shows an invalid quantity at the field', async () => {
   const placeOrderSpy = vi.fn(() => Promise.resolve(orderId('o1')));
   render(<CheckoutForm cart={initialCart} placeOrder={placeOrderSpy} />);
   await userEvent.selectOptions(screen.getByLabelText('Kunde'), 'Ada Schmidt');
@@ -28,7 +28,7 @@ it('zeigt eine ungültige Menge am Feld', async () => {
   expect(placeOrderSpy).not.toHaveBeenCalled();
 });
 
-it('zeigt den Server Error an der Position', async () => {
+it('shows the server error at the item', async () => {
   render(<CheckoutForm cart={initialCart} placeOrder={placeOrder} />);
   await userEvent.selectOptions(screen.getByLabelText('Kunde'), 'Ada Schmidt');
   await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
@@ -38,7 +38,7 @@ it('zeigt den Server Error an der Position', async () => {
   ).toHaveAccessibleDescription('Nur 0 auf Lager');
 });
 
-it('schickt PlaceOrderInput mit Zahlen an den Server', async () => {
+it('sends PlaceOrderInput with numbers to the server', async () => {
   const placeOrderSpy = vi.fn(() => Promise.resolve(orderId('o1004')));
   render(
     <CheckoutForm cart={initialCart.slice(0, 1)} placeOrder={placeOrderSpy} />

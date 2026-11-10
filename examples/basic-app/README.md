@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Basic App
 
-Die Produktliste des Werkstatt-Shops, heute noch eine einzige Component. Du zerlegst sie in kleine Functional Components und ergänzt dann einen Filter und einen Warenkorb mit `useState`.
+The product list of the workshop shop, today still a single component. You break it into small Functional Components and then add a filter and a cart with `useState`.
 
-Lektionen: **Components als Funktionen denken** (`react-components`) und **State ist ein Snapshot pro Render** (`react-state-hooks`)
+Lessons: **Thinking of components as functions** (`react-components`) and **State is a snapshot per render** (`react-state-hooks`)
 
 ```bash
 npm install
@@ -10,28 +12,28 @@ npm run dev
 npm test
 ```
 
-Die Daten des Werkstatt-Shops liegen in `src/shop.ts`: `Product` mit `priceCents` und `stock`, `OrderItem` und die Hilfsfunktionen `formatCents` und `orderTotalCents`.
+The data of the workshop shop lives in `src/shop.ts`: `Product` with `priceCents` and `stock`, `OrderItem`, and the helper functions `formatCents` and `orderTotalCents`.
 
-## Übung 1 – Components (`react-components`)
+## Exercise 1 – Components (`react-components`)
 
-1. Zeichne den Component Tree der Seite.
-2. Zerlege `App` in `src/App.tsx` in drei Functional Components: `ProductList`, `ProductCard` und `PriceTag`.
-3. Beschreib die Props jeder Component mit einem `type`, zum Beispiel `type ProductCardProps = { name: string; priceCents: number; stock: number }`.
-4. Lass `npm test` laufen. Der bestehende Test bleibt grün, denn die Oberfläche ändert sich nicht.
+1. Draw the component tree of the page.
+2. Break `App` in `src/App.tsx` into three Functional Components: `ProductList`, `ProductCard`, and `PriceTag`.
+3. Describe the props of each component with a `type`, for example `type ProductCardProps = { name: string; priceCents: number; stock: number }`.
+4. Run `npm test`. The existing test stays green, because the UI does not change.
 
-## Übung 2 – State (`react-state-hooks`)
+## Exercise 2 – State (`react-state-hooks`)
 
-1. Ergänze ein Suchfeld mit dem Label „Suche“. Der Suchtext ist State.
-2. Berechne die gefilterte Liste beim Rendern. Leg sie nicht in einen zweiten State.
-3. Zeig „Keine Produkte für ‚…‘. Prüf die Schreibweise oder such nach einem kürzeren Begriff.“, wenn nichts passt.
-4. Baue einen Warenkorb: Die Positionen (`OrderItem[]`) sind State, jede Produktkarte bekommt einen Button „… in den Warenkorb“, jede Position einen Button „… entfernen“.
-5. Berechne die Summe mit `orderTotalCents` beim Rendern und zeig sie als „Summe: …“ in einem Bereich mit `aria-label="Warenkorb"`.
-6. Erzeuge bei jedem Update ein neues Array (Spread, `map`, `filter`), nie `push`.
-7. Entferne `.skip` in `src/App.test.tsx`.
+1. Add a search field with the label “Suche” (search). The search text is state.
+2. Compute the filtered list during render. Do not put it into a second state.
+3. Show the message `Keine Produkte für „…“. Prüf die Schreibweise oder such nach einem kürzeren Begriff.` (no products for “…”, check the spelling or try a shorter term) when nothing matches.
+4. Build a cart: the line items (`OrderItem[]`) are state, each product card gets a button “… in den Warenkorb” (add … to cart), each line item a button “… entfernen” (remove …).
+5. Compute the total with `orderTotalCents` during render and show it as “Summe: …” (total) in a region with `aria-label="Warenkorb"` (cart).
+6. Create a new array on every update (spread, `map`, `filter`), never `push`.
+7. Remove `.skip` in `src/App.test.tsx`.
 
-## Lösung
+## Reference solution
 
-- `solution/react-components/` – die zerlegte Liste mit Tests
-- `solution/react-state-hooks/` – Filter und Warenkorb, aufgebaut auf Übung 1
+- `solution/react-components/` – the split-up list with tests
+- `solution/react-state-hooks/` – filter and cart, built on exercise 1
 
-Um eine Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/react-state-hooks/App`.
+To see a reference solution in the browser, change the import in `src/main.tsx` to `../solution/react-state-hooks/App`.

@@ -9,14 +9,14 @@ const typeSearch = (text: string) =>
     target: { value: text },
   });
 
-it('zeigt die Produkte zum Suchtext', async () => {
+it('shows the products for the search text', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 200, catalog);
   expect(screen.getAllByRole('listitem')).toHaveLength(catalog.length);
 });
 
-it('zeigt die Antwort für den letzten Suchtext, auch wenn eine alte später kommt', async () => {
+it('shows the response for the latest search text, even if an older one arrives later', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('boh');
@@ -27,7 +27,7 @@ it('zeigt die Antwort für den letzten Suchtext, auch wenn eine alte später kom
   expect(screen.queryByText(/Bohrhammer/)).not.toBeInTheDocument();
 });
 
-it('bricht den alten Request ab', () => {
+it('aborts the old request', () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('boh');
@@ -35,7 +35,7 @@ it('bricht den alten Request ab', () => {
   expect(api.findRequest('boh').signal?.aborted).toBe(true);
 });
 
-it('zeigt HTTP-Fehler als Meldung', async () => {
+it('shows HTTP errors as a message', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 500, { message: 'Interner Fehler' });
@@ -44,7 +44,7 @@ it('zeigt HTTP-Fehler als Meldung', async () => {
   );
 });
 
-it('meldet eine unerwartete Antwort', async () => {
+it('reports an unexpected response', async () => {
   const api = controlFetch();
   render(<App />);
   await api.respond('', 200, [{ id: 'p1' }]);
@@ -53,7 +53,7 @@ it('meldet eine unerwartete Antwort', async () => {
   );
 });
 
-it('zeigt einen Hinweis, wenn nichts passt', async () => {
+it('shows a hint when nothing matches', async () => {
   const api = controlFetch();
   render(<App />);
   typeSearch('zange');
@@ -63,7 +63,7 @@ it('zeigt einen Hinweis, wenn nichts passt', async () => {
   ).toBeInTheDocument();
 });
 
-it('bricht den Request beim Unmount ab', () => {
+it('aborts the request on unmount', () => {
   const api = controlFetch();
   const { unmount } = render(<App />);
   unmount();

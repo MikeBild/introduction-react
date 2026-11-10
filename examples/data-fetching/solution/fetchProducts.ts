@@ -14,7 +14,7 @@ export const fetchProducts = async (search: string, signal?: AbortSignal) => {
     `/api/products?q=${encodeURIComponent(search)}`,
     { signal }
   );
-  // fetch wirft nur bei Netzwerkfehlern, nicht bei 404 oder 500.
+  // fetch only throws on network errors, not on 404 or 500.
   if (!response.ok) throw new HttpError(response.status);
   const data: unknown = await response.json();
   if (!Array.isArray(data) || !data.every(isProduct))

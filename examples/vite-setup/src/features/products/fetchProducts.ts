@@ -1,8 +1,8 @@
 import { HttpError } from '../../errorText';
 import type { Product } from '../../shop';
 
-// Die Fake-API läuft auf Port 3000, der Dev Server auf 5173.
-// Ein zweiter Origin – und die Fake-API schickt keine CORS-Header.
+// The fake API runs on port 3000, the dev server on 5173.
+// A second origin – and the fake API sends no CORS headers.
 const API_URL = 'http://localhost:3000';
 
 export const fetchProducts = async (): Promise<Product[]> => {

@@ -41,7 +41,7 @@ export const OrderOverview = ({ state }: { state: OrdersState }) => {
       return (
         <ul>
           {state.orders.map((order) => (
-            // Die ID gehört zur Bestellung – die Position nicht.
+            // The ID belongs to the order – the position in the list does not.
             <OrderRow key={order.id} order={order} />
           ))}
         </ul>

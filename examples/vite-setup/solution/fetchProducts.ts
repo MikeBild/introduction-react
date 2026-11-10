@@ -1,8 +1,8 @@
 import { HttpError } from '@/errorText';
 import type { Product } from '@/shop';
 
-// Relativer Pfad: Im Development leitet der Proxy von Vite /api an die
-// Fake-API weiter, in der Produktion liegt die API hinter demselben Origin.
+// Relative path: in development Vite's proxy forwards /api to the
+// fake API, in production the API sits behind the same origin.
 export const fetchProducts = async (): Promise<Product[]> => {
   const response = await fetch('/api/products');
   if (!response.ok) throw new HttpError(response.status);

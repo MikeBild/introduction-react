@@ -5,7 +5,7 @@ import { customers } from '../../src/data/customers';
 import { Card } from './Card';
 import { CustomerOverview } from './CustomerOverview';
 
-it('rendert header, children und actions in ihre Slots', () => {
+it('renders header, children and actions into their slots', () => {
   render(
     <Card header={<h3>Titel</h3>} actions={<button>Los</button>}>
       <p>Inhalt</p>
@@ -17,12 +17,12 @@ it('rendert header, children und actions in ihre Slots', () => {
   expect(within(card).getByRole('button', { name: 'Los' })).toBeVisible();
 });
 
-it('lässt den Footer weg, wenn es keine actions gibt', () => {
+it('omits the footer when there are no actions', () => {
   const { container } = render(<Card header="Nur Kopf" />);
   expect(container.querySelector('footer')).toBeNull();
 });
 
-it('zeigt jeden Kunden als Card und meldet Bearbeiten', async () => {
+it('shows each customer as a Card and reports the edit action', async () => {
   const onEdit = vi.fn();
   render(<CustomerOverview customers={customers} onEdit={onEdit} />);
   const cards = screen.getAllByRole('article');

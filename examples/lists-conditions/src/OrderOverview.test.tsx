@@ -4,34 +4,34 @@ import { expect, it } from 'vitest';
 import { OrderOverview } from './OrderOverview';
 import { orderId, orders as sampleOrders, type Order } from './shop';
 
-it('zeigt alle Bestellungen', () => {
+it('shows all orders', () => {
   render(<OrderOverview state={{ status: 'success', orders: sampleOrders }} />);
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
   expect(screen.getByText(/Tom Weber, Versandt, 288,80 €/)).toBeInTheDocument();
 });
 
-// Übung: .skip Schritt für Schritt entfernen
-it.skip('zeigt einen Loading State', () => {
+// Exercise: remove .skip step by step
+it.skip('shows a loading state', () => {
   render(<OrderOverview state={{ status: 'loading' }} />);
   expect(screen.getByRole('status')).toHaveTextContent(
     'Bestellungen werden geladen …'
   );
 });
 
-it.skip('zeigt den Error State mit Meldung', () => {
+it.skip('shows the error state with a message', () => {
   render(<OrderOverview state={{ status: 'error', message: 'Server down' }} />);
   expect(screen.getByRole('alert')).toHaveTextContent(
     'Bestellungen nicht verfügbar (Server down). Lade die Seite neu'
   );
 });
 
-it.skip('zeigt einen Empty State', () => {
+it.skip('shows an empty state', () => {
   render(<OrderOverview state={{ status: 'success', orders: [] }} />);
   expect(screen.getByText(/^Noch keine Bestellungen\./)).toBeInTheDocument();
   expect(screen.queryByRole('list')).not.toBeInTheDocument();
 });
 
-it.skip('behält den Haken bei der richtigen Bestellung, wenn oben eine neue dazukommt', async () => {
+it.skip('keeps the checkmark on the right order when a new one is added at the top', async () => {
   const { rerender } = render(
     <OrderOverview state={{ status: 'success', orders: sampleOrders }} />
   );

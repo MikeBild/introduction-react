@@ -3,10 +3,10 @@ type AddToCartFormProps = {
   onAdd: (quantity: number) => void;
 };
 
-// Übung react-events-forms: Das Formular hat noch keinen Submit Handler –
-// ein Klick lädt die Seite neu, und onAdd wird nie aufgerufen.
-// Mach die Menge zu einem Controlled Input und deaktiviere den Button,
-// wenn die Menge nicht zwischen 1 und dem Bestand liegt.
+// Exercise react-events-forms: the form has no submit handler yet –
+// a click reloads the page, and onAdd is never called.
+// Make the quantity a Controlled Input and disable the button
+// when the quantity is not between 1 and the stock.
 export const AddToCartForm = (_props: AddToCartFormProps) => (
   <form>
     <label htmlFor="quantity">Menge</label>

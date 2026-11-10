@@ -1,5 +1,5 @@
-// Werkstatt-Shop: gemeinsame Domäne aller Workshop-Beispiele.
-// Geld immer in ganzen Cent, IDs als Branded Types.
+// Workshop shop: the shared domain of all workshop examples.
+// Money always in whole cents, IDs as Branded Types.
 
 export type ProductId = string & { readonly __brand: 'ProductId' };
 export type OrderId = string & { readonly __brand: 'OrderId' };

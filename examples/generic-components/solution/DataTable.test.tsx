@@ -4,7 +4,7 @@ import { products } from '../src/data';
 import { App } from './App';
 import { DataTable } from './DataTable';
 
-it('zeigt die Kundenliste als Tabelle', () => {
+it('shows the customer list as a table', () => {
   render(<App />);
   expect(
     screen.getAllByRole('columnheader').map((header) => header.textContent)
@@ -17,7 +17,7 @@ it('zeigt die Kundenliste als Tabelle', () => {
   ).toBeInTheDocument();
 });
 
-it('funktioniert mit jedem Zeilentyp', () => {
+it('works with any row type', () => {
   render(
     <DataTable
       rows={products}

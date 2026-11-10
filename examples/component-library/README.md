@@ -1,39 +1,41 @@
+*English · [Deutsch](README.de.md)*
+
 # Component Library
 
-Die Component Library des Werkstatt-Shops mit [Storybook](https://storybook.js.org). Alle Components liegen heute flach in `src/components/`, und die `CustomerCard` sammelt für jede neue Anforderung ein weiteres Flag. Du baust sie auf Slots um und ordnest die Library nach Atomic Design.
+The component library of the workshop shop with [Storybook](https://storybook.js.org). All components currently sit flat in `src/components/`, and the `CustomerCard` collects another flag for every new requirement. You rebuild it with slots and organize the library by Atomic Design.
 
-Lektionen: **Inhalte hineingeben statt Flags sammeln** (`react-composition`) und **Atomic Design gibt dem Team ein Vokabular** (`react-atomic-design`)
+Lessons: **Pass content in instead of collecting flags** (`react-composition`) and **Atomic Design gives the team a vocabulary** (`react-atomic-design`)
 
 ```bash
 npm install
-npm run storybook   # Storybook auf http://localhost:6006
-npm run dev         # die Beispiel-App
+npm run storybook   # Storybook at http://localhost:6006
+npm run dev         # the example app
 npm test
 ```
 
-## Übung 1 – Composition (`react-composition`)
+## Exercise 1 – Composition (`react-composition`)
 
-1. Schau dir die Stories zu `CustomerCard` in Storybook an. Jede Variante braucht eine andere Kombination aus Flags.
-2. Bau eine `Card` mit drei Slots: `header`, `children` und `actions`. Die Card rendert ein `article`, den Header in `<header>` und die Actions in `<footer>`. Fehlen die Actions, fällt der Footer weg.
-3. Bau damit eine Kundenübersicht: Name und Badge mit der Zahl der Bestellungen in den Header, die E-Mail als Children, „Bearbeiten“ und einen `mailto:`-Link als Actions.
-4. Schreib Stories für die Card, ohne ein einziges Flag. Entferne das erste `.skip` in `src/App.test.tsx`.
+1. Look at the stories for `CustomerCard` in Storybook. Each variant needs a different combination of flags.
+2. Build a `Card` with three slots: `header`, `children`, and `actions`. The card renders an `article`, the header in `<header>`, and the actions in `<footer>`. If there are no actions, the footer is omitted.
+3. Use it to build a customer overview: name and a badge with the number of orders in the header, the email as children, “Bearbeiten” (edit) and a `mailto:` link as actions.
+4. Write stories for the card without a single flag. Remove the first `.skip` in `src/App.test.tsx`.
 
-## Übung 2 – Atomic Design (`react-atomic-design`)
+## Exercise 2 – Atomic Design (`react-atomic-design`)
 
-1. Ordne jede Component einer Stufe zu: Atom, Molecule, Organism. Leg dafür die Ordner `atoms/`, `molecules/` und `organisms/` an.
-2. Bau ein Organism `ProductResultList` mit einem Hinweis für eine leere Trefferliste.
-3. Bau ein Template `ProductSearchTemplate` für eine Produktsuche. Es nimmt Slots für Titel, Suchfeld, Trefferzahl und Ergebnisse und kennt weder Daten noch State.
-4. Füll das Template in einer Page mit State und Daten aus `src/data/products.ts`. Zeig die Trefferzahl als „2 Treffer“.
-5. Gib den Stories Titel nach Stufe, zum Beispiel `Atomic Design/Templates/ProductSearchTemplate`. Entferne das zweite `.skip` in `src/App.test.tsx`.
+1. Assign each component to a level: atom, molecule, organism. Create the folders `atoms/`, `molecules/`, and `organisms/` for them.
+2. Build an organism `ProductResultList` with a notice for an empty result list.
+3. Build a template `ProductSearchTemplate` for a product search. It takes slots for title, search field, result count, and results, and knows neither data nor state.
+4. Fill the template in a page with state and data from `src/data/products.ts`. Show the result count as “2 Treffer” (2 results).
+5. Give the stories titles by level, for example `Atomic Design/Templates/ProductSearchTemplate`. Remove the second `.skip` in `src/App.test.tsx`.
 
-## Lösung
+## Reference solution
 
-- `solution/react-composition/` – `Card` mit Slots, `CustomerOverview`, Tests und Stories
-- `solution/react-atomic-design/` – `atoms/`, `molecules/`, `organisms/`, `templates/`, `pages/` mit Tests und Stories
-- `solution/App.tsx` – beides zusammen in der App
+- `solution/react-composition/` – `Card` with slots, `CustomerOverview`, tests, and stories
+- `solution/react-atomic-design/` – `atoms/`, `molecules/`, `organisms/`, `templates/`, `pages/` with tests and stories
+- `solution/App.tsx` – both together in the app
 
-Storybook zeigt Startpunkt und Lösung nebeneinander: unter „Startpunkt“ den heutigen Stand, unter „Composition“ und „Atomic Design“ die Lösung. Für die App änderst du den Import in `src/main.tsx` auf `../solution/App`.
+Storybook shows the starting point and the reference solution side by side: under “Startpunkt” (starting point) the current state, under “Composition” and “Atomic Design” the reference solution. For the app, change the import in `src/main.tsx` to `../solution/App`.
 
 ```bash
-npm run build-storybook   # statisches Storybook nach storybook-static/
+npm run build-storybook   # static Storybook into storybook-static/
 ```

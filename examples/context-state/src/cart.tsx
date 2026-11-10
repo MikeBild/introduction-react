@@ -10,8 +10,8 @@ type CartContextValue = {
   removeItem: (productId: ProductId) => void;
 };
 
-// Übung react-context-state: Das Default-Objekt versteckt Fehler.
-// Ohne Provider tut addItem einfach nichts – und niemand merkt es.
+// Exercise react-context-state: the default object hides errors.
+// Without a Provider, addItem simply does nothing – and nobody notices.
 export const CartContext = createContext<CartContextValue>({
   items: [],
   addItem: () => {},

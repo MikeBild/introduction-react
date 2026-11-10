@@ -9,7 +9,7 @@ import { readStatus, statusLabels, statuses } from '../src/orderStatus';
 
 export const ordersLoader = async ({ request }: LoaderFunctionArgs) => {
   const status = readStatus(new URL(request.url).searchParams.get('status'));
-  // request.signal bricht veraltete Navigationen ab.
+  // request.signal aborts outdated navigations.
   const orders = await fetchOrders(status, request.signal);
   return { orders };
 };

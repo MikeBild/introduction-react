@@ -8,7 +8,7 @@ export type LoadOrders = (
   signal?: AbortSignal
 ) => Promise<readonly Order[]>;
 
-// Fake API: antwortet nach einer zufälligen Zeit, ohne Netzwerk.
+// Fake API: responds after a random delay, without a network.
 export const loadOrders: LoadOrders = (customerId) =>
   new Promise((resolve) =>
     setTimeout(

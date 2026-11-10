@@ -1,7 +1,7 @@
-// Fehlertexte an einer Stelle: Jeder Fehler wird zu einem lesbaren Satz mit nächstem Schritt.
-// Rohtexte wie „HTTP 500“, „404 Not Found“ oder String(error) erscheinen nie in der Oberfläche.
+// Error texts in one place: every error becomes a readable sentence with a next step.
+// Raw texts like “HTTP 500”, “404 Not Found” or String(error) never appear in the UI.
 
-// fetch wirft nur bei Netzwerkfehlern. Für 404 oder 500 wirfst du selbst einen HttpError.
+// fetch only throws on network errors. For 404 or 500 you throw an HttpError yourself.
 export class HttpError extends Error {
   readonly status: number;
 
@@ -22,17 +22,17 @@ export const httpErrorText = (status: number): string => {
   return 'Der Server hat die Anfrage abgelehnt. Lade die Seite neu und versuch es noch einmal.';
 };
 
-// Fachliche Fehler bringen ihren Satz mit („Bestellung o9999 nicht gefunden“),
-// errorText ergänzt den nächsten Schritt. Alles andere wird zum allgemeinen Text.
+// Domain errors bring their own sentence (“Bestellung o9999 nicht gefunden”),
+// errorText adds the next step. Everything else becomes the generic text.
 export const errorText = (
   error: unknown,
   nextStep = 'Versuch es noch einmal.'
 ): string => {
   if (error instanceof HttpError) return error.message;
-  // fetch wirft bei Netzwerk- und CORS-Fehlern einen TypeError („Failed to fetch“).
+  // fetch throws a TypeError on network and CORS errors (“Failed to fetch”).
   if (error instanceof TypeError)
     return 'Keine Verbindung zum Server. Prüf, ob der Server läuft, und versuch es noch einmal.';
-  // response.json() wirft einen SyntaxError, wenn statt JSON zum Beispiel HTML kommt.
+  // response.json() throws a SyntaxError when HTML arrives instead of JSON, for example.
   if (error instanceof SyntaxError)
     return 'Der Server hat kein gültiges JSON geschickt. Prüf die API-Adresse und versuch es noch einmal.';
   if (error instanceof Error && error.message)

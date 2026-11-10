@@ -1,6 +1,8 @@
-# Events und Forms
+*English · [Deutsch](5-event-bindings.de.md)*
 
-React reicht Events als Props durch: `onClick`, `onChange`, `onSubmit`. Daten fließen nach unten, Events nach oben.
+# Events and forms
+
+React passes events through as props: `onClick`, `onChange`, `onSubmit`. Data flows down, events flow up.
 
 ```tsx
 const [email, setEmail] = useState('');
@@ -8,19 +10,19 @@ const [email, setEmail] = useState('');
 <input value={email} onChange={(event) => setEmail(event.target.value)} />;
 ```
 
-## Controlled oder Uncontrolled?
+## Controlled or uncontrolled?
 
-- **Controlled:** React-State hält den Wert, das Input zeigt ihn nur an. Nimm das, wenn du beim Tippen validierst, ableitest oder einen Button deaktivierst.
-- **Uncontrolled:** Das DOM hält den Wert, du liest ihn beim Submit über `FormData`. Nimm das für einfache Forms und für Form Actions aus React 19.
+- **Controlled:** React state holds the value, the input only displays it. Use this when you validate, derive, or disable a button while the user types.
+- **Uncontrolled:** The DOM holds the value, you read it on submit via `FormData`. Use this for simple forms and for Form Actions from React 19.
 
-## Regeln
+## Rules
 
-- Ruf in `onSubmit` zuerst `event.preventDefault()` auf, wenn du selbst sendest.
-- Typisiere Handler über die React-Typen, zum Beispiel `SubmitEvent<HTMLFormElement>` oder `ChangeEvent<HTMLInputElement>`.
-- Leite abgeleitete Werte wie „Button aktiv?“ beim Rendern ab, statt sie in eigenen State zu legen.
+- In `onSubmit`, call `event.preventDefault()` first if you send the data yourself.
+- Type handlers with the React types, for example `SubmitEvent<HTMLFormElement>` or `ChangeEvent<HTMLInputElement>`.
+- Derive values such as “button enabled?” during render instead of keeping them in separate state.
 
-## Übung
+## Exercise
 
-Lektion **Wem gehört der Wert im Input?** (`react-events-forms`): [examples/events-forms](examples/events-forms/README.md)
+Lesson **Who owns the value in the input?** (`react-events-forms`): [examples/events-forms](examples/events-forms/README.md)
 
-Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/5-event-bindings.md](legacy/chapters/5-event-bindings.md).
+The earlier version of this chapter is in [archive/chapters/5-event-bindings.md](archive/chapters/5-event-bindings.md).

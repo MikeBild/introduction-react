@@ -1,46 +1,48 @@
+*English · [Deutsch](README.de.md)*
+
 # Vite Setup
 
-Die Produktliste des Werkstatt-Shops in einem frischen Vite-Projekt. Die Produkte kommen von einer kleinen Fake-API auf Port 3000, der Dev Server läuft auf Port 5173 – und genau dazwischen klemmt es noch.
+The product list of the workshop shop in a fresh Vite project. The products come from a small fake API on port 3000, the dev server runs on port 5173 – and exactly in between, something is still stuck.
 
-Zusatzkapitel: **Vite startet dein Projekt in Sekunden** (`react-vite-setup`)
+Extra chapter: **Vite starts your project in seconds** (`react-vite-setup`)
 
 ```bash
 npm install
-npm run api   # Terminal 1: Fake-API auf http://localhost:3000/api/products
-npm run dev   # Terminal 2: Dev Server auf http://localhost:5173
+npm run api   # terminal 1: fake API at http://localhost:3000/api/products
+npm run dev   # terminal 2: dev server at http://localhost:5173
 npm test
 npm run build # tsc -b && vite build
 npm run preview
 ```
 
-## So ist das Projekt entstanden
+## How the project was created
 
 ```bash
 npm create vite@latest vite-setup -- --template react-ts
 ```
 
-Aus dem Template sind die Demo-Assets und das CSS geflogen. Dazu kamen der React Compiler, Vitest mit Testing Library, `src/shop.ts` und die Fake-API `api-server.ts`. Alles andere ist so, wie `npm create vite` es anlegt:
+The demo assets and the CSS were removed from the template. Added were the React Compiler, Vitest with Testing Library, `src/shop.ts`, and the fake API `api-server.ts`. Everything else is as `npm create vite` sets it up:
 
-- `index.html` im Projekt-Root ist der Einstiegspunkt und lädt `src/main.tsx` als Modul.
-- `tsconfig.json` verweist auf `tsconfig.app.json` (Code im Browser) und `tsconfig.node.json` (Config und Server in Node).
-- `npm run build` ruft erst `tsc -b` und dann `vite build` auf.
+- `index.html` in the project root is the entry point and loads `src/main.tsx` as a module.
+- `tsconfig.json` points to `tsconfig.app.json` (code in the browser) and `tsconfig.node.json` (config and server in Node).
+- `npm run build` first calls `tsc -b` and then `vite build`.
 
-Wenn du magst, leg das Template einmal selbst in einem leeren Ordner an und vergleich die Dateien. Vite 8 braucht Node.js 20.19 oder 22.12 und neuer, die Beispiele hier laufen mit Node.js 26.
+If you like, create the template yourself once in an empty folder and compare the files. Vite 8 needs Node.js 20.19 or 22.12 and newer; the examples here run with Node.js 26.
 
-## Übung
+## Exercise
 
-1. Starte `npm run api` und `npm run dev` und öffne die App. Statt der Produkte siehst du eine Fehlermeldung (den Text liefert `errorText` aus `src/errorText.ts`), in der Konsole der DevTools einen CORS-Fehler (Cross-Origin Resource Sharing). `src/features/products/fetchProducts.ts` ruft `http://localhost:3000` direkt auf, also einen zweiten Origin, und die Fake-API erlaubt das nicht.
-2. Ändere die URL in `fetchProducts.ts` auf den relativen Pfad `/api/products`. Jetzt antwortet der Dev Server selbst – mit der `index.html`, die Meldung lautet deshalb „Der Server hat kein gültiges JSON geschickt“. Trag in `vite.config.ts` einen Proxy ein: `server: { proxy: { '/api': 'http://localhost:3000' } }`. Nach dem Neustart siehst du die Produkte, und im Terminal der Fake-API kommen die Requests an. CORS musst du dafür nicht öffnen. Entferne `.skip` in `src/features/products/ProductList.test.tsx` und beim Proxy-Test in `vite.config.test.ts`.
-3. Ersetze in `ProductList.tsx` und `fetchProducts.ts` die Importe `../../shop` und `../../errorText` durch `@/shop` und `@/errorText`. `npm run typecheck` bleibt grün, denn `tsconfig.app.json` kennt den Alias unter `paths`. Der Dev Server meldet aber „Failed to resolve import“: Vite liest `paths` nicht von selbst. Ergänze `resolve: { tsconfigPaths: true }` in `vite.config.ts`, dann pflegst du Aliase nur in der tsconfig. Entferne `.skip` beim Alias-Test in `vite.config.test.ts`. Vitest nutzt dieselbe Konfiguration, die Tests finden den Alias also auch.
-4. Vergleich Dev Server und Build. Im Tab Network der DevTools lädt der Browser im Development jedes Modul einzeln, zum Beispiel `/src/features/products/ProductList.tsx`. Führ `npm run build` aus und schau in `dist/assets`: Dort liegt ein einziges gebündeltes Script mit Hash im Namen.
-5. Vite übersetzt, `tsc` prüft. Setz in `src/shop.ts` beim ersten Produkt `priceCents: '89,90'`. `npx vite build` baut trotzdem, denn Vite entfernt die Typen nur. `npm run build` bricht schon bei `tsc -b` ab. Mach die Änderung danach rückgängig.
-6. Führ `npm run build && npm run preview` aus und öffne http://localhost:4173. `vite preview` übernimmt den Proxy, die Produkte erscheinen also auch hier. Der Server ist zum Prüfen des Builds da, nicht für die Produktion.
+1. Start `npm run api` and `npm run dev` and open the app. Instead of the products you see an error message (the text comes from `errorText` in `src/errorText.ts`), and in the DevTools console a CORS error (Cross-Origin Resource Sharing). `src/features/products/fetchProducts.ts` calls `http://localhost:3000` directly, that is, a second origin, and the fake API does not allow that.
+2. Change the URL in `fetchProducts.ts` to the relative path `/api/products`. Now the dev server itself answers – with the `index.html`, which is why the message reads “Der Server hat kein gültiges JSON geschickt” (the server did not send valid JSON). Add a proxy in `vite.config.ts`: `server: { proxy: { '/api': 'http://localhost:3000' } }`. After the restart you see the products, and the requests arrive in the terminal of the fake API. You do not have to open up CORS for that. Remove `.skip` in `src/features/products/ProductList.test.tsx` and on the proxy test in `vite.config.test.ts`.
+3. In `ProductList.tsx` and `fetchProducts.ts`, replace the imports `../../shop` and `../../errorText` with `@/shop` and `@/errorText`. `npm run typecheck` stays green, because `tsconfig.app.json` knows the alias under `paths`. The dev server, however, reports “Failed to resolve import”: Vite does not read `paths` on its own. Add `resolve: { tsconfigPaths: true }` in `vite.config.ts`, then you maintain aliases only in the tsconfig. Remove `.skip` on the alias test in `vite.config.test.ts`. Vitest uses the same configuration, so the tests find the alias as well.
+4. Compare dev server and build. In the Network tab of the DevTools, the browser loads every module individually in development, for example `/src/features/products/ProductList.tsx`. Run `npm run build` and look into `dist/assets`: there is a single bundled script with a hash in its name.
+5. Vite transpiles, `tsc` checks. In `src/shop.ts`, set `priceCents: '89,90'` on the first product. `npx vite build` still builds, because Vite only strips the types. `npm run build` already stops at `tsc -b`. Revert the change afterwards.
+6. Run `npm run build && npm run preview` and open http://localhost:4173. `vite preview` takes over the proxy, so the products appear here as well. The server is there to check the build, not for production.
 
-## Lösung
+## Reference solution
 
-- `solution/vite.config.ts` – React Compiler, Proxy und `resolve.tsconfigPaths`
-- `solution/fetchProducts.ts` und `solution/ProductList.tsx` – relativer API-Pfad, Importe über `@/shop` und `@/errorText`
-- `solution/vite.config.test.ts` – Proxy und Alias im echten Dev Server geprüft
+- `solution/vite.config.ts` – React Compiler, proxy, and `resolve.tsconfigPaths`
+- `solution/fetchProducts.ts` and `solution/ProductList.tsx` – relative API path, imports via `@/shop` and `@/errorText`
+- `solution/vite.config.test.ts` – proxy and alias checked in the real dev server
 - `solution/ProductList.test.tsx`
 
-`npm run build:solution` führt die Tests der Lösung mit `solution/vite.config.ts` aus und baut damit. Um die Lösung im Browser zu sehen, ändere den Import in `src/main.tsx` auf `../solution/App` und starte `npm run dev:solution`.
+`npm run build:solution` runs the tests of the reference solution with `solution/vite.config.ts` and builds with it. To see the reference solution in the browser, change the import in `src/main.tsx` to `../solution/App` and start `npm run dev:solution`.

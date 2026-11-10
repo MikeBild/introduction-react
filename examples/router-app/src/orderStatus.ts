@@ -16,6 +16,6 @@ export const statusLabels: Record<OrderStatus, string> = {
   cancelled: 'Storniert',
 };
 
-// Search Params sind Eingaben von außen: Jeder Wert wird geprüft.
+// Search Params are input from outside: every value is checked.
 export const readStatus = (value: string | null) =>
   statuses.find((status) => status === value) ?? 'all';

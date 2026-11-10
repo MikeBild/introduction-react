@@ -19,7 +19,7 @@ const isOrder = (value: unknown): value is Order =>
   Array.isArray(value.items);
 
 const readJson = async (response: Response): Promise<unknown> => {
-  // fetch wirft nur bei Netzwerkfehlern, nicht bei 404 oder 500.
+  // fetch only throws on network errors, not on 404 or 500.
   if (!response.ok) throw new HttpError(response.status);
   return response.json();
 };

@@ -6,7 +6,7 @@ import { CheckoutForm } from './CheckoutForm';
 import { placeOrder } from './placeOrder';
 import { orderId } from './shop';
 
-it('zeigt den fehlenden Kunden am Feld', async () => {
+it('shows the missing customer at the field', async () => {
   const placeOrderSpy = vi.fn(() => Promise.resolve(orderId('o1')));
   render(<CheckoutForm cart={initialCart} placeOrder={placeOrderSpy} />);
   await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));
@@ -16,8 +16,8 @@ it('zeigt den fehlenden Kunden am Feld', async () => {
   expect(placeOrderSpy).not.toHaveBeenCalled();
 });
 
-// Übung: .skip Schritt für Schritt entfernen
-it.skip('zeigt eine ungültige Menge am Feld', async () => {
+// Exercise: remove .skip step by step
+it.skip('shows an invalid quantity at the field', async () => {
   const placeOrderSpy = vi.fn(() => Promise.resolve(orderId('o1')));
   render(<CheckoutForm cart={initialCart} placeOrder={placeOrderSpy} />);
   await userEvent.selectOptions(screen.getByLabelText('Kunde'), 'Ada Schmidt');
@@ -29,7 +29,7 @@ it.skip('zeigt eine ungültige Menge am Feld', async () => {
   expect(placeOrderSpy).not.toHaveBeenCalled();
 });
 
-it.skip('zeigt den Server Error an der Position', async () => {
+it.skip('shows the server error at the item', async () => {
   render(<CheckoutForm cart={initialCart} placeOrder={placeOrder} />);
   await userEvent.selectOptions(screen.getByLabelText('Kunde'), 'Ada Schmidt');
   await userEvent.click(screen.getByRole('button', { name: 'Bestellen' }));

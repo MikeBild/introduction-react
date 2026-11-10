@@ -1,8 +1,10 @@
+*English · [Deutsch](README.de.md)*
+
 # Testing
 
-Der fertige Checkout des Werkstatt-Shops: Er validiert mit dem geteilten Schema `PlaceOrderInput` und schickt die Bestellung per `POST /api/orders`. Was fehlt, sind die Tests. Du schreibst sie mit Vitest und Testing Library und ersetzt `fetch` im Test durch einen Stub.
+The finished checkout of the workshop shop: it validates with the shared schema `PlaceOrderInput` and sends the order via `POST /api/orders`. What is missing are the tests. You write them with Vitest and Testing Library and replace `fetch` in the test with a stub.
 
-Lektion: **Teste, was Nutzende sehen und tun** (`react-testing`)
+Lesson: **Test what users see and do** (`react-testing`)
 
 ```bash
 npm install
@@ -10,26 +12,26 @@ npm run dev
 npm test
 ```
 
-Im Dev-Modus beantwortet eine kleine Fake-API in `vite.config.ts` den Request, jede Bestellung klappt. In den Tests gibt es keinen Server:
+In dev mode, a small fake API in `vite.config.ts` answers the request; every order succeeds. In the tests there is no server:
 
-- `mockFetchResponse(status, body)` aus `src/test/mockFetchResponse.ts` ersetzt `fetch` per `vi.stubGlobal` und gibt den Mock zurück.
-- `src/test/setup.ts` lädt die jest-dom-Matcher und ruft nach jedem Test `cleanup()` und `vi.unstubAllGlobals()` auf.
+- `mockFetchResponse(status, body)` from `src/test/mockFetchResponse.ts` replaces `fetch` via `vi.stubGlobal` and returns the mock.
+- `src/test/setup.ts` loads the jest-dom matchers and calls `cleanup()` and `vi.unstubAllGlobals()` after every test.
 
-## Übung
+## Exercise
 
-Ersetze die drei `it.todo` in `src/CheckoutForm.test.tsx` durch echte Tests. Gliedere jeden Test nach Arrange, Act, Assert.
+Replace the three `it.todo` in `src/CheckoutForm.test.tsx` with real tests. Structure each test as Arrange, Act, Assert.
 
-1. **Erfolgsfall:** Antworte mit `mockFetchResponse(201, { id: 'o1004' })`. Wähl einen Kunden, klick „Bestellen“ und erwarte „Bestellung o1004 ist eingegangen“. Prüf auch, was im Request-Body steht.
-2. **Validation Error:** Setz eine Menge auf `0`. Prüf mit `toHaveAccessibleDescription`, dass die Meldung am Feld hängt, und stell mit `expect(fetchMock).not.toHaveBeenCalled()` sicher, dass kein Request rausgeht.
-3. **Server Error:** Antworte mit Status 500. Erwarte „Die Bestellung ist fehlgeschlagen. Der Server hat gerade ein Problem.“ in der Rolle `alert`.
+1. **Success case:** Answer with `mockFetchResponse(201, { id: 'o1004' })`. Choose a customer, click “Bestellen” (order), and expect “Bestellung o1004 ist eingegangen” (order o1004 has been received). Also check what is in the request body.
+2. **Validation error:** Set a quantity to `0`. Use `toHaveAccessibleDescription` to check that the message is attached to the field, and make sure with `expect(fetchMock).not.toHaveBeenCalled()` that no request goes out.
+3. **Server error:** Answer with status 500. Expect “Die Bestellung ist fehlgeschlagen. Der Server hat gerade ein Problem.” (the order failed, the server currently has a problem) in the `alert` role.
 
-Regeln dabei:
+Rules along the way:
 
-- Such Elemente über Rolle und Label (`getByRole`, `getByLabelText`), nicht über CSS-Klassen oder Test-IDs.
-- Interagier mit `userEvent.setup()`, nicht mit `fireEvent`.
-- Warte mit `findBy…` auf Text, der erst nach dem Request erscheint.
-- Mock nur die Grenze nach außen, hier `fetch`. Form und Schema laufen echt.
+- Find elements by role and label (`getByRole`, `getByLabelText`), not by CSS classes or test IDs.
+- Interact with `userEvent.setup()`, not with `fireEvent`.
+- Wait with `findBy…` for text that only appears after the request.
+- Mock only the boundary to the outside, here `fetch`. Form and schema run for real.
 
-## Lösung
+## Reference solution
 
-`solution/CheckoutForm.test.tsx` enthält die drei Tests und einen vierten: einen Bestandsfehler mit Status 409, der an der Position erscheint.
+`solution/CheckoutForm.test.tsx` contains the three tests and a fourth: a stock error with status 409 that appears at the line item.

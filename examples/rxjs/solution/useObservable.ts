@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Observable } from 'rxjs';
 
-// Abonniert im Effect, kündigt im Cleanup. React sieht nur den letzten Wert.
+// Subscribes in the Effect, unsubscribes in the Cleanup. React only sees the latest value.
 export function useObservable<T>(source$: Observable<T>, initialValue: T): T {
   const [value, setValue] = useState(initialValue);
   useEffect(() => {

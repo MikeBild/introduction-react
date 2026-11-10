@@ -3,22 +3,22 @@ import userEvent from '@testing-library/user-event';
 import { expect, it } from 'vitest';
 import { App } from './App';
 
-it('zeigt alle Produkte mit Preis', () => {
+it('shows all products with their price', () => {
   render(<App />);
   expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(4);
   expect(screen.getByText('89,90 €')).toBeInTheDocument();
   expect(screen.getByText('Ausverkauft')).toBeInTheDocument();
 });
 
-// Übung react-state-hooks: .skip entfernen
-it.skip('filtert die Liste nach dem Suchtext', async () => {
+// Exercise react-state-hooks: remove .skip
+it.skip('filters the list by the search text', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Suche'), 'schlüssel');
   expect(screen.getAllByRole('heading', { level: 2 })).toHaveLength(2);
   expect(screen.queryByText('Werkstattwagen')).not.toBeInTheDocument();
 });
 
-it.skip('zeigt einen Hinweis, wenn nichts passt', async () => {
+it.skip('shows a hint when nothing matches', async () => {
   render(<App />);
   await userEvent.type(screen.getByLabelText('Suche'), 'Bohrer');
   expect(
@@ -26,7 +26,7 @@ it.skip('zeigt einen Hinweis, wenn nichts passt', async () => {
   ).toBeInTheDocument();
 });
 
-it.skip('legt Produkte in den Warenkorb und summiert', async () => {
+it.skip('adds products to the cart and sums them up', async () => {
   render(<App />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Drehmomentschlüssel in den Warenkorb' })
@@ -39,7 +39,7 @@ it.skip('legt Produkte in den Warenkorb und summiert', async () => {
   expect(within(cart).getByText('Summe: 109,80 €')).toBeInTheDocument();
 });
 
-it.skip('entfernt Positionen aus dem Warenkorb', async () => {
+it.skip('removes items from the cart', async () => {
   render(<App />);
   await userEvent.click(
     screen.getByRole('button', { name: 'Werkstattwagen in den Warenkorb' })

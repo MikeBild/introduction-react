@@ -1,7 +1,7 @@
 import { PlaceOrderInput } from './placeOrderInput';
 import { orderId, products, type OrderId } from './shop';
 
-// Server Error mit dem Pfad des Felds, z. B. items.1.quantity
+// Server error with the path of the field, e.g. items.1.quantity
 export type ServerFieldError = { path: string; message: string };
 export type PlaceOrder = (input: PlaceOrderInput) => Promise<OrderId>;
 
@@ -13,7 +13,7 @@ export const isServerFieldError = (value: unknown): value is ServerFieldError =>
   'message' in value &&
   typeof value.message === 'string';
 
-// Fake-Server: Er validiert mit demselben Schema erneut und prüft den Bestand.
+// Fake server: it validates again with the same schema and checks the stock.
 export const placeOrder: PlaceOrder = async (input) => {
   await new Promise((resolve) => setTimeout(resolve, 300));
   const { items } = PlaceOrderInput.parse(input);

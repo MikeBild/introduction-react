@@ -1,6 +1,8 @@
-# Suspense und Error Boundaries
+*English · [Deutsch](18-more-pattern.de.md)*
 
-Zwei Fragen bestimmen die Struktur einer Seite: Wo wird gewartet? Wo werden Errors gefangen? `Suspense` beantwortet die erste, eine Error Boundary die zweite.
+# Suspense and Error Boundaries
+
+Two questions shape the structure of a page: Where do you wait? Where are errors caught? `Suspense` answers the first, an Error Boundary the second.
 
 ```tsx
 import { ErrorBoundary } from 'react-error-boundary';
@@ -12,17 +14,17 @@ import { ErrorBoundary } from 'react-error-boundary';
 </ErrorBoundary>;
 ```
 
-## Regeln
+## Rules
 
-- Schreib keine eigene Error-Boundary-Klasse mehr. [react-error-boundary](https://github.com/bvaughn/react-error-boundary) kapselt die einzige Stelle, an der React noch eine Klasse verlangt.
-- Erzeuge das Promise für `use()` außerhalb des Renderns und cache es. Ein neues Promise pro Render lädt endlos.
-- Leg `use()` nie in `try/catch`. Errors fängt die Boundary.
-- Setz Boundaries dorthin, wo ein Teil der Seite unabhängig ausfallen darf.
+- Do not write your own Error Boundary class anymore. [react-error-boundary](https://github.com/bvaughn/react-error-boundary) encapsulates the only place where React still requires a class.
+- Create the promise for `use()` outside of render and cache it. A new promise per render loads forever.
+- Never put `use()` in `try/catch`. The boundary catches errors.
+- Place boundaries where a part of the page may fail independently.
 
-Render Props, Higher-Order Components und eigene Error-Boundary-Klassen findest du in der alten Fassung dieses Kapitels.
+Render props, Higher-Order Components, and custom Error Boundary classes are in the earlier version of this chapter.
 
-## Übung
+## Exercise
 
-Lektion **Wo wird gewartet, wo werden Errors gefangen?** (`react-suspense-errors`): [examples/suspense-errors](examples/suspense-errors/README.md)
+Lesson **Where do you wait, where are errors caught?** (`react-suspense-errors`): [examples/suspense-errors](examples/suspense-errors/README.md)
 
-Die alte Fassung dieses Kapitels liegt unter [legacy/chapters/18-more-pattern.md](legacy/chapters/18-more-pattern.md).
+The earlier version of this chapter is in [archive/chapters/18-more-pattern.md](archive/chapters/18-more-pattern.md).

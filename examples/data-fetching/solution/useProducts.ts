@@ -8,7 +8,7 @@ export type LoadState<T> =
   | { status: 'error'; message: string }
   | { status: 'success'; data: T };
 
-// Ergebnis mit dem Suchtext, zu dem es gehört
+// Result together with the search text it belongs to
 type Result<T> = { search: string } & LoadState<T>;
 
 export const useProducts = (search: string): LoadState<Product[]> => {
@@ -21,9 +21,9 @@ export const useProducts = (search: string): LoadState<Product[]> => {
         if (!controller.signal.aborted)
           setResult({ search, status: 'error', message: errorText(error) });
       });
-    // Der Cleanup bricht den Request für den alten Suchtext ab.
+    // The cleanup aborts the request for the old search text.
     return () => controller.abort();
   }, [search]);
-  // Passt das Ergebnis nicht zum aktuellen Suchtext, lädt es noch.
+  // If the result does not match the current search text, it is still loading.
   return result?.search === search ? result : { status: 'loading' };
 };
