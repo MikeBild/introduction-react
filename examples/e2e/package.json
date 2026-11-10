@@ -1,7 +1,7 @@
 {
   "name": "e2e",
   "version": "0.0.0",
-  "description": "Der Checkout des Werkstatt-Shops mit echter API, geprüft mit E2E-Tests in Playwright.",
+  "description": "The checkout of the workshop shop with a real API, verified with E2E tests in Playwright.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

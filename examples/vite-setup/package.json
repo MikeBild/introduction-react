@@ -1,7 +1,7 @@
 {
   "name": "vite-setup",
   "version": "0.0.0",
-  "description": "Produktliste des Werkstatt-Shops in einem frischen Vite-Projekt: Dev Server, Proxy auf eine Fake-API, Aliase aus der tsconfig und tsc -b vor dem Build.",
+  "description": "Product list of the workshop shop in a fresh Vite project: dev server, proxy to a fake API, aliases from the tsconfig, and tsc -b before the build.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

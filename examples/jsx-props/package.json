@@ -1,7 +1,7 @@
 {
   "name": "jsx-props",
   "version": "0.0.0",
-  "description": "Eine Warenkorb-Karte mit typisierten Props, Union Type und optionalen Feldern.",
+  "description": "A cart card with typed props, a union type, and optional fields.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

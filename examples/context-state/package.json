@@ -1,7 +1,7 @@
 {
   "name": "context-state",
   "version": "0.0.0",
-  "description": "Ein typisierter Warenkorb-Context mit Provider und Custom Hook.",
+  "description": "A typed cart context with a provider and a custom hook.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

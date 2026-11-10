@@ -1,7 +1,7 @@
 {
   "name": "effects",
   "version": "0.0.0",
-  "description": "Effects prüfen: abgeleitete Werte, Event Handler, Cleanup und Abort.",
+  "description": "Reviewing effects: derived values, event handlers, cleanup, and abort.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

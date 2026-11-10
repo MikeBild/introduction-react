@@ -1,7 +1,7 @@
 {
   "name": "rendering-performance",
   "version": "0.0.0",
-  "description": "Eine lange Produkttabelle messen und mit State Colocation entlasten.",
+  "description": "Measure a long product table and relieve it with state colocation.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

@@ -1,7 +1,7 @@
 {
   "name": "tanstack-query",
   "version": "0.0.0",
-  "description": "Produktsuche und Bestellübersicht des Werkstatt-Shops mit TanStack Query statt eigenem Hook.",
+  "description": "Product search and order overview of the workshop shop with TanStack Query instead of a hand-written hook.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

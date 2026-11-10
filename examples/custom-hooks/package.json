@@ -1,7 +1,7 @@
 {
   "name": "custom-hooks",
   "version": "0.0.0",
-  "description": "Eine Produktsuche mit einem generischen useDebouncedValue-Hook.",
+  "description": "A product search with a generic useDebouncedValue hook.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

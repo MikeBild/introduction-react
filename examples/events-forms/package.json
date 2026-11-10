@@ -1,7 +1,7 @@
 {
   "name": "events-forms",
   "version": "0.0.0",
-  "description": "Eine Controlled Form für eine Newsletter-Anmeldung.",
+  "description": "A controlled form for a newsletter signup.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

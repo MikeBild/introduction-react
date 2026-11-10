@@ -1,7 +1,7 @@
 {
   "name": "styling-tailwind",
   "version": "0.0.0",
-  "description": "Eine Checkout Form mit Tailwind CSS und einem Button mit drei Variants.",
+  "description": "A checkout form with Tailwind CSS and a button with three variants.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

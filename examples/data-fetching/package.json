@@ -1,7 +1,7 @@
 {
   "name": "data-fetching",
   "version": "0.0.0",
-  "description": "Produktsuche des Werkstatt-Shops: ein Hook useProducts mit AbortController und Status als Union Type.",
+  "description": "Product search of the workshop shop: a useProducts hook with AbortController and the status as a union type.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

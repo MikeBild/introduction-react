@@ -1,7 +1,7 @@
 {
   "name": "testing",
   "version": "0.0.0",
-  "description": "Eine Signup Form mit zod-Validation, getestet mit Vitest, Testing Library und einem fetch-Spy.",
+  "description": "A signup form with zod validation, tested with Vitest, Testing Library, and a fetch spy.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

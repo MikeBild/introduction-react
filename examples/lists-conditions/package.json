@@ -1,7 +1,7 @@
 {
   "name": "lists-conditions",
   "version": "0.0.0",
-  "description": "Eine Bestellübersicht mit stabilen Keys und eigenen Ansichten für Empty, Loading und Error State.",
+  "description": "An order overview with stable keys and separate views for the empty, loading, and error state.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

@@ -1,7 +1,7 @@
 {
   "name": "router-app",
   "version": "0.0.0",
-  "description": "Bestellübersicht des Werkstatt-Shops mit React Router 8 im Data Mode: Loader, Search Params, Error Boundary je Route.",
+  "description": "Order overview of the workshop shop with React Router 8 in data mode: loaders, search params, an error boundary per route.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

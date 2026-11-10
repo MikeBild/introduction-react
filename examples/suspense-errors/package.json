@@ -1,7 +1,7 @@
 {
   "name": "suspense-errors",
   "version": "0.0.0",
-  "description": "Eine Bestelldetail-Seite mit Suspense und react-error-boundary.",
+  "description": "An order detail page with Suspense and react-error-boundary.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

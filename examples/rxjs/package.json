@@ -1,7 +1,7 @@
 {
   "name": "rxjs",
   "version": "0.0.0",
-  "description": "Produktsuche des Werkstatt-Shops als RxJS-Stream mit debounceTime, switchMap und catchError.",
+  "description": "Product search of the workshop shop as an RxJS stream with debounceTime, switchMap, and catchError.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

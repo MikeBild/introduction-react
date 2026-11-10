@@ -1,7 +1,7 @@
 {
   "name": "component-library",
   "version": "0.0.0",
-  "description": "Eine kleine Component Library mit Storybook: Composition per Slots und Atomic Design.",
+  "description": "A small component library with Storybook: composition through slots and Atomic Design.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

@@ -1,7 +1,7 @@
 {
   "name": "generic-components",
   "version": "0.0.0",
-  "description": "Eine generische DataTable<T> mit typisierten Spalten für eine Kundenliste.",
+  "description": "A generic DataTable<T> with typed columns for a customer list.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,

@@ -1,7 +1,7 @@
 {
   "name": "ssr-app",
   "version": "0.0.0",
-  "description": "Server-Side Rendering mit Streaming und Hydration – Ausgangspunkt für Server Components.",
+  "description": "Server-side rendering with streaming and hydration – the starting point for Server Components.",
   "author": "Mike Bild <mike.bild@gmail.com>",
   "license": "MIT",
   "private": true,
