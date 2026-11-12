@@ -115,13 +115,14 @@ In the core you load data with `fetch` and your own hook (`data-fetching`), then
 
 ## Workshop and slides
 
-- Workshop: [“Full-stack with TypeScript, Node.js, GraphQL, and React in 6 days”](https://workshops.mikebild.dev/w/fullstack/onsite/)
-- Workshop: [“React with Vite to an installable PWA”](https://workshops.mikebild.dev/w/react-fortgeschritten/remote/)
-- Workshop: [“React with TypeScript all the way to production”](https://workshops.mikebild.dev/w/react/remote/)
-- Slides: [slides.mikebild.dev/introduction-react](https://slides.mikebild.dev/introduction-react.html)
-- PDF: [slides.mikebild.dev/introduction-react.pdf](https://slides.mikebild.dev/introduction-react.pdf)
-- Posts on mikebild.dev (German):
-  - [React-Überblick: Von JSX zur Komponentenarchitektur](https://www.mikebild.dev/de/blog/react-ueberblick-von-jsx-zur-architektur/)
+- Workshop (held in German): [“Full-stack with TypeScript, Node.js, GraphQL, and React in 6 days”](https://workshops.mikebild.dev/w/fullstack/onsite/)
+- Workshop (held in German): [“React with Vite to an installable PWA”](https://workshops.mikebild.dev/w/react-fortgeschritten/remote/)
+- Workshop (held in German): [“React with TypeScript all the way to production”](https://workshops.mikebild.dev/w/react/remote/)
+- Slides: [slides.mikebild.dev/introduction-react.en](https://slides.mikebild.dev/introduction-react.en.html)
+- PDF: [introduction-react.en.pdf](https://objects.upraft.mikebild.info/site-media/mikebild/decks/introduction-react/introduction-react.en.pdf)
+- Video: [introduction-react.en.mp4](https://objects.upraft.mikebild.info/site-media/mikebild/decks/introduction-react/introduction-react.en.mp4)
+- Posts on mikebild.dev:
+  - [React Overview: From JSX to Component Architecture](https://www.mikebild.dev/en/blog/react-overview-from-jsx-to-component-architecture/)
 
 ## Archive
 
